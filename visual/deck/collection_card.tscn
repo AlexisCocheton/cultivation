@@ -17,7 +17,7 @@ texture_margin_right = 15.0
 texture_margin_top = 15.0
 texture_margin_bottom = 15.0
 [node name="Technique" type="Button"]
-custom_minimum_size = Vector2(224,284)
+custom_minimum_size = Vector2(232,272)
 theme = ExtResource("2")
 theme_override_styles/normal = SubResource("Paper")
 theme_override_styles/hover = SubResource("Paper")
@@ -30,8 +30,8 @@ script = ExtResource("1")
 layout_mode = 0
 offset_left = 9.0
 offset_top = 8.0
-offset_right = 215.0
-offset_bottom = 121.0
+offset_right = 223.0
+offset_bottom = 135.0
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
@@ -62,9 +62,9 @@ theme_override_font_sizes/font_size = 23
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 124.0
-offset_right = 216.0
-offset_bottom = 158.0
+offset_top = 138.0
+offset_right = 224.0
+offset_bottom = 170.0
 mouse_filter = 2
 theme_type_variation = &"Title"
 theme_override_font_sizes/font_size = 22
@@ -73,29 +73,31 @@ horizontal_alignment = 1
 [node name="Line" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 160.0
-offset_right = 204.0
-offset_bottom = 162.0
+offset_top = 171.0
+offset_right = 212.0
+offset_bottom = 173.0
 mouse_filter = 2
 color = Color(0.65,0.1,0.1,1)
 
 [node name="Effects" type="Label" parent="."]
 layout_mode = 0
 offset_left = 12.0
-offset_top = 168.0
-offset_right = 212.0
-offset_bottom = 236.0
+offset_top = 178.0
+offset_right = 220.0
+offset_bottom = 230.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 16
 autowrap_mode = 2
 vertical_alignment = 1
 horizontal_alignment = 1
 
+max_lines_visible = 2
+text_overrun_behavior = 3
 [node name="Selected" type="Label" parent="."]
 layout_mode = 0
-offset_left = 174.0
+offset_left = 182.0
 offset_top = 8.0
-offset_right = 214.0
+offset_right = 222.0
 offset_bottom = 34.0
 mouse_filter = 2
 text = "✓"
@@ -116,18 +118,18 @@ theme_override_styles/panel = SubResource("Selection")
 [node name="WayInk" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 99.0
-offset_right = 215.0
-offset_bottom = 121.0
+offset_top = 113.0
+offset_right = 223.0
+offset_bottom = 135.0
 mouse_filter = 2
 color = Color(0.08,0.07,0.07,0.92)
 
 [node name="Way" type="Label" parent="."]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 99.0
-offset_right = 215.0
-offset_bottom = 121.0
+offset_top = 113.0
+offset_right = 223.0
+offset_bottom = 135.0
 mouse_filter = 2
 text = "Orthodoxe"
 horizontal_alignment = 1

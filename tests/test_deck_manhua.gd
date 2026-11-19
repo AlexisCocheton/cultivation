@@ -81,6 +81,16 @@ func run() -> void:
 		if before == menu.draft.size(): break
 	check(menu.draft.size() == 20 and menu.add_reason("H02") != "","Full deck cap")
 	menu.refresh()
+	await process_frame
+	await process_frame
+	var grid = menu.get_node("Scroll/Grid")
+	var viewport_rect = menu.get_node("Scroll").get_global_rect()
+	for i in range(6):
+		check(viewport_rect.encloses(grid.get_child(i).get_global_rect()),"Six full cards fit")
+		check(grid.get_child(i).get_global_rect().encloses(grid.get_child(i).get_node("Add").get_global_rect()),"Plus remains inside card")
+	check(grid.get_child(6).get_global_rect().position.y >= viewport_rect.end.y,"No clipped third row initially")
+	var rows = menu.get_node("DeckScroll/Rows")
+	check(menu.get_node("DeckScroll").get_global_rect().encloses(rows.get_child(8).get_global_rect()),"Nine deck entries fit")
 	if DisplayServer.get_name() != "headless":
 		Input.warp_mouse(Vector2(10,10))
 		var motion = InputEventMouseMotion.new()

@@ -393,3 +393,7 @@ Validation : 20 contrôles dédiés (brouillon, annulation, fichier inchangé, v
 Retour utilisateur : illustrations, typographie et boutons de la première intégration moins convaincants que la maquette. Ajout de douze illustrations manhua de techniques, via atlas partagé entre collection, combat et marchand. Les autres cartes conservent temporairement leurs anciennes images. Cartes de collection agrandies, titres Kaushan Script à 22 px ; filtres sobres et lisibles ; retrait en cercle rouge fin, ajout en cercle plein, Annuler sur papier encadré. Le fond reste discret, sans titre supérieur ni phrase inférieure.
 
 Validation : nouvelle capture en moteur deck-draft-menu.png, test du brouillon réussi (20 contrôles). Aucune modification de règles, de cartes possédées ou de sauvegardes. Planche, correspondance des cartes et prompt consignés dans assets/CARD_MANHUA_ART.md.
+
+### Proportions du menu de deck — 19 novembre 2026
+
+Cartes de collection ajustées à 232 × 272, illustrations agrandies et zone visible cadrée sur deux rangées de trois cartes sans bande de troisième rangée au repos. Boutons + inclus dans le cadre, lignes du deck compactées à 44 px avec commandes − de 34 px : neuf techniques visibles. Les effets longs restent consultables intégralement au survol/clic ; aperçu limité à deux lignes dans la collection. Tests de géométrie ajoutés : six cartes et leurs boutons intégralement contenus, neuvième ligne visible. 34 contrôles réussis, capture tests/deck-draft-menu.png produite dans Godot. Aucun changement de règles ou de sauvegarde.

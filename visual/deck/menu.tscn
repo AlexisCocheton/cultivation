@@ -130,17 +130,17 @@ theme_override_styles/hover = SubResource("FilterSelected")
 theme_override_fonts/font = SubResource("FilterFont")
 theme_override_colors/font_color = Color(0.12,0.10,0.10,1)
 [node name="Scroll" type="ScrollContainer" parent="."]
-offset_left = 44.0
-offset_top = 115.0
+offset_left = 42.0
+offset_top = 128.0
 offset_right = 782.0
-offset_bottom = 711.0
+offset_bottom = 684.0
 horizontal_scroll_mode = 0
 follow_focus = true
 
 [node name="Grid" type="GridContainer" parent="Scroll"]
 layout_mode = 2
 columns = 3
-theme_override_constants/h_separation = 16
+theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 [node name="SampleA" parent="Scroll/Grid" instance=ExtResource("3")]
 layout_mode = 2
@@ -200,7 +200,7 @@ mouse_filter = 2
 offset_left = 835.0
 offset_top = 222.0
 offset_right = 1238.0
-offset_bottom = 644.0
+offset_bottom = 634.0
 horizontal_scroll_mode = 0
 follow_focus = true
 
