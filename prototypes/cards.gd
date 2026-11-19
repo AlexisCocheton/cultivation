@@ -1,35 +1,41 @@
 extends RefCounted
 
-const ROWS = """B01|Frappe droite|1|6|0|0
-B02|Garde du rocher|1|0|5|0
-B03|Souffle tranquille|0|0|3|0
-B04|Taille appuyée|2|11|0|0
-B05|Pas léger|1|0|3|1
-B06|Lecture du duel|1|0|0|2
-B07|Posture ferme|2|0|11|0
-B08|Souffle offensif|0|0|0|0
-L01|Pétales tranchants|1|7|0|0
-L02|Fil de soie|1|0|4|1
-L03|Prunier dansant|2|12|0|0
-J01|Réplique du tigre|1|6|3|0
-J02|Défi ouvert|1|0|0|1
-J03|Fendre la montagne|2|14|0|0
-H01|Racines profondes|1|0|9|0
-H02|Patience du maître|1|0|4|0
-H03|Mur de jade|2|5|12|0
-Q01|Lame restaurée|1|8|0|0
-Q02|Estoc du bambou|1|5|0|1
-Q03|Sceau protecteur|1|0|7|0
-Q04|Nœud du souffle|0|0|0|0
-O01|Baume médicinal|0|0|0|0
-O02|Encens de veille|0|0|0|2
-E01|Serment de l'aube|1|7|2|0
-E02|Serment du foyer|1|2|7|0
-E03|Main du voyageur|1|0|2|2
-E04|Écho des anciens|2|10|6|0
-E05|Travail commun|1|0|6|1
-E06|Horizon dégagé|1|8|0|0
-E07|Dignité retrouvée|2|12|4|0"""
+const ROWS = """B01|Frappe droite|1|6|0|0|orthodox
+B02|Garde du rocher|1|0|5|0|orthodox
+B03|Souffle tranquille|0|0|3|0|orthodox
+B04|Taille appuyée|2|11|0|0|orthodox
+B05|Pas léger|1|0|3|1|orthodox
+B06|Lecture du duel|1|0|0|2|orthodox
+B07|Posture ferme|2|0|11|0|orthodox
+B08|Souffle offensif|0|0|0|0|orthodox
+L01|Pétales tranchants|1|7|0|0|orthodox
+L02|Fil de soie|1|0|4|1|orthodox
+L03|Prunier dansant|2|12|0|0|orthodox
+J01|Réplique du tigre|1|6|3|0|orthodox
+J02|Défi ouvert|1|0|0|1|orthodox
+J03|Fendre la montagne|2|14|0|0|orthodox
+H01|Racines profondes|1|0|9|0|orthodox
+H02|Patience du maître|1|0|4|0|orthodox
+H03|Mur de jade|2|5|12|0|orthodox
+Q01|Lame restaurée|1|8|0|0|unorthodox
+Q02|Estoc du bambou|1|5|0|1|unorthodox
+Q03|Sceau protecteur|1|0|7|0|unorthodox
+Q04|Nœud du souffle|0|0|0|0|unorthodox
+O01|Baume médicinal|0|0|0|0|unorthodox
+O02|Encens de veille|0|0|0|2|unorthodox
+E01|Serment de l'aube|1|7|2|0|orthodox
+E02|Serment du foyer|1|2|7|0|orthodox
+E03|Main du voyageur|1|0|2|2|unorthodox
+E04|Écho des anciens|2|10|6|0|orthodox
+E05|Travail commun|1|0|6|1|orthodox
+E06|Horizon dégagé|1|8|0|0|unorthodox
+E07|Dignité retrouvée|2|12|4|0|orthodox"""
+
+# Paths describe a technique's tradition, independently of its damage or equipment slot.
+const WAY_NAMES = {"orthodox":"Orthodoxe", "unorthodox":"Non orthodoxe", "demonic":"Démoniaque"}
+
+static func way_name(id: String) -> String:
+	return WAY_NAMES[catalog()[id].way]
 
 const PRESETS = {
 	"Départ": ["B01","B01","B02","B02","B04","B04","B07","B07","B03","B05","B06","B08"],
@@ -42,7 +48,7 @@ static func catalog() -> Dictionary:
 	var result = {}
 	for row in ROWS.split("\n"):
 		var v = row.split("|")
-		result[v[0]] = {"name":v[1],"cost":int(v[2]),"damage":int(v[3]),"block":int(v[4]),"draw":int(v[5]),"exhaust":v[0] in ["B03","B08","Q04","O01","O02"]}
+		result[v[0]] = {"name":v[1],"cost":int(v[2]),"damage":int(v[3]),"block":int(v[4]),"draw":int(v[5]),"way":v[6].strip_edges(),"exhaust":v[0] in ["B03","B08","Q04","O01","O02"]}
 	return result
 
 static func validate(deck: Array) -> String:
@@ -83,4 +89,4 @@ static func description(id: String) -> String:
 		"O01": parts.append("soigne 6 PV")
 		"E06": parts.append("pioche 1 si cible Exposée")
 	if c.exhaust: parts.append("retirée après usage jusqu'au prochain combat")
-	return "%s · %d qi\n%s" % [c.name,c.cost," · ".join(parts)]
+	return "%s · %d qi\n%s\nVoie : %s" % [c.name,c.cost," · ".join(parts),WAY_NAMES[c.way]]

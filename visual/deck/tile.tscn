@@ -112,3 +112,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("Selection")
+
+[node name="WayInk" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 67.0
+offset_right = 185.0
+offset_bottom = 91.0
+mouse_filter = 2
+color = Color(0.08,0.07,0.07,0.92)
+
+[node name="Way" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 67.0
+offset_right = 185.0
+offset_bottom = 91.0
+mouse_filter = 2
+text = "Orthodoxe"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.97,0.93,0.85,1)

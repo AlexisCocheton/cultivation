@@ -47,6 +47,7 @@ func inspect(id: String) -> void:
 	var data = Cards.catalog()[id]
 	$Detail/Art.texture = TileScript.illustration(id)
 	$Detail/Name.text = data.name
+	$Detail/Way.text = "Voie " + Cards.way_name(id).to_lower()
 	$Detail/Cost.text = "%d Qi   ·   %d équipé(s)" % [data.cost, game.calendar.deck.count(id)]
 	$Detail/Effects.text = Cards.description(id).split("\n")[1].replace(" · ", "\n").replace("retirée après usage jusqu'au prochain combat", "Épuisement")
 	var origin = {"B":"Technique de base", "L":"Lian", "J":"Jun", "H":"Shen", "Q":"Équipement", "O":"Objet", "E":"Événement"}

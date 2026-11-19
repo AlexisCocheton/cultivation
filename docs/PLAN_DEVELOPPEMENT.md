@@ -335,3 +335,16 @@ Lancement : `project.godot` pointe sur `visual/preview.tscn`. `Jouer.cmd` et `Se
 Validation : 31 contrôles ciblés, zéro échec ; suites marchand J4, interface de combat et progression de Jun réussies ; laboratoire : 43 927 contrôles, zéro échec. Démarrage de la scène principale sans argument de scène vérifié en mode headless pendant 60 frames, sans erreur. Les contrôles automatisés ne remplacent pas une nouvelle validation visuelle humaine.
 
 Suite : enrichissement des dialogues et du son, puis intégration J5–J6/S06 selon le périmètre déjà validé. Aucun contenu supplémentaire ni changement de difficulté dans ce lot.
+
+
+### Voies des cartes — 19 novembre 2026
+
+Intégré : métadonnée explicite de voie sur les trente cartes ; orthodoxe pour les bases et enseignements de Lian/Jun/Shen, non orthodoxe pour le marchand, les quatre équipements courants et les pratiques extérieures. La troisième voie, démoniaque, est définie mais aucune carte démoniaque n’est distribuée dans J2–J4. Répartition : 22 orthodoxes, 8 non orthodoxes. Aucun changement d’effet, de prix, de coût de période, de limite de deck ou de sauvegarde.
+
+Affichage : bandeau lisible sur les cartes du deck, de la collection, du marchand et de la main de combat ; voie dans la fiche détaillée, les descriptions et les récompenses du serment. Le marchand explique l’origine non orthodoxe de ses techniques. M02 et S01 constituent les premiers événements d’acquisition des deux voies présentes.
+
+Reporté et documenté dans ETAPE_03_REGLES_DU_JEU.md : événement unique du feuillet scellé, talisman rare démoniaque, choix de refus, conditions d’acquisition et contrôles de sauvegarde. Les noms et mécanismes proposés restent à concevoir et équilibrer ; aucune augmentation implicite du périmètre à trente cartes. Pas de corruption ni de restriction de mélange des voies pour l’instant.
+
+Validation : test_card_ways.gd, 101 contrôles réussis sur le catalogue, les sources, l’acquisition chez le marchand et l’affichage deck/combat. Suites marchand J4, activités, combat et fiabilité relancées. Les identifiants sauvegardés restent inchangés : aucune migration nécessaire.
+
+Captures en moteur du deck, du marchand et du combat vérifiées : bandeaux lisibles dans le style papier/encre. Sauvegardes personnelles comparées au manifeste SHA-256 : inchangées.

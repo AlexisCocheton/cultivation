@@ -12,8 +12,8 @@ func setup(controller) -> void:
 	$Buy.pressed.connect(func(): commit(selected))
 	$Skip.pressed.connect(func(): commit(""))
 	var first = not game.calendar.seen.has("S01")
-	$Words.text = "« Votre prunier fleurit encore ! J’ai quelques nouvelles et de quoi préparer vos prochains duels. »" if first else "« Prends le temps de choisir. Une bonne lame ne remplace pas une bonne technique. »"
-	$Gift.text = "Main du voyageur offerte.\n1 qi · 2 garde · Pioche 2.\nAchat inclus dans cette période." if first else "Première rencontre terminée.\nChaque nouvel achat coûte une période.\nConsulter et équiper reste gratuit."
+	$Words.text = "« Mes techniques non orthodoxes viennent des routes. Elles complètent celles de votre secte. »" if first else "« Prends le temps de choisir. Une bonne lame ne remplace pas une bonne technique. »"
+	$Gift.text = "Main du voyageur · Non orthodoxe.\n1 qi · 2 garde · Pioche 2.\nAchat inclus dans cette période." if first else "Première rencontre terminée.\nChaque nouvel achat coûte une période.\nConsulter et équiper reste gratuit."
 	$Skip.visible = first
 	$Receipt.text = game.notice
 	for tile in $Cards.get_children():

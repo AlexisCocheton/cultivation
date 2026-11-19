@@ -63,5 +63,5 @@ func preview_card(id: String) -> void:
 	var damage: int = battle.damage_for(id)
 	if damage > 0:
 		description += " · Maintenant : %d dégâts (%d après garde)" % [damage,maxi(0,damage-battle.enemy_block)]
-	$Preview.text = battle.cards[id].name + " — " + description
+	$Preview.text = battle.cards[id].name + " · " + Cards.way_name(id) + " — " + description
 	if battle.cards[id].cost > battle.energy: $Preview.text = "Qi insuffisant · " + $Preview.text

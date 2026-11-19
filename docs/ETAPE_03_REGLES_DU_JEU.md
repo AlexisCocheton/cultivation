@@ -300,3 +300,28 @@ Avec 3 qi : jouer Défi ouvert (1 qi) applique Exposé ; jouer Souffle offensif 
 Ces systèmes sont maintenant expérimentés dans le laboratoire, dont la composition manuelle depuis la collection et les trois emplacements d’équipement. La migration vers le hub, les dialogues finalisés et la sauvegarde de production complète restent à réaliser. Les fonctionnalités effectivement testées et les limites figurent dans le bilan v0.2.
 
 Réutiliser la cour, les contrôles, les animations, la direction visuelle, les effets d'ambiance et les bases du combat. Le prototype actuel reste jouable avec ses anciennes règles tant que cette migration n'est pas réalisée. Ne pas afficher une fonctionnalité de ce document comme disponible dans le jeu avant son intégration et son test.
+
+
+## Extension validée — voies des techniques
+
+Ajout du 19 novembre 2026. Chaque carte porte une voie : orthodoxe, non orthodoxe ou démoniaque. La voie est indépendante de la fonction (attaque, garde, pioche), du support (technique, arme, talisman, objet) et du coût en qi. Un deck peut mélanger les voies ; aucune restriction, statistique de corruption ou pénalité relationnelle n’est ajoutée à ce stade.
+
+| Voie | Sources prévues | Application actuelle |
+|---|---|---|
+| Orthodoxe | Enseignements de la secte, entraînements, serments et événements liés à sa transmission | B01–B08, L01–L03, J01–J03, H01–H03 ; E01, E02, E04, E05, E07 |
+| Non orthodoxe | Marchand, équipement courant, pratiques itinérantes et découvertes extérieures | Q01–Q04, O01–O02 ; E03 et E06 |
+| Démoniaque | Quelques équipements rares et événements uniques, obtenus par un choix explicite | Voie définie ; aucune carte ni acquisition disponible pour l’instant |
+
+Les membres de la secte enseignent principalement des techniques orthodoxes ; toutes leurs récompenses actuelles le sont. Les exceptions futures devront être explicites dans leur histoire, pas déduites de dégâts élevés ou d’un coût en PV. Fendre la montagne reste ainsi orthodoxe.
+
+Événements déjà utilisables : M02 donne un serment orthodoxe ; S01 donne Main du voyageur non orthodoxe et permet d’acheter un équipement non orthodoxe. S02/S04/M04 récompensent la tradition de la secte ; S05 représente des pratiques extérieures non orthodoxes dans le laboratoire, en attendant son intégration visuelle. Les objets O01/O02 relèvent ici des pratiques matérielles extérieures ; cette attribution ne transforme pas tout objet de soin en technique démoniaque.
+
+Les voies sont des métadonnées du catalogue, pas un nouvel état de sauvegarde. Les cartes déjà acquises conservent leurs identifiants, effets et emplacements et affichent automatiquement leur voie. Le catalogue demeure à trente cartes : vingt-deux orthodoxes, huit non orthodoxes ; zéro démoniaque jouable actuellement.
+
+### Contenu à concevoir plus tard
+
+- **Événement unique — Le feuillet scellé** : proposition d’une découverte après les journées tutorielles. Choix entre apprendre une technique démoniaque et refermer le sceau avec une autre récompense utile. Afficher la voie et les effets avant de confirmer ; refuser ne bloque pas l’histoire. Marquer la rencontre dans les événements vus pour empêcher sa répétition.
+- **Équipement rare — Le talisman fêlé** : proposition d’un talisman de voie démoniaque obtenu par une rencontre spéciale, jamais dans l’étal normal de J4. Il emploiera l’emplacement de talisman existant et accordera une carte lorsqu’il est équipé. Sa désactivation suivra les règles actuelles du deck ; ni emplacement gratuit ni récompense répétable.
+- **Identité mécanique à tester** : orthodoxe orientée garde/enchaînements maîtrisés ; non orthodoxe orientée souplesse et usages atypiques ; démoniaque orientée puissance avec contrepartie lisible. Ce sont des directions de conception, pas des bonus automatiques déjà actifs.
+- **Avant intégration** : fixer jour, conditions, coût de période, récompense alternative et effet exact ; décider quelles places du catalogue à trente cartes seront réservées ou faire valider une extension. Ne pas ajouter silencieusement des cartes, un système de corruption, des routes narratives ou des réactions de personnages.
+- **Validation future** : acquisition unique, refus viable, sauvegarde/reprise, équipement/déséquipement, mélange des voies et affichage avant choix. Rééquilibrer seulement après avoir testé les effets démoniaques concrets.

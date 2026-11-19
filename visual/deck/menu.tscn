@@ -173,3 +173,22 @@ offset_bottom = 821.0
 theme_override_colors/font_color = Color(1,0.95,0.85,1)
 autowrap_mode = 2
 theme_override_font_sizes/font_size = 17
+
+[node name="WayInk" type="ColorRect" parent="Detail"]
+offset_left = 10.0
+offset_top = 188.0
+offset_right = 380.0
+offset_bottom = 222.0
+mouse_filter = 2
+color = Color(0.08,0.07,0.07,0.92)
+
+[node name="Way" type="Label" parent="Detail"]
+offset_left = 10.0
+offset_top = 188.0
+offset_right = 380.0
+offset_bottom = 222.0
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.97,0.93,0.85,1)

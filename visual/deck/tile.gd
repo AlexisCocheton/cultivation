@@ -19,6 +19,7 @@ func _ready() -> void:
 	var data = Cards.catalog()[card_id]
 	$Art.texture = illustration(card_id)
 	$Name.text = data.name
+	$Way.text = Cards.way_name(card_id)
 	$Cost.text = "%d" % data.cost
 	$Effects.text = Cards.description(card_id).split("\n")[1].replace("retirée après usage jusqu'au prochain combat", "Épuisement")
 	tooltip_text = Cards.description(card_id)
