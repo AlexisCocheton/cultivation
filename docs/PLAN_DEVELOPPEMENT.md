@@ -348,3 +348,14 @@ Reporté et documenté dans ETAPE_03_REGLES_DU_JEU.md : événement unique du fe
 Validation : test_card_ways.gd, 101 contrôles réussis sur le catalogue, les sources, l’acquisition chez le marchand et l’affichage deck/combat. Suites marchand J4, activités, combat et fiabilité relancées. Les identifiants sauvegardés restent inchangés : aucune migration nécessaire.
 
 Captures en moteur du deck, du marchand et du combat vérifiées : bandeaux lisibles dans le style papier/encre. Sauvegardes personnelles comparées au manifeste SHA-256 : inchangées.
+
+
+### Identités mécaniques des voies — direction utilisateur du 19 novembre 2026
+
+Direction enregistrée dans ETAPE_03_REGLES_DU_JEU.md : orthodoxe simple, accumulation, buffs, gros decks, pioche, main élargie et effets persistants ; non orthodoxe centrée sur affaiblissements, poison, contrôle des actions et intentions, protection d’un tour ; démoniaque centrée sur vol de vie, affaiblissements, combustion, invocation, prévention de la mort, scaling PV perdus, dégâts automatiques et qi maximal accru pour le combat.
+
+Ce lot est une mise à jour de conception, pas une implémentation des effets. La classification et l’affichage des voies restent jouables ; deck de 12, main maximale de 10 et règles de qi actuelles restent inchangés jusqu’au prototype dédié. La nouvelle direction impose notamment de réviser la taille fixe du deck. La plage 12–20, le sens précis de « brûler », le calcul des PV perdus et les modalités du qi maximal sont documentés comme propositions, non comme règles déjà approuvées.
+
+Ordre recommandé pour le prochain chantier de combat : socle d’états/effets persistants → petit lot orthodoxe → contrôle non orthodoxe → sacrifice/vol de vie démoniaques → invocation et prévention de mort → acquisitions dans la campagne. Ce chantier nécessite de rééquilibrer les cartes existantes et les decks mixtes avant d’étendre le contenu. Respecter le budget de trente cartes ; aucun nouveau système de corruption ou de factions ajouté implicitement.
+
+Aucun fichier de gameplay ni aucune sauvegarde modifié lors de cette formalisation. La suite narrative J5–J6 demeure au plan ; cette évolution du combat est un lot distinct à réaliser progressivement.

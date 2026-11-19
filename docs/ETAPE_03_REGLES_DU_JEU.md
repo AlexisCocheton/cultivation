@@ -322,6 +322,56 @@ Les voies sont des métadonnées du catalogue, pas un nouvel état de sauvegarde
 
 - **Événement unique — Le feuillet scellé** : proposition d’une découverte après les journées tutorielles. Choix entre apprendre une technique démoniaque et refermer le sceau avec une autre récompense utile. Afficher la voie et les effets avant de confirmer ; refuser ne bloque pas l’histoire. Marquer la rencontre dans les événements vus pour empêcher sa répétition.
 - **Équipement rare — Le talisman fêlé** : proposition d’un talisman de voie démoniaque obtenu par une rencontre spéciale, jamais dans l’étal normal de J4. Il emploiera l’emplacement de talisman existant et accordera une carte lorsqu’il est équipé. Sa désactivation suivra les règles actuelles du deck ; ni emplacement gratuit ni récompense répétable.
-- **Identité mécanique à tester** : orthodoxe orientée garde/enchaînements maîtrisés ; non orthodoxe orientée souplesse et usages atypiques ; démoniaque orientée puissance avec contrepartie lisible. Ce sont des directions de conception, pas des bonus automatiques déjà actifs.
+- **Identités mécaniques** : remplacées par la direction utilisateur détaillée ci-dessous : accumulation orthodoxe, contrôle non orthodoxe, sacrifice et survie démoniaques. Ces mécaniques restent à implémenter et à tester.
 - **Avant intégration** : fixer jour, conditions, coût de période, récompense alternative et effet exact ; décider quelles places du catalogue à trente cartes seront réservées ou faire valider une extension. Ne pas ajouter silencieusement des cartes, un système de corruption, des routes narratives ou des réactions de personnages.
 - **Validation future** : acquisition unique, refus viable, sauvegarde/reprise, équipement/déséquipement, mélange des voies et affichage avant choix. Rééquilibrer seulement après avoir testé les effets démoniaques concrets.
+
+
+## Direction mécanique des trois voies
+
+Direction précisée par le joueur le 19 novembre 2026. Elle remplace les pistes mécaniques génériques précédentes. Les intentions ci-dessous sont retenues pour la conception ; les paramètres proposés et les règles de résolution restent à tester avant intégration. La version jouable conserve pour le moment ses effets et limites actuels.
+
+### Orthodoxe — accumulation et montée en puissance
+
+Voie la plus simple à prendre en main. Elle construit progressivement sa puissance par les améliorations personnelles et l’accumulation de cartes. Les decks volumineux doivent devenir un choix viable, avec beaucoup de pioche, des augmentations de taille maximale de main et des techniques persistantes qui déclenchent leur effet à chaque tour après avoir été jouées.
+
+Distinguer les leviers dans les textes : taille du deck équipé au début du combat, nombre de cartes jouées ce tour, nombre ou valeur des améliorations personnelles. Une carte précise le compteur qu’elle utilise ; le mot « accumulation » seul ne suffit pas. Une grande collection ne doit pas donner un bonus si les cartes ne sont pas réellement équipées.
+
+Propositions de techniques sans valeurs finales : « Cent formes du prunier » gagne des dégâts selon la taille initiale du deck ; « Respiration du pavillon » est jouée une fois et accorde un bonus au début de chaque tour suivant ; « Esprit ouvert » augmente la limite de main et permet de piocher. Augmenter la limite de main ne doit pas être confondu avec augmenter la pioche par tour ou conserver les cartes en fin de tour.
+
+### Non orthodoxe — affaiblissement et contrôle
+
+De nombreuses techniques affaiblissent l’ennemi, empoisonnent, empêchent certaines actions, modifient son intention ou permettent d’ignorer les dégâts pendant un tour. Le joueur répond à l’intention visible pour choisir quand perturber l’adversaire.
+
+Propositions de techniques sans valeurs finales : « Aiguille du voyageur » applique du poison ; « Trouble du souffle » interdit une action identifiée, par exemple gagner de la garde ; « Feinte du bambou » remplace l’intention annoncée ; « Corps insaisissable » annule les dégâts pendant la prochaine phase ennemie. L’interface doit afficher immédiatement l’intention résultante, sa durée et les restrictions actives.
+
+À prototyper : poison infligeant des dégâts à un moment fixe du tour puis diminuant ; changement d’intention vers un résultat déterminé et annoncé, plutôt qu’un résultat caché ; durée courte des interdictions. Prévoir des limites contre le verrouillage permanent du combat sans rendre arbitrairement toutes les cartes de contrôle inutiles face au boss.
+
+### Démoniaque — sacrifice, prédation et survie
+
+Vol de vie, affaiblissements, combustion de cartes, créatures invoquées qui absorbent les attaques et attaquent, prévention de la mort, dégâts croissant avec les PV perdus, dégâts automatiques et augmentation du qi maximal pour le combat. La voie combine préparation dangereuse et moyens de survivre à cette prise de risque.
+
+Propositions de techniques sans valeurs finales : « Pacte écarlate » augmente la capacité de qi pour la rencontre ; « Ombre affamée » invoque une créature protectrice et offensive ; « Dernier souffle interdit » empêche une mort ; « Sang en éveil » améliore les attaques selon les PV perdus ; « Braise du cœur » inflige automatiquement des dégâts à une étape annoncée du tour.
+
+Hypothèses de travail à valider dans le laboratoire :
+
+- Vol de vie calculé sur les PV effectivement retirés à l’ennemi, sans soigner sur les dégâts absorbés par sa garde ni sur les dégâts excédant ses PV restants.
+- « Brûler » retire une carte du combat en cours, sans la détruire dans la collection. Le choix de la carte et sa zone d’origine doivent être explicites. Définir les éventuels effets de sacrifice séparément du retrait ordinaire.
+- Une seule créature active au premier prototype, avec PV, attaque, durée et règle de ciblage visibles. Fixer si une attaque qui la tue transmet son surplus au héros ; ne pas laisser ce comportement implicite.
+- Prévention de la mort consommable, par exemple une fois par combat avec retour à 1 PV ; pas d’immunité permanente. Tester son interaction avec sacrifice de PV et dégâts automatiques.
+- Le scaling sur les PV perdus doit choisir entre PV actuellement manquants et pertes cumulées depuis le début du combat. Ne pas mélanger les deux dans un même mot-clé. Pertes cumulées et soins peuvent créer une boucle : prévoir des limites avant équilibrage.
+- Séparer qi disponible, qi gagné au début de chaque tour et plafond de qi. Une augmentation « pour le combat » est réinitialisée à la rencontre suivante. Indiquer explicitement si elle accorde aussi du qi immédiatement.
+
+Les affaiblissements peuvent exister dans les deux voies : la non orthodoxe se distingue par le contrôle des actions et intentions ; la démoniaque par leurs liens avec le sacrifice, le vol de vie et les invocations. Aucune exclusivité absolue des effets n’est imposée.
+
+### Évolutions nécessaires et ordre de prototypage
+
+Les sources d’acquisition restent celles déjà décidées : secte principalement orthodoxe ; marchand et équipements ordinaires non orthodoxes ; quelques événements uniques et équipements rares démoniaques. Les decks mixtes restent autorisés. Il n’existe pas de bonus de voie automatique : les effets viennent des cartes.
+
+1. **Socle commun** : états avec durée et cumul explicites ; étapes de début/fin de tour ; techniques persistantes actives hors pioche ; ordre déterministe des effets automatiques ; nettoyage au nouveau combat. Prévoir leur affichage et leurs tests avant de multiplier les cartes.
+2. **Lot orthodoxe** : une technique persistante, une amélioration de main/pioche et une attaque liée à la taille du deck. Réviser le deck fixé à douze cartes : proposition de départ à tester, minimum 12 et maximum 20 pour tous, avec des récompenses spécifiques aux decks orthodoxes volumineux. Garder les règles de copies et d’équipement tant qu’un changement n’est pas justifié. Cette fourchette n’est pas encore validée ni active.
+3. **Lot non orthodoxe** : poison puis modification d’intention, blocage ciblé et protection d’un tour. Vérifier que l’intention affichée correspond toujours à l’action réellement résolue.
+4. **Lot démoniaque** : commencer par vol de vie et sacrifice/scaling PV ; ajouter ensuite combustion et qi maximal ; traiter invocation et prévention de la mort en dernier, car ils modifient le ciblage et l’issue du combat.
+5. **Intégration campagne** : répartir ou remplacer les cartes du catalogue actuel, définir leurs événements et équilibrer les decks purs et mixtes. Les trente cartes restent le budget de contenu en vigueur ; ne pas ajouter chaque exemple comme une nouvelle carte indépendante.
+
+Tests indispensables : aucun effet ne se déclenche deux fois au chargement ou à la reconstruction de l’interface ; pas de boucle infinie pioche/qi/soins ; limites de main et deck respectées ; interactions garde/poison/invocation/mort déterministes ; durée des états affichée ; puissance temporaire remise à zéro au duel suivant ; compatibilité des anciennes sauvegardes. Les systèmes ci-dessus ne sont pas encore présents dans la version jouable.
