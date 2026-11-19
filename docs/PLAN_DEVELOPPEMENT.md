@@ -2,6 +2,8 @@
 
 Version du 19 novembre 2026. Nom de travail, à confirmer.
 
+**Nouvelle décision de périmètre validée :** deux voies de reconstruction, orthodoxe et démoniaque, une PNJ initiatrice et conversion des disciples par amitié ou par la force. Contenu planifié, non implémenté ; voir la section « Deux voies de reconstruction et initiation démoniaque » en fin de document.
+
 Ce plan organise le passage du prototype Godot actuel à un jeu publiable. Chaque étape produit un résultat vérifiable ; atteindre une étape signifie satisfaire ses critères, pas simplement ajouter les fonctionnalités prévues. Les chiffres de contenu et les délais commerciaux seront fixés après mesure du coût réel d'une séquence représentative.
 
 ## Méthode et sources
@@ -397,3 +399,60 @@ Validation : nouvelle capture en moteur deck-draft-menu.png, test du brouillon r
 ### Proportions du menu de deck — 19 novembre 2026
 
 Cartes de collection ajustées à 232 × 272, illustrations agrandies et zone visible cadrée sur deux rangées de trois cartes sans bande de troisième rangée au repos. Boutons + inclus dans le cadre, lignes du deck compactées à 44 px avec commandes − de 34 px : neuf techniques visibles. Les effets longs restent consultables intégralement au survol/clic ; aperçu limité à deux lignes dans la collection. Tests de géométrie ajoutés : six cartes et leurs boutons intégralement contenus, neuvième ligne visible. 34 contrôles réussis, capture tests/deck-draft-menu.png produite dans Godot. Aucun changement de règles ou de sauvegarde.
+
+
+## Deux voies de reconstruction et initiation démoniaque
+
+Décision validée par le joueur le 19 novembre 2026. Deux voies de reconstruction sont retenues pour le jeu : **orthodoxe** et **démoniaque**. Cette décision fait évoluer le périmètre narratif et artistique antérieur ; elle ne signifie pas que ces branches sont déjà intégrées. La troisième voie de reconstruction, non orthodoxe, est reportée. Les cartes non orthodoxes, le marchand et les decks mixtes restent présents.
+
+### Reconstruction et identité de la secte
+
+La reconstruction matérielle et l’orientation de la secte sont deux progressions distinctes. Les travaux réalisés restent acquis en cas de basculement ; la voie démoniaque transforme la secte reconstruite, elle ne remplace pas les chantiers par leur abandon.
+
+| Voie | Décors et bâtiments | Disciples |
+|---|---|---|
+| Orthodoxe | Secte restaurée, neuve et resplendissante : pierre claire, bois soigné, bannières renouvelées, prunier florissant. | Tenues renouvelées et cohérentes avec la secte orthodoxe, signes de rang et expressions de fierté. |
+| Démoniaque | Transformation radicale de l’identité visuelle : ornements sombres, sceaux, lanternes et végétation inquiétantes, en réutilisant la structure des lieux. | Tenues et portraits démoniaques ; attitudes et répliques tenant compte de la conversion volontaire ou forcée. |
+
+Cible artistique de départ : trois états de référence par lieu principal — déchu, restauré orthodoxe, transformé démoniaque. Les étapes intermédiaires de chantier réutilisent autant que possible les couches et effets existants. Priorité à la cour, au jardin de Lian et au pavillon de Shen, puis aux tenues et portraits de Lian, Jun et Shen. Inventorier ensuite les adaptations nécessaires aux animations, chibis et scènes illustrées pour éviter des apparences contradictoires.
+
+L’orientation démoniaque de la secte est choisie lors d’un événement explicite, après découverte des intentions de l’initiatrice. Posséder ou jouer une carte démoniaque, accepter un premier cadeau ou composer un deck mixte ne bascule pas automatiquement toute la secte.
+
+### Nouvelle PNJ initiatrice
+
+Une experte itinérante se présente comme une pratiquante non orthodoxe. Elle cherche en réalité à corrompre le héros progressivement, en gagnant sa confiance et en présentant la puissance interdite comme un moyen de sauver la secte. Son nom, son apparence, les jours de rencontre et les valeurs des récompenses restent à concevoir.
+
+| Étape | Rencontre et condition | Récompense ou conséquence |
+|---|---|---|
+| 1. Le défi | Elle engage initialement un combat contre le héros. Une victoire l’impressionne et débloque sa proposition d’enseignement. | Une défaite laisse une possibilité de revanche ; elle ne supprime pas définitivement cette voie. |
+| 2. Le service rendu | Elle propose une première aide concrète, sans révéler son objectif. | Équipement réellement non orthodoxe. |
+| 3. Les leçons | Elle enseigne et remet progressivement en cause les interdits de la secte. | Technique non orthodoxe. |
+| 4. Le cadeau dangereux | Elle propose un pouvoir plus inquiétant et en minimise les risques dans le dialogue. | Équipement démoniaque, dont la voie et les effets sont affichés avant acceptation. |
+| 5. La révélation | Son origine et son intention de corrompre le héros deviennent explicites. | Choix d’accepter ou de refuser son enseignement démoniaque ; accès aux techniques démoniaques si accepté. Le choix d’orientation de la secte doit être explicite. |
+
+Accepter ses premières récompenses ne verrouille pas la route. Refuser un équipement ou la révélation ne confisque pas les récompenses antérieures. La tromperie appartient au récit ; l’interface ne masque pas la nature ni les effets d’une carte démoniaque. Cible de production : une PNJ récurrente, cinq rencontres courtes, quatre récompenses et un décor réutilisé, sans lui ajouter implicitement quatre rangs sociaux ou une romance.
+
+### Conversion des disciples
+
+Sur la voie démoniaque, Lian, Jun et Shen peuvent être convertis individuellement par deux approches :
+
+- **Par amitié et confiance** : un lien suffisamment fort ouvre une scène de persuasion. Le disciple accepte volontairement pour une raison cohérente avec son caractère. Seuils de relation et arguments propres à chacun restent à écrire.
+- **Par la force** : après son opposition, le héros peut choisir un défi. La victoire permet sa conversion forcée ; elle ne donne pas automatiquement de l’amitié ni les bénéfices narratifs d’une adhésion volontaire. Les modalités de défaite et de revanche restent à fixer avant implémentation.
+
+La méthode est mémorisée pour chaque disciple et influence ses dialogues, expressions et l’épilogue. Une secte démoniaque réunie volontairement et une secte soumise partagent les mêmes décors et tenues de voie, mais pas la même ambiance relationnelle. Prévoir aussi les disciples non convertis : ne pas supposer que l’adoption de la voie transforme immédiatement tout le monde.
+
+Aucune jauge globale de corruption n’est nécessaire au premier lot. Ne pas ajouter implicitement des morts, départs définitifs ou verrous de romance : leurs éventuelles règles demanderaient une conception distincte.
+
+### Travail à réaliser et limites de périmètre
+
+1. Écrire les cinq rencontres de l’initiatrice, les choix de refus et l’événement de basculement ; fixer leurs coûts et leur place dans le calendrier existant.
+2. Prototyper une conversion volontaire et une conversion forcée sur un seul disciple, avec reprise de sauvegarde et réaction visible, avant de produire les trois parcours.
+3. Ajouter aux sauvegardes l’orientation de la secte, l’étape de la PNJ et l’état/méthode de conversion de chaque disciple. Les anciennes sauvegardes doivent conserver travaux, liens, deck et progression, sans imposer une conversion.
+4. Produire un lieu et un disciple témoins dans leurs deux identités pour mesurer le coût artistique ; décliner ensuite les lieux et membres prioritaires.
+5. Relier les récompenses aux mécaniques non orthodoxes et démoniaques, encore partiellement à produire ; définir les conséquences sur le final et l’épilogue.
+
+Le budget de 100 euros, l’équipe de deux et la cible de 3–5 heures restent les contraintes. Cette nouvelle branche nécessite un arbitrage explicite des scènes et événements précédemment prévus : réutiliser le tronc commun et réaffecter des places du catalogue à trente cartes avant toute extension chiffrée. Les anciennes hypothèses de volume ne doivent pas être présentées comme déjà compatibles sans mesure.
+
+Critères de validation : accès orthodoxe sans enseignement démoniaque ; accès démoniaque après choix explicite ; progression de la PNJ dans le bon ordre ; refus et revanche sans blocage involontaire ; conversion volontaire/forcée distincte pour chaque disciple ; travaux conservés ; visuels cohérents avec orientation et conversion ; absence de récompenses répétables ; reprise correcte des anciennes et nouvelles sauvegardes.
+
+**État : décision sauvegardée, conception détaillée et implémentation à venir. Aucun changement de gameplay, d’asset ou de sauvegarde utilisateur dans ce lot documentaire.**
