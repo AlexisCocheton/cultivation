@@ -1,0 +1,1 @@
+Sword and shield: CC0 Game Icon Pack bundled with the godot-ui-tscn skill, no-padding/3-gear/sword.svg and shield.svg. Adapted colors, outline and rasterization size for legibility over the courtyard. No background panel.

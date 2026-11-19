@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="2"]
+[ext_resource type="Script" path="res://visual/hub/menu.gd" id="3"]
+[sub_resource type="StyleBoxTexture" id="Paper"]
+texture = ExtResource("2")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+[node name="SectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("1")
+script = ExtResource("3")
+
+[node name="Dim" type="ColorRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 832.0
+color = Color(0.03,0.025,0.03,0.58)
+
+[node name="Paper" type="Panel" parent="."]
+offset_left = 340.0
+offset_top = 110.0
+offset_right = 940.0
+offset_bottom = 710.0
+theme_override_styles/panel = SubResource("Paper")
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Paper"]
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 570.0
+offset_bottom = 105.0
+text = "Les Cendres du Prunier"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Paper"]
+offset_left = 55.0
+offset_top = 125.0
+offset_right = 545.0
+offset_bottom = 185.0
+text = "Revenir à la cour"
+
+[node name="Deck" type="Button" parent="Paper"]
+offset_left = 55.0
+offset_top = 208.0
+offset_right = 545.0
+offset_bottom = 268.0
+text = "Techniques"
+
+[node name="Sound" type="Button" parent="Paper"]
+offset_left = 55.0
+offset_top = 291.0
+offset_right = 545.0
+offset_bottom = 351.0
+text = "Son : oui"
+
+[node name="Motion" type="Button" parent="Paper"]
+offset_left = 55.0
+offset_top = 374.0
+offset_right = 545.0
+offset_bottom = 434.0
+text = "Effets : oui"
+
+[node name="Restart" type="Button" parent="Paper"]
+offset_left = 55.0
+offset_top = 457.0
+offset_right = 545.0
+offset_bottom = 517.0
+text = "Recommencer la séquence"

@@ -1,0 +1,297 @@
+{
+  "schema": "generate2dsprite.engine_export.v1",
+  "name": "recruit_attack",
+  "tool": {
+    "name": "export_engine.py",
+    "version": "0.6.0"
+  },
+  "source": {
+    "path": "../clips/animation-clips.json",
+    "sha256": "c53dcf0c5aa4b9cd9db87bf341eb4e1d84ae079e5a8b7ab543e26728c59a4848",
+    "bytes": 12525,
+    "schema": "generate2dsprite.animation_clips.v2"
+  },
+  "targets": [
+    "godot-spriteframes"
+  ],
+  "frame_size": [
+    321,
+    314
+  ],
+  "anchor_px": [
+    163.75,
+    300.0
+  ],
+  "sampling": "linear",
+  "pixel_art": false,
+  "art_source": "existing",
+  "placeholder": false,
+  "default_clip": "attack",
+  "atlas": {
+    "max_size": 4096,
+    "padding": 2,
+    "extrude": 1,
+    "pages": [
+      {
+        "index": 0,
+        "size": [
+          652,
+          638
+        ],
+        "cells": 4,
+        "clips": [
+          "attack"
+        ]
+      }
+    ]
+  },
+  "scale": {
+    "pixel_size": 0.01,
+    "subject_height_px": 240.0,
+    "world_height": 2.4,
+    "source": "Godot default pixel size",
+    "subject_height_source": "median visible height of clip attack"
+  },
+  "clips": {
+    "attack": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "duration_ms": [
+        150,
+        100,
+        160,
+        150
+      ],
+      "total_duration_ms": 560,
+      "loop": false,
+      "loop_policy": "oneshot",
+      "events_ms": [
+        {
+          "name": "tell",
+          "at_ms": 0,
+          "at": 0,
+          "position": 0
+        },
+        {
+          "name": "hit",
+          "at_ms": 250,
+          "at": 2,
+          "position": 2
+        },
+        {
+          "name": "active_end",
+          "at_ms": 410,
+          "at": 3,
+          "position": 3
+        }
+      ],
+      "page": 0,
+      "keys": {
+        "wind_start": 0,
+        "wind_peak": 1,
+        "strike": 2,
+        "recover": 3
+      },
+      "keys_ms": {
+        "wind_start": 0,
+        "wind_peak": 150,
+        "strike": 250,
+        "recover": 410
+      },
+      "role": "player",
+      "tick_grid": {
+        "hz": 60,
+        "max_drift_ms": 6.667,
+        "frame_ticks": [
+          9,
+          6,
+          10,
+          9
+        ],
+        "zero_tick_positions": [],
+        "even": false,
+        "cycle_ticks": 33.6,
+        "cycle_aligned": false,
+        "method": "cumulative integer-ms frame boundaries rounded half-up to the nearest tick"
+      },
+      "godot": {
+        "speed": 10.0,
+        "basis": "shortest frame = 1.0",
+        "relative_durations": [
+          1.5,
+          1.0,
+          1.6,
+          1.5
+        ]
+      }
+    }
+  },
+  "states": {},
+  "unused_frames": [],
+  "mapping": {
+    "anchor_px": [
+      163.75,
+      300.0
+    ],
+    "frame_size": [
+      321,
+      314
+    ],
+    "anchor_normalized_top_left": [
+      0.5101246105919003,
+      0.9554140127388535
+    ],
+    "sampling": "linear",
+    "godot": {
+      "animated_sprite_2d": {
+        "centered": false,
+        "offset": [
+          -163.75,
+          -300.0
+        ],
+        "texture_filter": 2
+      },
+      "animated_sprite_3d": {
+        "centered": true,
+        "offset": [
+          -3.25,
+          143.0
+        ],
+        "pixel_size": 0.01,
+        "texture_filter": 3
+      }
+    },
+    "unity": {
+      "pivot": [
+        0.5101246105919003,
+        0.04458598726114649
+      ],
+      "pixels_per_unit": 100.0,
+      "filter_mode": "Bilinear"
+    },
+    "phaser": {
+      "origin": [
+        0.5101246105919003,
+        0.9554140127388535
+      ],
+      "pixel_art": false
+    },
+    "pixi": {
+      "anchor": [
+        0.5101246105919003,
+        0.9554140127388535
+      ],
+      "scale_mode": "linear"
+    },
+    "pitch_compensation": {
+      "applies_to": "yaw-only (fixed-y) billboards seen by a pitched camera",
+      "formula": "scale_y = 1 / cos(camera_pitch), applied about the anchor"
+    }
+  },
+  "files": [
+    {
+      "path": "godot/recruit_attack-atlas-00.png",
+      "sha256": "ad78ced61626b375d116e12177d3857592600248b1375b8202f6b040bbc7eb76",
+      "bytes": 283416
+    },
+    {
+      "path": "godot/recruit_attack.tres",
+      "sha256": "b11238ab0edcc6cf6cc386d1cc498045a25c43c1a0047facdb2694f2df992200",
+      "bytes": 1070
+    },
+    {
+      "path": "godot/recruit_attack.tscn",
+      "sha256": "b1eca515f371d70fbe63ea138a6102e148c877789c9b5e232be7af2fd44664ad",
+      "bytes": 316
+    }
+  ],
+  "qa": {
+    "status": "pass",
+    "method": "round trip: every written atlas, Aseprite JSON, SpriteFrames .tres, scene .tscn and Sprite3D contract was parsed back and compared with the source frames (exact RGBA), integer durations, loop flags, events and the shared anchor",
+    "notProven": [
+      "Imports into the Aseprite, Godot 4, Phaser, PixiJS and Unity editors or runtimes were not run; only parse-level round trips were checked.",
+      "Engine import settings (filter, compression, mipmaps) are not written; set them as engine-export.md describes.",
+      "Animation quality, timing feel and silhouette consistency are not judged."
+    ],
+    "checks": [
+      {
+        "id": "godot_spriteframes_roundtrip",
+        "status": "pass",
+        "value": {
+          "animations": 1
+        },
+        "threshold": null
+      },
+      {
+        "id": "godot_spriteframes_duration_error_ms",
+        "status": "pass",
+        "value": 0.0,
+        "threshold": 1e-06
+      },
+      {
+        "id": "atlas_max_side_px",
+        "status": "pass",
+        "value": 652,
+        "threshold": 4096
+      },
+      {
+        "id": "source_frame_hashes",
+        "status": "pass",
+        "value": {
+          "verified": 4,
+          "frames": 4
+        },
+        "threshold": null
+      }
+    ],
+    "inputs": [
+      {
+        "path": "../clips/animation-clips.json",
+        "sha256": "c53dcf0c5aa4b9cd9db87bf341eb4e1d84ae079e5a8b7ab543e26728c59a4848",
+        "bytes": 12525
+      },
+      {
+        "path": "../clips/frames/frame-00.png",
+        "sha256": "94ff60737ac4a9e8b55ff86f9393521d53f92bccfa0b3681a7192f8a26064176",
+        "bytes": 73984
+      },
+      {
+        "path": "../clips/frames/frame-01.png",
+        "sha256": "bcc1e4711157361952f4387d6c800a6f2463cfdc009c50fbbc654263133d1850",
+        "bytes": 72504
+      },
+      {
+        "path": "../clips/frames/frame-02.png",
+        "sha256": "0d4770dc7a75187e8568d7cdd30819d253c75e2fb4824fc2a8c863ebdf43b586",
+        "bytes": 72806
+      },
+      {
+        "path": "../clips/frames/frame-03.png",
+        "sha256": "5644559d8d936bceed3cb9963619a8ec7c053f8e5a94614c0bf6f0f468bcb43c",
+        "bytes": 64373
+      }
+    ],
+    "outputs": [
+      {
+        "path": "godot/recruit_attack-atlas-00.png",
+        "sha256": "ad78ced61626b375d116e12177d3857592600248b1375b8202f6b040bbc7eb76"
+      },
+      {
+        "path": "godot/recruit_attack.tres",
+        "sha256": "b11238ab0edcc6cf6cc386d1cc498045a25c43c1a0047facdb2694f2df992200"
+      },
+      {
+        "path": "godot/recruit_attack.tscn",
+        "sha256": "b1eca515f371d70fbe63ea138a6102e148c877789c9b5e232be7af2fd44664ad"
+      }
+    ],
+    "tool": {
+      "name": "export_engine.py",
+      "version": "0.6.0"
+    }
+  }
+}

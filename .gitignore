@@ -1,0 +1,15 @@
+.godot/
+tools/godot/
+tools/godot.zip
+tools/test-user/
+tools/play-user/
+tools/regression-user/
+*.tmp
+tools/spriteforge-review/
+
+tools/*-user/
+tools/save-backups/
+exports/
+.env
+.env.*
+

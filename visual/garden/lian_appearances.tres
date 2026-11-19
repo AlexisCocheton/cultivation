@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="" load_steps=7 format=3]
+[ext_resource type="Script" path="res://visual/garden/appearances.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/garden/lian-garden.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/garden/listening-neutral.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/garden/listening-amused.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/garden/listening-thoughtful.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/garden/explaining-smile.png" id="6"]
+[resource]
+script = ExtResource("1")
+default_key = "sword_care/smile"
+frames = {
+"sword_care/smile": ExtResource("2"),
+"listening/neutral": ExtResource("3"),
+"listening/amused": ExtResource("4"),
+"listening/thoughtful": ExtResource("5"),
+"explaining/smile": ExtResource("6")
+}

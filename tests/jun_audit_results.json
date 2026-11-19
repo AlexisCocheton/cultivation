@@ -1,0 +1,77 @@
+{
+	"bot": "heuristique une étape ; pas un joueur humain",
+	"results": [
+		{
+			"deck": "depart",
+			"palier": 0,
+			"pv_fin_moyens": 41.38,
+			"tours_moyens": 3.86,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "depart",
+			"palier": 1,
+			"pv_fin_moyens": 40.58,
+			"tours_moyens": 4.07,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "depart",
+			"palier": 2,
+			"pv_fin_moyens": 39.4,
+			"tours_moyens": 4.58,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "depart",
+			"palier": 3,
+			"pv_fin_moyens": 36.04,
+			"tours_moyens": 5.23,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "depart",
+			"palier": 4,
+			"pv_fin_moyens": 34.96,
+			"tours_moyens": 5.81,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "premiere_technique",
+			"palier": 0,
+			"pv_fin_moyens": 41.96,
+			"tours_moyens": 3.18,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "premiere_technique",
+			"palier": 1,
+			"pv_fin_moyens": 40.45,
+			"tours_moyens": 3.77,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "premiere_technique",
+			"palier": 2,
+			"pv_fin_moyens": 39.52,
+			"tours_moyens": 4.49,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "premiere_technique",
+			"palier": 3,
+			"pv_fin_moyens": 37.09,
+			"tours_moyens": 4.83,
+			"victoires_sur_100": 100
+		},
+		{
+			"deck": "premiere_technique",
+			"palier": 4,
+			"pv_fin_moyens": 35.28,
+			"tours_moyens": 5.63,
+			"victoires_sur_100": 100
+		}
+	],
+	"saves": "PASS: startup loader, interrupted duel, next tier, abandoned duel, malformed JSON, invalid counter, backup, separate slots",
+	"simulations": 1000
+}

@@ -1,0 +1,148 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="2"]
+[ext_resource type="Script" path="res://visual/hub/hud.gd" id="3"]
+[sub_resource type="StyleBoxTexture" id="Paper"]
+texture = ExtResource("2")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+[sub_resource type="StyleBoxEmpty" id="Invisible"]
+[node name="HubHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource("1")
+script = ExtResource("3")
+
+[node name="Calendar" type="Panel" parent="."]
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 300.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("Paper")
+mouse_filter = 2
+
+[node name="Date" type="Label" parent="Calendar"]
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 266.0
+offset_bottom = 49.0
+theme_type_variation = &"Title"
+
+[node name="Supplies" type="Label" parent="Calendar"]
+offset_left = 16.0
+offset_top = 52.0
+offset_right = 266.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 19
+
+[node name="Objective" type="Panel" parent="."]
+offset_left = 880.0
+offset_top = 18.0
+offset_right = 1260.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("Paper")
+mouse_filter = 2
+
+[node name="Text" type="Label" parent="Objective"]
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 362.0
+offset_bottom = 82.0
+autowrap_mode = 2
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 20
+
+[node name="Talk" type="Button" parent="."]
+offset_left = 340.0
+offset_top = 480.0
+offset_right = 585.0
+offset_bottom = 526.0
+text = "E · Parler à Lian"
+visible = false
+
+[node name="Techniques" type="Button" parent="."]
+offset_left = 690.0
+offset_top = 758.0
+offset_right = 875.0
+offset_bottom = 810.0
+text = "Techniques"
+
+[node name="Activities" type="Button" parent="."]
+offset_left = 884.0
+offset_top = 758.0
+offset_right = 1069.0
+offset_bottom = 810.0
+text = "Activités"
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 1078.0
+offset_top = 758.0
+offset_right = 1258.0
+offset_bottom = 810.0
+text = "Menu"
+
+[node name="Notice" type="Panel" parent="."]
+offset_left = 340.0
+offset_top = 20.0
+offset_right = 850.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("Paper")
+mouse_filter = 2
+visible = false
+
+[node name="Text" type="Label" parent="Notice"]
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 495.0
+offset_bottom = 76.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 17
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 716.0
+offset_right = 474.0
+offset_bottom = 746.0
+text = "ZQSD / clic · marcher    E · parler"
+theme_override_colors/font_color = Color(1,0.96,0.86,1)
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 16
+
+[node name="Garden" type="Button" parent="."]
+offset_left = 490.0
+offset_top = 758.0
+offset_right = 680.0
+offset_bottom = 810.0
+text = "Jardin · Lian"
+
+[node name="Pavilion" type="Button" parent="."]
+offset_left = 282.0
+offset_top = 758.0
+offset_right = 480.0
+offset_bottom = 810.0
+text = "Pavillon · Shen"
+[node name="PavilionEntry" type="Button" parent="."]
+offset_left = 450.0
+offset_top = 180.0
+offset_right = 700.0
+offset_bottom = 325.0
+tooltip_text = "Entrer dans le pavillon de Shen"
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("Invisible")
+theme_override_styles/hover = SubResource("Invisible")
+theme_override_styles/pressed = SubResource("Invisible")
+
+[node name="Merchant" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 650.0
+offset_right = 324.0
+offset_bottom = 705.0
+text = "Marchand · Jour 4"
+visible = false

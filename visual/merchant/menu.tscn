@@ -1,0 +1,158 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[ext_resource type="Script" path="res://visual/merchant/menu.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/events/merchant-chibi.png" id="3"]
+[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="4"]
+[node name="Merchant" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1")
+script = ExtResource("2")
+
+[node name="Dim" type="ColorRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 832.0
+color = Color(0.03,0.025,0.03,0.72)
+
+[node name="Paper" type="Panel" parent="."]
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 1250.0
+offset_bottom = 807.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="."]
+offset_left = 76.0
+offset_top = 47.0
+offset_right = 1176.0
+offset_bottom = 112.0
+text = "Le marchand de passage"
+mouse_filter = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 38
+theme_type_variation = &"Title"
+
+[node name="Date" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 1180.0
+offset_bottom = 160.0
+text = ""
+mouse_filter = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 23
+
+
+[node name="Rule" type="ColorRect" parent="."]
+offset_left = 80.0
+offset_top = 174.0
+offset_right = 1200.0
+offset_bottom = 176.0
+color = Color(0.3,0.2,0.15,0.4)
+mouse_filter = 2
+
+[node name="Words" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 198.0
+offset_right = 395.0
+offset_bottom = 318.0
+text = ""
+mouse_filter = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 21
+
+
+[node name="Portrait" type="TextureRect" parent="."]
+offset_left = 75.0
+offset_top = 323.0
+offset_right = 395.0
+offset_bottom = 586.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 2
+mouse_filter = 2
+
+[node name="Gift" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 590.0
+offset_right = 395.0
+offset_bottom = 720.0
+text = ""
+mouse_filter = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 18
+
+
+[node name="Cards" type="HBoxContainer" parent="."]
+offset_left = 424.0
+offset_top = 220.0
+offset_right = 1230.0
+offset_bottom = 450.0
+theme_override_constants/separation = 10
+
+[node name="Q01" parent="Cards" instance=ExtResource("4")]
+card_id = "Q01"
+
+[node name="Q02" parent="Cards" instance=ExtResource("4")]
+card_id = "Q02"
+
+[node name="Q03" parent="Cards" instance=ExtResource("4")]
+card_id = "Q03"
+
+[node name="Q04" parent="Cards" instance=ExtResource("4")]
+card_id = "Q04"
+
+[node name="Selection" type="Label" parent="."]
+offset_left = 440.0
+offset_top = 480.0
+offset_right = 1200.0
+offset_bottom = 590.0
+text = ""
+mouse_filter = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 25
+
+
+[node name="Buy" type="Button" parent="."]
+offset_left = 435.0
+offset_top = 605.0
+offset_right = 1205.0
+offset_bottom = 663.0
+text = "Acheter"
+
+[node name="Receipt" type="Label" parent="."]
+offset_left = 440.0
+offset_top = 675.0
+offset_right = 1200.0
+offset_bottom = 729.0
+text = ""
+mouse_filter = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 18
+
+
+[node name="Back" type="Button" parent="."]
+offset_left = 80.0
+offset_top = 742.0
+offset_right = 360.0
+offset_bottom = 790.0
+text = "Retour à la cour"
+
+[node name="Skip" type="Button" parent="."]
+offset_left = 390.0
+offset_top = 742.0
+offset_right = 840.0
+offset_bottom = 790.0
+text = "Échanger sans achat · 1 période"
+
+[node name="Deck" type="Button" parent="."]
+offset_left = 900.0
+offset_top = 742.0
+offset_right = 1200.0
+offset_bottom = 790.0
+text = "Composer mon deck"

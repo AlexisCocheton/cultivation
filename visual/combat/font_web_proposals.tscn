@@ -1,0 +1,285 @@
+[gd_scene load_steps=9 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="2"]
+[ext_resource type="FontFile" path="res://docs/ui-proposals/fonts/yujiboku/YujiBoku-Regular.ttf" id="Georgia"]
+[ext_resource type="FontFile" path="res://docs/ui-proposals/fonts/kaushanscript/KaushanScript-Regular.ttf" id="Cambria"]
+[ext_resource type="FontFile" path="res://docs/ui-proposals/fonts/shojumaru/Shojumaru-Regular.ttf" id="Palatino"]
+[sub_resource type="SystemFont" id="Segoe"]
+font_names = PackedStringArray("Segoe UI")
+[sub_resource type="SystemFont" id="Calibri"]
+font_names = PackedStringArray("Calibri")
+[sub_resource type="StyleBoxTexture" id="Paper"]
+texture = ExtResource("2")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+[node name="Typography" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1")
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 832.0
+color = Color(0.055,0.05,0.055,1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 1250.0
+offset_bottom = 80.0
+text = "Trois gestes de pinceau"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 38
+theme_override_colors/font_color = Color(0.97,0.92,0.83,1)
+
+[node name="Option0" type="Panel" parent="."]
+offset_left = 24.0
+offset_top = 110.0
+offset_right = 418.0
+offset_bottom = 774.0
+theme_override_styles/panel = SubResource("Paper")
+
+[node name="Heading" type="Label" parent="Option0"]
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 372.0
+offset_bottom = 63.0
+text = "1 · Yuji Boku"
+theme_override_fonts/font = ExtResource("Georgia")
+theme_override_font_sizes/font_size = 29
+
+[node name="Fonts" type="Label" parent="Option0"]
+offset_left = 22.0
+offset_top = 78.0
+offset_right = 372.0
+offset_bottom = 135.0
+text = "Calligraphie · titres et noms"
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="Line" type="ColorRect" parent="Option0"]
+offset_left = 22.0
+offset_top = 145.0
+offset_right = 372.0
+offset_bottom = 148.0
+color = Color(0.65,0.12,0.13,1)
+
+[node name="CardName" type="Label" parent="Option0"]
+offset_left = 22.0
+offset_top = 166.0
+offset_right = 372.0
+offset_bottom = 236.0
+text = "Pétales tranchants"
+theme_override_fonts/font = ExtResource("Georgia")
+theme_override_font_sizes/font_size = 27
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Option0"]
+offset_left = 22.0
+offset_top = 244.0
+offset_right = 372.0
+offset_bottom = 286.0
+text = "1 Qi · 12 dégâts · 45 / 45 PV"
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 22
+
+[node name="Effect" type="Label" parent="Option0"]
+offset_left = 22.0
+offset_top = 309.0
+offset_right = 372.0
+offset_bottom = 429.0
+text = "Inflige 7 dégâts.
+Après 2 cartes jouées ce tour :
+12 dégâts."
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 2
+
+[node name="Small" type="Label" parent="Option0"]
+offset_left = 22.0
+offset_top = 452.0
+offset_right = 372.0
+offset_bottom = 532.0
+text = "Garde : absorbe les dégâts.
+Épuisement : retirée jusqu’au
+prochain duel."
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 16
+
+[node name="Action" type="Button" parent="Option0"]
+offset_left = 22.0
+offset_top = 565.0
+offset_right = 372.0
+offset_bottom = 627.0
+text = "Fin du tour"
+theme_override_fonts/font = ExtResource("Georgia")
+theme_override_font_sizes/font_size = 27
+
+[node name="Option1" type="Panel" parent="."]
+offset_left = 442.0
+offset_top = 110.0
+offset_right = 836.0
+offset_bottom = 774.0
+theme_override_styles/panel = SubResource("Paper")
+
+[node name="Heading" type="Label" parent="Option1"]
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 372.0
+offset_bottom = 63.0
+text = "2 · Kaushan Script"
+theme_override_fonts/font = ExtResource("Cambria")
+theme_override_font_sizes/font_size = 29
+
+[node name="Fonts" type="Label" parent="Option1"]
+offset_left = 22.0
+offset_top = 78.0
+offset_right = 372.0
+offset_bottom = 135.0
+text = "Pinceau vif · cartes et boutons"
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="Line" type="ColorRect" parent="Option1"]
+offset_left = 22.0
+offset_top = 145.0
+offset_right = 372.0
+offset_bottom = 148.0
+color = Color(0.65,0.12,0.13,1)
+
+[node name="CardName" type="Label" parent="Option1"]
+offset_left = 22.0
+offset_top = 166.0
+offset_right = 372.0
+offset_bottom = 236.0
+text = "Pétales tranchants"
+theme_override_fonts/font = ExtResource("Cambria")
+theme_override_font_sizes/font_size = 27
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Option1"]
+offset_left = 22.0
+offset_top = 244.0
+offset_right = 372.0
+offset_bottom = 286.0
+text = "1 Qi · 12 dégâts · 45 / 45 PV"
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 22
+
+[node name="Effect" type="Label" parent="Option1"]
+offset_left = 22.0
+offset_top = 309.0
+offset_right = 372.0
+offset_bottom = 429.0
+text = "Inflige 7 dégâts.
+Après 2 cartes jouées ce tour :
+12 dégâts."
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 2
+
+[node name="Small" type="Label" parent="Option1"]
+offset_left = 22.0
+offset_top = 452.0
+offset_right = 372.0
+offset_bottom = 532.0
+text = "Garde : absorbe les dégâts.
+Épuisement : retirée jusqu’au
+prochain duel."
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 16
+
+[node name="Action" type="Button" parent="Option1"]
+offset_left = 22.0
+offset_top = 565.0
+offset_right = 372.0
+offset_bottom = 627.0
+text = "Fin du tour"
+theme_override_fonts/font = ExtResource("Cambria")
+theme_override_font_sizes/font_size = 27
+
+[node name="Option2" type="Panel" parent="."]
+offset_left = 860.0
+offset_top = 110.0
+offset_right = 1254.0
+offset_bottom = 774.0
+theme_override_styles/panel = SubResource("Paper")
+
+[node name="Heading" type="Label" parent="Option2"]
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 372.0
+offset_bottom = 63.0
+text = "3 · Shojumaru"
+theme_override_fonts/font = ExtResource("Palatino")
+theme_override_font_sizes/font_size = 29
+
+[node name="Fonts" type="Label" parent="Option2"]
+offset_left = 22.0
+offset_top = 78.0
+offset_right = 372.0
+offset_bottom = 135.0
+text = "Impact · titres courts"
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 18
+
+[node name="Line" type="ColorRect" parent="Option2"]
+offset_left = 22.0
+offset_top = 145.0
+offset_right = 372.0
+offset_bottom = 148.0
+color = Color(0.65,0.12,0.13,1)
+
+[node name="CardName" type="Label" parent="Option2"]
+offset_left = 22.0
+offset_top = 166.0
+offset_right = 372.0
+offset_bottom = 236.0
+text = "Pétales tranchants"
+theme_override_fonts/font = ExtResource("Palatino")
+theme_override_font_sizes/font_size = 27
+autowrap_mode = 2
+
+[node name="Cost" type="Label" parent="Option2"]
+offset_left = 22.0
+offset_top = 244.0
+offset_right = 372.0
+offset_bottom = 286.0
+text = "1 Qi · 12 dégâts · 45 / 45 PV"
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 22
+
+[node name="Effect" type="Label" parent="Option2"]
+offset_left = 22.0
+offset_top = 309.0
+offset_right = 372.0
+offset_bottom = 429.0
+text = "Inflige 7 dégâts.
+Après 2 cartes jouées ce tour :
+12 dégâts."
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 2
+
+[node name="Small" type="Label" parent="Option2"]
+offset_left = 22.0
+offset_top = 452.0
+offset_right = 372.0
+offset_bottom = 532.0
+text = "Garde : absorbe les dégâts.
+Épuisement : retirée jusqu’au
+prochain duel."
+theme_override_fonts/font = SubResource("Segoe")
+theme_override_font_sizes/font_size = 16
+
+[node name="Action" type="Button" parent="Option2"]
+offset_left = 22.0
+offset_top = 565.0
+offset_right = 372.0
+offset_bottom = 627.0
+text = "Fin du tour"
+theme_override_fonts/font = ExtResource("Palatino")
+theme_override_font_sizes/font_size = 27

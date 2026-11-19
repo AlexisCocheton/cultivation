@@ -1,0 +1,8 @@
+{
+	"J02_B01_outgoing_damage": 9,
+	"J02_description": "Défi ouvert · 1 qi\npioche 1 · Exposé : dégâts reçus +50 % ce tour",
+	"J02_enemy_attack_6_actual_incoming": 6,
+	"backup_recovery_then_save_overwrites_valid_backup_with_corrupt_primary": true,
+	"main_scene": "res://main.tscn",
+	"user_saves_touched": false
+}

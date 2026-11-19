@@ -1,0 +1,8 @@
+PREPARED ONLY — DO NOT EXECUTE PAID GENERATION.
+Current permission: zero additional spending. No video route currently available.
+For a future supplied or explicitly authorized image-to-video clip:
+
+The same young adult murim recruit as the existing manhua sprite: black ponytail, plain jade sleeveless outer robe, ivory sleeves and trousers, dark sash, black boots, one straight steel sword. Preserve face, palette, clothing and weapon length throughout.
+Locked side camera, face right, full body, feet on a fixed ground line. Begin sword-ready, anticipate, raise the sword, perform one clear forward sword thrust, recover to the exact ready pose. One attack only. No camera motion, zoom, turn, extra limbs, effects, scenery or text. Allow enough canvas around the extended sword and rear foot. Clean flat key background chosen not to match the robe.
+Desired game timing after processing: about 560–700 ms; explicit contact event on the fully extended strike. No crossfade between character poses.
+Compare silhouette consistency, full weapon/feet containment, actual number of distinct poses, alpha, shared root and measured contact timing against the existing four-frame attack.

@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="2"]
+[ext_resource type="Script" path="res://visual/combat/result.gd" id="3"]
+[ext_resource type="Texture2D" path="res://assets/portraits_manhua.png" id="4"]
+[node name="DuelResult" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1")
+script = ExtResource("3")
+
+[node name="Ink" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 832.0
+color = Color(0.03,0.03,0.04,0.75)
+mouse_filter = 2
+
+[node name="Paper" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 143.0
+offset_right = 1206.0
+offset_bottom = 703.0
+texture = ExtResource("2")
+patch_margin_left = 18
+patch_margin_right = 18
+patch_margin_top = 18
+patch_margin_bottom = 18
+mouse_filter = 2
+
+[node name="Portrait" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 200.0
+offset_right = 475.0
+offset_bottom = 630.0
+expand_mode = 1
+stretch_mode = 5
+texture_filter = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 177.0
+offset_right = 1150.0
+offset_bottom = 237.0
+text = "Victoire"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 42
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 250.0
+offset_right = 1149.0
+offset_bottom = 285.0
+text = "Jun"
+theme_type_variation = &"Title"
+
+[node name="Words" type="Label" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 309.0
+offset_right = 1149.0
+offset_bottom = 569.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 22
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 610.0
+offset_right = 1149.0
+offset_bottom = 665.0
+text = "Retour à la cour"

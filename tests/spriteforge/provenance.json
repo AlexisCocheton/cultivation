@@ -1,0 +1,17 @@
+{
+  "source": "assets/manhua_combat.png",
+  "source_sha256": "ec9f2a871938600ba2989f03bf8b4d016bfba207a6e60f9b34070f2acd15a5eb",
+  "art_source": "existing",
+  "operation": "First row crop only; four original attack poses.",
+  "forge_revision": "25203d03900b46b444bdd72a75768c33d1895ad6",
+  "additional_generation": false,
+  "paid_requests": 0,
+  "cost_eur": 0,
+  "original_duration_ms": [
+    150,
+    100,
+    160,
+    150
+  ],
+  "original_contact_ms": 250
+}

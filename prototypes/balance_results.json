@@ -1,0 +1,1050 @@
+{
+	"agent": "battle.bot_index",
+	"cases": {
+		"pression2_palier1": {
+			"pressure": 2,
+			"ramp": 1
+		},
+		"pression2_palier1_lian": {
+			"lian_combo": 12,
+			"lian_finisher": 18,
+			"pressure": 2,
+			"ramp": 1
+		},
+		"pression2_palier1_lian_shen": {
+			"cards": {
+				"H01": {
+					"block": 8
+				},
+				"H03": {
+					"block": 10
+				}
+			},
+			"lian_combo": 12,
+			"lian_finisher": 18,
+			"pressure": 2,
+			"ramp": 1
+		},
+		"pression2_palier2": {
+			"pressure": 2,
+			"ramp": 2
+		},
+		"pression2_palier2_lian": {
+			"lian_combo": 12,
+			"lian_finisher": 18,
+			"pressure": 2,
+			"ramp": 2
+		},
+		"pression2_palier2_lian_shen": {
+			"cards": {
+				"H01": {
+					"block": 8
+				},
+				"H03": {
+					"block": 10
+				}
+			},
+			"lian_combo": 12,
+			"lian_finisher": 18,
+			"pressure": 2,
+			"ramp": 2
+		},
+		"pression3_palier1": {
+			"pressure": 3,
+			"ramp": 1
+		},
+		"pression3_palier1_lian_shen": {
+			"cards": {
+				"H01": {
+					"block": 8
+				},
+				"H03": {
+					"block": 10
+				}
+			},
+			"lian_combo": 12,
+			"lian_finisher": 18,
+			"pressure": 3,
+			"ramp": 1
+		},
+		"reference": {
+
+		}
+	},
+	"meal": false,
+	"results": [
+		{
+			"case": "reference",
+			"deck": "Départ",
+			"mean_hp": 18.84,
+			"mean_turns": 11.51,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Départ",
+			"mean_hp": 22.66,
+			"mean_turns": 10.05,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Départ",
+			"mean_hp": 25.53,
+			"mean_turns": 9.0,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Jun · offensif",
+			"mean_hp": 23.64,
+			"mean_turns": 6.79,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Jun · offensif",
+			"mean_hp": 27.68,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Jun · offensif",
+			"mean_hp": 29.8,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Shen · défensif",
+			"mean_hp": 39.09,
+			"mean_turns": 13.28,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Shen · défensif",
+			"mean_hp": 39.75,
+			"mean_turns": 11.86,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Shen · défensif",
+			"mean_hp": 40.42,
+			"mean_turns": 10.48,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 21.26,
+			"mean_turns": 8.32,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 25.06,
+			"mean_turns": 7.5,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "reference",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 28.46,
+			"mean_turns": 6.64,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Départ",
+			"mean_hp": 1.44,
+			"mean_turns": 13.91,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 23
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Départ",
+			"mean_hp": 5.03,
+			"mean_turns": 13.19,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 59
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Départ",
+			"mean_hp": 9.69,
+			"mean_turns": 12.04,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 83
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Jun · offensif",
+			"mean_hp": 10.42,
+			"mean_turns": 6.8,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Jun · offensif",
+			"mean_hp": 16.97,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Jun · offensif",
+			"mean_hp": 21.55,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Shen · défensif",
+			"mean_hp": 28.39,
+			"mean_turns": 14.98,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Shen · défensif",
+			"mean_hp": 32.03,
+			"mean_turns": 13.22,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Shen · défensif",
+			"mean_hp": 34.04,
+			"mean_turns": 11.64,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 4.1,
+			"mean_turns": 7.91,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 55
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 9.86,
+			"mean_turns": 7.45,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 95
+		},
+		{
+			"case": "pression2_palier1",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 15.31,
+			"mean_turns": 6.71,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Départ",
+			"mean_hp": 0.01,
+			"mean_turns": 11.84,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 1
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Départ",
+			"mean_hp": 0.7,
+			"mean_turns": 11.62,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 14
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Départ",
+			"mean_hp": 2.5,
+			"mean_turns": 11.23,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 33
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Jun · offensif",
+			"mean_hp": 7.66,
+			"mean_turns": 6.74,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 93
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Jun · offensif",
+			"mean_hp": 15.02,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Jun · offensif",
+			"mean_hp": 20.42,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Shen · défensif",
+			"mean_hp": 15.07,
+			"mean_turns": 16.3,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 90
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Shen · défensif",
+			"mean_hp": 22.71,
+			"mean_turns": 14.18,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 98
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Shen · défensif",
+			"mean_hp": 28.64,
+			"mean_turns": 12.48,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 2.01,
+			"mean_turns": 7.51,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 38
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 6.34,
+			"mean_turns": 7.3,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 80
+		},
+		{
+			"case": "pression2_palier2",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 12.62,
+			"mean_turns": 6.68,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 97
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Départ",
+			"mean_hp": 0.15,
+			"mean_turns": 12.78,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 4
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Départ",
+			"mean_hp": 1.64,
+			"mean_turns": 12.5,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 30
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Départ",
+			"mean_hp": 3.27,
+			"mean_turns": 12.21,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 47
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Jun · offensif",
+			"mean_hp": 5.52,
+			"mean_turns": 6.66,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 87
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Jun · offensif",
+			"mean_hp": 12.34,
+			"mean_turns": 5.93,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Jun · offensif",
+			"mean_hp": 17.75,
+			"mean_turns": 5.12,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Shen · défensif",
+			"mean_hp": 23.67,
+			"mean_turns": 15.33,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 98
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Shen · défensif",
+			"mean_hp": 27.56,
+			"mean_turns": 13.61,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Shen · défensif",
+			"mean_hp": 30.9,
+			"mean_turns": 12.01,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 1.11,
+			"mean_turns": 7.37,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 26
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 4.66,
+			"mean_turns": 7.2,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 70
+		},
+		{
+			"case": "pression3_palier1",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 10.15,
+			"mean_turns": 6.67,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 95
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Départ",
+			"mean_hp": 1.44,
+			"mean_turns": 13.91,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 23
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Départ",
+			"mean_hp": 5.03,
+			"mean_turns": 13.19,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 59
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Départ",
+			"mean_hp": 9.69,
+			"mean_turns": 12.04,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 83
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Jun · offensif",
+			"mean_hp": 10.42,
+			"mean_turns": 6.8,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Jun · offensif",
+			"mean_hp": 16.97,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Jun · offensif",
+			"mean_hp": 21.55,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Shen · défensif",
+			"mean_hp": 28.39,
+			"mean_turns": 14.98,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Shen · défensif",
+			"mean_hp": 32.03,
+			"mean_turns": 13.22,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Shen · défensif",
+			"mean_hp": 34.04,
+			"mean_turns": 11.64,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 5.52,
+			"mean_turns": 7.71,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 70
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 10.99,
+			"mean_turns": 7.23,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier1_lian",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 17.09,
+			"mean_turns": 6.35,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Départ",
+			"mean_hp": 0.01,
+			"mean_turns": 11.84,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 1
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Départ",
+			"mean_hp": 0.7,
+			"mean_turns": 11.62,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 14
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Départ",
+			"mean_hp": 2.5,
+			"mean_turns": 11.23,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 33
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Jun · offensif",
+			"mean_hp": 7.66,
+			"mean_turns": 6.74,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 93
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Jun · offensif",
+			"mean_hp": 15.02,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Jun · offensif",
+			"mean_hp": 20.42,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Shen · défensif",
+			"mean_hp": 15.07,
+			"mean_turns": 16.3,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 90
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Shen · défensif",
+			"mean_hp": 22.71,
+			"mean_turns": 14.18,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 98
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Shen · défensif",
+			"mean_hp": 28.64,
+			"mean_turns": 12.48,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 3.14,
+			"mean_turns": 7.4,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 51
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 7.68,
+			"mean_turns": 7.14,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 90
+		},
+		{
+			"case": "pression2_palier2_lian",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 14.76,
+			"mean_turns": 6.35,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 1.44,
+			"mean_turns": 13.91,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 23
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 5.03,
+			"mean_turns": 13.19,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 59
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 9.69,
+			"mean_turns": 12.04,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 83
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 10.42,
+			"mean_turns": 6.8,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 16.97,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 21.55,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 25.15,
+			"mean_turns": 15.22,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 29.02,
+			"mean_turns": 13.45,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 32.35,
+			"mean_turns": 11.93,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 5.52,
+			"mean_turns": 7.71,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 70
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 10.99,
+			"mean_turns": 7.23,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier1_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 17.09,
+			"mean_turns": 6.35,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 0.01,
+			"mean_turns": 11.84,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 1
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 0.7,
+			"mean_turns": 11.62,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 14
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 2.5,
+			"mean_turns": 11.23,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 33
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 7.66,
+			"mean_turns": 6.74,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 93
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 15.02,
+			"mean_turns": 5.95,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 20.42,
+			"mean_turns": 5.13,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 8.29,
+			"mean_turns": 16.22,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 71
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 16.41,
+			"mean_turns": 14.58,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 93
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 24.06,
+			"mean_turns": 12.7,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 3.14,
+			"mean_turns": 7.4,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 51
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 7.68,
+			"mean_turns": 7.14,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 90
+		},
+		{
+			"case": "pression2_palier2_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 14.76,
+			"mean_turns": 6.35,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 0.15,
+			"mean_turns": 12.78,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 4
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 1.64,
+			"mean_turns": 12.5,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 30
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Départ",
+			"mean_hp": 3.27,
+			"mean_turns": 12.21,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 47
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 5.52,
+			"mean_turns": 6.66,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 87
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 12.34,
+			"mean_turns": 5.93,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Jun · offensif",
+			"mean_hp": 17.75,
+			"mean_turns": 5.12,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 18.84,
+			"mean_turns": 15.91,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 99
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 23.7,
+			"mean_turns": 14.17,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Shen · défensif",
+			"mean_hp": 28.14,
+			"mean_turns": 12.27,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 100
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 1.94,
+			"mean_turns": 7.3,
+			"repairs": 0,
+			"samples": 100,
+			"wins": 43
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 5.4,
+			"mean_turns": 7.07,
+			"repairs": 3,
+			"samples": 100,
+			"wins": 81
+		},
+		{
+			"case": "pression3_palier1_lian_shen",
+			"deck": "Lian · enchaînements",
+			"mean_hp": 11.98,
+			"mean_turns": 6.36,
+			"repairs": 6,
+			"samples": 100,
+			"wins": 98
+		}
+	],
+	"seeds": "0..99"
+}
