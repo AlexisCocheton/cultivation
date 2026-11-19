@@ -386,3 +386,10 @@ Composition en brouillon : ajout/retrait sans toucher au calendrier, au deck act
 Copies, collection, taille maximale et emplacements restent contrôlés. Pour échanger un équipement, retirer l’ancien avec − puis ajouter le nouveau avec +. Les cartes non acquises ne sont pas affichées. Filtre démoniaque vide explicite tant qu’aucune carte de cette voie n’est acquise. La présence de L01 dans le deck enregistré valide toujours le tutoriel.
 
 Validation : 20 contrôles dédiés (brouillon, annulation, fichier inchangé, validation, double clic, équipement, erreur d’écriture, filtres et plafond) ; suites journée visuelle, marchand J4, voies et orthodoxe réussies. Capture deck-draft-menu.png vérifiée dans le moteur. Les anciens tests d’interface ont été adaptés au nouveau parcours. Sauvegardes utilisateur préservées ; ouverture demandée sur le profil normal, directement dans le menu de deck.
+
+
+### Rapprochement visuel avec la maquette validée
+
+Retour utilisateur : illustrations, typographie et boutons de la première intégration moins convaincants que la maquette. Ajout de douze illustrations manhua de techniques, via atlas partagé entre collection, combat et marchand. Les autres cartes conservent temporairement leurs anciennes images. Cartes de collection agrandies, titres Kaushan Script à 22 px ; filtres sobres et lisibles ; retrait en cercle rouge fin, ajout en cercle plein, Annuler sur papier encadré. Le fond reste discret, sans titre supérieur ni phrase inférieure.
+
+Validation : nouvelle capture en moteur deck-draft-menu.png, test du brouillon réussi (20 contrôles). Aucune modification de règles, de cartes possédées ou de sauvegardes. Planche, correspondance des cartes et prompt consignés dans assets/CARD_MANHUA_ART.md.

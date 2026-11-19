@@ -1,29 +1,29 @@
 [gd_scene load_steps=5 format=3]
-[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://visual/deck/collection_card.tscn" id="1"]
 [ext_resource type="StyleBox" path="res://visual/deck/circle.tres" id="Normal"]
 [ext_resource type="StyleBox" path="res://visual/deck/circle_hover.tres" id="Hover"]
 [ext_resource type="StyleBox" path="res://visual/deck/circle_disabled.tres" id="Disabled"]
 [node name="CollectionItem" type="Control"]
-custom_minimum_size = Vector2(224,264)
+custom_minimum_size = Vector2(224,284)
 mouse_filter = 2
 [node name="Card" parent="." instance=ExtResource("1")]
-offset_left = 15.0
-offset_right = 209.0
-offset_bottom = 210.0
+offset_left = 0.0
+offset_right = 224.0
+offset_bottom = 284.0
 
 [node name="Copies" type="Label" parent="."]
 offset_left = 20.0
-offset_top = 218.0
+offset_top = 242.0
 offset_right = 145.0
-offset_bottom = 259.0
+offset_bottom = 278.0
 text = "0/2"
 horizontal_alignment = 2
 
 [node name="Add" type="Button" parent="."]
-offset_left = 163.0
-offset_top = 214.0
-offset_right = 214.0
-offset_bottom = 262.0
+offset_left = 170.0
+offset_top = 240.0
+offset_right = 210.0
+offset_bottom = 280.0
 text = "+"
 tooltip_text = "Ajouter au deck"
 theme_override_styles/normal = ExtResource("Normal")

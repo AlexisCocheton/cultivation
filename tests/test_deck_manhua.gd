@@ -83,6 +83,11 @@ func run() -> void:
 	menu.refresh()
 	if DisplayServer.get_name() != "headless":
 		Input.warp_mouse(Vector2(10,10))
+		var motion = InputEventMouseMotion.new()
+		motion.position = Vector2(10,10)
+		root.push_input(motion)
+		for control in menu.find_children("*","Control",true,false): control.tooltip_text = ""
+		await create_timer(0.3).timeout
 		await process_frame
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png("res://tests/deck-draft-menu.png")
