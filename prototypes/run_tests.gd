@@ -182,7 +182,7 @@ func test_ui() -> void:
 	lab.calendar.grant("Q01")
 	lab.open_editor()
 	lab.change_slot(1,"weapon",["","Q01"])
-	check(lab.draft.has("Q01") and lab.draft.size() == 13,"Equipment insertion needs an explicit replacement")
+	check(lab.draft.has("Q01") and lab.draft.size() == 13,"Equipment insertion grows deck to thirteen")
 	lab.remove_draft(0)
 	lab.commit_editor()
 	check(lab.calendar.loadout.weapon == "Q01" and lab.calendar.deck.has("Q01"),"UI commits equipped card")
@@ -331,5 +331,5 @@ func simulate(name: String, profile: String, repairs: int, samples: int, pressur
 		if b.outcome == "": timeouts += 1
 		turns += b.turn+1
 		health += b.hp
-		check(b.hand.size()+b.pile.size()+b.discard.size()+b.removed.size() == 12,"Card conservation")
+		check(b.hand.size()+b.pile.size()+b.discard.size()+b.removed.size()+b.active.size() == 12,"Card conservation")
 	report.battles.append({"deck":name,"profile":profile,"repairs":repairs,"samples":samples,"wins":wins,"win_rate":float(wins)/samples,"mean_turns":float(turns)/samples,"mean_hp_all_runs":float(health)/samples,"timeouts":timeouts,"seed_first":0,"seed_last":samples-1,"meal":false,"experimental_attack_bonus":pressure})

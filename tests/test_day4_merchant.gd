@@ -47,7 +47,7 @@ func run() -> void:
 	assert(game.calendar.seen.count("S01") == 1 and not game.calendar.deck.has("Q01"))
 	assert(FileAccess.file_exists(path+".before-day4"))
 	assert(JSON.parse_string(FileAccess.get_file_as_string(path+".before-day4")).state.slot == 9)
-	assert(game.Progress.read_progress(path).version == 3)
+	assert(game.Progress.read_progress(path).version == game.Progress.VERSION)
 	game.deck_tab = "collection"
 	game.selected = 1
 	game.deck_ui()

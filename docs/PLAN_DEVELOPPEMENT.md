@@ -359,3 +359,19 @@ Ce lot est une mise à jour de conception, pas une implémentation des effets. L
 Ordre recommandé pour le prochain chantier de combat : socle d’états/effets persistants → petit lot orthodoxe → contrôle non orthodoxe → sacrifice/vol de vie démoniaques → invocation et prévention de mort → acquisitions dans la campagne. Ce chantier nécessite de rééquilibrer les cartes existantes et les decks mixtes avant d’étendre le contenu. Respecter le budget de trente cartes ; aucun nouveau système de corruption ou de factions ajouté implicitement.
 
 Aucun fichier de gameplay ni aucune sauvegarde modifié lors de cette formalisation. La suite narrative J5–J6 demeure au plan ; cette évolution du combat est un lot distinct à réaliser progressivement.
+
+
+### Premier lot orthodoxe et decks libres — 19 novembre 2026
+
+Intégré et testé : taille choisie de 12 à 20 cartes sans remplissage obligatoire ; boutons Ajouter/Retirer en plus du remplacement ; compteur dynamique ; validation des cartes acquises, copies et équipements. Le laboratoire suit aussi la nouvelle plage. Les cartes persistantes disposent d’une zone active, d’effets au début du tour suivant et d’une remise à zéro à chaque combat.
+
+Quatre cartes réutilisées : B04 dégâts selon taille initiale ; B06 pioche renforcée à 16 ; B07 garde puis main +2 et pioche +1/tour ; H02 garde puis Force +1/tour. Les trois cartes de base sont déjà accessibles ; H02 conserve sa source Shen rang 2. Aucun déblocage gratuit, nouvelle carte ou changement de progression. Atteindre 20 cartes dépend de la collection et des limites de copies : le jeu n’ajoute pas de cartes de remplissage.
+
+Interface : effets abrégés sur les cartes, explications complètes dans la fiche et au survol, Force/main/pioche/persistantes visibles en combat. Sauvegardes v2/v3 lisibles, nouvelles écritures v4 et archive `.before-orthodox`. Le test des profils réels s’effectue en lecture et sur copies isolées ; aucune sauvegarde personnelle remplacée pendant le développement.
+
+Validation : 642 contrôles dédiés ; 39 454 contrôles laboratoire, zéro échec ; suites marchand J4, combat, voies et fiabilité réussies. Captures orthodox-deck.png et orthodox-combat.png utilisées pour contrôler la lisibilité. Trois tailles, même noyau de techniques avancées, 100 graines chacune contre inspecteur/3 réparations : 100 % de victoires pour 12/16/20, respectivement 6,66/5,61/5,58 tours moyens. Lot jouable de test, équilibrage non final : varier les profils ennemis et recueillir le retour humain avant validation.
+
+Arbre du personnage futur : enregistrer petit deck/gros deck comme axe de spécialisation. Le petit deck profite déjà de sa régularité ; prévoir des compétences et talents conditionnels qui rendent le gros deck intéressant, sans pénaliser arbitrairement les petites listes. Aucun arbre ajouté maintenant. Les règles détaillent les pistes et les interactions à tester. Suite du chantier combat : test utilisateur du lot orthodoxe, calibration, puis poison/contrôle non orthodoxes ; J5–J6 restent au plan narratif.
+
+
+Retour ergonomique du joueur : ajout/retrait jugé peu pratique. Proposition à valider avant refonte : collection et deck visibles côte à côte, bouton + sur les cartes disponibles et − sur les cartes équipées, compteur 12–20 explicite, distinction nette entre sélection (consulter) et modification. Idéalement édition en brouillon avec Enregistrer/Annuler, permettant de passer temporairement sous 12 pendant la composition sans altérer le deck sauvegardé ; enregistrement seulement si légal. Les équipements occupés demandent un échange explicite. Variante économique : garder les onglets mais ajouter +/− directement sur les cartes. Le glisser-déposer peut compléter ces actions, pas les remplacer. Cette refonte n’est pas encore implémentée.

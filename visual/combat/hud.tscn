@@ -250,3 +250,14 @@ offset_bottom = 827.0
 text = ""
 theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(0.97,0.92,0.83,1)
+
+[node name="Powers" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 470.0
+offset_right = 1044.0
+offset_bottom = 501.0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1,0.96,0.85,1)
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_outline_size = 6

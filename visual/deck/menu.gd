@@ -8,6 +8,8 @@ var current_id = ""
 
 func setup(controller) -> void:
 	game = controller
+	$Deck.text = "Deck %d / 20" % game.calendar.deck.size()
+	$Detail/Resize.pressed.connect(resize_deck)
 	$Deck.button_pressed = game.deck_tab == "deck"
 	$Collection.button_pressed = game.deck_tab == "collection"
 	$Deck.pressed.connect(func(): game.deck_tab = "deck"; game.deck_ui())
@@ -70,6 +72,11 @@ func inspect(id: String) -> void:
 		$Detail/Action.text = "Remplacer"
 	$Detail/Action.disabled = error != ""
 	$Detail/Action.tooltip_text = error
+	var resize = game.calendar.resize_plan(id,game.selected if game.deck_tab == "deck" else -1)
+	$Detail/Resize.text = "Retirer du deck" if game.deck_tab == "deck" else "Ajouter au deck"
+	$Detail/Resize.disabled = resize.error != ""
+	$Detail/Resize.tooltip_text = resize.error
+	$Detail/Help.text = "Deck libre : 12 à 20 cartes.\nPersistantes : actives tout le combat."
 
 func commit() -> void:
 	if game.deck_tab == "deck":
@@ -82,3 +89,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		game.return_to_location()
+
+func resize_deck() -> void:
+	var plan = game.calendar.resize_plan(current_id,game.selected if game.deck_tab == "deck" else -1)
+	game.notice = plan.error
+	if game.notice == "": game.notice = game.calendar.configure(plan.deck,plan.loadout)
+	if game.notice == "":
+		game.notice = "Deck enregistré : %d cartes." % game.calendar.deck.size()
+		game.selected = mini(game.selected,game.calendar.deck.size()-1)
+		if game.stage == 1 and game.calendar.deck.has("L01"): game.stage = 2
+		game.save_progress()
+	game.deck_ui()

@@ -26,6 +26,10 @@ var hand: Array = []
 var pile: Array = []
 var discard: Array = []
 var removed: Array = []
+var active: Array = []
+var initial_deck_size = 12
+var strength = 0
+var hand_limit = 10
 
 func start(deck: Array, foe: String, seed_value: int, repairs: int = 0, meal: bool = false, practice_level: int = 0) -> String:
 	var error = Cards.validate(deck)
@@ -56,6 +60,10 @@ func start(deck: Array, foe: String, seed_value: int, repairs: int = 0, meal: bo
 	hand.clear()
 	discard.clear()
 	removed.clear()
+	active.clear()
+	strength = 0
+	hand_limit = 10
+	initial_deck_size = deck.size()
 	pile = deck.duplicate()
 	shuffle(pile)
 	draw_cards(5)
@@ -70,7 +78,7 @@ func shuffle(values: Array) -> void:
 
 func draw_cards(number: int) -> void:
 	for i in range(number):
-		if hand.size() >= 10:
+		if hand.size() >= hand_limit:
 			return
 		if pile.is_empty():
 			pile = discard.duplicate()
@@ -104,8 +112,9 @@ func damage_for(id: String) -> int:
 		damage = int(tuning.get("lian_combo",10))
 	if id == "L03" and played >= 2:
 		damage = int(tuning.get("lian_finisher",cards[id].damage))
+	if id == "B04": damage += maxi(0,initial_deck_size - 12)
 	if damage > 0:
-		damage += bonus
+		damage += bonus + strength
 		if exposed:
 			damage = int(floor(damage * 1.5))
 	return damage
@@ -129,19 +138,21 @@ func play(index: int) -> bool:
 		exposed = true
 	if id == "B08":
 		bonus += 2
-	if id == "H02":
-		bonus += 3
+	if id == "B07":
+		hand_limit += 2
 	if id == "Q04":
 		energy = mini(5,energy+1)
 	if id == "O01":
 		hp = mini(max_hp,hp+6)
 	if id == "J03":
 		hp = maxi(0,hp-2)
-	draw_cards(card.draw)
+	draw_cards(card.draw + (1 if id == "B06" and initial_deck_size >= 16 else 0))
 	if (id == "L03" and played >= 2) or (id == "E06" and exposed):
 		draw_cards(1)
 	played += 1
-	if card.exhaust:
+	if card.persistent:
+		active.append(id)
+	elif card.exhaust:
 		removed.append(id)
 	else:
 		discard.append(id)
@@ -170,7 +181,9 @@ func end_turn() -> void:
 	energy = 3
 	block = 0
 	played = 0
-	draw_cards(5)
+	# Persistent effects resolve once, after surviving the enemy phase.
+	strength += active.count("H02")
+	draw_cards(5 + active.count("B07"))
 
 func bot_index() -> int:
 	# Fixed, transparent one-step heuristic. Not a model of human skill.
@@ -185,7 +198,8 @@ func bot_index() -> int:
 		var useful_block = mini(c.block,maxi(0,intent().damage-block))
 		var score = damage + useful_block*1.1 + c.draw*2.2
 		if id == "J02": score += 5.0 if energy >= 2 else 0.0
-		if id in ["B08","H02"]: score += 3.0 if energy >= 1 else 0.0
+		if id == "B08": score += 3.0 if energy >= 1 else 0.0
+		if id in ["B07","H02"]: score += 4.0
 		if id == "Q04": score += 6.0
 		if id == "O01": score += mini(6,max_hp-hp)*1.2
 		if id == "J03": score -= 2.5

@@ -50,6 +50,10 @@ func setup(controller) -> void:
 		tile.pressed.connect(func(): game.play_card(index))
 	$Empty.visible = battle.hand.is_empty()
 	$ScrollHint.text = "Fais défiler la main pour voir les autres cartes →" if battle.hand.size() > 5 else ""
+	$Powers.text = "Force +%d · Main %d/%d · Persistantes %d · Pioche/tour %d" % [battle.strength,battle.hand.size(),battle.hand_limit,battle.active.size(),5+battle.active.count("B07")]
+	var names: Array[String] = []
+	for id in battle.active: names.append(Cards.catalog()[id].name)
+	$Powers.tooltip_text = "Actives : " + ", ".join(names)
 	reset_preview()
 
 func reset_preview() -> void:

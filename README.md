@@ -10,7 +10,7 @@ Prototype Godot 4.4.1 d’un jeu murim de relations, de reconstruction et de com
 
 Les lanceurs nécessitent le moteur portable local dans `tools/godot`. Une copie du dépôt Git seule ne contient pas ce binaire. Pour le développement, utiliser Godot 4.4.1.
 
-Dans la cour : ZQSD/WASD/flèches ou clic pour marcher ; les boutons ouvrent les activités et les rencontres. Lian dispose d’un jardin, Shen d’un pavillon ; Jun propose des duels progressifs. Le marchand du jour 4 fournit des équipements. Le menu du deck montre les cartes acquises, leurs effets et les remplacements possibles.
+Dans la cour : ZQSD/WASD/flèches ou clic pour marcher ; les boutons ouvrent les activités et les rencontres. Lian dispose d’un jardin, Shen d’un pavillon ; Jun propose des duels progressifs. Le marchand du jour 4 fournit des équipements. Le menu du deck permet de choisir de 12 à 20 cartes acquises : Ajouter, Retirer ou Remplacer, sans obligation de remplir vingt places. Le premier lot orthodoxe propose des effets persistants de pioche/Force et des bonus liés à la taille initiale du deck.
 
 ## Sauvegardes
 
@@ -19,7 +19,7 @@ Les lanceurs conservent leurs emplacements existants :
 - Partie normale : `tools/play-user/Godot/app_userdata/Les Cendres du Prunier/sequence_visuelle_v2.json`.
 - Parcours de test : `tools/parcours-test-user/Godot/app_userdata/Les Cendres du Prunier/sequence_visuelle_v2.json`.
 
-Le nom historique du fichier reste inchangé ; les nouvelles écritures utilisent le format v3 et lisent aussi le format v2. Une copie `.bak` permet la récupération. Seul un fichier principal validé remplace cette copie ; une sauvegarde corrompue ne l’écrase plus. La migration garde également l’archive `.before-day4` lorsqu’un ancien fichier principal v2 est présent.
+Le nom historique du fichier reste inchangé ; les nouvelles écritures utilisent le format v4 et lisent aussi les formats v2/v3. La première conversion conserve aussi une archive `.before-orthodox`. Une copie `.bak` permet la récupération. Seul un fichier principal validé remplace cette copie ; une sauvegarde corrompue ne l’écrase plus. La migration garde également l’archive `.before-day4` lorsqu’un ancien fichier principal v2 est présent.
 
 Avant les corrections de fiabilité, une copie datée des deux profils a été créée dans `tools/save-backups/`, avec empreintes SHA-256. Les profils et ces copies sont exclus de Git. Ne pas supprimer ces dossiers pour mettre le jeu à jour.
 

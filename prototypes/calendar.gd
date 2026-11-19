@@ -138,6 +138,29 @@ func replacement_plan(index: int, id: String) -> Dictionary:
 	result.error = validate_deck(result.deck,result.loadout)
 	return result
 
+func resize_plan(id: String, remove_index: int = -1) -> Dictionary:
+	var result = {"error":"", "deck":deck.duplicate(), "loadout":loadout.duplicate()}
+	if remove_index >= 0:
+		if remove_index >= deck.size():
+			result.error = "Carte introuvable."
+			return result
+		var slot_name = equipment_slot(deck[remove_index])
+		if slot_name != "": result.loadout[slot_name] = ""
+		result.deck.remove_at(remove_index)
+	else:
+		if not collection.has(id):
+			result.error = "Carte non acquise."
+			return result
+		var slot_name = equipment_slot(id)
+		if slot_name != "":
+			if result.loadout[slot_name] != "":
+				result.error = "Emplacement occupé : utilise Remplacer."
+				return result
+			result.loadout[slot_name] = id
+		result.deck.append(id)
+	result.error = validate_deck(result.deck,result.loadout)
+	return result
+
 func merchant_reason(id: String) -> String:
 	var error = reason("S01") if not seen.has("S01") else reason("buy:"+id)
 	if error != "": return error

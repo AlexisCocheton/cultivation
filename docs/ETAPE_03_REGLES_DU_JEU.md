@@ -103,7 +103,7 @@ Chaque amélioration achevée retire 3 PV au maximum du boss final : 84 PV sans 
 
 Le jeu possède exactement trente définitions de cartes. Acquérir une technique la rend disponible pour toute la campagne ; elle n'est pas détruite par une défaite. Les huit techniques de base sont connues dès le tutoriel. Chaque technique de base autorise deux exemplaires dans le deck ; chaque autre carte, un seul.
 
-Le deck contient exactement douze cartes. Les cartes d'équipement et d'objet sont comprises dans ces douze. Le joueur choisit librement ses techniques entre les activités ; aucun changement en combat. Une interface de validation explique une carte manquante, interdite ou en trop.
+Le deck contient de 12 à 20 cartes, nombre choisi librement par le joueur dans cette plage. Les cartes d’équipement et d’objet sont comprises dans cette taille. Le maximum est une capacité, pas un objectif à remplir. Le joueur choisit librement ses techniques entre les activités ; aucun changement en combat. Une interface de validation explique une carte manquante, interdite ou en trop.
 
 Deux emplacements d'équipement : une arme, un talisman. Chaque équipement ajoute obligatoirement sa carte au deck tant qu'il est équipé, en remplaçant une technique choisie par le joueur. Une sacoche accepte un seul des deux objets réutilisables. Ils fournissent une carte utilisable une fois par combat et disponible de nouveau au combat suivant. Ils ne demandent pas une économie de consommables supplémentaire.
 
@@ -122,10 +122,10 @@ Les coûts sont en qi. Une attaque inflige un seul impact sauf indication contra
 | B01 | Frappe droite | 1 | 6 dégâts. | Base |
 | B02 | Garde du rocher | 1 | 5 garde. | Base |
 | B03 | Souffle tranquille | 0 | 3 garde, retirée. | Base |
-| B04 | Taille appuyée | 2 | 11 dégâts. | Base |
+| B04 | Taille appuyée | 2 | 11 dégâts +1 par carte au-delà de 12 dans le deck initial. | Base |
 | B05 | Pas léger | 1 | 3 garde, pioche 1. | Base |
-| B06 | Lecture du duel | 1 | Pioche 2. | Base |
-| B07 | Posture ferme | 2 | 11 garde. | Base |
+| B06 | Lecture du duel | 1 | Pioche 2 ; pioche 3 si le deck initial compte au moins 16 cartes. | Base |
+| B07 | Posture ferme | 2 | 11 garde ; persistante : limite de main +2, pioche +1 à chaque tour suivant. | Base |
 | B08 | Souffle offensif | 0 | Prochaine attaque de ce tour : +2 dégâts ; retirée. | Base |
 | L01 | Pétales tranchants | 1 | 7 dégâts ; 12 si au moins 2 autres cartes ont déjà été jouées ce tour. | Lian 1 |
 | L02 | Fil de soie | 1 | 4 garde, pioche 1. | Lian 2 |
@@ -134,7 +134,7 @@ Les coûts sont en qi. Une attaque inflige un seul impact sauf indication contra
 | J02 | Défi ouvert | 1 | Applique Exposé à la cible pour ce tour, pioche 1. | Jun 2 |
 | J03 | Fendre la montagne | 2 | 14 dégâts ; perd 2 PV, sans être réduit par la garde. | Jun 3 |
 | H01 | Racines profondes | 1 | 8 garde. | Shen 1 |
-| H02 | Patience du maître | 1 | 4 garde ; prochaine attaque de ce tour : +3 dégâts. | Shen 2 |
+| H02 | Patience du maître | 1 | 4 garde ; persistante : +1 Force par tour suivant. | Shen 2 |
 | H03 | Mur de jade | 2 | 10 garde et 5 dégâts. | Shen 3 |
 | Q01 | Lame restaurée | 1 | 8 dégâts. | Arme : épée ancienne |
 | Q02 | Estoc du bambou | 1 | 5 dégâts, pioche 1. | Arme : épée de bambou |
@@ -369,9 +369,43 @@ Les affaiblissements peuvent exister dans les deux voies : la non orthodoxe se d
 Les sources d’acquisition restent celles déjà décidées : secte principalement orthodoxe ; marchand et équipements ordinaires non orthodoxes ; quelques événements uniques et équipements rares démoniaques. Les decks mixtes restent autorisés. Il n’existe pas de bonus de voie automatique : les effets viennent des cartes.
 
 1. **Socle commun** : états avec durée et cumul explicites ; étapes de début/fin de tour ; techniques persistantes actives hors pioche ; ordre déterministe des effets automatiques ; nettoyage au nouveau combat. Prévoir leur affichage et leurs tests avant de multiplier les cartes.
-2. **Lot orthodoxe** : une technique persistante, une amélioration de main/pioche et une attaque liée à la taille du deck. Réviser le deck fixé à douze cartes : proposition de départ à tester, minimum 12 et maximum 20 pour tous, avec des récompenses spécifiques aux decks orthodoxes volumineux. Garder les règles de copies et d’équipement tant qu’un changement n’est pas justifié. Cette fourchette n’est pas encore validée ni active.
+2. **Lot orthodoxe** : une technique persistante, une amélioration de main/pioche et une attaque liée à la taille du deck. Réviser le deck fixé à douze cartes : proposition de départ à tester, minimum 12 et maximum 20 pour tous, avec des récompenses spécifiques aux decks orthodoxes volumineux. Garder les règles de copies et d’équipement tant qu’un changement n’est pas justifié. Cette fourchette a depuis été validée et intégrée dans le lot orthodoxe décrit plus bas.
 3. **Lot non orthodoxe** : poison puis modification d’intention, blocage ciblé et protection d’un tour. Vérifier que l’intention affichée correspond toujours à l’action réellement résolue.
 4. **Lot démoniaque** : commencer par vol de vie et sacrifice/scaling PV ; ajouter ensuite combustion et qi maximal ; traiter invocation et prévention de la mort en dernier, car ils modifient le ciblage et l’issue du combat.
 5. **Intégration campagne** : répartir ou remplacer les cartes du catalogue actuel, définir leurs événements et équilibrer les decks purs et mixtes. Les trente cartes restent le budget de contenu en vigueur ; ne pas ajouter chaque exemple comme une nouvelle carte indépendante.
 
 Tests indispensables : aucun effet ne se déclenche deux fois au chargement ou à la reconstruction de l’interface ; pas de boucle infinie pioche/qi/soins ; limites de main et deck respectées ; interactions garde/poison/invocation/mort déterministes ; durée des états affichée ; puissance temporaire remise à zéro au duel suivant ; compatibilité des anciennes sauvegardes. Les systèmes ci-dessus ne sont pas encore présents dans la version jouable.
+
+
+## Prototype orthodoxe intégré — 19 novembre 2026
+
+Cette section décrit la version jouable et remplace les anciennes limites fixes et les hypothèses de taille de deck ci-dessus. Le joueur peut composer exactement le nombre de cartes souhaité entre 12 et 20 inclus, sans remplir la capacité maximale. Les plafonds de copies, emplacements d’équipement et acquisitions restent applicables. Pas de deck inférieur à 12 pour ce premier essai.
+
+Quatre cartes existantes sont modifiées ; aucune carte ajoutée au catalogue :
+
+| Carte | Effet du prototype |
+|---|---|
+| B04 Taille appuyée | 2 qi. 11 dégâts +1 par carte au-delà de 12 dans le deck équipé au début du combat : 11/15/19 dégâts pour 12/16/20 cartes, avant Force et Exposé. |
+| B06 Lecture du duel | 1 qi. Pioche 2 ; pioche 3 avec au moins 16 cartes au début du combat. |
+| B07 Posture ferme | 2 qi. 11 garde immédiate. Reste active : limite de main +2 immédiatement et pioche +1 au début de chaque tour suivant. Deux copies actives donnent une limite de 14 et une pioche de début de tour de 7. |
+| H02 Patience du maître | 1 qi. 4 garde immédiate. Reste active : gagne +1 Force au début de chaque tour suivant. Force ajoute sa valeur à chaque attaque, avant Exposé puis garde ennemie ; elle n’est pas consommée par l’attaque. |
+
+Les cartes persistantes sont placées dans une zone active distincte de la défausse et des cartes retirées. Elles ne reviennent pas dans la pioche pendant ce combat. Les effets récurrents se résolvent une fois au début du nouveau tour, uniquement si le héros a survécu à la phase ennemie. Ouvrir ou reconstruire l’interface ne déclenche rien. Aucun effet ne s’accumule entre deux combats ; limite de main, Force et zone active sont réinitialisées. Le nombre initial de cartes reste fixe même lorsque des cartes deviennent actives ou sont retirées.
+
+La main démarre toujours à 5 cartes, avec une limite normale de 10. Le surplus de pioche demandé reste dans la pioche lorsque la main est pleine. La main non jouée part toujours en défausse en fin de tour. La Force persistante ne remplace pas le bonus de prochaine attaque B08, qui reste consommable et temporaire.
+
+Le menu permet Ajouter, Retirer et Remplacer. Retirer à 12 ou ajouter à 20 est refusé sans mutation ; retirer une carte d’équipement libère son emplacement. Ajouter un équipement dans un emplacement occupé demande de passer par Remplacer. Les modifications sont gratuites et sauvegardées. Les suggestions du laboratoire proposent toujours un deck compact de 12 cartes ; cela ne limite pas l’édition manuelle à 20.
+
+Sauvegardes : format v4 à la prochaine écriture, lecture v2/v3/v4. L’ancienne version est archivée dans `.before-orthodox` avant sa première conversion ; noms de fichiers et profils inchangés. Une rencontre interrompue reprend avant le duel, donc les effets persistants ne nécessitent pas de sauvegarde de combat intermédiaire.
+
+### Petit deck et gros deck — arbre du personnage à venir
+
+La taille choisie est un futur axe de développement du personnage. Un petit deck bénéficie naturellement d’un accès plus régulier à ses meilleures cartes ; ce n’est pas une supériorité garantie dans toutes les configurations. Un gros deck doit gagner des compensations explicites et intéressantes, sans obligation de remplir vingt places ni bonus universel accordé gratuitement à toute liste longue.
+
+Pistes réservées à l’arbre futur : spécialisation compacte (régularité, sélection, préparation) et spécialisation étendue (pioche, capacité de main, puissance conditionnée à la taille initiale). Prototyper des seuils et/ou une progression graduelle ; éviter que le meilleur choix soit toujours une carte de remplissage de plus. Prévoir choix réversibles et tests des decks mixtes. Aucun talent de personnage, point à dépenser ou bonus de taille passif n’est implémenté dans ce lot.
+
+### Résultats et limites du premier essai
+
+642 vérifications ciblées réussies : tailles 12–20, refus 11/21, effets persistants, cumul de deux postures, Force, mort avant déclenchement, conservation des cartes dans toutes les zones, ajout/retrait avec équipement, sauvegarde à 20, archive v3 et reprise v4. Régressions du laboratoire : 39 454 contrôles sans échec (nombre dépendant de la durée des combats simulés).
+
+Comparaison reproductible de 100 graines par taille contre l’inspecteur avec 3 réparations : noyau commun de 12 cartes comprenant H01/H02/L01/J01 ; les listes de 16/20 ajoutent des copies légales de techniques de base, sans nouvelles techniques avancées. Résultats : 100/100 victoires pour chaque taille ; durées moyennes 6,66 / 5,61 / 5,58 tours. Résultats détaillés : tests/orthodox-results.json. Ces bots ne modélisent pas un joueur humain et ce scénario ne permet pas de départager les taux de victoire. Les valeurs du lot sont expérimentales, pas un équilibrage final. Prochain test : coût de préparation des persistantes, intérêt du 12/16/20 contre différents profils et accès réel aux cartes pendant J2–J4.

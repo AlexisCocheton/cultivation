@@ -37,6 +37,9 @@ const WAY_NAMES = {"orthodox":"Orthodoxe", "unorthodox":"Non orthodoxe", "demoni
 static func way_name(id: String) -> String:
 	return WAY_NAMES[catalog()[id].way]
 
+const MIN_DECK = 12
+const MAX_DECK = 20
+
 const PRESETS = {
 	"Départ": ["B01","B01","B02","B02","B04","B04","B07","B07","B03","B05","B06","B08"],
 	"Jun · offensif": ["B01","B01","B02","B02","B03","B08","J01","J02","J03","Q01","E01","B05"],
@@ -48,12 +51,12 @@ static func catalog() -> Dictionary:
 	var result = {}
 	for row in ROWS.split("\n"):
 		var v = row.split("|")
-		result[v[0]] = {"name":v[1],"cost":int(v[2]),"damage":int(v[3]),"block":int(v[4]),"draw":int(v[5]),"way":v[6].strip_edges(),"exhaust":v[0] in ["B03","B08","Q04","O01","O02"]}
+		result[v[0]] = {"name":v[1],"cost":int(v[2]),"damage":int(v[3]),"block":int(v[4]),"draw":int(v[5]),"way":v[6].strip_edges(),"persistent":v[0] in ["B07","H02"],"exhaust":v[0] in ["B03","B08","Q04","O01","O02"]}
 	return result
 
 static func validate(deck: Array) -> String:
-	if deck.size() != 12:
-		return "Le deck doit contenir 12 cartes."
+	if deck.size() < MIN_DECK or deck.size() > MAX_DECK:
+		return "Le deck doit contenir de 12 à 20 cartes."
 	var counts = {}
 	var data = catalog()
 	for id in deck:
@@ -80,7 +83,10 @@ static func description(id: String) -> String:
 	if c.draw: parts.append("pioche %d" % c.draw)
 	match id:
 		"B08": parts.append("prochaine attaque +2")
-		"H02": parts.append("prochaine attaque +3")
+		"H02": parts.append("Persistante : +1 Force par tour suivant")
+		"B07": parts.append("Persistante : main +2 ; pioche +1 par tour suivant")
+		"B04": parts.append("+1 dégât par carte au-delà de 12 dans le deck initial")
+		"B06": parts.append("pioche +1 si deck initial de 16 cartes ou plus")
 		"J02": parts.append("Ennemi Exposé : il reçoit +50 % de dégâts ce tour")
 		"J03": parts.append("perd 2 PV")
 		"L01": parts.append("combo 2 cartes : %d dégâts" % tuning.get("lian_combo",10))

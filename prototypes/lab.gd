@@ -81,7 +81,7 @@ func refresh() -> void:
 		return
 	text(root_box,"Calendrier et relations · J%d / %s · Réserves %d" % [mini(14,calendar.day()),["Matin","Après-midi","Soir"][calendar.period()],calendar.supplies],24)
 	text(root_box,"Lian %d/4 · Jun %d/4 · Shen %d/4    |    Pavillon %d/2 · Atelier %d/2 · Cuisine %d/2\nCollection : %d cartes · Événements : %d/24 · Périodes résolues : %d/42" % [calendar.ranks.L,calendar.ranks.J,calendar.ranks.H,calendar.buildings.hall,calendar.buildings.workshop,calendar.buildings.kitchen,calendar.collection.size(),calendar.event_count(),calendar.slot])
-	button(root_box,"Composer mon deck · %d/12 cartes · uniquement ma collection" % calendar.deck.size(),open_editor,"Campagne terminée." if calendar.complete else "")
+	button(root_box,"Composer mon deck · %d/20 cartes · uniquement ma collection" % calendar.deck.size(),open_editor,"Campagne terminée." if calendar.complete else "")
 	text(root_box,"Aide : +%d réserves · Chantier : 3 puis 4 · Équipement : %d · Victoires libres rémunérées : %d/3" % [3 if calendar.buildings.kitchen >= 1 else 2,calendar.equipment_cost(),mini(3,calendar.optional_wins)],16)
 	var choices = HFlowContainer.new()
 	root_box.add_child(choices)
@@ -193,7 +193,7 @@ func show_battle() -> void:
 		var id = battle.hand[i]
 		var c = battle.cards[id]
 		button(grid,"%s · %s · %d qi\nDégâts %d · garde %d · pioche %d%s" % [id,c.name,c.cost,battle.damage_for(id),c.block,c.draw," · Retirée" if c.exhaust else ""],play.bind(i),"Qi insuffisant" if c.cost > battle.energy else "")
-	text(root_box,"B08/H02 : bonus prochaine attaque · J02 : Exposé · L01/L03 : combo après 2 cartes\nQ04 : +1 qi · O01 : soin 6 · J03 : perd 2 PV · E06 : pioche si Exposé\nPioche %d · Défausse %d · Retirées %d" % [battle.pile.size(),battle.discard.size(),battle.removed.size()],16)
+	text(root_box,"B08 : prochaine attaque · H02 : Force +1/tour · B07 : pioche +1/tour, main +2 · J02 : Exposé · L01/L03 : combo après 2 cartes\nQ04 : +1 qi · O01 : soin 6 · J03 : perd 2 PV · E06 : pioche si Exposé\nPioche %d · Défausse %d · Retirées %d" % [battle.pile.size(),battle.discard.size(),battle.removed.size()],16)
 	button(root_box,"Fin du tour",func(): battle.end_turn(); check_end())
 	button(root_box,"Laisser jouer une carte à l'agent de test",func(): var i = battle.bot_index(); battle.play(i) if i >= 0 else battle.end_turn(); check_end())
 	button(root_box,"Abandonner",func(): battle.outcome = "defeat"; check_end())
@@ -234,11 +234,11 @@ func open_editor() -> void:
 	draft = calendar.deck.duplicate()
 	draft_loadout = calendar.loadout.duplicate()
 	editing = true
-	message = "Les changements sont gratuits. Validez 12 cartes ou annulez pour garder votre deck précédent."
+	message = "Les changements sont gratuits. Validez de 12 à 20 cartes ou annulez pour garder votre deck précédent."
 	refresh()
 
 func show_editor() -> void:
-	text(root_box,"Mon deck · %d / 12 cartes" % draft.size(),26)
+	text(root_box,"Mon deck · %d / 20 cartes" % draft.size(),26)
 	var error = calendar.validate_deck(draft,draft_loadout)
 	text(root_box,"Deck prêt." if error == "" else error)
 	var commands = HFlowContainer.new()
@@ -248,7 +248,7 @@ func show_editor() -> void:
 	button(commands,"Compléter les places libres",func(): draft = calendar.suggested_deck(draft,draft_loadout); refresh())
 	for name in Cards.PRESETS:
 		button(commands,"Suggérer " + name,suggest.bind(name))
-	text(root_box,"Les suggestions n'utilisent que vos cartes acquises. Une arme, un talisman et un objet au maximum ; leurs cartes comptent dans les douze.",16)
+	text(root_box,"Les suggestions n'utilisent que vos cartes acquises. Une arme, un talisman et un objet au maximum ; leurs cartes comptent dans le deck.",16)
 	var slots = HBoxContainer.new()
 	root_box.add_child(slots)
 	var groups = {"weapon":["Q01","Q02"],"talisman":["Q03","Q04"],"item":["O01","O02"]}
@@ -280,12 +280,12 @@ func show_editor() -> void:
 		if id.begins_with("Q") or id.begins_with("O"): continue
 		var limit = 2 if id.begins_with("B") else 1
 		var reason = ""
-		if draft.size() >= 12: reason = "Retirez une carte avant d'en ajouter."
+		if draft.size() >= Cards.MAX_DECK: reason = "Retirez une carte avant d'en ajouter."
 		if draft.count(id) >= limit: reason = "Limite d'exemplaires atteinte."
 		button(collection_grid,"[%d/%d] %s · %s" % [draft.count(id),limit,id,Cards.description(id)],add_draft.bind(id),reason)
 
 func add_draft(id: String) -> void:
-	if not editing or not calendar.collection.has(id) or draft.size() >= 12: return
+	if not editing or not calendar.collection.has(id) or draft.size() >= Cards.MAX_DECK: return
 	if id.begins_with("Q") or id.begins_with("O"): return
 	if draft.count(id) >= (2 if id.begins_with("B") else 1): return
 	draft.append(id)
@@ -302,7 +302,7 @@ func change_slot(index: int, slot_name: String, options: Array) -> void:
 	if previous != "": draft.erase(previous)
 	draft_loadout[slot_name] = options[index]
 	if options[index] != "": draft.append(options[index])
-	message = "La carte équipée est incluse ; retirez une technique si vous dépassez 12 cartes."
+	message = "La carte équipée est incluse ; retirez une technique si vous dépassez 20 cartes."
 	refresh()
 
 func suggest(name: String) -> void:
@@ -315,6 +315,6 @@ func commit_editor() -> void:
 	if error == "":
 		editing = false
 		calendar.save_lab()
-		message = "Deck enregistré : 12 cartes acquises. Aucun temps consommé."
+		message = "Deck enregistré : 12 à 20 cartes acquises. Aucun temps consommé."
 	else: message = error
 	refresh()

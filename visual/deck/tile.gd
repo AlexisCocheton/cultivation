@@ -22,6 +22,11 @@ func _ready() -> void:
 	$Way.text = Cards.way_name(card_id)
 	$Cost.text = "%d" % data.cost
 	$Effects.text = Cards.description(card_id).split("\n")[1].replace("retirée après usage jusqu'au prochain combat", "Épuisement")
+	match card_id:
+		"B07": $Effects.text = "%d garde · Persistante\nMain +2 · Pioche +1/t" % data.block
+		"H02": $Effects.text = "%d garde · Persistante\n+1 Force/tour suivant" % data.block
+		"B04": $Effects.text = "11 + (deck −12) dégâts\nTaille initiale"
+		"B06": $Effects.text = "Pioche 2\n3 si deck initial ≥16"
 	tooltip_text = Cards.description(card_id)
 	mouse_entered.connect(func(): self_modulate = Color(1.12, 1.08, 1.02))
 	mouse_exited.connect(func(): self_modulate = Color.WHITE)

@@ -2,10 +2,11 @@ extends RefCounted
 
 const Calendar = preload("res://prototypes/calendar.gd")
 const PATH = "user://sequence_visuelle_v2.json"
+const VERSION = 4
 const END_SLOT = 12 # End of day 4; old slot 9 resumes on day 4 morning.
 
 static func save_progress(calendar, stage: int, muted: bool, reduced: bool, path: String = PATH, completed_duels: int = 0) -> bool:
-	var payload = {"version":3,"state":calendar.snapshot(),"stage":stage,"muted":muted,"reduced":reduced,"completed_duels":completed_duels}
+	var payload = {"version":VERSION,"state":calendar.snapshot(),"stage":stage,"muted":muted,"reduced":reduced,"completed_duels":completed_duels}
 	var file = FileAccess.open(path+".tmp",FileAccess.WRITE)
 	if file == null: return false
 	file.store_string(JSON.stringify(payload))
@@ -20,6 +21,8 @@ static func save_progress(calendar, stage: int, muted: bool, reduced: bool, path
 		# Keep a permanent pre-migration copy, separately from the rotating backup.
 		if previous is Dictionary and previous.get("version") == 2 and not FileAccess.file_exists(path+".before-day4"):
 			if DirAccess.copy_absolute(absolute,absolute+".before-day4") != OK: return false
+		if (previous.version == 2 or previous.version == 3) and not FileAccess.file_exists(path+".before-orthodox"):
+			if DirAccess.copy_absolute(absolute,absolute+".before-orthodox") != OK: return false
 		if DirAccess.copy_absolute(absolute,absolute+".bak") != OK: return false
 	return DirAccess.rename_absolute(absolute+".tmp",absolute) == OK
 
@@ -36,7 +39,7 @@ static func _read_file(candidate: String) -> Dictionary:
 	if parser.parse(FileAccess.get_file_as_string(candidate)) != OK: return {}
 	var payload = parser.data
 	if not payload is Dictionary: return {}
-	if payload.get("version") != 2 and payload.get("version") != 3: return {}
+	if payload.get("version") != 2 and payload.get("version") != 3 and payload.get("version") != VERSION: return {}
 	var state = payload.get("state")
 	if not state is Dictionary: return {}
 	var valid = true
