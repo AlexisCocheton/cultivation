@@ -52,7 +52,11 @@ func run() -> void:
 	game.selected = 1
 	game.deck_ui()
 	game.show_deck_detail("Q01")
-	game.ui.get_child(0).get_node("Detail/Action").pressed.emit()
+	var deck_menu = game.ui.get_child(0)
+	deck_menu.get_node("Detail").hide()
+	deck_menu.remove_card(game.calendar.deck[1])
+	deck_menu.add_card("Q01")
+	deck_menu.commit()
 	assert(game.calendar.loadout.weapon == "Q01" and game.calendar.deck.size() == 12)
 	assert(game.calendar.slot == 10)
 	await capture("day4-equipped")

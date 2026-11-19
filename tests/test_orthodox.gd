@@ -100,15 +100,11 @@ func run() -> void:
 	game.selected = 0
 	game.deck_ui()
 	var menu = game.ui.get_child(0)
-	check(menu.get_node("Deck").text == "Deck 20 / 20","Dynamic count")
-	menu.resize_deck()
-	check(c.deck.size() == 19,"UI remove")
-	game.deck_tab = "collection"
-	game.inspected_card = "B01"
-	game.deck_ui()
-	game.ui.get_child(0).resize_deck()
-	check(c.deck.size() == 20,"UI add")
-	game.show_deck_detail("B07")
+	check(menu.get_node("Count").text == "20 cartes","Dynamic count")
+	menu.remove_card("B01")
+	check(menu.draft.size() == 19 and c.deck.size() == 20,"UI draft remove")
+	menu.add_card("B01")
+	check(menu.draft.size() == 20,"UI draft add")
 	await capture("orthodox-deck")
 	game.start_combat()
 	game.battle.hand = ["B07","H02"]

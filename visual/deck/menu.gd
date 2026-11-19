@@ -1,102 +1,146 @@
 extends Control
-
-const Tile = preload("res://visual/deck/tile.tscn")
-const TileScript = preload("res://visual/deck/tile.gd")
 const Cards = preload("res://prototypes/cards.gd")
+const TileScript = preload("res://visual/deck/tile.gd")
+const Item = preload("res://visual/deck/collection_item.tscn")
+const Row = preload("res://visual/deck/deck_row.tscn")
 var game
-var current_id = ""
+var draft: Array = []
+var filter_way = ""
+var committing = false
 
 func setup(controller) -> void:
 	game = controller
-	$Deck.text = "Deck %d / 20" % game.calendar.deck.size()
-	$Detail/Resize.pressed.connect(resize_deck)
-	$Deck.button_pressed = game.deck_tab == "deck"
-	$Collection.button_pressed = game.deck_tab == "collection"
-	$Deck.pressed.connect(func(): game.deck_tab = "deck"; game.deck_ui())
-	$Collection.pressed.connect(func(): game.deck_tab = "collection"; game.deck_ui())
-	$Back.text = {"garden":"‹ Retour au jardin","pavilion":"‹ Retour au pavillon"}.get(game.location,"‹ Retour à la cour")
-	$Back.pressed.connect(game.return_to_location)
-	$Detail/Action.pressed.connect(commit)
-	$Notice.text = game.notice
-	for child in $Scroll/Grid.get_children():
-		$Scroll/Grid.remove_child(child)
-		child.queue_free()
-	var ids: Array = game.calendar.deck if game.deck_tab == "deck" else game.calendar.collection
-	for i in range(ids.size()):
-		var id: String = ids[i]
-		var index = i
-		var card = Tile.instantiate()
-		card.card_id = id
-		$Scroll/Grid.add_child(card)
-		card.mark_selected(game.deck_tab == "deck" and game.selected == i)
-		card.pressed.connect(func(): select_card(index, id))
-		card.focus_entered.connect(func(): select_card(index, id))
-	if game.selected < 0 and game.deck_tab == "deck": game.selected = 0
-	var initial = str(game.calendar.deck[game.selected]) if game.deck_tab == "deck" else game.inspected_card
-	if not game.calendar.collection.has(initial): initial = str(ids[0])
-	inspect(initial)
-	if game.deck_tab == "deck": $Scroll/Grid.get_child(game.selected).mark_selected(true)
+	draft = game.calendar.deck.duplicate()
+	$Cancel.pressed.connect(cancel)
+	$Save.pressed.connect(commit)
+	$Detail/Close.pressed.connect(func(): $Detail.hide())
+	var ways = ["","orthodox","unorthodox","demonic"]
+	for i in range(ways.size()):
+		var way: String = ways[i]
+		$Filters.get_child(i).pressed.connect(func(): filter_way = way; refresh())
+	refresh()
 
-func select_card(index: int, id: String) -> void:
-	if game.deck_tab == "deck": game.selected = index
-	for i in range($Scroll/Grid.get_child_count()):
-		$Scroll/Grid.get_child(i).mark_selected(i == index)
-	inspect(id)
+func equipment() -> Dictionary:
+	var result = {"weapon":"","talisman":"","item":""}
+	for id in draft:
+		var slot_name = game.calendar.equipment_slot(id)
+		if slot_name != "": result[slot_name] = id
+	return result
+
+func add_reason(id: String) -> String:
+	if game.calendar.complete: return "Campagne terminée."
+	if not game.calendar.collection.has(id): return "Carte non acquise."
+	if draft.size() >= Cards.MAX_DECK: return "Maximum de 20 cartes atteint."
+	if draft.count(id) >= (2 if id.begins_with("B") else 1): return "Maximum d’exemplaires atteint."
+	var slot_name = game.calendar.equipment_slot(id)
+	if slot_name != "" and equipment()[slot_name] != "": return "Retire d’abord l’équipement de cet emplacement."
+	if (id == "E01" and draft.has("E02")) or (id == "E02" and draft.has("E01")): return "Les deux serments sont exclusifs."
+	return ""
+
+func add_card(id: String) -> void:
+	if committing: return
+	var error = add_reason(id)
+	if error != "": $Error.text = error; return
+	draft.append(id)
+	refresh()
+
+func remove_card(id: String) -> void:
+	if committing or game.calendar.complete or not draft.has(id): return
+	draft.erase(id)
+	refresh()
+
+func clear_children(parent: Node) -> void:
+	for child in parent.get_children():
+		parent.remove_child(child)
+		child.queue_free()
+
+func refresh() -> void:
+	var scroll_position = $Scroll.scroll_vertical
+	var deck_scroll = $DeckScroll.scroll_vertical
+	clear_children($Scroll/Grid)
+	clear_children($DeckScroll/Rows)
+	var catalog = Cards.catalog()
+	for id in game.calendar.collection:
+		if filter_way != "" and catalog[id].way != filter_way: continue
+		var card_id: String = id
+		var item = Item.instantiate()
+		item.get_node("Card").card_id = id
+		$Scroll/Grid.add_child(item)
+		item.get_node("Copies").text = "%d/%d" % [draft.count(id),2 if id.begins_with("B") else 1]
+		item.get_node("Add").disabled = add_reason(id) != ""
+		item.get_node("Add").tooltip_text = add_reason(id) if add_reason(id) != "" else "Ajouter « %s »" % catalog[id].name
+		item.get_node("Add").pressed.connect(func(): add_card(card_id))
+		item.get_node("Card").pressed.connect(func(): inspect(card_id))
+	var seen: Array = []
+	var total_cost = 0
+	var attacks = 0
+	var guards = 0
+	var draws = 0
+	for id in draft:
+		total_cost += catalog[id].cost
+		attacks += int(catalog[id].damage > 0)
+		guards += int(catalog[id].block > 0)
+		draws += int(catalog[id].draw > 0 or id == "B07")
+		if seen.has(id): continue
+		seen.append(id)
+		var card_id: String = id
+		var row = Row.instantiate()
+		$DeckScroll/Rows.add_child(row)
+		row.get_node("Art").texture = TileScript.illustration(id)
+		row.get_node("Name").text = catalog[id].name
+		row.get_node("Name").tooltip_text = Cards.description(id)
+		row.get_node("Name").pressed.connect(func(): inspect(card_id))
+		row.get_node("Count").text = "×%d" % draft.count(id)
+		row.get_node("Remove").tooltip_text = "Retirer un exemplaire de « %s »" % catalog[id].name
+		row.get_node("Remove").disabled = game.calendar.complete
+		row.get_node("Remove").pressed.connect(func(): remove_card(card_id))
+	$Empty.visible = $Scroll/Grid.get_child_count() == 0
+	$Count.text = "%d cartes" % draft.size()
+	$Capacity.value = draft.size()
+	$Summary.text = "Coût moyen %.1f qi\nAttaque %d · Garde %d · Pioche %d" % [float(total_cost)/maxi(1,draft.size()),attacks,guards,draws]
+	$Summary.tooltip_text = "Nombre de cartes par effet ; une carte peut compter dans plusieurs catégories."
+	var error: String = game.calendar.validate_deck(draft,equipment())
+	if game.calendar.complete: error = "Campagne terminée."
+	$Save.disabled = error != "" or committing
+	$Save.tooltip_text = error
+	$Error.text = error
+	var ways = ["","orthodox","unorthodox","demonic"]
+	for i in range(ways.size()): $Filters.get_child(i).button_pressed = filter_way == ways[i]
+	$Scroll.set_deferred("scroll_vertical",scroll_position)
+	$DeckScroll.set_deferred("scroll_vertical",deck_scroll)
 
 func inspect(id: String) -> void:
-	current_id = id
 	game.inspected_card = id
-	var data = Cards.catalog()[id]
-	$Detail/Art.texture = TileScript.illustration(id)
-	$Detail/Name.text = data.name
-	$Detail/Way.text = "Voie " + Cards.way_name(id).to_lower()
-	$Detail/Cost.text = "%d Qi   ·   %d équipé(s)" % [data.cost, game.calendar.deck.count(id)]
-	$Detail/Effects.text = Cards.description(id).split("\n")[1].replace(" · ", "\n").replace("retirée après usage jusqu'au prochain combat", "Épuisement")
-	var origin = {"B":"Technique de base", "L":"Lian", "J":"Jun", "H":"Shen", "Q":"Équipement", "O":"Objet", "E":"Événement"}
-	$Detail/Origin.text = origin.get(id.left(1), "Technique")
-	if id.left(1) in ["L", "J", "H"]: $Detail/Origin.text += " · Rang %d" % int(id.right(2))
-	var equipment_slot = game.calendar.equipment_slot(id)
-	if equipment_slot != "":
-		$Detail/Origin.text = {"weapon":"Arme","talisman":"Talisman","item":"Sacoche"}[equipment_slot] + " · 1 emplacement"
-	$Detail/Help.text = "Garde : absorbe les dégâts du prochain tour adverse.\nCombo : joue 2 cartes avant cette technique.\nÉpuisement : retirée jusqu'au prochain duel."
-	var error = ""
-	if game.deck_tab == "collection":
-		error = "Choisis d'abord une carte dans le deck."
-		if game.selected >= 0:
-			var plan = game.calendar.replacement_plan(game.selected,id)
-			error = plan.error
-			if error == "": $Notice.text = "Remplacer : " + Cards.catalog()[game.calendar.deck[plan.index]].name
-		$Detail/Action.text = "Équiper cet objet" if equipment_slot != "" else "Équiper cette technique"
-		if error != "": $Notice.text = error
-	else:
-		$Detail/Action.text = "Remplacer"
-	$Detail/Action.disabled = error != ""
-	$Detail/Action.tooltip_text = error
-	var resize = game.calendar.resize_plan(id,game.selected if game.deck_tab == "deck" else -1)
-	$Detail/Resize.text = "Retirer du deck" if game.deck_tab == "deck" else "Ajouter au deck"
-	$Detail/Resize.disabled = resize.error != ""
-	$Detail/Resize.tooltip_text = resize.error
-	$Detail/Help.text = "Deck libre : 12 à 20 cartes.\nPersistantes : actives tout le combat."
+	$Detail/Name.text = Cards.catalog()[id].name
+	$Detail/Effects.text = Cards.description(id)
+	$Detail.popup_centered()
+
+func cancel() -> void:
+	if committing: return
+	game.return_to_location()
 
 func commit() -> void:
-	if game.deck_tab == "deck":
-		game.deck_tab = "collection"
-		game.deck_ui()
-	else:
-		game.replace_card(current_id)
+	if committing: return
+	var old_deck = game.calendar.deck.duplicate()
+	var old_equipment = game.calendar.loadout.duplicate()
+	var old_stage = game.stage
+	var error: String = game.calendar.configure(draft,equipment())
+	if error != "": $Error.text = error; return
+	committing = true
+	if game.stage == 1 and draft.has("L01"): game.stage = 2
+	if not game.save_progress():
+		game.calendar.deck = old_deck
+		game.calendar.loadout = old_equipment
+		game.stage = old_stage
+		committing = false
+		$Error.text = "Échec de sauvegarde. Ton ancien deck est conservé ; réessaie."
+		return
+	game.selected = -1
+	game.notice = "Deck enregistré : %d cartes." % draft.size()
+	game.return_to_location()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
-		game.return_to_location()
-
-func resize_deck() -> void:
-	var plan = game.calendar.resize_plan(current_id,game.selected if game.deck_tab == "deck" else -1)
-	game.notice = plan.error
-	if game.notice == "": game.notice = game.calendar.configure(plan.deck,plan.loadout)
-	if game.notice == "":
-		game.notice = "Deck enregistré : %d cartes." % game.calendar.deck.size()
-		game.selected = mini(game.selected,game.calendar.deck.size()-1)
-		if game.stage == 1 and game.calendar.deck.has("L01"): game.stage = 2
-		game.save_progress()
-	game.deck_ui()
+		if $Detail.visible: $Detail.hide()
+		else: cancel()

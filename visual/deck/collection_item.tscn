@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="1"]
+[ext_resource type="StyleBox" path="res://visual/deck/circle.tres" id="Normal"]
+[ext_resource type="StyleBox" path="res://visual/deck/circle_hover.tres" id="Hover"]
+[ext_resource type="StyleBox" path="res://visual/deck/circle_disabled.tres" id="Disabled"]
+[node name="CollectionItem" type="Control"]
+custom_minimum_size = Vector2(224,264)
+mouse_filter = 2
+[node name="Card" parent="." instance=ExtResource("1")]
+offset_left = 15.0
+offset_right = 209.0
+offset_bottom = 210.0
+
+[node name="Copies" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 218.0
+offset_right = 145.0
+offset_bottom = 259.0
+text = "0/2"
+horizontal_alignment = 2
+
+[node name="Add" type="Button" parent="."]
+offset_left = 163.0
+offset_top = 214.0
+offset_right = 214.0
+offset_bottom = 262.0
+text = "+"
+tooltip_text = "Ajouter au deck"
+theme_override_styles/normal = ExtResource("Normal")
+theme_override_styles/hover = ExtResource("Hover")
+theme_override_styles/pressed = ExtResource("Hover")
+theme_override_styles/disabled = ExtResource("Disabled")
+theme_override_font_sizes/font_size = 26

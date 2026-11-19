@@ -41,9 +41,11 @@ func run() -> void:
 	game.inspected_card = "Q01"
 	game.deck_ui()
 	var menu = game.ui.get_child(0)
-	check(menu.get_node("Detail/Way").text == "Voie non orthodoxe","Detailed card path")
+	menu.inspect("Q01")
+	check(menu.get_node("Detail/Effects").text.contains("Voie : Non orthodoxe"),"Detailed card path")
+	menu.get_node("Detail").hide()
 	for tile in menu.get_node("Scroll/Grid").get_children():
-		check(tile.get_node("Way").text == Cards.way_name(tile.card_id),"Card badge")
+		check(tile.get_node("Card/Way").text == Cards.way_name(tile.get_node("Card").card_id),"Card badge")
 	await capture("card-ways-deck")
 	game.calendar.seen.erase("S01")
 	game.merchant_ui()

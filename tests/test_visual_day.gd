@@ -64,19 +64,16 @@ func run() -> void:
 	assert(game.calendar.deck.size() == 12)
 	var grid = game.ui.find_children("*","GridContainer",true,false)[0]
 	assert(grid.get_child_count() == game.calendar.collection.size())
-	grid.get_child(0).pressed.emit()
+	game.deck_detail.hide()
+	grid.get_child(0).get_node("Card").pressed.emit()
 	assert(game.inspected_card == "B01")
+	game.deck_detail.hide()
 	var equipped = game.calendar.deck.duplicate()
+	var draft_menu = game.ui.get_child(0)
+	draft_menu.remove_card(equipped[0])
+	assert(game.calendar.deck == equipped and draft_menu.draft.size() == 11)
+	draft_menu.cancel()
 	assert(game.calendar.deck == equipped)
-	game.deck_tab = "deck"
-	game.deck_ui()
-	grid = game.ui.find_children("*","GridContainer",true,false)[0]
-	assert(grid.get_child_count() == 12)
-	grid.get_child(2).pressed.emit()
-	assert(game.selected == 2)
-	var action_button = game.deck_detail.find_children("*","Button",true,false)[0]
-	action_button.pressed.emit()
-	assert(game.deck_tab == "collection")
 	game.start_combat()
 	assert(game.free_duel)
 	game.battle.outcome = "victory"

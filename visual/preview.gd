@@ -27,7 +27,7 @@ var sound: AudioStreamPlayer
 var selected = -1
 var notice = ""
 var deck_tab = "deck"
-var deck_detail: Control
+var deck_detail: Node
 var inspected_card = ""
 var persistence = true
 var save_path = Progress.PATH
@@ -373,7 +373,7 @@ func learn() -> void:
 	card.position = Vector2(550,270)
 	ui.add_child(card)
 	label("Pétales tranchants rejoint ta collection.\nIl faut l'équiper pour la piocher en combat.",Vector2(365,548),Vector2(550,66),21)
-	button("Choisir la carte à remplacer",Vector2(390,637),Vector2(500,50),deck_ui)
+	button("Composer mon deck",Vector2(390,637),Vector2(500,50),deck_ui)
 	tone(660)
 
 func deck_ui() -> void:
@@ -669,4 +669,3 @@ func tone(frequency: float) -> void:
 	stream.data = bytes
 	sound.stream = stream
 	sound.play()
-

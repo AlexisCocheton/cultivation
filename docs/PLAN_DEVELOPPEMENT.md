@@ -375,3 +375,14 @@ Arbre du personnage futur : enregistrer petit deck/gros deck comme axe de spéci
 
 
 Retour ergonomique du joueur : ajout/retrait jugé peu pratique. Proposition à valider avant refonte : collection et deck visibles côte à côte, bouton + sur les cartes disponibles et − sur les cartes équipées, compteur 12–20 explicite, distinction nette entre sélection (consulter) et modification. Idéalement édition en brouillon avec Enregistrer/Annuler, permettant de passer temporairement sous 12 pendant la composition sans altérer le deck sauvegardé ; enregistrement seulement si légal. Les équipements occupés demandent un échange explicite. Variante économique : garder les onglets mais ajouter +/− directement sur les cartes. Le glisser-déposer peut compléter ces actions, pas les remplacer. Cette refonte n’est pas encore implémentée.
+
+
+### Menu de deck à deux panneaux — 19 novembre 2026
+
+Maquette épurée validée intégrée dans Godot : fond sombre discret, collection à gauche et deck regroupé par technique à droite. Pas de grand titre supérieur ni de phrase explicative dans le pied de page. Filtres de voies, compteurs de copies, boutons +/− ronds, nombre total, capacité 20 et coût moyen. Les illustrations existantes sont réutilisées. Survol pour la description ; clic sur une carte ou une ligne pour ouvrir une fiche lisible.
+
+Composition en brouillon : ajout/retrait sans toucher au calendrier, au deck actif ni au fichier. Le brouillon peut descendre sous 12 cartes ; Enregistrer reste désactivé tant que le deck est invalide. Annuler ou Échap abandonne le brouillon et revient au lieu précédent. Enregistrer applique deck et équipements, sauvegarde une seule fois et revient au jeu. Si l’écriture échoue, le deck actif et le stade du tutoriel sont restaurés ; le brouillon reste disponible pour réessayer.
+
+Copies, collection, taille maximale et emplacements restent contrôlés. Pour échanger un équipement, retirer l’ancien avec − puis ajouter le nouveau avec +. Les cartes non acquises ne sont pas affichées. Filtre démoniaque vide explicite tant qu’aucune carte de cette voie n’est acquise. La présence de L01 dans le deck enregistré valide toujours le tutoriel.
+
+Validation : 20 contrôles dédiés (brouillon, annulation, fichier inchangé, validation, double clic, équipement, erreur d’écriture, filtres et plafond) ; suites journée visuelle, marchand J4, voies et orthodoxe réussies. Capture deck-draft-menu.png vérifiée dans le moteur. Les anciens tests d’interface ont été adaptés au nouveau parcours. Sauvegardes utilisateur préservées ; ouverture demandée sur le profil normal, directement dans le menu de deck.

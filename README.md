@@ -10,7 +10,7 @@ Prototype Godot 4.4.1 d’un jeu murim de relations, de reconstruction et de com
 
 Les lanceurs nécessitent le moteur portable local dans `tools/godot`. Une copie du dépôt Git seule ne contient pas ce binaire. Pour le développement, utiliser Godot 4.4.1.
 
-Dans la cour : ZQSD/WASD/flèches ou clic pour marcher ; les boutons ouvrent les activités et les rencontres. Lian dispose d’un jardin, Shen d’un pavillon ; Jun propose des duels progressifs. Le marchand du jour 4 fournit des équipements. Le menu du deck permet de choisir de 12 à 20 cartes acquises : Ajouter, Retirer ou Remplacer, sans obligation de remplir vingt places. Le premier lot orthodoxe propose des effets persistants de pioche/Force et des bonus liés à la taille initiale du deck.
+Dans la cour : ZQSD/WASD/flèches ou clic pour marcher ; les boutons ouvrent les activités et les rencontres. Lian dispose d’un jardin, Shen d’un pavillon ; Jun propose des duels progressifs. Le marchand du jour 4 fournit des équipements. Le menu du deck permet de choisir de 12 à 20 cartes acquises : boutons +/− dans une collection et un deck visibles côte à côte, sans obligation de remplir vingt places. Les modifications restent dans un brouillon jusqu’à Enregistrer ; Annuler les abandonne. Le premier lot orthodoxe propose des effets persistants de pioche/Force et des bonus liés à la taille initiale du deck.
 
 ## Sauvegardes
 
