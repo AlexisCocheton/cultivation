@@ -16,8 +16,8 @@ func setup(controller) -> void:
 	$Enemy/HP.max_value = battle.enemy_max
 	$Enemy/HP.value = battle.enemy_hp
 	$Recruit/Guard.text = "Garde %d" % battle.block
-	if battle.exposed: $Recruit/Guard.text += "   ·   Exposé +50 %"
 	$Enemy/Guard.text = "Garde %d" % battle.enemy_block
+	if battle.exposed: $Enemy/Guard.text += " · Exposé +50 %"
 	var intent = battle.intent()
 	$Intent.setup(game.actors[2],intent)
 	$Qi.text = "%d Qi" % battle.energy

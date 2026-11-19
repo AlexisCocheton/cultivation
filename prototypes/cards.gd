@@ -75,7 +75,7 @@ static func description(id: String) -> String:
 	match id:
 		"B08": parts.append("prochaine attaque +2")
 		"H02": parts.append("prochaine attaque +3")
-		"J02": parts.append("Exposé : dégâts reçus +50 % ce tour")
+		"J02": parts.append("Ennemi Exposé : il reçoit +50 % de dégâts ce tour")
 		"J03": parts.append("perd 2 PV")
 		"L01": parts.append("combo 2 cartes : %d dégâts" % tuning.get("lian_combo",10))
 		"L03": parts.append("combo : %d dégâts et pioche 1" % tuning.get("lian_finisher",12))

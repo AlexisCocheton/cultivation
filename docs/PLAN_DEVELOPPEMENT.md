@@ -59,7 +59,7 @@ Une tâche est terminée lorsque le comportement est intégré, testé, relu vis
 
 ## Priorités immédiates
 
-**État courant :** jour 4 intégré avec marchand S01 et équipements ; plafond visuel à la fin du jour 4. Sauvegardes v2 reprises sans réinitialisation, écriture v3 avec archive avant migration. Duels progressifs vérifiés. J5–J6 et S06 restent à produire. Les paragraphes ci-dessous retracent les décisions des étapes précédentes ; voir le dernier bilan d’intégration en fin de document.
+**État courant :** jour 4 intégré avec marchand S01 et équipements ; plafond visuel à la fin du jour 4. Sauvegardes v2 reprises sans réinitialisation, écriture v3 avec archive avant migration. Duels progressifs vérifiés. Fiabilité des sauvegardes et affichage Exposé corrigés ; historique Git local créé ; lancement principal sur la séquence actuelle. J5–J6 et S06 restent à produire. Les paragraphes ci-dessous retracent les décisions des étapes précédentes ; voir le dernier bilan d’intégration en fin de document.
 
 1. Cadrage initial terminé : jeu complet de 3 à 5 heures, créateur accompagné de Codex, budget de 100 €, plusieurs heures par jour disponibles, reprise avant l'événement final en cas d'échec. Voir [la note de vision](ETAPE_01_CADRAGE.md).
 2. Périmètre de l'étape 2 validé : [dossier détaillé](ETAPE_02_FAISABILITE.md). Cible : 1 recrue, 3 résidents, 2 visiteurs, 30 cartes au total, 5 lieux dans 3 scènes, 24 événements, 10 à 12 combats et 14 journées. Trois chantiers à deux niveaux ; une romance facultative et une fin principale. Coût réel à mesurer avec un lot témoin.
@@ -318,3 +318,20 @@ Les achats rejoignent la collection, pas automatiquement le deck. Depuis Techniq
 Sauvegarde v3 dans le même chemin que précédemment ; lecteur accepte v2 et v3. Au premier enregistrement sur une v2, copie permanente .before-day4 avant écriture, distincte du .bak tournant. Compteur de Jun, deck, collection, réserves, liens, constructions et paramètres conservés. Migration testée sur fixtures et copies des deux sauvegardes réelles (partie principale et parcours de test) ; les originaux sont restés identiques pendant les tests. Aucun achat ou passage de période effectué sur la partie utilisateur.
 
 Vérifications réussies : test_day4_merchant.gd (migration/archive, coût/période, double clic, refus sans argent, acquisition, remplacement/déséquipement, reprise, plafond, vraie sauvegarde sur copie), test_visual_day.gd, test_activities_menu.gd, test_jun_progression.gd, test_resident_chibi.gd, test_shen_pavilion.gd. Régression du laboratoire : 43 927 vérifications, zéro échec (tests/day4-regression.log). Compatibilité préservée pour les anciens appels transmettant le choix de serment à toutes les activités. Captures day4-merchant.png, day4-equipped.png et day4-result.png vérifiées dans Godot ; débordement de texte du cadeau corrigé. Validation humaine de J4 encore attendue.
+
+
+### Fiabilité et lancement — 19 novembre 2026
+
+Lot terminé après audit. Correction de la conclusion initiale sur J02 : les règles approuvées de l’étape 3 indiquent qu’Exposé affecte l’ennemi, pas la recrue. Le calcul était conforme. Le texte précise désormais « Ennemi Exposé : il reçoit +50 % de dégâts ce tour » et l’état apparaît dans le panneau ennemi. L’effet expire à la fin du tour ; aucun changement d’équilibrage n’a été introduit.
+
+Sauvegardes : validation du fichier temporaire avant remplacement ; rotation de la copie `.bak` seulement si le fichier principal est valide. Après récupération depuis `.bak`, un principal corrompu ne détruit plus la copie de secours. Les versions v2/v3, le nom de fichier et les deux profils restent compatibles. Les tests couvrent deux corruptions successives, un JSON lisible mais invalide, un principal absent et le rejet d’une nouvelle progression invalide.
+
+Préservation : copie datée des sauvegardes normale et parcours dans `tools/save-backups/20261119-161516`, avec manifeste SHA-256. Tests de reprise sur copies isolées ; fichiers originaux conservés. Les profils `tools/*-user/`, les copies de sécurité et les exports sont exclus de Git.
+
+Historique : premier commit local `a6c71ac` conservant l’état jouable du jour 4 avant correction. Les corrections et ce bilan font l’objet du commit suivant. Le dépôt inclut code, scènes, assets, documentation et tests ; aucun envoi distant n’a été réalisé. Cet historique local ne protège pas d’une perte du disque.
+
+Lancement : `project.godot` pointe sur `visual/preview.tscn`. `Jouer.cmd` et `SequenceVisuelle.cmd` partagent le même lanceur et la même sauvegarde normale ; `ParcoursTest.cmd` conserve son profil séparé. F5 lance la version actuelle mais utilise le dossier utilisateur standard de l’éditeur ; le README précise cette distinction. L’ancien `main.tscn` reste disponible explicitement avec F6.
+
+Validation : 31 contrôles ciblés, zéro échec ; suites marchand J4, interface de combat et progression de Jun réussies ; laboratoire : 43 927 contrôles, zéro échec. Démarrage de la scène principale sans argument de scène vérifié en mode headless pendant 60 frames, sans erreur. Les contrôles automatisés ne remplacent pas une nouvelle validation visuelle humaine.
+
+Suite : enrichissement des dialogues et du son, puis intégration J5–J6/S06 selon le périmètre déjà validé. Aucun contenu supplémentaire ni changement de difficulté dans ce lot.
