@@ -146,3 +146,11 @@ offset_right = 324.0
 offset_bottom = 705.0
 text = "Marchand · Jour 4"
 visible = false
+
+[node name="Visitor" type="Button" parent="."]
+offset_left = 864.0
+offset_top = 650.0
+offset_right = 1258.0
+offset_bottom = 705.0
+text = "Une visiteuse à la porte"
+visible = false

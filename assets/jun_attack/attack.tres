@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3]
+[ext_resource type="Texture2D" path="res://assets/jun_attack/sheet.png" id="1"]
+[sub_resource type="AtlasTexture" id="Frame0"]
+atlas = ExtResource("1")
+region = Rect2(0,0,512,512)
+[sub_resource type="AtlasTexture" id="Frame1"]
+atlas = ExtResource("1")
+region = Rect2(512,0,512,512)
+[sub_resource type="AtlasTexture" id="Frame2"]
+atlas = ExtResource("1")
+region = Rect2(1024,0,512,512)
+[sub_resource type="AtlasTexture" id="Frame3"]
+atlas = ExtResource("1")
+region = Rect2(0,512,512,512)
+[sub_resource type="AtlasTexture" id="Frame4"]
+atlas = ExtResource("1")
+region = Rect2(512,512,512,512)
+[sub_resource type="AtlasTexture" id="Frame5"]
+atlas = ExtResource("1")
+region = Rect2(1024,512,512,512)
+[resource]
+animations = [{"name": &"attack", "loop": false, "speed": 1.0, "frames": [{"duration": 0.12, "texture": SubResource("Frame0")}, {"duration": 0.14, "texture": SubResource("Frame1")}, {"duration": 0.07, "texture": SubResource("Frame2")}, {"duration": 0.12, "texture": SubResource("Frame3")}, {"duration": 0.12, "texture": SubResource("Frame4")}, {"duration": 0.13, "texture": SubResource("Frame5")}]}]

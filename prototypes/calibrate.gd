@@ -1,7 +1,7 @@
 extends SceneTree
 
-const Battle = preload("res://prototypes/battle.gd")
-const Cards = preload("res://prototypes/cards.gd")
+const Battle = preload("res://game/battle.gd")
+const Cards = preload("res://game/cards.gd")
 
 func _initialize() -> void:
 	var results: Array = []

@@ -89,8 +89,8 @@ Les nouvelles quantités remplacent les hypothèses correspondantes du prototype
 
 - 42 périodes : six séquences narratives réservées et 36 périodes libres ; exploration et préparation du deck gratuites.
 - Deck de douze cartes ; trente définitions réparties entre huit techniques de base, neuf relationnelles, quatre d'équipement, deux d'objets réutilisables et sept d'événements.
-- Trois résidents avec quatre rangs chacun ; techniques aux rangs 1, 2 et 3 ; romance facultative au rang 4 de Lian.
-- Combat avec 45 PV de départ, trois qi par tour, main de cinq cartes et intentions annoncées ; v0.2 ajoute une pression progressive au boss et ajuste quatre cartes de Lian/Shen.
+- Trois résidents avec cinq rangs (révision du 20 novembre 2026) : rencontre, transmission, recrutement, seconde transmission, amélioration des techniques pour les deux personnages. Romance facultative au rang 5 de Lian.
+- Duel solo avec 45 PV de départ, trois qi par tour, main de cinq cartes et intentions annoncées ; combat d’équipe révisé le 20 novembre : trois personnages contrôlés, mains et qi séparés (voir dernière section) ; v0.2 ajoute une pression progressive au boss et ajuste quatre cartes de Lian/Shen.
 - Trois chantiers, chacun coûtant trois puis quatre réserves et une période par niveau. Récompenses fonctionnelles et changements visuels.
 - La reconstruction facilite le final, sans en bloquer l'accès. La victoire au duel conclut l'histoire ; les autres réalisations modulent l'épilogue.
 - Sauvegardes distinctes avant activité, préparation finale et inspection. Défaite finale : reprise du point préalable, sans sursis automatique.
@@ -293,7 +293,8 @@ Exemple réalisable à contrôler à l’intégration, pas chemin imposé : J4 S
 
 | Bloc | Contenu prévu dans le périmètre existant | Critère avant passage au bloc suivant |
 |---|---|---|
-| J7–J8 | Exploitation du sentier ; S02 (pavillon 1, E04 et +1 réserve si victoire), S05 (E06/O02 si victoire) ; retour du marchand J8 ; poursuite des rangs 3. | Les trois orientations de deck peuvent obtenir une préparation viable ; combat offensif et défensif compris sans explication orale. |
+| J7 | Nouvelle direction : premier boss, affrontement de trois disciples contre trois pour le territoire face à une école souhaitant s'installer sur place. Voir la conception du tournoi ci-dessous. S02/S05 restent à répartir dans les périodes libres. | Prototyper le combat d'équipe, la lisibilité des intentions/cibles et la reprise après défaite avant intégration à la campagne. |
+| J8 | Arrivée de l'espionne, retour du marchand, poursuite des liens et du sentier. | Arrivée unique, aucune collision avec le marchand ; conséquences du tournoi connues. |
 | J9 | M04 : défi intermédiaire contre Jun, E07 si victoire, défaite non bloquante. Après-midi et soir libres. | Défi calibré sur les cartes acquises à J9. Le profil M04 reste distinct des duels répétables : ne pas cumuler automatiquement leurs paliers avec ses statistiques. |
 | J10–J12 | Résolution des rangs 4 ; romance de Lian facultative le soir après intérêt explicite, version amicale équivalente en puissance ; chantiers finaux ; dernière visite du marchand J12. | Aucun avantage indispensable réservé à la romance ; annonces claires des échéances et états de bâtiments lisibles. |
 | J13 | M05 : bilan de préparation et +1 réserve, point de sauvegarde distinct ; deux périodes libres. | Sauvegarde de préparation durable, avertissement sur le final, édition du deck valide. |
@@ -456,3 +457,332 @@ Le budget de 100 euros, l’équipe de deux et la cible de 3–5 heures restent 
 Critères de validation : accès orthodoxe sans enseignement démoniaque ; accès démoniaque après choix explicite ; progression de la PNJ dans le bon ordre ; refus et revanche sans blocage involontaire ; conversion volontaire/forcée distincte pour chaque disciple ; travaux conservés ; visuels cohérents avec orientation et conversion ; absence de récompenses répétables ; reprise correcte des anciennes et nouvelles sauvegardes.
 
 **État : décision sauvegardée, conception détaillée et implémentation à venir. Aucun changement de gameplay, d’asset ou de sauvegarde utilisateur dans ce lot documentaire.**
+
+### Espionne infiltrée — direction validée le 19 novembre 2026
+
+Personnage distinct de la voyageuse initiatrice violette : jeune femme adulte aux cheveux courts noirs aux reflets carmin, petite tresse, éventail et pendentif de jade rouge. Sa version humaine conserve son charme assuré, sans cornes ni yeux lumineux ; vêtements de voyage et de disciple sobres, détails d'espionnage discrets. Sa forme démoniaque reprend le concept noir et carmin, les petites cornes et la tenue asymétrique. Références conservées dans `assets/spy/` ; le nouveau visuel humain reste une proposition à examiner.
+
+Elle rejoint la secte après une semaine. Convention de calendrier retenue pour la conception : arrivée au début de J8, après sept journées complètes. Son identité publique est celle d'une recrue itinérante ; elle dissimule une mission d'espionnage. Son nom, son commanditaire et son objectif précis restent à écrire. « Non corrompue » désigne ici son apparence humaine ; cela ne signifie pas que son intention initiale est honnête.
+
+Trois issues demandées :
+
+- **Rédemption orthodoxe** : en suivant la voie orthodoxe et en développant suffisamment leur proximité, le héros peut l'aider à renoncer à sa mission et revenir vers le droit chemin. Prévoir une scène de choix et une adhésion volontaire, pas une conversion automatique au franchissement d'un score. Seuil et scènes de confiance à définir ; romance non obligatoire.
+- **Expulsion** : le héros peut la chasser de la secte lors de la confrontation sur sa véritable mission. Le choix et ses conséquences doivent être explicitement annoncés. Les modalités d'un éventuel retour restent à concevoir.
+- **Coopération démoniaque** : si le héros a explicitement choisi la voie démoniaque, il peut lui proposer une alliance en connaissance de cause. Sa présence et ses techniques ne changent pas à elles seules l'orientation de la secte.
+
+Production proposée : une arrivée, des interactions de confiance réutilisant les lieux existants, une révélation commune puis trois conclusions courtes. Prévoir à terme les états arrivée / mission révélée / rédemption / expulsion / alliance et un lien propre à cette PNJ. Ne pas confondre cette rédemption avec la conversion forcée des disciples ni attribuer automatiquement les récompenses de l'initiatrice à l'espionne.
+
+**État : conception et références visuelles uniquement.** J8 et ces embranchements ne sont pas encore jouables ; le contenu de calendrier et la migration des sauvegardes devront être développés et testés avant leur intégration. Aucun changement de sauvegarde ni de règles de combat dans ce lot. Cette seconde PNJ augmente le périmètre : réutiliser les décors et arbitrer les scènes/cartes existantes pour conserver la cible de 3–5 heures et le budget de 100 euros.
+
+### Espionne : design validé et arrivée J8 préparée — 19 novembre 2026
+
+Cette mise à jour remplace le statut « conception uniquement » pour la scène d'arrivée, pas pour ses branches futures. Le joueur valide **`assets/spy/human-concept-v2.png`**, avec cou raccourci et proportions corrigées. Ce fichier est la référence humaine définitive actuelle ; les versions précédentes sont conservées pour comparaison. La forme démoniaque reste `assets/spy/demonic-concept.png`. Ne pas réutiliser la silhouette de la voyageuse violette pour cette PNJ.
+
+Scène implémentée : `visual/spy/arrival.tscn`, papier et encre, portrait issu du design validé, quatre échanges. Elle demande une place en tant que voyageuse sachant suivre une piste et porter des messages. Shen l'accueille à l'essai ; un papier dissimulé dans sa manche suggère un secret sans dévoiler sa mission. Son nom reste à choisir. L'expulsion relève de la confrontation future, pas d'un refus ajouté à cette arrivée.
+
+Déclenchement préparé au retour dans la cour à partir du **créneau 21, J8 matin**, après le tutoriel (stade 3), si la campagne n'est pas terminée et si l'accueil n'a pas été enregistré. Rattrapage possible après ce créneau. Validation unique via `seen.spy_arrived` : aucun coût en réserve, aucune période consommée, aucune carte accordée, aucun changement de voie ou de lien. Si l'écriture échoue, le marqueur est retiré et un bouton permet de réessayer. Quitter avant validation permet de revoir l'accueil.
+
+**Limite de disponibilité : les journées 5 à 7 ne sont pas encore intégrées à la séquence visuelle.** Le plafond normal demeure la fin de J4 (`END_SLOT = 12`). L'arrivée est testable séparément avec `ApercuEspionne.cmd` : état J8 créé en mémoire, profil `tools/spy-preview-user`, aucune lecture/écriture de la sauvegarde personnelle. Cet aperçu ne constitue pas une partie complète de J8 et ne propose pas encore ses activités.
+
+Persistance préparée sans nouveau champ obligatoire : le format v4 accepte désormais les créneaux jusqu'à 24 (fin J8), indépendamment du plafond de gameplay ; v2 et v3 conservent leurs bornes. Les sauvegardes actuelles ne sont ni avancées ni réécrites par cette préparation. L'arrivée est mémorisée dans la liste de marqueurs existante, sans migration destructive. Le système de relation de l'espionne, sa révélation et les trois issues restent à développer.
+
+Validation : **38 contrôles dédiés, zéro échec**, couvrant date, rattrapage, accueil unique, échec d'écriture sans mutation, sauvegarde/relecture J8, compatibilité J4, compteur de duels conservé et parcours UI. Régressions fiabilité : 31 contrôles réussis ; suite marchand J4 réussie. Capture réelle Godot `tests/spy-arrival.png` vérifiée. Six fichiers personnels sauvegardés dans `tools/save-backups/spy-j8-20261119-202725` et empreintes SHA-256 identiques après les tests.
+
+### J7 — premier boss : le défi du territoire
+
+**Direction demandée par le joueur :** une école rivale veut s'installer sur le territoire. Les chefs de secte engagent leur revendication dans une épreuve où trois disciples de chaque camp s'affrontent. Le joueur voit les intentions de ses alliés (attaque/défense), les intentions adverses et la cible de chaque adversaire. Des têtes chibi identifient les cibles. Ce premier boss précède l'arrivée de l'espionne à J8 ; elle ne fait donc pas partie de l'équipe de J7. Les chefs organisent le défi, les disciples combattent.
+
+**Format proposé pour le prototype, à tester :** un affrontement simultané 3 contre 3, avec la recrue, Jun et Lian face à un disciple capitaine accompagné d'un assaillant et d'un protecteur. Shen reste le représentant de la secte. Seul le deck de la recrue est contrôlé directement ; les alliés possèdent des actions simples et annoncées. Aucun recrutement supplémentaire ni trois decks complets à gérer dans ce premier lot.
+
+Boucle de manche proposée :
+
+1. Afficher les intentions et cibles des six combattants, avec l'ordre de résolution. Le joueur doit pouvoir comprendre le prochain échange avant d'engager une carte.
+2. Jouer les cartes de la recrue. Les attaques monocibles sélectionnent un adversaire ; les cartes de garde actuelles restent personnelles sauf mention explicite. Prévoir une technique de protection d'allié en réaffectant une carte existante, afin que voir les cibles permette réellement de réagir.
+3. À « Fin du tour », résoudre d'abord les gardes/protections annoncées, puis les attaques alliées et enfin les attaques ennemies dans un ordre fixe visible. Une seule action par allié et adversaire, sans changement caché d'intention.
+4. Un combattant mis hors combat perd son action. Une attaque visant une cible déjà hors combat est annulée, sans redirection surprise. Les effets de zone, quand ils existent, portent explicitement leur propre règle.
+5. La garde protège jusqu'à la fin de cette manche, puis disparaît ; les intentions suivantes sont affichées après résolution. Tester ce rythme séparément du duel existant avant toute généralisation.
+
+L'intérêt tactique recherché : concentrer une attaque pour interrompre un ennemi qui menace Lian, protéger Jun quand il s'engage offensivement, ou laisser un allié achever une cible pour économiser du qi. Les relations pourront ultérieurement améliorer les actions de soutien ; éviter que les liens deviennent une condition obligatoire pour gagner J7.
+
+**Présentation proposée :** au-dessus de chaque combattant, petites icônes sans panneau carré : épée + dégâts, bouclier + garde, puis miniature chibi de la cible. Exemple : `épée 8 → tête de Lian`. Au survol/sélection, afficher « Attaque : 8 dégâts sur Lian » et une liaison temporaire vers la cible ; surbrillance de cette dernière. Pour une protection, afficher bouclier + valeur + tête protégée. Pour une attaque de groupe, icône de groupe et détail explicite. Formes, noms et surbrillance complètent les couleurs. Chaque combattant dispose de PV/garde propres et d'un état hors combat lisible. Réutiliser les chibis disponibles, avec recadrage de tête ; produire uniquement les portraits adverses manquants après validation du prototype.
+
+**Calendrier et enjeu proposés :** annonce du défi avant J7 ; matin J7 réservé à la préparation, confrontation l'après-midi, débriefing le soir. Les rivaux cherchent un droit d'installation ; en cas de victoire, ils renoncent à leur revendication. Les détails exacts du territoire mis en jeu restent à écrire. Prévoir un point de reprise distinct avant le tournoi, permettant de revoir le deck après défaite sans effacer la campagne ni les chantiers. Pas de destruction irréversible de la secte ni de conversion forcée ajoutée implicitement. Proposition de défaite du prototype : recrue hors combat ; les alliés peuvent être hors combat sans mourir dans le récit. Victoire lorsque les trois adversaires sont hors combat. Ces conditions restent à valider en jouant.
+
+**Périmètre et intégration :** le moteur actuel est un duel avec une seule réserve de PV ennemie ; le 3 contre 3 nécessite des entités, des cibles, une file d'actions, une garde et des statuts individuels. Ne pas simuler trois adversaires avec une unique barre de vie. Construire d'abord un laboratoire d'équipe isolé et testé (cible hors combat, annulation d'intention, garde, sauvegarde/reprise, victoire/récompense unique), puis intégrer J7 après J5–J6. Les anciennes cartes et les duels Jun doivent conserver leur comportement. Réexaminer M04/J9 et les récompenses existantes pour absorber ce boss dans le budget de scènes/cartes plutôt que tout additionner. Ne pas déplacer M03, qui déverrouille le sentier, sans adapter ses dépendances.
+
+**État : direction enregistrée, règles ci-dessus proposées pour le prochain prototype ; combat d'équipe et tournoi J7 non implémentés.** L'arrivée J8 reste préparée séparément. Aucun changement au moteur de combat, au calendrier exécuté ou aux sauvegardes personnelles dans ce lot de conception.
+
+### Laboratoire 3 contre 3 jouable — 19 novembre 2026
+
+Premier prototype implémenté et isolé : `CombatEquipe.cmd` ouvre `visual/team/lab.tscn`, sans instancier la campagne, dans `tools/team-lab-user`. Aucun chargement ni écriture de sauvegarde de partie. La scène J7 de campagne et son point de reprise restent à intégrer après validation du laboratoire ; le plafond de campagne demeure J4.
+
+Équipe : recrue (45 PV), Jun (32), Lian (28), contre capitaine (38), assaillante (27), protecteur (32). Six réserves de PV et de garde, intentions et cibles propres. Jun alterne attaque/protection ; Lian alterne protection/attaque ; le protecteur rival défend son camp une manche sur deux. Intentions fixées au début de la manche, sans redirection cachée : une source ou cible hors combat annule l'action. Toutes les protections annoncées sont résolues avant les attaques alliées, puis les attaques ennemies. La garde expire à la fin de la manche. Victoire quand les trois adversaires sont hors combat ; défaite si la recrue est hors combat. Retenter réinitialise tout le combat avec une nouvelle graine.
+
+Deck d'essai fixe de douze cartes, distinct de la collection personnelle : B01 ×2, B02 ×2, B03, B04, B05, B06, B07, B08, L01, E05. La main initiale garantit une attaque et E05 pour tester immédiatement le ciblage, sans ajouter de carte. Les effets de base (qi, pioche, épuisement, bonus, posture persistante) réutilisent le moteur existant. **E05 / Travail commun, uniquement dans ce laboratoire : 6 garde à un allié choisi et pioche 1.** Les autres cartes de garde restent personnelles. Les règles et descriptions de campagne ne changent pas.
+
+Interface : papier/encre et cartes existantes, six portraits chibi distincts. Au-dessus de chaque combattant : épée ou bouclier, valeur et tête chibi de la cible. Survol/focus : description et liaison temporaire vers la cible ; après sélection d'une carte, les cibles légales sont surlignées. Échap ou Annuler abandonne la sélection sans coût. Intentions annulées grisées, animation courte et journal des deux dernières actions pendant résolution ; bouton Règles pour consulter l'ordre. Ce sont des portraits animés par une impulsion visuelle, pas encore des animations martiales complètes.
+
+Validation : **2 290 contrôles dédiés réussis**, y compris 100 combats automatisés, ciblage illégal sans dépense, protection de Jun, absence de redirection, allié hors combat, persistance, victoire/défaite, réinitialisation et parcours réel de l'UI. Capture `tests/team-battle.png` vérifiée dans Godot. Suites de régression Jun et orthodoxe réussies (642 contrôles orthodoxes). Agent automatique : 100 victoires sur 100 graines, 6,89 manches moyennes ; difficulté volontairement accessible pour tester la compréhension, pas un équilibrage final de boss. Évaluer ensuite la pression sur Jun/Lian, l'utilité du soutien et le rythme avant de durcir le duel.
+
+Sauvegardes personnelles : copie préalable dans `tools/save-backups/team-lab-20261119-203700`, comparaison SHA-256 des six fichiers après tests. Aucun changement de progression, de collection, de deck personnel ou d'état des relations. Retour humain attendu : cibles et ordre compris sans explication, intérêt à protéger un allié, lisibilité des têtes chibi, durée et difficulté.
+
+### Révision visuelle du laboratoire : personnages en pied
+
+Retour utilisateur : remplacer la présentation de grands portraits par une scène de bataille comparable à la composition montrée en référence, personnages animés et cartes en bas. Intégré : équipes face à face, formation légèrement décalée en profondeur, nouveau décor manhua latéral avec sol libre, PV sous les pieds et intentions au-dessus. Les têtes chibi servent désormais uniquement aux cibles. Surlignage au sol au lieu de cadres de portraits, bande de main en bas et journal compact.
+
+Animation : la recrue reprend l'attaque Sprite Forge et ses poses de garde, Jun reprend son atlas de combat. Lian et les trois adversaires disposent d'un nouvel atlas de poses en pied. Respiration légère, préparation/extension/reprise du coup, avancée et retour au point de départ, réaction de recul de la cible, pose/arc de garde. Les pieds des nouveaux sprites sont alignés selon leur contenu alpha. Les PV et la garde changent au contact de l'animation, pas au clic ; actions concurrentes bloquées jusqu'à son terme. Intentions annulées ne déclenchent pas d'attaque.
+
+Pas de changement des règles ou de la difficulté : seul le moment visuel de résolution est synchronisé. Le laboratoire reste indépendant de la sauvegarde et de la campagne. Validation : 2 310 contrôles réussis, dont dégâts différés, application unique au contact, verrouillage des entrées, retour exact de la recrue, orientation des six combattants, animation Jun/Lian/capitaine. Capture Godot actualisée dans `tests/team-battle.png`. Les nouvelles poses restent un premier lot artistique à affiner après essai, pas des animations finales.
+
+### Reprise des armes et des planches individuelles
+
+Retour utilisateur : armes brisées, longueurs variables et défauts dans la planche commune. Nouvelle génération personnage par personnage, puis reprises ciblées de cadrage et des lames. Le laboratoire utilise désormais quatre PNG 2 × 2 : Lian à l'épée droite, capitaine au sabre large, assaillante aux deux dagues et protecteur à la lance. Gardes distinctes : épée devant le corps, sabre en parade, dagues croisées et hampe en travers. L'ancienne planche est conservée pour comparaison.
+
+Import : une échelle fixe par personnage pour les quatre poses (aucun ajustement automatique par image), pieds alignés d'après les pixels suffisamment opaques pour ignorer les traces alpha presque invisibles. Aucun élément opaque ne traverse les séparations de cases sur les quatre planches corrigées. Capture Godot vérifiée avec les nouvelles armes. Tests : **2 358 contrôles réussis**, incluant les 16 poses et leur échelle constante ; résultats de simulation inchangés. Ces validations techniques ne remplacent pas le contrôle artistique des proportions.
+
+Ce lot modifie les visuels seulement : les mécaniques de poison et de pilule restent à développer. Sauvegarde de campagne inchangée, aucune carte ni progression réattribuée. Prompts et provenance consignés dans `assets/team/ART.md`.
+
+### Poison et pilule : premier lot jouable dans le laboratoire
+
+Implémenté le 19 novembre 2026 dans le seul laboratoire `CombatEquipe.cmd` ; cette section remplace le statut « à développer » ci-dessus pour ces deux mécaniques. Aucun chargement ni écriture de la sauvegarde personnelle. La rencontre de campagne J7 et son point de reprise restent un chantier distinct.
+
+**Dagues :** la première intention de l'assaillante est d'enduire ses armes, sans attaque. L'action est annulée si elle est déjà hors combat. Dès la manche suivante, les intentions d'attaque portent une goutte verte et leur cible chibi ; une blessure inflige +2 poison, cumulable jusqu'à 6. Une attaque entièrement absorbée par la garde ne donne aucun poison. Fin de manche : dégâts égaux au poison, ignorant la garde, puis diminution de 1. Le poison est individuel, visible sur la cible, et peut mettre la recrue hors combat. Statut, particules et chiffres accompagnent son effet ; les valeurs complètes sont au survol et dans Règles.
+
+**Pilule :** une réserve visible annonce l'intervention du chef. Après la résolution complète de l'action qui ne laisse qu'un rival debout, activation unique : PV maximum restaurés, poison retiré, furie (+50 % de dégâts d'attaque, arrondi supérieur). Le survivant absorbe la pilule au lieu d'agir cette manche : son intention devient récupération et son éventuelle action déjà en file est retirée. Les autres actions alliées conservent leur ordre et leurs cibles ; le joueur garde sa main et son qi restants si le déclenchement a lieu pendant son tour. Dès la manche suivante, les dégâts renforcés sont inclus dans les nouvelles intentions, sans modifier rétroactivement une attaque annoncée. Si les trois adversaires sont hors combat, victoire sans résurrection ; si la recrue est déjà hors combat, aucune intervention.
+
+Présentation : animation de pilule depuis la réserve du chef vers le survivant, bannière temporaire, aura rouge et statut « Furie : attaques +50 % ». Le chef est représenté par sa réserve/intervention hors champ dans ce prototype, sans nouveau personnage animé. Verrouillage des commandes pendant l'animation ; Retenter réinitialise enduit, poison, pilule, furie et événements. La pilule ne multiplie pas la dose de poison.
+
+Validation : **43 contrôles spécifiques réussis** (enduit, garde complète/partielle, cumul/plafond, dégâts et décroissance, poison létal, trois survivants, soin/purge, action retirée, unicité, aucun vol de main/qi, aucune résurrection, UI et réinitialisation). Régression du laboratoire : **2 397 contrôles réussis**. Agent automatique : 100 victoires sur 100 graines, 7,01 manches moyennes ; données techniques, équilibrage humain encore à tester. Captures `tests/team-poison.png` et `tests/team-pill.png` vérifiées dans Godot.
+
+Sauvegardes personnelles copiées dans `tools/save-backups/poison-pill-20261119-210555` et comparées par SHA-256 après les tests : six fichiers inchangés. Aucun cadeau, événement de campagne, carte ou relation modifié par ce lot.
+
+### Interface de combat : correction du périmètre demandé
+
+Le joueur a refusé la simplification trop large. Ne supprimer que les éléments explicitement demandés : bandeau d'aide/journal, « À toi de jouer », titre « Le défi du territoire » et compteur de tours. Règles et son panneau, noms des équipes, voies des cartes, PV/garde numériques, compteurs pioche/défausse/persistantes/main maximale, Quitter, Annuler et Retenter sont conservés.
+
+Qi : sceau de jade au-dessus de Fin du tour, chiffre lisible, charges lumineuses et état atténué à zéro. Intentions : épée et bouclier redessinés, valeurs avec contour sombre, cible chibi dans un médaillon rond ; détails au survol et liens de ciblage conservés.
+
+Validation : 2 397 contrôles de combat réussis ; captures Godot à 1 et 0 qi. Aucun changement des règles ni de la sauvegarde personnelle.
+
+### École rivale : armes distinctes et tricheries — propositions à prototyper
+
+Demande du joueur : varier les armes ; les rivaux ne combattent pas loyalement. Prévoir des armes empoisonnées et une intervention du chef qui lance une pilule au dernier disciple debout après la mise hors combat des deux autres, restaurant tous ses PV et augmentant fortement ses dégâts. Ces mécaniques ne sont pas encore présentes dans le laboratoire actuel.
+
+Distribution proposée : capitaine au sabre lourd (coups puissants), assaillante aux deux dagues (poison et attaques multiples), protecteur à la lance (allonge et protection d'un partenaire). La recrue et Jun peuvent conserver leur épée ; différencier Lian plus tard par un style d'épée souple et précis plutôt que fabriquer immédiatement six familles d'armes. Les sprites rivaux actuels sont encore provisoires et devront être redessinés pour ces armes.
+
+Événement 1, **Les lames enduites** : l'assaillante passe un tour à enduire ses dagues, geste visible et courte réaction d'un allié. Ensuite, ses attaques infligent du poison si elles retirent au moins un PV ; une attaque entièrement bloquée n'empoisonne pas. Proposition initiale : +2 poison par attaque, pas par coup d'une attaque multiple. Fin de manche : dégâts de poison ignorant la garde, puis quantité réduite de 1. Afficher le poison sous les PV de chaque personnage et dans l'intention de l'assaillante, avec la tête de sa cible. Tester le rythme et une limite d'accumulation avant validation ; ne pas ajouter en même temps un système général de consommables. Contre-jeu initial : protection de la cible ou interruption par mise hors combat.
+
+Événement 2, **La pilule du dernier recours** : à la transition de deux adversaires vivants à un seul, le chef intervient une seule fois. Brève animation de lancer et absorption, remise aux PV maximum du survivant, purge proposée de ses malus, puis forte hausse de dégâts. Hypothèse de départ : +50 % aux dégâts d'attaque, arrondis au supérieur ; nouvelle intention affichée et répit avant son exécution. Ce pourcentage est une valeur de test, pas une règle validée. Conserver son arme et son rôle : capitaine amplifie ses frappes, assaillante sa pression avec les dagues, protecteur devient plus offensif. La pilule est visible chez le chef avant le déclenchement ; pas d'attaque renforcée immédiate au milieu d'une résolution déjà annoncée.
+
+Contraintes du déclenchement : marquer la pilule comme utilisée avant l'animation, ne pas la répéter en rechargeant ; finir entièrement l'action à l'origine des mises hors combat avant de compter les survivants. Si aucun adversaire ne reste, victoire sans résurrection. Si les attaques alliées de la file restent à jouer, suspendre/recalculer la prochaine phase de manière explicite plutôt que changer silencieusement une intention en cours. La solution exacte de transition de manche devra être spécifiée et testée avant implémentation.
+
+Autres événements optionnels, à ne pas cumuler dès ce premier boss : **sable aux yeux**, prochaine attaque affaiblie avec malus annoncé ; **faux abandon**, changement de posture suivi d'une attaque explicitement préparée ; **aiguille depuis les gradins**, intervention unique signalée avec cible visible et possibilité de protection. Pour le premier prototype, se limiter au poison et à la pilule, afin de mesurer leur difficulté et la durée ajoutée.
+
+Cette triche donne au joueur une décision sur l'ordre des éliminations : choisir quel spécialiste affronter sous pilule, plutôt que toujours viser celui qui a le moins de PV. Tester trois issues (chaque survivant), protection contre poison, événements uniques, interruptions, victoire simultanée et reprise de sauvegarde. Aucun de ces ajouts ne doit réinitialiser les règles ou la sauvegarde de campagne.
+
+
+### Jour 7 intégré : défi territorial, Jun et Lian
+
+Le premier boss de campagne est désormais M03 au **matin du jour 7 (slot 18)**, au lieu de l’ancien emplacement de laboratoire au jour 6. Une école rivale veut s’installer sur les terres du Prunier ; les chefs engagent leur territoire dans un affrontement de trois disciples contre trois. Introduction papier/encre, préparation du deck et retour à la cour disponibles avant l’affrontement.
+
+La séquence jouable est ouverte jusqu’à la fin du jour 7 (slot 21). Les jours 5 et 6 utilisent les activités, relations et réparations existantes ; aucun nouvel événement narratif propre à ces journées n’est annoncé. Le défi est obligatoire pour avancer au-delà du matin du jour 7. Après les deux activités restantes du jour 7, l’arrivée déjà préparée de l’espionne au jour 8 devient accessible ; les activités du jour 8 restent à développer.
+
+Combat : recrue, Jun et Lian contre capitaine, assaillante aux dagues empoisonnées et protecteur. Intentions, cibles chibi, animations, poison et pilule unique du dernier survivant sont les mêmes que dans le laboratoire validé. Le deck réel équipé est utilisé sans cartes offertes ni main imposée ; le laboratoire autonome garde son deck de démonstration. PV et difficulté d’équipe restent ceux du prototype ; équilibrage humain avec les decks de campagne encore à poursuivre.
+
+Persistance : sauvegarde de la préparation avant l’entrée en combat, refus de démarrer si l’écriture échoue. Défaite ou sortie : aucune période, carte, réserve ou relation perdue ; Retenter réinitialise le combat, poison et pilule avec la même graine. Interruption/rechargement : reprise avant le combat, pas au milieu d’une animation. Victoire validée par Continuer : une période, récompense M03 existante (+1 réserve), marqueur et historique une seule fois. Si l’enregistrement du résultat échoue, restauration de l’état précédent et nouvelle tentative possible. Aucun changement du format de sauvegarde (v4) ; anciennes versions v2/v3 toujours lisibles.
+
+Validation : **35 contrôles d’intégration J7**, **2 397 contrôles du combat**, **43 contrôles poison/pilule**, et régression marchand/migration J4 réussis. Captures en moteur : `tests/day7-intro.png`, `tests/day7-combat.png`. Les fichiers personnels ont été copiés dans `tools/save-backups/day7-20261119-213125` avant les modifications ; tests dans un profil isolé et sur des copies, empreintes des six fichiers personnels vérifiées inchangées.
+
+
+### Jun : attaque à six poses intégrée
+
+Version approuvée détourée avec imagegen intégré, puis assemblée sans modification de la géométrie des armes. Ressources : `assets/jun_attack/sheet.png` et `attack.tres`. Utilisation en duel, dans la cour quand Jun s’entraîne et dans le combat 3 contre 3. Six poses, 0,70 seconde, impact unique à la quatrième pose ; taille et ancrage constants, miroir pour frapper vers la gauche. Aucune modification des dégâts, du calendrier ou des récompenses.
+
+Validation : `tests/test_jun_attack.gd` réussi (six poses, transparence, impact unique, miroir, retour au repos, exclusion des autres acteurs), tests d’animation de duel réussis, 2 397 contrôles du combat d’équipe réussis. Capture en moteur inspectée : `tests/jun-attack-clean.png`. Copie de sécurité : `tools/save-backups/jun-animation-20261119-220414` ; six sauvegardes personnelles inchangées. Laboratoire autonome lancé pour tester sans avancer la campagne.
+
+
+### Lian : attaque intégrée avec lame de longueur fixe
+
+Les six poses validées sont intégrées au combat d’équipe et au jour 7. Pour éliminer les variations de longueur produites par la génération, la lame argentée a été retirée du dessin des poses via imagegen ; une seule lame issue du dessin approuvé est affichée dans Godot, fixée à la garde par une translation/rotation. Texture et échelle identiques sur les six poses, pas de redimensionnement de la lame. Ressources et provenance : `assets/lian_attack/ART.md`, composant `visual/team/lian_attack.tscn`.
+
+Impact à la quatrième pose, attaque de 0,70 s ; garde et repos inchangés, aucune règle ni valeur de dégâts modifiée. Tests Lian (longueur, six poses, impact unique, retour au repos), Jun, 2 397 contrôles du combat et 43 contrôles poison/pilule réussis. Contrôles historiques adaptés à la nouvelle présentation de Lian au lieu d’exiger son ancienne planche 2 × 2. Captures inspectées en moteur : `tests/lian-attack-0.png` et `tests/lian-attack-3.png`.
+
+Sauvegardes copiées avant intervention dans `tools/save-backups/lian-animation-20261119-221305` ; empreintes des six fichiers personnels inchangées. Laboratoire 3 contre 3 relancé pour essai sans progression de campagne.
+
+
+### Correctif Lian : lame incluse dans chaque image
+
+Retour joueur : lame absente en jeu malgré les premiers contrôles du montage séparé. Cause exacte non reproduite ; suppression de cette dépendance : six PNG complets exportés par Godot avec personnage et lame assemblés. Le jeu ne charge plus le corps sans lame ni le montage séparé. Source éditable conservée. Vérification des pixels de lame dans les six poses, du contact unique et de la vraie attaque au deuxième tour ; capture `tests/lian-live-attack.png`. Aucun changement des règles ou sauvegardes.
+
+
+### Aperçu des cartes depuis le menu de deck
+
+Correction du panneau de détail : le PopupPanel étirait le bouton Fermer sur tout son contenu. Remplacé par une surimpression Control avec une carte illustrée en grand, coût, voie, nom et description complète. Ouverture depuis une carte de la collection, le nom ou la vignette dans le deck ; fermeture par bouton, Échap ou clic extérieur. Les boutons +/− restent indépendants. Inspection sans modification du brouillon ni sauvegarde. Vérification en moteur : `tests/deck-card-detail.png` ; `tests/test_deck_inspect.gd` valide ouverture, illustration, géométrie, descriptions et conservation du deck. La fenêtre de jeu en cours n’est pas fermée automatiquement pour préserver le brouillon du joueur.
+
+
+### Ajustement du boss J7 après test joueur — 20 novembre 2026
+
+Retour : enduit de poison trop précoce, dégâts adverses trop faibles, garde peu lisible. L’assaillante attaque normalement au premier tour, annonce/utilise l’enduit au deuxième (action consommée), puis blesse avec poison à partir du troisième. Dose/plafond inchangés et garde complète toujours protectrice. Valeurs d’attaque de base : capitaine 12 (anciennement 8, croissance existante jusqu’à +4 conservée), assaillante 9 (anciennement 6), protecteur 8 (anciennement 5). PV, protections, alliés et multiplicateur de pilule +50 % inchangés ; intentions annoncent les nouvelles valeurs.
+
+Garde : badge bouclier et valeur près des PV, protection translucide devant le personnage orientée vers l’adversaire, réaction au changement et fragments lorsque la garde tombe à zéro. Impacts distinguant garde consommée et PV perdus. Les informations et commandes précédemment conservées restent présentes.
+
+Validation : 2 399 contrôles de combat, 49 contrôles tricheries/garde et 35 contrôles d’intégration J7 réussis. Simulation de référence : 99 victoires sur 100, 7,01 manches moyennes ; ne vaut pas validation d’équilibrage humain avec les decks de campagne. Première hausse à réévaluer avec le joueur. Tests exécutés en profil isolé, aucune modification des sauvegardes de campagne.
+
+
+### Combat d’équipe : cartes en perspective et glisser-déposer — 20 novembre 2026
+
+La rangée défilante est remplacée par une main en éventail à espacement adaptatif : toutes les cartes de la main sont présentes sans défilement, y compris une main de douze cartes. Elles se chevauchent lorsque la main est grande ; chaque tranche reste sélectionnable et le survol relève/agrandit la carte pour lire ses effets. Illustrations, polices et descriptions existantes réutilisées. Rendu haute résolution par SubViewport, projection de la face via shader avec rotation sur deux axes, ombre et léger reflet : effet de perspective 3D dans l’interface 2D, sans introduire de monde de combat 3D.
+
+Glisser-déposer : attaques sur ennemi vivant, Travail commun sur allié vivant, cartes personnelles sur la recrue. Les cibles valides sont surlignées et le lien indique la cible survolée. Aucun coût avant le lâcher valide et l’animation d’impact existante ; lâcher ailleurs, clic droit, Échap ou perte de focus annulent. Cartes trop coûteuses non déplaçables ; cartes gratuites possibles à zéro qi. Clic classique et sélection clavier conservés. Règles, compteurs et autres boutons inchangés. Application : laboratoire 3 contre 3 et rencontre du jour 7 ; duel solo conserve son interface actuelle.
+
+Validation : `tests/test_team_hand.gd` (événements souris, attaque unique, soutien, auto-ciblage, coût, lâcher invalide, annulation, douze tranches accessibles), 2 399 contrôles du combat et 35 contrôles d’intégration J7 réussis. Captures inspectées : `tests/hand-twelve-cards.png`, `tests/hand-card-hover.png`, `tests/hand-drag-target.png`. Tests en profil séparé ; sauvegardes de campagne non modifiées.
+
+### Garde du combat d’équipe — 20 novembre 2026
+
+La garde ennemie restante est conservée pendant la phase de cartes suivante du joueur, puis expire avant la prochaine résolution des intentions. Elle absorbe réellement les attaques du joueur, sans s’accumuler indéfiniment. La barre de PV d’un ennemi protégé devient bleue ; elle redevient rouge lorsque sa garde tombe à zéro. Badge et valeur restent présents.
+
+Toutes les cartes de garde sans dégâts peuvent protéger un allié vivant choisi (recrue, Jun ou Lian), par clic ou glisser-déposer. Les effets persistants restent attachés à la recrue. Décision du joueur : une carte combinant attaque et garde cible uniquement un ennemi et protège automatiquement la recrue ; aucune deuxième cible à sélectionner.
+
+Validation : 61 contrôles spécifiques de garde/ciblage/couleurs, 2 399 contrôles de combat, 49 contrôles poison/pilule et 35 contrôles J7 réussis ; test des interactions de la main réussi. Capture moteur contrôlée : `tests/enemy-guard-blue.png`. Tests en profil isolé, sauvegardes personnelles non modifiées. Application au laboratoire et au combat J7 partagé.
+
+
+### Relations, recrutement et mains individuelles — 20 novembre 2026
+
+Décision validée : apprendre une première technique AVANT de recruter. Cette section remplace les anciennes règles de quatre rangs et les actions automatiques de Jun/Lian.
+
+| Rang | Déblocage |
+|---|---|
+| 1 — Rencontre | Résident connu, visites et activités |
+| 2 — Transmission | Première technique (L01, J01 ou H01) dans la collection de la recrue |
+| 3 — Confiance | Personnage recruté, disponible pour l’équipe |
+| 4 — Complicité | Deuxième technique (L02, J02 ou H02) |
+| 5 — Lien profond | Les deux techniques sont améliorées dans le deck du disciple et dans notre collection/deck, sans nouvelle copie ni rééquipement |
+
+**Activités intégrées.** Matin : Jun ; après-midi : Lian ; soir : Shen. L’introduction obligatoire de Lian conserve son créneau de départ. Visites et conversations libres ne consomment rien ; une activité de progression coûte une période, au plus une progression par résident par jour. Paliers disponibles respectivement dès J1, J3, J6 et J10. Le dernier lien de Lian peut rester amical ; la scène romantique facultative se place le soir. Horaires et prochain déblocage sont affichés dans le carnet ; activité indisponible sans coût. Les longues scènes narratives et leurs choix restent à écrire : le système de paliers utilise encore les séquences chibi existantes.
+
+**Améliorations actuellement testables.** L01 : 7→10 dégâts, combo 12→15 ; L02 : 4→7 garde ; J01 : 6→9 dégâts et 3→6 garde ; J02 : pioche 1→2 ; H01 : 8→11 garde ; H02 : 4→7 garde, croissance persistante inchangée. Noms marqués « + » et valeurs identiques dans collection, aperçu, mains et résolution. Duels solo et combat d’équipe utilisent le même contexte de relation. Les troisièmes techniques restent les signatures des compagnons ; celles acquises avant la migration restent possédées par la recrue.
+
+**Combat jouable.** La recrue conserve son deck équipé ; Jun, Lian et Shen ont chacun un deck fixe de douze cartes. Équipe de trois, donc deux compagnons. Une main, pioche, défausse, pouvoirs persistants et réserve de qi par combattant. Hypothèse de test : quatre cartes et deux qi au début de chaque manche ; taille de main initiale dix, effets persistants individuels conservés. Les portraits permettent de choisir l’ordre avant toute carte jouée. Après sa première carte, un personnage termine son tour avant de céder la place. Un personnage ayant fini ou hors combat ne rejoue pas. Quand tous les personnages vivants ont fini, les ennemis exécutent leurs intentions, puis le poison est résolu. Aucun coup automatique supplémentaire des alliés. Qi, cartes et ressources ne sont pas partagés. Une attaque avec garde protège son lanceur ; une garde seule protège un allié choisi. Exposé vise le seul ennemi choisi et profite aux alliés jusqu’à la fin de la manche.
+
+**Équipe J7.** Choix de deux compagnons dans la préparation. Jun et Lian restent disponibles sur ordre de Shen pour cette épreuve obligatoire, même sans rang 3, afin de préserver les anciennes campagnes et le duel de trois disciples. Shen peut remplacer l’un d’eux après recrutement au rang 3 ; deck défensif, 34 PV et sprite existant. Le choix reste un brouillon jusqu’au lancement ; validation de deux membres distincts et sauvegarde avant combat. Pas encore d’animation d’attaque dédiée à Shen. Les futures sorties libres exigeront le rang 3 pour chaque compagnon, sans l’exception narrative J7.
+
+**Sauvegardes.** Format 5, migration de rangs 0→1, 1→2, 2→4, 3→4, 4→5. Toutes les cartes déjà acquises, le deck, les ressources, le jour, les équipements et l’historique sont conservés. La conversion ne se répète pas. Équipe mémorisée, valeur initiale Jun/Lian pour les anciens fichiers. Copie permanente `.before-relations` lors du premier enregistrement migré et récupération `.bak` conservées. Copie supplémentaire des profils personnels dans `tools/save-backups/recruitment-*` avec empreintes SHA-256 ; tests sur profil isolé.
+
+**Validation.** 109 contrôles relations/recrutement/migration et règles de groupe, 10 contrôles d’interface, 3 525 contrôles combat d’équipe, 49 poison/pilule, 61 garde, 35 intégration J7 et 642 orthodoxes réussis ; interactions de main, inspection du deck et progression des duels réussies. Captures moteur inspectées : `tests/recruitment-jun-hand.png`, `tests/recruitment-shen-hand.png`, `tests/relation-activities.png`, `tests/recruited-party-selection.png`, `tests/relation-upgraded-card.png`. Simulation de référence : 100 victoires sur 100, 5,43 manches moyennes avec le bot et les decks de test. Le contrôle des trois personnages facilite le combat : équilibre NON validé, à reprendre après test humain.
+
+**Suite du périmètre.** La campagne jouable s’arrête toujours après J7 et l’arrivée prévue J8 ; le rang 5 dès J10 est implémenté et testé dans le modèle, mais son accès naturel attend les prochaines journées. Restent : scènes de relation dédiées, invitations concurrentes, nouveaux arrivants liés à la reconstruction, sorties avec recrutement volontaire et choix d’évolution des decks compagnons. Pas de nouveaux personnages ni d’assets payants ajoutés par cette révision.
+
+Laboratoire : bouton « Équipe de test » pour choisir deux compagnons parmi Jun/Lian/Shen et activer les liens de rang 5. Appliquer recommence le combat sans écrire dans une sauvegarde de campagne. Permet de tester la maîtrise avant la production de J10.
+
+
+### Interface du combat : encre et jade — 20 novembre 2026
+
+Direction validée à partir de la maquette générée : remplacement des barres rectangulaires et du texte PV/garde sous les unités. Jauge peinte sur fond d’encre, chiffres actuels/max intégrés et police de lecture conservée. La longueur du coup de pinceau suit les PV en conservant ses extrémités effilées. Toute unité protégée, alliée ou ennemie, utilise une jauge jade bleutée et un sceau avec le nombre de garde ; aucune valeur de garde nulle affichée. Noms conservés, état « Hors combat » maintenu.
+
+Sélection : deux traits au sol, ivoire pour le personnage actif, vermillon pour une cible adverse. Suppression des rectangles de focus autour des combattants. Une courbe fine et effilée relie la carte à sa cible uniquement pendant le ciblage ; aucune ligne orthogonale au survol d’une intention ou pendant les attaques. Les intentions chiffrées et portraits de cible sont conservés. Carte sélectionnée moins relevée pour laisser les PV visibles pendant la visée ; agrandissement de consultation et glisser-déposer conservés.
+
+Furie : volutes d’encre rouge animées derrière les épaules et sceau +50 % près du nom, en remplacement du grand cercle et de la phrase permanente. Suppression du grand polygone lumineux de garde ; pose défensive, sceau, couleur de jauge et fragments lors de la rupture restent lisibles. Infobulles des unités compactes, texte renvoyé à la ligne dans un panneau papier. Assets SVG et scènes Godot éditables, sans nouvelle génération payante et sans changement des règles de combat ou des sauvegardes.
+
+Validation : capture réelle `tests/ink-jade-combat.png`, états et infobulle dans `tests/ink-jade-states.png`. 14 contrôles visuels/états, 61 contrôles de garde, 49 contrôles poison/pilule et test des interactions de main réussis. Vérification de la couleur indépendante des unités, des PV intégrés, des sceaux absents à zéro, de la furie/hors combat et de la courbe réservée aux cartes. Intégré au laboratoire et au combat J7 partagé.
+
+
+### Dagues : poison cumulable renforcé — 20 novembre 2026
+
+Retour joueur : l’assaillante doit être une cible prioritaire, avec un poison assez dangereux pour menacer la survie d’un compagnon. Révision : premier tour inchangé (9 dégâts directs) ; deuxième tour consacré à l’enduit ; à partir du troisième, le coup applique 9 charges de poison **à la place** des dégâts directs. La garde ne bloque ni l’application ni les dégâts de poison. Suppression du plafond de six charges. En fin de manche, chaque unité vivante perd autant de PV que ses charges, puis celles-ci diminuent de 1. Exemple : 9 appliquées → 9 dégâts, reste 8 ; second coup → 17 charges, 17 dégâts, reste 16. Le poison déjà appliqué continue même si l’assaillante tombe. Il ne prolonge pas un combat déjà gagné.
+
+Intentions : goutte verte et valeur 9 comme intention principale, cible chibi conservée. Animation de frappe conservée, impact « +9 poison », puis impact séparé du déclenchement. Enduit et infobulles/règles mis à jour. Si l’assaillante reçoit la pilule, son application de poison bénéficie du +50 % et passe à 14, annoncé avant le coup. Ordre des actions adverses conservé. Aucun changement du capitaine, du protecteur ou des sauvegardes.
+
+Objectif stratégique : assaillante → capitaine → protecteur. Comparaison par bot fixe sur 100 graines par scénario, trois personnages contrôlés : deck laboratoire 100 victoires en ciblant l’assaillante d’abord contre 95 en la laissant dernière ; deck actuel du joueur lu sans modification, 100 contre 92. Avec l’assaillante dernière, 12 combats sur 100 comportent au moins un allié KO dans chacun des deux lots. En la ciblant d’abord, aucun coup de poison n’a été subi dans ces simulations. **La chute d’un allié n’est donc pas garantie** : le combat peut finir avant que le poison tue. Le bot et ses decks ne remplacent pas un test humain ; équilibre provisoire. Pas de KO scripté ni de hausse supplémentaire des ennemis ajoutée.
+
+Validation : 49 contrôles de tricheries (application à travers 100 garde, absence de dégâts directs, cumul 9→17→34, dégâts progressifs, pilule), 35 contrôles de campagne J7 réussis. Résultats reproductibles dans `tests/test_poison_priority.gd` et `tests/poison-priority-results.json`. Profils personnels inchangés.
+
+
+### Correction validée : dagues 9 directs + 9 poison — 20 novembre 2026
+
+Correction explicite du joueur : les dégâts de poison s’ajoutent aux dégâts directs, ils ne les remplacent pas. Cette règle remplace la section précédente sur les dagues. Après l’enduit du deuxième tour : chaque coup inflige 9 dégâts directs (absorbables par la garde) ET applique 9 poison, même si le coup est entièrement bloqué. Cumul sans plafond, déclenchement en fin de manche et diminution de 1 inchangés. Sans garde, un premier coup puis son déclenchement retirent donc 18 PV et laissent 8 poison. La pilule conserve le comportement précédent : 14 dégâts directs et 14 poison si l’assaillante est la dernière survivante.
+
+Intentions distinctes épée 9 et goutte 9, impact indiquant dégâts/garde puis poison ajouté, règles et infobulles corrigées. Tests : 51 contrôles poison/pilule réussis, notamment 45→36 PV au contact puis 27 PV au déclenchement, et blocage direct par 100 garde sans bloquer le poison. Capture moteur inspectée. Simulation de priorité réexécutée dans `tests/poison-priority-results.json` pour remplacer les valeurs de l’ancienne variante.
+
+Retour joueur : le combat testé reste faisable et la priorité assaillante → capitaine → protecteur paraît acceptable. Attention : ce retour a précédé l’installation effective du correctif 9 directs + 9 poison ; le nouvel essai doit confirmer cette variante. Aucune hausse supplémentaire des adversaires. Sauvegarde de campagne inchangée.
+
+
+### Cinq ajouts : parcours relations J5–J7 — 20 novembre 2026
+
+Implémentés dans le prototype :
+1. Deux invitations concurrentes Jun/Lian à l’après-midi J5. Une activité consomme la période ; l’invitation non suivie revient à l’après-midi J6. Les horaires ordinaires restent en place en dehors de ces invitations.
+2. Scène de recrutement au passage au rang 3 pour Jun, Lian et Shen, deux réponses mémorisées. Ouvrir/annuler la scène ne coûte rien ; confirmer consomme exactement une période. Les réponses expriment la relation, sans bonus mécanique différent pour le moment.
+3. Consultation complète des douze cartes de chaque compagnon depuis le menu et la préparation du tournoi, détail au clic, rang/recrutement et jalons 2/3/4/5. Consultation seule : aucun changement du deck personnel ni de la sélection provisoire de l’équipe.
+4. Avertissement J6 sur les dagues ; préparation facultative d’une dose d’antidote en échange d’une période, également disponible dans le carnet J6. Utilisation en combat sur un allié vivant empoisonné : tout son poison est dissipé, aucun qi consommé. Aucune dose perdue sur une cible invalide. Le point de reprise avant le combat conserve la dose pour les nouvelles tentatives ; la victoire enregistre le reste.
+5. Retour après victoire J7 adapté aux compagnons tombés ou protégés par un autre membre ; réaction à l’antidote utilisé. Deux aspirants, Mei et Tao, attirés par la victoire : accueil à l’essai ou attente de logements, choix conservé et consultable dans le menu. Leur arrivée est narrative uniquement : portraits spécifiques, emploi du temps, recrutement combattant et arcs individuels restent à développer.
+
+Sauvegarde version 6, lecture des versions 2–5 conservée ; copie permanente `.before-story` lors de la première écriture d’un ancien fichier. L’échec de sauvegarde d’une activité annule ses effets en mémoire. Les profils personnels ne sont pas modifiés par les tests.
+
+Parcours joueur : lancer `ParcoursRelations.cmd`. Profil distinct `tools/relations-route-user`, initialisé une seule fois au J5 après-midi, liens au rang 2, premières techniques acquises. Choisir Jun ou Lian, passer le soir (ou recruter Shen), décider de l’antidote au J6, retrouver l’autre invitation, rejoindre le tournoi J7 puis découvrir le retour. Une relance reprend ce profil ; elle ne réinitialise pas la campagne.
+
+Validation : `test_story_route.gd` 26 contrôles réussis (invitations, annulation, recrutement, antidote, consultation, réactions, persistance) et captures Godot inspectées ; régressions J7 35, recrutement 109, poison/pilule 51, garde 61, interface relations 10 contrôles réussis. L’équilibrage de l’antidote reste à confirmer en jeu : il s’agit d’une purge unique et non d’une immunité aux coups suivants.
+
+
+### Harmonisation transversale des combats — 20 novembre 2026
+
+Correction suite au retour joueur : Jun et la voyageuse conservaient l’ancien HUD alors que le tournoi avait été amélioré. Le HUD solo réutilise désormais la scène de main animée/perspective du 3 contre 3 (toutes les cartes accessibles, survol agrandi, clic puis cible ou glisser-déposer), l’orbe de qi et les barres de vie encre/jade. Garde visible en sceau chiffré, PV au centre de la barre, barre bleue sous garde. Intentions avec les mêmes SVG et portrait chibi de cible. Nombre de tours, panneau d’aide et anciens grands panneaux PV retirés. Les informations de forces/main/persistantes restent accessibles via les compteurs et leur infobulle.
+
+Ciblage solo : attaque ou attaque+garde sur l’adversaire, garde seule sur soi (seul allié présent). Mauvais dépôt : annulation sans consommation. La garde adverse survit déjà au tour du joueur dans le modèle solo ; cette règle reste inchangée. Qi conservé à 3 en duel, 2 par personnage en équipe : différences d’équilibrage explicites, même présentation. Le tutoriel de Jun et ses niveaux de difficulté sont conservés.
+
+Règle de développement : chaque changement partagé de mécanique ou de présentation doit être vérifié sur Jun (tutoriel et entraînement), voyageuse, tournoi J7 et laboratoire 3 contre 3. Réutiliser les composants communs ; documenter les exceptions de règles. Les anciennes scènes de recherche graphique ne constituent pas des écrans de campagne.
+
+Validation : test du HUD révisé couvrant 12 cartes, garde des deux côtés, qi, ciblage, dépôt invalide, coût, action en cours et voyageuse ; régressions main 3 contre 3, garde et progression de Jun. Sauvegardes personnelles non modifiées. Les contrôles GUI ont réussi mais un premier arrêt du processus Godot a produit un crash natif après les assertions : vérification de fermeture réexécutée après délai de libération des vues.
+
+Nouvelle exécution graphique : contrôles réussis et fermeture normale (code 0), sans crash après le délai de libération.
+
+
+### Audit global de cohérence et architecture — 20 novembre 2026
+
+Rapport : [AUDIT_COHERENCE_ARCHITECTURE_2026-11-20.md](AUDIT_COHERENCE_ARCHITECTURE_2026-11-20.md). Revue du code et des parcours actifs, sans refonte ni changement de règles. 14 suites exécutées dans un profil isolé : 12 réussies, 2 bloquées par leurs références à l’ancien HUD. Reproductions dédiées : cible incorrecte pour J02 en duel, démarrage/récompense malgré échec d’écriture, acceptation d’un rapport narratif mal formé. Ancienne carte encore présente dans la récompense initiale de Lian, textes de fin J4/J7 divergents.
+
+Priorités proposées : (1) sécuriser les transactions et le ciblage, valider les données imbriquées, réparer les tests ; (2) centraliser les règles/UI partagées ; (3) extraire Personnage et Deck avec état unique ; (4) Combat avec équipes de 1 à 3 et configuration de rencontre ; (5) retirer les anciens adaptateurs après parité. Conserver les équilibres, sauvegardes et comportements validés. Cette migration est une recommandation documentée, pas une refonte déjà réalisée.
+
+
+### Corrections de l’audit et première migration de données — 20 novembre 2026
+
+Réalisé, sans changement des coûts, dégâts, pioche ou probabilités :
+- Ciblage centralisé dans `Cards.target_kind` pour duel et équipe : J02 vise l’adversaire, garde seule un allié (soi en duel), attaque+garde vise l’adversaire et protège le lanceur.
+- Apprentissage initial, démarrage et résultat de Jun contrôlent l’écriture ; résultat non enregistré annulé en mémoire, écran avec bouton Enregistrer pour réessayer sans attribuer deux fois les récompenses. Ancien helper de remplacement de carte également protégé. Les transactions déjà présentes pour tournoi, voyageuse et menu de deck sont conservées.
+- Validation imbriquée des rapports de combat, invitations et choix de recrutement. Fichier mal formé refusé avant remplacement de la sauvegarde primaire.
+- Tests de fiabilité et des voies réparés : chemins du nouveau HUD ; comparaison après normalisation des migrations, sans retirer les vérifications de progression.
+- Récompense initiale de Lian devenue une scène `.tscn` papier/encre utilisant la même carte que le deck ; texte de fin J7 harmonisé dans le jardin et README actualisé.
+- Orbe de qi paramétrable pour une recharge de 2 ou 3, jusqu’à cinq marques pour représenter les gains de qi autorisés. Texte impossible sur les cartes attaque+garde retiré.
+
+Architecture effectivement migrée : `prototypes/combat/character_state.gd`, `deck_state.gd`, `team_state.gd`. Chaque personnage possède ses PV/garde/statuts, son qi/buffs et son deck. Le deck possède les piles et son générateur aléatoire. `battle.gd` expose des accesseurs de compatibilité ; `team_battle.gd` construit des équipes et partage l’état des personnages avec les vues. Les copies aller-retour de PV/garde lors des cartes ont été supprimées. Pioche/mélange et recharge des buffs persistants sont communs aux formats. Les tableaux historiques restent des vues du même état, pas une deuxième source de vérité.
+
+Limite volontaire de cette étape : `battle.gd` et `team_battle.gd` conservent encore leurs orchestrations de rencontre. Le tournoi garde ses six positions et ses règles de poison/pilule. Il ne s’agit pas encore du moteur Combat entièrement paramétrable. Prochaine migration : extraire les configurations de rencontres et l’ordre des phases, puis remplacer les adaptateurs sans modifier les scénarios validés. Les états de combat ne changent pas le format de sauvegarde de campagne.
+
+Validation : `python tools/run_regressions.py` exécute 16 suites avec profil isolé, délai maximal et détection des erreurs GDScript ; toutes réussies. Tests supplémentaires `test_visual_day`, `test_ink_combat_ui` réussis ; HUD et nouveaux écrans contrôlés dans Godot, dont simulation d’échec de sauvegarde puis réussite et absence de double récompense. Contrôle SHA-256 : fichiers des profils `play-user`, `parcours-test-user`, `relations-route-user` inchangés. Résultats dans `tests/regression_results.json` ; tests ciblés dans `tests/test_audit_fixes.gd`.
+
+
+### Migration du moteur commun coordonnée avec deux agents — 20 novembre 2026
+
+Agent architecture : modèles/moteur/politiques ; agent tests : référence avant migration, tests directs et régressions ; agent principal : revue indépendante, raccordement des interfaces, captures et documentation. Aucun travail concurrent sur les mêmes fichiers de production.
+
+**Intégré :** `prototypes/combat/encounter.gd` est désormais le résolveur commun de cartes, ciblage, actions adverses, phases, garde, poison et KO. Il reçoit deux équipes de 1 à 3 personnages et une configuration. `duel_policy.gd` et `territory_policy.gd` portent les intentions et règles particulières. Les anciennes API `battle.gd` / `team_battle.gd` restent des adaptateurs ; leurs contrôleurs et sauvegardes continuent de fonctionner. Les objets de compatibilité des compagnons partagent le même moteur, sans moteur de duel séparé pour résoudre leurs cartes.
+
+La main partagée lit un contrat de contrôleur (`hand_model`, `can_play_card`, `hand_blocked`) et délègue au moteur. Plus de faux dictionnaire de combat solo. Les coûts et autorisations sont contrôlés dans le moteur, y compris pour glisser-déposer. Les scènes restent 1v1 et 3v3 ; le support 2v3 du moteur n’est pas présenté comme un nouveau contenu jouable.
+
+Deux défauts trouvés pendant revue et corrigés : main de démonstration préparée sur l’ancien acteur lors d’une relance depuis Jun/Lian ; mauvaise cible d’événement poison si deux dictionnaires d’unité devenaient égaux. Couverture dédiée ajoutée.
+
+Validation : parité parfaite des 126 scénarios / 3 890 états capturés avant migration ; 332 contrôles du moteur paramétrable réussis. Premier runner 18/18 ; second runner 17/18 avec crash natif Godot au shutdown de `test_audit_fixes` après assertions PASS. Trois réexécutions ciblées puis une exécution verbose séparée : sortie normale. Incident intermittent de fermeture préexistant, non résolu et conservé dans les résultats. Captures GUI du duel, de la voyageuse, de la main du tournoi et du HUD encre/jade inspectées ; ces trois suites graphiques sortent avec code 0.
+
+Sauvegardes : les 8 fichiers des trois profils de campagne contrôlés par SHA-256 sont inchangés. Format v6 conservé. Pas de rééquilibrage ni de nouvel événement de campagne introduit. Guide technique : [ARCHITECTURE_COMBAT.md](ARCHITECTURE_COMBAT.md). README actualisé pour les profils et migrations. Le gros reliquat moteur séparé signalé dans l’étape précédente est remplacé ; restent les adaptateurs de présentation et le problème intermittent de fermeture du test graphique.
+
+
+### Lecture du duel — règle révisée (20 novembre 2026)
+
+B06 pioche toujours 2 cartes. Coût : 1 Qi, réduit à 0 Qi pour un deck initial de combat de 16 cartes ou plus. Remplace le précédent bonus de troisième carte piochée. Règle commune aux duels et aux combats en équipe, calculée pour le deck du personnage qui la joue ; le coût affiché en main suit le coût réel. Aucune modification des sauvegardes ni des decks existants.
+
+
+### Audit des données, responsabilités et accessibilité — 20 novembre 2026
+
+Retour utilisateur confirmé pour les règles par ID, duplications deck, catalogue reparsé, touches brutes et organisation trompeuse. Corrections intégrées : données JSON des cartes, résolution générique d’effets, source commune des restrictions de deck, cache avec copies isolées, déplacement du runtime dans `game/` et archive de l’ancien prototype dans `legacy/`. Session/sauvegardes, dialogues, son et présentation des attaques séparés du coordinateur. États de progression nommés avec conservation des valeurs v6.
+
+InputMap et écran Commandes fonctionnels (remappage, conflit de touches, annulation Échap, reset et persistance séparée). Localisation FR/fallback et fichiers de dialogue en place ; extraction de tous les libellés et langues supplémentaires encore à faire. Les sous-écrans gardent certains callbacks vers le coordinateur : ne pas déclarer le découplage total ou toute l’étape 6 terminée.
+
+Validation finale : 22/22 suites ; parité de 3 890 états de combat et 1 440 états d’effets ; 121 contrôles de données/règles, 332 moteur ; 84 contrôles commandes/localisation GUI. Fuites de cache apparues pendant ce travail corrigées par propriétaire autoload. Huit empreintes de sauvegardes inchangées. Voir [audit détaillé](AUDIT_ARCHITECTURE_DONNEES_2026-11-20.md) et [architecture actualisée](ARCHITECTURE_COMBAT.md).

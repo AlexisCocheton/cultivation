@@ -5,6 +5,8 @@ const FRONT_SHEET = preload("res://assets/manhua_walk_front.png")
 const BACK_SHEET = preload("res://assets/manhua_walk_back.png")
 const COMBAT_SHEET = preload("res://assets/manhua_combat.png")
 const FORGE_ATTACK = preload("res://assets/forge_attack/recruit_attack.tres")
+const JUN_ATTACK = preload("res://assets/jun_attack/attack.tres")
+
 enum Direction { SIDE, FRONT, BACK }
 var direction = Direction.SIDE
 var robe_color = Color("99b2ab")
@@ -26,7 +28,7 @@ var combat_ready = false
 var action_history: Array[String] = []
 var corrected_attack: Sprite2D
 
-# Four genuinely different drawn poses; locomotion cannot overwrite them.
+# Drawn poses; Jun has six attack frames, other actions retain four.
 # The contact callback runs at the extension / bracing pose, not on button press.
 func perform_action(kind: String, contact: Callable = Callable(), reduced: bool = false) -> void:
 	if action != "": return
@@ -34,13 +36,21 @@ func perform_action(kind: String, contact: Callable = Callable(), reduced: bool 
 	action_history.append(kind)
 	walking = false
 	direction = Direction.SIDE
-	for frame in range(4):
+	var extended_attack = kind == "attack" and uses_extended_attack()
+	var durations = [0.12,0.14,0.07,0.12,0.12,0.13] if extended_attack else [0.15,0.10,0.16,0.15]
+	for frame in range(durations.size()):
 		action_frame = frame
 		_process(0)
-		if frame == 2 and contact.is_valid(): contact.call()
-		await get_tree().create_timer(0.075 if reduced else [0.15,0.10,0.16,0.15][frame]).timeout
+		if frame == (3 if extended_attack else 2) and contact.is_valid(): contact.call()
+		await get_tree().create_timer(0.05 if reduced else durations[frame]).timeout
 	action = ""
 	_process(0)
+
+func uses_extended_attack() -> bool:
+	return uses_jun_attack()
+
+func uses_jun_attack() -> bool:
+	return character_row == 2
 
 func clear_combat_pose() -> void:
 	guarding = false
@@ -105,13 +115,20 @@ func _process(delta: float) -> void:
 			sprite.frame = combat_row*4 + (action_frame if action != "" else (2 if guarding else 0))
 			sprite.flip_h = facing < 0
 			sprite.position.y = -45
-		corrected_attack.visible = character_row == 0 and action == "attack"
+		corrected_attack.visible = (character_row == 0 or uses_jun_attack()) and action == "attack"
 		sprite.visible = not corrected_attack.visible
 		if corrected_attack.visible:
-			corrected_attack.texture = FORGE_ATTACK.get_frame_texture("attack",action_frame)
-			corrected_attack.scale = Vector2.ONE * (92.0/(COMBAT_SHEET.get_height()/4.0))
-			corrected_attack.position = Vector2(0,-45)
-			corrected_attack.offset = Vector2((321.0/2.0-163.75)*facing,0)
+			if uses_jun_attack():
+				corrected_attack.texture = JUN_ATTACK.get_frame_texture("attack",clampi(action_frame,0,5))
+				# Shared scale and ground anchor for all six poses: no weapon rescaling.
+				corrected_attack.scale = Vector2.ONE * (84.0/395.0)
+				corrected_attack.position = Vector2(0,(256.0-480.0)*84.0/395.0)
+				corrected_attack.offset = Vector2.ZERO
+			else:
+				corrected_attack.texture = FORGE_ATTACK.get_frame_texture("attack",action_frame)
+				corrected_attack.scale = Vector2.ONE * (92.0/(COMBAT_SHEET.get_height()/4.0))
+				corrected_attack.position = Vector2(0,-45)
+				corrected_attack.offset = Vector2((321.0/2.0-163.75)*facing,0)
 			corrected_attack.flip_h = facing < 0
 		sprite.material.set_shader_parameter("customize", character_row == 0)
 		sprite.material.set_shader_parameter("robe_color", robe_color)

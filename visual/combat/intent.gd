@@ -4,6 +4,7 @@ var actor: Node2D
 
 func setup(enemy: Node2D, announced: Dictionary) -> void:
 	actor = enemy
+	$Attack/Target/Head.texture = preload("res://visual/team/unit.gd").head(0)
 	$Attack.visible = announced.damage > 0
 	$Guard.visible = announced.block > 0
 	$Attack/Value.text = str(announced.damage)

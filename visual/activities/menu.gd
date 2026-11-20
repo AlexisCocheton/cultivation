@@ -1,7 +1,8 @@
 extends Control
+const CampaignSession = preload("res://game/campaign/session.gd")
 
 const PERIODS = ["Matin", "Après-midi", "Soir"]
-const ACTION_NAMES = {"L":"Thé et conseils avec Lian", "J":"Entraînement avec Jun", "H":"Étude avec Shen", "work":"Travail dans la cour", "hall":"Restauration du pavillon", "rest":"Repos", "M02":"Le serment de l’aube", "fight":"Duel d’entraînement"}
+const ACTION_NAMES = {"antidote":"Préparation de l’antidote","L":"Thé et conseils avec Lian", "J":"Entraînement avec Jun", "H":"Étude avec Shen", "work":"Travail dans la cour", "hall":"Restauration du pavillon", "rest":"Repos", "M02":"Le serment de l’aube", "fight":"Duel d’entraînement", "M03":"Défi territorial avec Jun et Lian"}
 var game
 var summary = false
 
@@ -39,22 +40,21 @@ func populate_choices() -> void:
 		["L","Le thé avec Lian",0], ["work","Travailler dans la cour",-1],
 		["J","S’entraîner avec Jun",1], ["hall","Restaurer le pavillon",-1],
 		["H","Étudier avec Shen",2], ["rest","Se reposer",-1]]
+	if c.day() == 6 and not c.story.prepared: rows[3] = ["antidote","Préparer un antidote",2]
 	for i in range(rows.size()):
 		var row: Array = rows[i]
 		var id: String = row[0]
 		var detail: String
 		if c.ranks.has(id):
 			var rank: int = c.ranks[id]
-			detail = "Lien %d / 4" % rank
-			if rank < 3:
-				var card = "%s0%d" % [id,rank+1]
-				detail += " · " + game.Cards.catalog()[card].name
-			elif rank == 3: detail += " · Dernier rang du lien"
+			detail = "Lien %d / 5 → %s" % [rank,c.relation_reward(id).replace("Recrutement débloqué","Recrutement au rang 3")]
+
+		elif id == "antidote": detail = "1 période · Dissipe le poison d’un allié en combat"
 		elif id == "work": detail = "+%d réserves" % (c.Balance.WORK_KITCHEN if c.buildings.kitchen >= 1 else c.Balance.WORK_BASE)
 		elif id == "hall": detail = "Niveau %d / 2 · Coût : %d réserves" % [c.buildings.hall,3 if c.buildings.hall == 0 else 4]
 		else: detail = "Passer une période · Aucun coût en réserves"
 		var reason: String = c.reason(id)
-		if game.stage == 0: reason = "Rejoins d’abord Lian au jardin."
+		if game.stage == CampaignSession.Stage.INTRODUCTION: reason = "Rejoins d’abord Lian au jardin."
 		var entry = $Choices.get_child(i)
 		entry.setup(id,row[1],detail,reason,row[2])
 		entry.chosen.connect(commit)
@@ -94,9 +94,9 @@ func populate_summary() -> void:
 				if str(record.action).begins_with("buy:"): activity = "Achat : " + game.Cards.catalog()[str(record.action).substr(4)].name
 		lines.append(PERIODS[period]+"\n"+activity)
 	$Summary/Log.text = "\n\n".join(lines)
-	$Summary/State.text = "Pavillon : %d / 2 restauré\n%d techniques possédées · %d cartes dans le deck\nLiens : Lian %d / 4 · Jun %d / 4 · Shen %d / 4" % [c.buildings.hall,c.collection.size(),c.deck.size(),c.ranks.L,c.ranks.J,c.ranks.H]
+	$Summary/State.text = "Pavillon : %d / 2 restauré\n%d techniques possédées · %d cartes dans le deck\nLiens : Lian %d / 5 · Jun %d / 5 · Shen %d / 5" % [c.buildings.hall,c.collection.size(),c.deck.size(),c.ranks.L,c.ranks.J,c.ranks.H]
 	$Summary/Art.texture = load("res://assets/hub/restored.png" if c.buildings.hall == 2 else "res://assets/hub/courtyard.png")
-	$Notice.text = "Fin du jour 4 : suite en développement. Le deck et les duels libres restent accessibles." if c.slot >= game.Progress.END_SLOT else "Ta progression est conservée. Les valeurs affichées décrivent l’état actuel de la secte."
+	$Notice.text = "Fin du jour 7 : suite en développement. Le deck et les duels libres restent accessibles." if c.slot >= game.Progress.END_SLOT else "Ta progression est conservée. Les valeurs affichées décrivent l’état actuel de la secte."
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

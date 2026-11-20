@@ -6,13 +6,19 @@
 		"wins": 100
 	},
 	{
-		"mean_turns": 5.61,
+		"mean_turns": 6.41,
+		"samples": 100,
+		"size": 15,
+		"wins": 100
+	},
+	{
+		"mean_turns": 5.66,
 		"samples": 100,
 		"size": 16,
 		"wins": 100
 	},
 	{
-		"mean_turns": 5.58,
+		"mean_turns": 5.35,
 		"samples": 100,
 		"size": 20,
 		"wins": 100

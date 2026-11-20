@@ -1,9 +1,9 @@
 extends SceneTree
 
-const Progress = preload("res://visual/progress.gd")
-const Calendar = preload("res://prototypes/calendar.gd")
-const Battle = preload("res://prototypes/battle.gd")
-const Cards = preload("res://prototypes/cards.gd")
+const Progress = preload("res://game/campaign/progress.gd")
+const Calendar = preload("res://game/calendar.gd")
+const Battle = preload("res://game/battle.gd")
+const Cards = preload("res://game/cards.gd")
 var failures = 0
 var checks = 0
 
@@ -56,7 +56,7 @@ func run() -> void:
 		var copy_path = path+"."+profile
 		check(Progress.save_progress(copy,int(saved.stage),saved.muted,saved.reduced,copy_path,int(saved.completed_duels)),"Profile round trip")
 		var reread = Progress.read_progress(copy_path)
-		check(reread.get("state") == saved.state and reread.get("completed_duels") == saved.completed_duels,"Preserve progression, deck and duels")
+		check(Calendar.new().normalize(reread.get("state")) == copy.snapshot() and reread.get("completed_duels") == saved.completed_duels,"Preserve progression, deck and duels")
 	var battle = Battle.new()
 	check(battle.start(Cards.PRESETS["Jun · offensif"],"partenaire",42) == "","Start duel")
 	battle.hand = ["J02","B01"]
@@ -70,13 +70,13 @@ func run() -> void:
 	game.battle = battle
 	game.combat_ui()
 	var hud = game.ui.get_child(0)
-	check(hud.get_node("Enemy/Guard").text.contains("Exposé"),"Status on enemy")
-	check(not hud.get_node("Recruit/Guard").text.contains("Exposé"),"No status on recruit")
+	check(hud.get_node("Enemy").tooltip_text.contains("Exposé"),"Status on enemy")
+	check(not hud.get_node("Recruit").tooltip_text.contains("Exposé"),"No status on recruit")
 	var before = battle.hp
 	battle.end_turn()
 	check(before-battle.hp == 6 and not battle.exposed,"Incoming unchanged; exposure expires")
 	game.combat_ui()
-	check(not game.ui.get_child(0).get_node("Enemy/Guard").text.contains("Exposé"),"Expired status disappears")
+	check(not game.ui.get_child(0).get_node("Enemy").tooltip_text.contains("Exposé"),"Expired status disappears")
 	game.queue_free()
 	await process_frame
 	print("RELIABILITY: %d checks, %d failures" % [checks,failures])

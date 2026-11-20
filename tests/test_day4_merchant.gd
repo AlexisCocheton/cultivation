@@ -92,7 +92,7 @@ func run() -> void:
 	game.hub()
 	assert(game.do_activity("rest") == "")
 	assert(game.calendar.slot == 12 and game.ui.get_child(0).summary)
-	assert(game.do_activity("rest") != "")
+	assert(game.do_activity("rest") == "" and game.calendar.slot == 13)
 	await capture("day4-result")
 	# Visit without purchase works at zero reserves, once, and awards E03.
 	var calendar = game.Calendar.new()
@@ -121,7 +121,7 @@ func run() -> void:
 		assert(game.load_progress() and game.calendar.snapshot() == preserved)
 		assert(game.completed_duels == saved.completed_duels)
 		assert(FileAccess.get_file_as_string(source) == raw)
-	print("DAY4 MERCHANT: PASS — v2 migration/archive, period/cost, free browse, duplicate guard, acquisition, equipment swap/removal, reload, cap, no-funds visit")
+	print("DAY4 MERCHANT: PASS — v2 migration/archive, period/cost, free browse, duplicate guard, acquisition, equipment swap/removal, reload, day 5 continuation, no-funds visit")
 	game.sound.stop()
 	game.sound.stream = null
 	game.queue_free()

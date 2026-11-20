@@ -1,8 +1,8 @@
 extends SceneTree
-const Cards = preload("res://prototypes/cards.gd")
-const Battle = preload("res://prototypes/battle.gd")
-const Calendar = preload("res://prototypes/calendar.gd")
-const Progress = preload("res://visual/progress.gd")
+const Cards = preload("res://game/cards.gd")
+const Battle = preload("res://game/battle.gd")
+const Calendar = preload("res://game/calendar.gd")
+const Progress = preload("res://game/campaign/progress.gd")
 var checks = 0
 var failures = 0
 
@@ -49,10 +49,13 @@ func run() -> void:
 	check(not b.hand.has("B07") and b.active.has("B07"),"Played copy stays active")
 	b.start(deck_of(12),"partenaire",1)
 	check(b.active.is_empty() and b.strength == 0 and b.hand_limit == 10 and b.damage_for("B04") == 11,"New combat resets powers and size")
-	for size in [12,16,20]:
+	for size in [12,15,16,20]:
 		b.start(deck_of(size),"inspecteur",12)
 		b.hand = ["B06"]
-		check(b.play(0) and b.hand.size() == (2 if size == 12 else 3),"Draw threshold")
+		b.energy = 0
+		check(b.can_play(0) == (size >= 16),"Free draw threshold")
+		if size < 16: b.energy = 1
+		check(b.play(0) and b.hand.size() == 2 and b.energy == 0,"Always draw two, pay contextual cost")
 	b.start(deck_of(20),"inspecteur",12)
 	b.hand = ["B07","B07"]
 	b.energy = 5
@@ -120,7 +123,7 @@ func run() -> void:
 	await process_frame
 	# Reproducible comparisons: same card pool, legal decks, no claim of human balance.
 	var results: Array = []
-	for size in [12,16,20]:
+	for size in [12,15,16,20]:
 		var wins = 0
 		var turns = 0
 		for seed_value in range(100):

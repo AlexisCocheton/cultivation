@@ -3,8 +3,8 @@ extends SceneTree
 func _initialize() -> void: call_deferred("run")
 
 func run() -> void:
-	var Battle = load("res://prototypes/battle.gd")
-	var Cards = load("res://prototypes/cards.gd")
+	var Battle = load("res://game/battle.gd")
+	var Cards = load("res://game/cards.gd")
 	var decks = {"depart":Cards.PRESETS["Départ"].duplicate(),"premiere_technique":Cards.PRESETS["Départ"].duplicate()}
 	decks.premiere_technique[0] = "L01"
 	var results: Array = []

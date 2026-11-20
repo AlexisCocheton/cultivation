@@ -3,8 +3,8 @@ extends SceneTree
 func _initialize() -> void: call_deferred("run")
 
 func run() -> void:
-	var Battle = load("res://prototypes/battle.gd")
-	var Cards = load("res://prototypes/cards.gd")
+	var Battle = load("res://game/battle.gd")
+	var Cards = load("res://game/cards.gd")
 	var battle = Battle.new()
 	for level in range(7):
 		assert(battle.start(Cards.PRESETS["Départ"],"partenaire",42,0,false,level) == "")

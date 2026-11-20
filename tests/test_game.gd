@@ -1,7 +1,7 @@
 extends SceneTree
 
-const State = preload("res://scripts/state.gd")
-const Fighter = preload("res://scripts/fighter.gd")
+const State = preload("res://legacy/prototype/state.gd")
+const Fighter = preload("res://legacy/prototype/fighter.gd")
 var failures = 0
 
 func check(condition: bool, description: String) -> void:
@@ -40,7 +40,7 @@ func run() -> void:
 	fighter.end_turn()
 	check(fighter.hp == 40 and fighter.block == 0 and fighter.energy == 3, "Block absorbs intent and resets")
 	check(fighter.hand.size() == 4, "Discard reshuffles without losing cards")
-	var game = load("res://main.tscn").instantiate()
+	var game = load("res://legacy/prototype/main.tscn").instantiate()
 	root.add_child(game)
 	await process_frame
 	game.close_modal()

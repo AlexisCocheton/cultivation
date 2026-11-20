@@ -1,10 +1,12 @@
 extends Button
 
-const Cards = preload("res://prototypes/cards.gd")
+const Cards = preload("res://game/cards.gd")
 const MANHUA = preload("res://assets/card_manhua_atlas.png")
 const MANHUA_IDS = ["B01","B02","B03","B04","B05","B06","B07","B08","L01","H02","E03","Q01"]
 const ART = preload("res://assets/card_illustrations.png")
 @export var card_id = "B01"
+var relation_ranks: Dictionary = {}
+var combat_cost: int = -1
 
 static func illustration(id: String) -> AtlasTexture:
 	if MANHUA_IDS.has(id):
@@ -26,18 +28,14 @@ static func illustration(id: String) -> AtlasTexture:
 	return atlas
 
 func _ready() -> void:
-	var data = Cards.catalog()[card_id]
+	var data = Cards.catalog(relation_ranks)[card_id]
 	$Art.texture = illustration(card_id)
 	$Name.text = data.name
 	$Way.text = Cards.way_name(card_id)
-	$Cost.text = "%d" % data.cost
-	$Effects.text = Cards.description(card_id).split("\n")[1].replace("retirée après usage jusqu'au prochain combat", "Épuisement")
-	match card_id:
-		"B07": $Effects.text = "%d garde · Persistante\nMain +2 · Pioche +1/t" % data.block
-		"H02": $Effects.text = "%d garde · Persistante\n+1 Force/tour suivant" % data.block
-		"B04": $Effects.text = "11 + (deck −12) dégâts\nTaille initiale"
-		"B06": $Effects.text = "Pioche 2\n3 si deck initial ≥16"
-	tooltip_text = Cards.description(card_id)
+	$Cost.text = "%d" % (data.cost if combat_cost < 0 else combat_cost)
+	$Effects.text = Cards.Effects.compact_description(data)
+	tooltip_text = Cards.description(card_id,relation_ranks)
+	if combat_cost >= 0: tooltip_text = tooltip_text.replace("· %d qi" % data.cost,"· %d qi" % combat_cost)
 	mouse_entered.connect(func(): self_modulate = Color(1.12, 1.08, 1.02))
 	mouse_exited.connect(func(): self_modulate = Color.WHITE)
 

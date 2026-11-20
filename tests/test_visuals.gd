@@ -24,7 +24,7 @@ func differences(a: Image, b: Image, area: Rect2i) -> int:
 	return count
 
 func run() -> void:
-	var game = load("res://main.tscn").instantiate()
+	var game = load("res://legacy/prototype/main.tscn").instantiate()
 	root.add_child(game)
 	await process_frame
 	game.close_modal()

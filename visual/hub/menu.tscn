@@ -76,3 +76,24 @@ offset_top = 457.0
 offset_right = 545.0
 offset_bottom = 517.0
 text = "Recommencer la séquence"
+
+[node name="Companions" type="Button" parent="Paper"]
+offset_left = 55.0
+offset_top = 530.0
+offset_right = 545.0
+offset_bottom = 580.0
+text = "Compagnons"
+
+[node name="Candidates" type="Button" parent="."]
+offset_left = 395.0
+offset_top = 725.0
+offset_right = 885.0
+offset_bottom = 780.0
+text = "Les aspirants"
+
+[node name="ControlsButton" type="Button" parent="."]
+offset_left = 980.0
+offset_top = 110.0
+offset_right = 1230.0
+offset_bottom = 165.0
+text = "Commandes"

@@ -1,0 +1,17 @@
+[
+  {
+    "attempt": 1,
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nAUDIT FIXES: PASS — transactional save/retry, targets, validation, shared character/deck, healing\r\n"
+  },
+  {
+    "attempt": 2,
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nAUDIT FIXES: PASS — transactional save/retry, targets, validation, shared character/deck, healing\r\n"
+  },
+  {
+    "attempt": 3,
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nAUDIT FIXES: PASS — transactional save/retry, targets, validation, shared character/deck, healing\r\n"
+  }
+]

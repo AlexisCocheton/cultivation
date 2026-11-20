@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="Theme"]
+[ext_resource type="Script" path="res://visual/combat/reward.gd" id="Script"]
+[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="Card"]
+[node name="TechniqueReward" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("Theme")
+script = ExtResource("Script")
+[node name="Shade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.03,0.03,0.04,0.75)
+[node name="Paper" type="Panel" parent="."]
+offset_left = 160.0
+offset_top = 100.0
+offset_right = 1120.0
+offset_bottom = 735.0
+[node name="Title" type="Label" parent="."]
+offset_left = 210.0
+offset_top = 140.0
+offset_right = 1070.0
+offset_bottom = 210.0
+text = "Une technique transmise"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 38
+[node name="Card" parent="." instance=ExtResource("Card")]
+offset_left = 245.0
+offset_top = 270.0
+offset_right = 439.0
+offset_bottom = 480.0
+scale = Vector2(1.4,1.4)
+card_id = "L01"
+texture_filter = 2
+[node name="Words" type="Label" parent="."]
+offset_left = 570.0
+offset_top = 275.0
+offset_right = 1060.0
+offset_bottom = 500.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Lien avec Lian · rang 2
+
+Pétales tranchants rejoint ta collection.
+Équipe cette technique dans ton deck pour la piocher en combat."
+[node name="Continue" type="Button" parent="."]
+offset_left = 570.0
+offset_top = 600.0
+offset_right = 1060.0
+offset_bottom = 665.0
+text = "Composer mon deck"

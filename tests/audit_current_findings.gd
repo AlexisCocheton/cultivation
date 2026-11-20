@@ -3,10 +3,10 @@ extends SceneTree
 func _initialize() -> void: call_deferred("run")
 
 func run() -> void:
-	var Calendar = load("res://prototypes/calendar.gd")
-	var Progress = load("res://visual/progress.gd")
-	var Battle = load("res://prototypes/battle.gd")
-	var Cards = load("res://prototypes/cards.gd")
+	var Calendar = load("res://game/calendar.gd")
+	var Progress = load("res://game/campaign/progress.gd")
+	var Battle = load("res://game/battle.gd")
+	var Cards = load("res://game/cards.gd")
 	var c = Calendar.new()
 	c.slot = 9
 	var path = "user://audit_recovery_%d.json" % Time.get_ticks_usec()

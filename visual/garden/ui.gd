@@ -1,4 +1,5 @@
 extends Control
+const CampaignSession = preload("res://game/campaign/session.gd")
 
 var game
 
@@ -11,8 +12,8 @@ func setup(controller) -> void:
 	$Back.pressed.connect(game.hub)
 	$Deck.pressed.connect(game.deck_ui)
 	var reason = game.calendar.reason("L")
-	if game.stage == 0: reason = "Parle d'abord à Lian pour apprendre ta première technique."
-	if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 4."
+	if game.stage == CampaignSession.Stage.INTRODUCTION: reason = "Parle d'abord à Lian pour apprendre ta première technique."
+	if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 7."
 	$Activity.disabled = reason != ""
 	$Activity.tooltip_text = reason if reason != "" else "Partager le thé et progresser dans le lien · une période"
 	$Activity.pressed.connect(func(): game.resident_activity("L"))

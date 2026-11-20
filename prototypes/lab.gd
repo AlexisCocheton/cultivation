@@ -1,8 +1,8 @@
 extends Control
 
-const Calendar = preload("res://prototypes/calendar.gd")
-const Battle = preload("res://prototypes/battle.gd")
-const Cards = preload("res://prototypes/cards.gd")
+const Calendar = preload("res://game/calendar.gd")
+const Battle = preload("res://game/battle.gd")
+const Cards = preload("res://game/cards.gd")
 var calendar = Calendar.new()
 var battle = null
 var pending = ""
@@ -251,7 +251,7 @@ func show_editor() -> void:
 	text(root_box,"Les suggestions n'utilisent que vos cartes acquises. Une arme, un talisman et un objet au maximum ; leurs cartes comptent dans le deck.",16)
 	var slots = HBoxContainer.new()
 	root_box.add_child(slots)
-	var groups = {"weapon":["Q01","Q02"],"talisman":["Q03","Q04"],"item":["O01","O02"]}
+	var groups = Cards.EQUIPMENT_GROUPS
 	for slot_name in groups:
 		var box = VBoxContainer.new()
 		slots.add_child(box)
@@ -271,14 +271,14 @@ func show_editor() -> void:
 	root_box.add_child(selected)
 	for i in range(draft.size()):
 		var id = draft[i]
-		var is_equipped = id.begins_with("Q") or id.begins_with("O")
+		var is_equipped = Cards.equipment_slot(id) != ""
 		button(selected,"%s · %s" % [id,Cards.catalog()[id].name],remove_draft.bind(i),"Changez l'emplacement ci-dessus pour retirer cet équipement." if is_equipped else "")
 	text(root_box,"Collection acquise · cliquez pour ajouter",21)
 	var collection_grid = VBoxContainer.new()
 	root_box.add_child(collection_grid)
 	for id in calendar.collection:
-		if id.begins_with("Q") or id.begins_with("O"): continue
-		var limit = 2 if id.begins_with("B") else 1
+		if Cards.equipment_slot(id) != "": continue
+		var limit = Cards.copy_limit(id)
 		var reason = ""
 		if draft.size() >= Cards.MAX_DECK: reason = "Retirez une carte avant d'en ajouter."
 		if draft.count(id) >= limit: reason = "Limite d'exemplaires atteinte."
@@ -286,14 +286,14 @@ func show_editor() -> void:
 
 func add_draft(id: String) -> void:
 	if not editing or not calendar.collection.has(id) or draft.size() >= Cards.MAX_DECK: return
-	if id.begins_with("Q") or id.begins_with("O"): return
-	if draft.count(id) >= (2 if id.begins_with("B") else 1): return
+	if Cards.equipment_slot(id) != "": return
+	if draft.count(id) >= Cards.copy_limit(id) or Cards.exclusive_conflict(draft,id) != "": return
 	draft.append(id)
 	refresh()
 
 func remove_draft(index: int) -> void:
 	if not editing or index < 0 or index >= draft.size(): return
-	if draft[index].begins_with("Q") or draft[index].begins_with("O"): return
+	if Cards.equipment_slot(draft[index]) != "": return
 	draft.remove_at(index)
 	refresh()
 

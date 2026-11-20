@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="Paper"]
+[sub_resource type="StyleBoxTexture" id="Frame"]
+texture = ExtResource("Paper")
+texture_margin_left = 15.0
+texture_margin_right = 15.0
+texture_margin_top = 15.0
+texture_margin_bottom = 15.0
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+[node name="UnitTooltip" type="PanelContainer"]
+theme_override_styles/panel = SubResource("Frame")
+mouse_filter = 2
+[node name="Text" type="Label" parent="."]
+custom_minimum_size = Vector2(260,0)
+layout_mode = 2
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.12,0.1,0.1,1)
+mouse_filter = 2

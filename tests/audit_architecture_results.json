@@ -1,0 +1,8 @@
+{
+  "J02_solo_targets_self": true,
+  "J02_team_targets_enemy": true,
+  "duel_reward_commits_in_memory_after_save_failure": true,
+  "duel_starts_after_save_failure": true,
+  "malformed_nested_story_saved": true,
+  "personal_saves_touched": false
+}

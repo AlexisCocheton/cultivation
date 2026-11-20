@@ -1,6 +1,6 @@
 extends Button
 
-const Cards = preload("res://prototypes/cards.gd")
+const Cards = preload("res://game/cards.gd")
 const ART = preload("res://assets/card_illustrations.png")
 var card_id = "B01"
 

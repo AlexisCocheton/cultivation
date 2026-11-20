@@ -1,4 +1,5 @@
 extends Control
+const CampaignSession = preload("res://game/campaign/session.gd")
 
 var game
 
@@ -16,8 +17,8 @@ func setup(controller) -> void:
 		game.save_progress()
 		$Effects.text = "Effets : " + ("doux" if game.reduced_motion else "oui"))
 	var reason = game.calendar.reason("H")
-	if game.stage == 0: reason = "Rejoins d'abord Lian au jardin."
-	if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 4."
+	if game.stage == CampaignSession.Stage.INTRODUCTION: reason = "Rejoins d'abord Lian au jardin."
+	if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 7."
 	$Study.disabled = reason != ""
 	$Study.tooltip_text = reason if reason != "" else "Développer le lien avec Shen · une période"
 	$Study.pressed.connect(game.study_with_shen)

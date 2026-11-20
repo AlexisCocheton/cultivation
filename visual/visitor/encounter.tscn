@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="Theme"]
+[ext_resource type="Script" path="res://visual/visitor/encounter.gd" id="Script"]
+[ext_resource type="Texture2D" path="res://assets/visitor/approved-design.png" id="Design"]
+[sub_resource type="AtlasTexture" id="Public"]
+atlas = ExtResource("Design")
+region = Rect2(8,220,384,1220)
+[sub_resource type="AtlasTexture" id="Face"]
+atlas = ExtResource("Design")
+region = Rect2(55,230,310,400)
+[node name="VisitorEncounter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("Theme")
+script = ExtResource("Script")
+
+[node name="Shade" type="ColorRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 832.0
+color = Color(0.075,0.06,0.09,1)
+mouse_filter = 2
+
+[node name="Conversation" type="Control" parent="."]
+
+[node name="Paper" type="Panel" parent="Conversation"]
+offset_left = 25.0
+offset_top = 24.0
+offset_right = 1255.0
+offset_bottom = 805.0
+mouse_filter = 2
+
+[node name="Portrait" type="TextureRect" parent="Conversation"]
+offset_left = 45.0
+offset_top = 86.0
+offset_right = 405.0
+offset_bottom = 782.0
+texture = SubResource("Public")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture_filter = 2
+
+[node name="Title" type="Label" parent="Conversation"]
+offset_left = 442.0
+offset_top = 68.0
+offset_right = 1192.0
+offset_bottom = 125.0
+text = "Une visiteuse à la porte"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 35
+
+[node name="Words" type="Label" parent="Conversation"]
+offset_left = 442.0
+offset_top = 154.0
+offset_right = 1185.0
+offset_bottom = 535.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Terms" type="Label" parent="Conversation"]
+offset_left = 442.0
+offset_top = 550.0
+offset_right = 1185.0
+offset_bottom = 625.0
+text = "Duel libre · aucune période consommée\nTon deck équipé sera utilisé."
+autowrap_mode = 2
+
+[node name="Primary" type="Button" parent="Conversation"]
+offset_left = 440.0
+offset_top = 656.0
+offset_right = 1195.0
+offset_bottom = 712.0
+text = "Relever le défi"
+
+[node name="Back" type="Button" parent="Conversation"]
+offset_left = 440.0
+offset_top = 731.0
+offset_right = 1195.0
+offset_bottom = 780.0
+text = "Retour à la cour"
+
+[node name="Arena" type="Control" parent="."]
+visible = false
+
+[node name="LeftPaper" type="Panel" parent="Arena"]
+offset_left = 140.0
+offset_top = 232.0
+offset_right = 425.0
+offset_bottom = 464.0
+mouse_filter = 2
+
+[node name="Recruit" type="TextureRect" parent="Arena"]
+offset_left = 151.0
+offset_top = 243.0
+offset_right = 414.0
+offset_bottom = 453.0
+expand_mode = 1
+stretch_mode = 6
+texture_filter = 2
+mouse_filter = 2
+
+[node name="RightPaper" type="Panel" parent="Arena"]
+offset_left = 838.0
+offset_top = 232.0
+offset_right = 1123.0
+offset_bottom = 464.0
+mouse_filter = 2
+
+[node name="Visitor" type="TextureRect" parent="Arena"]
+offset_left = 849.0
+offset_top = 243.0
+offset_right = 1112.0
+offset_bottom = 453.0
+texture = SubResource("Face")
+expand_mode = 1
+stretch_mode = 6
+texture_filter = 2
+mouse_filter = 2
+
+[node name="Tell" type="Label" parent="Arena"]
+offset_left = 448.0
+offset_top = 300.0
+offset_right = 817.0
+offset_bottom = 416.0
+text = "Un fil violet glisse entre ses doigts."
+autowrap_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.9,0.84,0.94,1)
+
+[node name="EnemyMarker" type="Node2D" parent="."]
+position = Vector2(982,330)
+[node name="HUD" type="Control" parent="."]
+mouse_filter = 2

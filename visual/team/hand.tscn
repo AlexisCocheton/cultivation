@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://visual/team/hand.gd" id="1"]
+[ext_resource type="PackedScene" path="res://visual/team/hand_card.tscn" id="2"]
+[node name="Hand" type="Control"]
+offset_right = 1002.0
+offset_bottom = 232.0
+mouse_filter = 2
+script = ExtResource("1")
+[node name="Mock1" parent="." instance=ExtResource("2")]
+[node name="Mock2" parent="." instance=ExtResource("2")]
+offset_left = 200.0
+offset_right = 394.0

@@ -43,7 +43,7 @@ func finish() -> void:
 	var names: Array[String] = []
 	for id in gained: names.append(game.Cards.catalog()[id].name)
 	$Result.text = "Une période écoulée · Lien avec %s : rang %d" % [NAMES[resident],game.calendar.ranks[resident]]
-	$Result.text += "\nTechnique acquise : " + ", ".join(names) if not names.is_empty() else "\nVotre lien se renforce."
+	$Result.text += "\n" + game.calendar.relation_reward(resident,false)
 	$Continue.text = "Continuer"
 
 func advance() -> void:

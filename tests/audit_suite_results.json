@@ -1,0 +1,72 @@
+[
+  {
+    "test": "test_reliability",
+    "status": "timeout",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nERROR: Preserve progression, deck and duels\r\n   at: push_error (core/variant/variant_utility.cpp:1098)\r\nERROR: Preserve progression, deck and duels\r\n   at: push_error (core/variant/variant_utility.cpp:1098)\r\nERROR: Node not found: \"Enemy/Guard\" (relative to \"/root/SequenceVisuelle/@CanvasLayer@20/@Control@21/CombatHUD\").\r\n   at: get_node (scene/main/node.cpp:1877)\r\nSCRIPT ERROR: Invalid access to property or key 'text' on a base object of type 'null instance'.\r\n   at: run (res://tests/test_reliability.gd:73)\r\n"
+  },
+  {
+    "test": "test_card_ways",
+    "status": "timeout",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nERROR: Node not found: \"Scroll/Hand\" (relative to \"/root/SequenceVisuelle/@CanvasLayer@20/@Control@21/CombatHUD\").\r\n   at: get_node (scene/main/node.cpp:1877)\r\nSCRIPT ERROR: Attempt to call function 'get_child' in base 'null instance' on a null instance.\r\n   at: run (res://tests/test_card_ways.gd:57)\r\n"
+  },
+  {
+    "test": "test_combat_ui",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCOMBAT UI: PASS — shared hand, 12 cards, guard, Qi, valid targets, invalid drop, affordability, busy, visitor\r\n"
+  },
+  {
+    "test": "test_team_hand",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam hand: PASS (0)\r\n"
+  },
+  {
+    "test": "test_team_guard_rules",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam guard rules: 61 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_team_tricks",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam tricks: 51 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_recruitment",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nRecruitment: 109 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_story_route",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nStory route: 26 checks passed\r\n"
+  },
+  {
+    "test": "test_day7_territory",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nDay 7 territory: 35 checks passed\r\n"
+  },
+  {
+    "test": "test_day4_merchant",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nDAY4 MERCHANT: PASS — v2 migration/archive, period/cost, free browse, duplicate guard, acquisition, equipment swap/removal, reload, day 5 continuation, no-funds visit\r\n"
+  },
+  {
+    "test": "test_spy_arrival",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nSpy arrival: 38 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_orthodox",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nORTHODOX: 642 checks, 0 failures; [{\"mean_turns\":6.66,\"samples\":100,\"size\":12,\"wins\":100},{\"mean_turns\":5.61,\"samples\":100,\"size\":16,\"wins\":100},{\"mean_turns\":5.58,\"samples\":100,\"size\":20,\"wins\":100}]\r\n"
+  },
+  {
+    "test": "test_deck_manhua",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nDECK DRAFT: 34 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_jun_progression",
+    "status": "pass",
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nJUN PROGRESSION: PASS — tutorial, four capped steps, intents, quit, defeat, duplicate guard, persistence, migration, reset\r\n"
+  }
+]

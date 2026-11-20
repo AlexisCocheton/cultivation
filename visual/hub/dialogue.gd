@@ -1,4 +1,5 @@
 extends Control
+const CampaignSession = preload("res://game/campaign/session.gd")
 
 func setup(game, index: int, happy: bool, words: String, choice: String, action: Callable) -> void:
 	var texture = AtlasTexture.new()
@@ -15,7 +16,7 @@ func setup(game, index: int, happy: bool, words: String, choice: String, action:
 	if index == 2:
 		$Activity.visible = true
 		var reason = game.calendar.reason("J")
-		if game.stage < 1: reason = "Apprends d'abord une technique auprès de Lian."
+		if game.stage < CampaignSession.Stage.TECHNIQUE_LEARNED: reason = "Apprends d'abord une technique auprès de Lian."
 		if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 4."
 		$Activity.disabled = reason != ""
 		$Activity.tooltip_text = reason if reason != "" else "Entraînement avec Jun · progression du lien"

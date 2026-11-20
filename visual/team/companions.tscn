@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://visual/team/companions.gd" id="Script"]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="Theme"]
+[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="Tile"]
+[ext_resource type="PackedScene" path="res://visual/deck/detail.tscn" id="Detail"]
+[node name="Companions" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("Theme")
+script = ExtResource("Script")
+[node name="Paper" type="Panel" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 812.0
+[node name="Title" type="Label" parent="."]
+offset_left = 55.0
+offset_top = 40.0
+offset_right = 800.0
+offset_bottom = 100.0
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 34
+[node name="Tabs" type="HBoxContainer" parent="."]
+offset_left = 55.0
+offset_top = 110.0
+offset_right = 1225.0
+offset_bottom = 160.0
+
+[node name="Jun" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jun"
+
+[node name="Lian" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lian"
+
+[node name="Shen" type="Button" parent="Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shen"
+
+[node name="Info" type="Label" parent="."]
+offset_left = 55.0
+offset_top = 180.0
+offset_right = 1225.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 19
+autowrap_mode = 2
+[node name="Scroll" type="ScrollContainer" parent="."]
+offset_left = 55.0
+offset_top = 315.0
+offset_right = 1225.0
+offset_bottom = 720.0
+horizontal_scroll_mode = 0
+[node name="Grid" type="GridContainer" parent="Scroll"]
+layout_mode = 2
+columns = 5
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 15
+[node name="MockA" parent="Scroll/Grid" instance=ExtResource("Tile")]
+layout_mode = 2
+[node name="MockB" parent="Scroll/Grid" instance=ExtResource("Tile")]
+layout_mode = 2
+[node name="Close" type="Button" parent="."]
+offset_left = 920.0
+offset_top = 745.0
+offset_right = 1225.0
+offset_bottom = 795.0
+text = "Retour"
+[node name="Detail" parent="." instance=ExtResource("Detail")]

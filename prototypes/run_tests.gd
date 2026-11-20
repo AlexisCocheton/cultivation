@@ -1,8 +1,8 @@
 extends SceneTree
 
-const Calendar = preload("res://prototypes/calendar.gd")
-const Battle = preload("res://prototypes/battle.gd")
-const Cards = preload("res://prototypes/cards.gd")
+const Calendar = preload("res://game/calendar.gd")
+const Battle = preload("res://game/battle.gd")
+const Cards = preload("res://game/cards.gd")
 var checks = 0
 var failures: Array = []
 var report = {"rules":"etape4-v0.2","calendar":[],"battles":[],"campaigns":[],"limitations":["Agent glouton fixe, pas de test humain.","Les duels de référence isolent les styles ; les simulations de campagne utilisent uniquement les cartes acquises.","Pas de mesure de durée réelle ni de qualité narrative."]}

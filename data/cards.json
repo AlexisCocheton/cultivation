@@ -1,0 +1,555 @@
+{
+  "B01": {
+    "name": "Frappe droite",
+    "cost": 1,
+    "damage": 6,
+    "block": 0,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B02": {
+    "name": "Garde du rocher",
+    "cost": 1,
+    "damage": 0,
+    "block": 5,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B03": {
+    "name": "Souffle tranquille",
+    "cost": 0,
+    "damage": 0,
+    "block": 3,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": true,
+    "effects": [],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B04": {
+    "name": "Taille appuyée",
+    "cost": 2,
+    "damage": 11,
+    "block": 0,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "damage_per_deck",
+        "amount": 1,
+        "threshold": 12
+      }
+    ],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B05": {
+    "name": "Pas léger",
+    "cost": 1,
+    "damage": 0,
+    "block": 3,
+    "draw": 1,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B06": {
+    "name": "Lecture du duel",
+    "cost": 1,
+    "damage": 0,
+    "block": 0,
+    "draw": 2,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "cost_if_deck",
+        "amount": 0,
+        "threshold": 16
+      }
+    ],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B07": {
+    "name": "Posture ferme",
+    "cost": 2,
+    "damage": 0,
+    "block": 11,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": true,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "hand_limit",
+        "amount": 2
+      },
+      {
+        "kind": "turn_draw",
+        "amount": 1
+      }
+    ],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "B08": {
+    "name": "Souffle offensif",
+    "cost": 0,
+    "damage": 0,
+    "block": 0,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": true,
+    "effects": [
+      {
+        "kind": "bonus",
+        "amount": 2
+      }
+    ],
+    "target": "",
+    "copy_limit": 2,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "L01": {
+    "name": "Pétales tranchants",
+    "cost": 1,
+    "damage": 7,
+    "block": 0,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "damage_combo",
+        "threshold": 2,
+        "amount": 12,
+        "tuning_key": "lian_combo",
+        "fallback": 10,
+        "mastery_amount": 3
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "L",
+    "mastery": true,
+    "upgraded": false
+  },
+  "L02": {
+    "name": "Fil de soie",
+    "cost": 1,
+    "damage": 0,
+    "block": 4,
+    "draw": 1,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "L",
+    "mastery": true,
+    "upgraded": false
+  },
+  "L03": {
+    "name": "Prunier dansant",
+    "cost": 2,
+    "damage": 12,
+    "block": 0,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "damage_combo",
+        "threshold": 2,
+        "amount": 18,
+        "tuning_key": "lian_finisher",
+        "draw": 1
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "L",
+    "mastery": false,
+    "upgraded": false
+  },
+  "J01": {
+    "name": "Réplique du tigre",
+    "cost": 1,
+    "damage": 6,
+    "block": 3,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "J",
+    "mastery": true,
+    "upgraded": false
+  },
+  "J02": {
+    "name": "Défi ouvert",
+    "cost": 1,
+    "damage": 0,
+    "block": 0,
+    "draw": 1,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "expose"
+      }
+    ],
+    "target": "enemy",
+    "copy_limit": 1,
+    "owner": "J",
+    "mastery": true,
+    "upgraded": false
+  },
+  "J03": {
+    "name": "Fendre la montagne",
+    "cost": 2,
+    "damage": 14,
+    "block": 0,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "self_damage",
+        "amount": 2
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "J",
+    "mastery": false,
+    "upgraded": false
+  },
+  "H01": {
+    "name": "Racines profondes",
+    "cost": 1,
+    "damage": 0,
+    "block": 9,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "H",
+    "mastery": true,
+    "upgraded": false
+  },
+  "H02": {
+    "name": "Patience du maître",
+    "cost": 1,
+    "damage": 0,
+    "block": 4,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": true,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "turn_strength",
+        "amount": 1
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "H",
+    "mastery": true,
+    "upgraded": false
+  },
+  "H03": {
+    "name": "Mur de jade",
+    "cost": 2,
+    "damage": 5,
+    "block": 12,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "H",
+    "mastery": false,
+    "upgraded": false
+  },
+  "Q01": {
+    "name": "Lame restaurée",
+    "cost": 1,
+    "damage": 8,
+    "block": 0,
+    "draw": 0,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "Q02": {
+    "name": "Estoc du bambou",
+    "cost": 1,
+    "damage": 5,
+    "block": 0,
+    "draw": 1,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "Q03": {
+    "name": "Sceau protecteur",
+    "cost": 1,
+    "damage": 0,
+    "block": 7,
+    "draw": 0,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "Q04": {
+    "name": "Nœud du souffle",
+    "cost": 0,
+    "damage": 0,
+    "block": 0,
+    "draw": 0,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": true,
+    "effects": [
+      {
+        "kind": "energy",
+        "amount": 1,
+        "cap": 5
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "O01": {
+    "name": "Baume médicinal",
+    "cost": 0,
+    "damage": 0,
+    "block": 0,
+    "draw": 0,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": true,
+    "effects": [
+      {
+        "kind": "heal",
+        "amount": 6
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "O02": {
+    "name": "Encens de veille",
+    "cost": 0,
+    "damage": 0,
+    "block": 0,
+    "draw": 2,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": true,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E01": {
+    "name": "Serment de l'aube",
+    "cost": 1,
+    "damage": 7,
+    "block": 2,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E02": {
+    "name": "Serment du foyer",
+    "cost": 1,
+    "damage": 2,
+    "block": 7,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E03": {
+    "name": "Main du voyageur",
+    "cost": 1,
+    "damage": 0,
+    "block": 2,
+    "draw": 2,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E04": {
+    "name": "Écho des anciens",
+    "cost": 2,
+    "damage": 10,
+    "block": 6,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E05": {
+    "name": "Travail commun",
+    "cost": 1,
+    "damage": 0,
+    "block": 6,
+    "draw": 1,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E06": {
+    "name": "Horizon dégagé",
+    "cost": 1,
+    "damage": 8,
+    "block": 0,
+    "draw": 0,
+    "way": "unorthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [
+      {
+        "kind": "draw_if_exposed",
+        "amount": 1
+      }
+    ],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  },
+  "E07": {
+    "name": "Dignité retrouvée",
+    "cost": 2,
+    "damage": 12,
+    "block": 4,
+    "draw": 0,
+    "way": "orthodox",
+    "persistent": false,
+    "exhaust": false,
+    "effects": [],
+    "target": "",
+    "copy_limit": 1,
+    "owner": "",
+    "mastery": false,
+    "upgraded": false
+  }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "combats_avec_allie_KO": 3,
+    "coups_poison": 0,
+    "deck": "laboratoire",
+    "manches_moyennes": 5.82,
+    "ordre": [
+      4,
+      3,
+      5
+    ],
+    "victoires_sur_100": 100
+  },
+  {
+    "combats_avec_allie_KO": 33,
+    "coups_poison": 170,
+    "deck": "laboratoire",
+    "manches_moyennes": 5.59,
+    "ordre": [
+      3,
+      5,
+      4
+    ],
+    "victoires_sur_100": 90
+  },
+  {
+    "combats_avec_allie_KO": 1,
+    "coups_poison": 0,
+    "deck": "sauvegarde_actuelle",
+    "manches_moyennes": 5.37,
+    "ordre": [
+      4,
+      3,
+      5
+    ],
+    "victoires_sur_100": 100
+  },
+  {
+    "combats_avec_allie_KO": 33,
+    "coups_poison": 121,
+    "deck": "sauvegarde_actuelle",
+    "manches_moyennes": 5.0,
+    "ordre": [
+      3,
+      5,
+      4
+    ],
+    "victoires_sur_100": 81
+  }
+]

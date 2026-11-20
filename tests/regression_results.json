@@ -1,0 +1,134 @@
+[
+  {
+    "test": "test_input_localization",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nINPUT_LOCALIZATION: 60 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_card_effects_parity",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCard effects parity: 1440 states, 0 failures\r\n"
+  },
+  {
+    "test": "test_card_data_rules",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCard data rules: 121 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_combat_parity",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCombat parity: 126 cases, 3890 state transitions, 0 failures\r\n"
+  },
+  {
+    "test": "test_encounter_engine",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nEncounter engine: 332 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_audit_fixes",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nAUDIT FIXES: PASS — transactional save/retry, targets, validation, shared character/deck, healing\r\n"
+  },
+  {
+    "test": "test_reliability",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nRELIABILITY: 31 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_card_ways",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCARD WAYS: 101 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_combat_ui",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCOMBAT UI: PASS — shared hand, 12 cards, guard, Qi, valid targets, invalid drop, affordability, busy, visitor\r\n"
+  },
+  {
+    "test": "test_ink_combat_ui",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nInk combat UI: 14 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_team_hand",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam hand: PASS (0)\r\n"
+  },
+  {
+    "test": "test_team_guard_rules",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam guard rules: 61 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_team_tricks",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam tricks: 51 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_team_battle",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nTeam bot (100 seeds): 100 wins, 5.43 mean rounds\r\nTeam battle: 3525 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_recruitment",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nRecruitment: 109 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_story_route",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nStory route: 26 checks passed\r\n"
+  },
+  {
+    "test": "test_day7_territory",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nDay 7 territory: 35 checks passed\r\n"
+  },
+  {
+    "test": "test_day4_merchant",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nDAY4 MERCHANT: PASS — v2 migration/archive, period/cost, free browse, duplicate guard, acquisition, equipment swap/removal, reload, day 5 continuation, no-funds visit\r\n"
+  },
+  {
+    "test": "test_spy_arrival",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nSpy arrival: 38 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_orthodox",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nORTHODOX: 847 checks, 0 failures; [{\"mean_turns\":6.66,\"samples\":100,\"size\":12,\"wins\":100},{\"mean_turns\":6.41,\"samples\":100,\"size\":15,\"wins\":100},{\"mean_turns\":5.66,\"samples\":100,\"size\":16,\"wins\":100},{\"mean_turns\":5.35,\"samples\":100,\"size\":20,\"wins\":100}]\r\n"
+  },
+  {
+    "test": "test_deck_manhua",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nDECK DRAFT: 34 checks, 0 failures\r\n"
+  },
+  {
+    "test": "test_jun_progression",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nJUN PROGRESSION: PASS — tutorial, four capped steps, intents, quit, defeat, duplicate guard, persistence, migration, reset\r\n"
+  }
+]

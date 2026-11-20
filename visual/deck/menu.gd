@@ -1,5 +1,6 @@
 extends Control
-const Cards = preload("res://prototypes/cards.gd")
+const CampaignSession = preload("res://game/campaign/session.gd")
+const Cards = preload("res://game/cards.gd")
 const TileScript = preload("res://visual/deck/tile.gd")
 const Item = preload("res://visual/deck/collection_item.tscn")
 const Row = preload("res://visual/deck/deck_row.tscn")
@@ -7,13 +8,16 @@ var game
 var draft: Array = []
 var filter_way = ""
 var committing = false
+var inspection_focus: Control
 
 func setup(controller) -> void:
 	game = controller
 	draft = game.calendar.deck.duplicate()
 	$Cancel.pressed.connect(cancel)
 	$Save.pressed.connect(commit)
-	$Detail/Close.pressed.connect(func(): $Detail.hide())
+	$Detail/Close.pressed.connect(close_detail)
+	$Detail/Dim.gui_input.connect(func(event):
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT: close_detail())
 	var ways = ["","orthodox","unorthodox","demonic"]
 	for i in range(ways.size()):
 		var way: String = ways[i]
@@ -31,10 +35,10 @@ func add_reason(id: String) -> String:
 	if game.calendar.complete: return "Campagne terminée."
 	if not game.calendar.collection.has(id): return "Carte non acquise."
 	if draft.size() >= Cards.MAX_DECK: return "Maximum de 20 cartes atteint."
-	if draft.count(id) >= (2 if id.begins_with("B") else 1): return "Maximum d’exemplaires atteint."
+	if draft.count(id) >= Cards.copy_limit(id): return "Maximum d’exemplaires atteint."
 	var slot_name = game.calendar.equipment_slot(id)
 	if slot_name != "" and equipment()[slot_name] != "": return "Retire d’abord l’équipement de cet emplacement."
-	if (id == "E01" and draft.has("E02")) or (id == "E02" and draft.has("E01")): return "Les deux serments sont exclusifs."
+	if Cards.exclusive_conflict(draft,id) != "": return "Cartes exclusives incompatibles."
 	return ""
 
 func add_card(id: String) -> void:
@@ -59,14 +63,15 @@ func refresh() -> void:
 	var deck_scroll = $DeckScroll.scroll_vertical
 	clear_children($Scroll/Grid)
 	clear_children($DeckScroll/Rows)
-	var catalog = Cards.catalog()
+	var catalog = Cards.catalog(game.calendar.ranks)
 	for id in game.calendar.collection:
 		if filter_way != "" and catalog[id].way != filter_way: continue
 		var card_id: String = id
 		var item = Item.instantiate()
 		item.get_node("Card").card_id = id
+		item.get_node("Card").relation_ranks = game.calendar.ranks
 		$Scroll/Grid.add_child(item)
-		item.get_node("Copies").text = "%d/%d" % [draft.count(id),2 if id.begins_with("B") else 1]
+		item.get_node("Copies").text = "%d/%d" % [draft.count(id),Cards.copy_limit(id)]
 		item.get_node("Add").disabled = add_reason(id) != ""
 		item.get_node("Add").tooltip_text = add_reason(id) if add_reason(id) != "" else "Ajouter « %s »" % catalog[id].name
 		item.get_node("Add").pressed.connect(func(): add_card(card_id))
@@ -87,8 +92,10 @@ func refresh() -> void:
 		var row = Row.instantiate()
 		$DeckScroll/Rows.add_child(row)
 		row.get_node("Art").texture = TileScript.illustration(id)
+		row.get_node("Art").gui_input.connect(func(event):
+			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT: inspect(card_id))
 		row.get_node("Name").text = catalog[id].name
-		row.get_node("Name").tooltip_text = Cards.description(id)
+		row.get_node("Name").tooltip_text = Cards.description(id,game.calendar.ranks)
 		row.get_node("Name").pressed.connect(func(): inspect(card_id))
 		row.get_node("Count").text = "×%d" % draft.count(id)
 		row.get_node("Remove").tooltip_text = "Retirer un exemplaire de « %s »" % catalog[id].name
@@ -110,10 +117,19 @@ func refresh() -> void:
 	$DeckScroll.set_deferred("scroll_vertical",deck_scroll)
 
 func inspect(id: String) -> void:
+	inspection_focus = get_viewport().gui_get_focus_owner()
 	game.inspected_card = id
-	$Detail/Name.text = Cards.catalog()[id].name
-	$Detail/Effects.text = Cards.description(id)
-	$Detail.popup_centered()
+	$Detail/Name.text = Cards.catalog(game.calendar.ranks)[id].name
+	$Detail/Effects.text = Cards.description(id,game.calendar.ranks)
+	$Detail/Art.texture = TileScript.illustration(id)
+	$Detail/Cost.text = str(Cards.catalog(game.calendar.ranks)[id].cost)
+	$Detail/Way.text = Cards.way_name(id)
+	$Detail.show()
+	$Detail/Close.grab_focus()
+
+func close_detail() -> void:
+	$Detail.hide()
+	if is_instance_valid(inspection_focus): inspection_focus.grab_focus()
 
 func cancel() -> void:
 	if committing: return
@@ -127,7 +143,7 @@ func commit() -> void:
 	var error: String = game.calendar.configure(draft,equipment())
 	if error != "": $Error.text = error; return
 	committing = true
-	if game.stage == 1 and draft.has("L01"): game.stage = 2
+	if game.stage == CampaignSession.Stage.TECHNIQUE_LEARNED and draft.has("L01"): game.stage = CampaignSession.Stage.DECK_PREPARED
 	if not game.save_progress():
 		game.calendar.deck = old_deck
 		game.calendar.loadout = old_equipment
@@ -142,5 +158,5 @@ func commit() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
-		if $Detail.visible: $Detail.hide()
+		if $Detail.visible: close_detail()
 		else: cancel()

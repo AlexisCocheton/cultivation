@@ -1,21 +1,36 @@
 extends Node2D
 
-const Calendar = preload("res://prototypes/calendar.gd")
-const Battle = preload("res://prototypes/battle.gd")
-const Cards = preload("res://prototypes/cards.gd")
+const DialogueBook = preload("res://game/presentation/dialogue_book.gd")
+const CombatPresenter = preload("res://visual/combat/presenter.gd")
+var combat_presenter = CombatPresenter.new(self)
+const Tone = preload("res://game/presentation/tone.gd")
+
+const Calendar = preload("res://game/calendar.gd")
+const Battle = preload("res://game/battle.gd")
+const Cards = preload("res://game/cards.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Card = preload("res://visual/card.gd")
-const Progress = preload("res://visual/progress.gd")
+const Progress = preload("res://game/campaign/progress.gd")
 const HUB_POSITIONS = [Vector2(420,650),Vector2(350,540),Vector2(1040,520),Vector2(885,330)]
 const HUB_SCALES = [1.65,1.65,1.65,1.25]
 const PORTRAITS = preload("res://assets/portraits_manhua.png")
-var calendar = Calendar.new()
+const CampaignSession = preload("res://game/campaign/session.gd")
+var session = CampaignSession.new()
+var calendar:
+	get: return session.calendar
+	set(value): session.calendar = value
 var battle = Battle.new()
-var stage = 0
+var stage: int:
+	get: return session.stage
+	set(value): session.stage = value
 var mode = "hub"
 var busy = false
-var muted = false
-var reduced_motion = false
+var muted: bool:
+	get: return session.muted
+	set(value): session.muted = value
+var reduced_motion: bool:
+	get: return session.reduced_motion
+	set(value): session.reduced_motion = value
 var actors: Array = []
 var player: Node2D
 var target = Vector2(640,650)
@@ -32,21 +47,36 @@ var inspected_card = ""
 var persistence = true
 var save_path = Progress.PATH
 var free_duel = false
-var completed_duels = 0
+var completed_duels: int:
+	get: return session.completed_duels
+	set(value): session.completed_duels = value
 var activity_sprites: Array = []
 var garden_scene: Node2D
 var pavilion_scene: Node2D
 var location = "courtyard"
 
 func _ready() -> void:
-	DisplayServer.window_set_title("Les Cendres du Prunier — Séquence visuelle")
+	DisplayServer.window_set_title(tr("text.5fed42997869"))
 	if OS.get_cmdline_user_args().has("--test-route"):
-		DisplayServer.window_set_title("Les Cendres du Prunier — Parcours de test")
+		DisplayServer.window_set_title(tr("text.a1f42517f54c"))
+	if OS.get_cmdline_user_args().has("--story-route"):
+		call_deferred("open_story_route")
 	calendar.slot = 3
 	calendar.seen = ["M01"]
 	persistence = not OS.get_cmdline_args().has("--script")
 	if persistence:
-		load_progress()
+		var loaded = load_progress()
+		if not loaded and OS.get_cmdline_user_args().has("--story-route"):
+			calendar.slot = 13
+			calendar.seen = ["M01","M02"]
+			calendar.ranks = {"J":2,"L":2,"H":2}
+			calendar.collection.append_array(["J01","L01","H01","E01"])
+			calendar.deck[0] = "L01"
+			calendar.deck[2] = "J01"
+			calendar.deck[4] = "H01"
+			stage = CampaignSession.Stage.TRAINING_COMPLETE
+			completed_duels = 1
+			save_progress()
 	var background = Sprite2D.new()
 	background.texture = preload("res://assets/hub/courtyard.png")
 	background.centered = false
@@ -146,6 +176,13 @@ func refresh() -> void:
 			child.text = "Effets : " + ("doux" if reduced_motion else "oui")
 
 func hub() -> void:
+	if not calendar.story.battle_report.is_empty():
+		if not calendar.story.return_seen:
+			story_ui("return")
+			return
+		if calendar.story.candidates == "":
+			story_ui("candidates")
+			return
 	location = "courtyard"
 	garden_scene.visible = false
 	pavilion_scene.visible = false
@@ -156,6 +193,16 @@ func hub() -> void:
 	ui.add_child(hud)
 	hud.setup(self)
 	update_hub_actors()
+	spy_arrival_ui()
+
+func spy_arrival_ui() -> void:
+	if busy or stage < CampaignSession.Stage.TRAINING_COMPLETE or not preload("res://visual/spy/story.gd").pending(calendar): return
+	mode = "spy_arrival"
+	player.walking = false
+	clear_ui()
+	var screen = preload("res://visual/spy/arrival.tscn").instantiate()
+	ui.add_child(screen)
+	screen.setup(self)
 
 func garden_ui() -> void:
 	pavilion_scene.visible = false
@@ -186,12 +233,20 @@ func pavilion_ui() -> void:
 func study_with_shen() -> void:
 	resident_activity("H")
 
-func resident_activity(action: String) -> void:
-	if busy or stage == 0 or calendar.slot >= Progress.END_SLOT: return
+func resident_activity(action: String, choice: String = "") -> void:
+	if busy or stage == CampaignSession.Stage.INTRODUCTION or calendar.slot >= Progress.END_SLOT: return
 	if action not in ["H","J","L"]: return
+	if calendar.reason(action) != "": notice = calendar.reason(action); return
+	if calendar.ranks[action] == 2 and choice == "":
+		story_ui("recruit:" + action)
+		return
+	var old_story = calendar.story.duplicate(true)
+	if choice != "": calendar.story.recruit_choices[action] = choice
 	var before = calendar.collection.duplicate()
 	# Apply and save exactly once, before the purely visual sequence.
-	if do_activity(action) != "": return
+	if do_activity(action) != "":
+		calendar.story = old_story
+		return
 	var gained: Array = []
 	for id in calendar.collection:
 		if not before.has(id): gained.append(id)
@@ -279,7 +334,7 @@ func _process(delta: float) -> void:
 	petals.visible = not reduced_motion and location == "courtyard"
 	update_hub_actors()
 	if mode != "hub": return
-	var motion = Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_Q) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_UP)))
+	var motion = Input.get_vector("move_left","move_right","move_up","move_down")
 	if motion != Vector2.ZERO:
 		target = walkable_position(player.position + motion.normalized()*200)
 	var direction = target-player.position
@@ -293,10 +348,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if mode != "hub": return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		target = walkable_position(get_global_mouse_position())
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E:
+	if event.is_action_pressed("interact") and not event.is_echo():
 		var nearest = nearest_resident()
 		if nearest > 0: talk(nearest)
 	if event.is_action_pressed("ui_cancel"): menu_ui()
+	elif event.is_action_pressed("open_deck"): deck_ui()
 
 func portrait(index: int, happy: bool, pos: Vector2, extent: Vector2) -> void:
 	var texture = AtlasTexture.new()
@@ -325,55 +381,41 @@ func dialogue(index: int, happy: bool, words: String, choice: String, action: Ca
 
 func talk(index: int) -> void:
 	if index == 1:
-		lian_dialogue_line(0,stage == 0)
+		lian_dialogue_line(0,stage == CampaignSession.Stage.INTRODUCTION)
 	elif index == 2:
-		dialogue(2,stage >= 2,"Lian t'a montré un mouvement ? Bien. Voyons s'il tient quand quelqu'un te répond.\n\nObserve mon intention avant de jouer. La garde disparaît après mon attaque." if stage >= 2 else "Tu tiens ton sabre comme un balai. Va donc voir Lian, et prépare une vraie technique avant de venir me défier.","Duel d'entraînement" if stage >= 2 else "Revenir après l'entraînement",start_combat if stage >= 2 else hub)
+		dialogue(2,stage >= CampaignSession.Stage.DECK_PREPARED,tr("text.8c750bf6eee7") if stage >= CampaignSession.Stage.DECK_PREPARED else tr("text.037d8fad7c6c"),"Duel d'entraînement" if stage >= CampaignSession.Stage.DECK_PREPARED else tr("text.59dc273bc091"),start_combat if stage >= CampaignSession.Stage.DECK_PREPARED else hub)
 	else:
 		shen_dialogue_line(0)
 
 func shen_dialogue_line(line: int) -> void:
-	var lines = [
-		["Une secte ne se relève pas en un jour.","serious"],
-		["Le temps passé avec un disciple compte autant qu'une poutre replacée.","kind"],
-		["Aujourd'hui, apprends une technique. Ensuite, trouve-lui une place parmi les douze que tu emportes.","neutral"]
-	]
+	var lines = DialogueBook.lines("shen")
 	var next: Callable = return_to_location if line == 2 else func(): shen_dialogue_line(line+1)
 	dialogue(3,lines[line][1] == "kind",lines[line][0],"Je m'en souviendrai." if line == 2 else "Continuer",next)
 	if location == "pavilion": pavilion_scene.present(lines[line][1])
 
 func lian_dialogue_line(line: int, introduction: bool) -> void:
-	var lines = [
-		["Le toit fuit. Les dalles se fendent. Mais regarde cette branche : elle fleurit encore.","listening","thoughtful","Continuer"],
-		["Tu crois qu'il reste quelque chose à sauver ici ?","listening","neutral","« Si vous êtes encore là, alors oui. »"],
-		["Alors commence par tenir ton sabre sans crisper les épaules.","listening","amused","Continuer"],
-		["Deux gestes pour ouvrir le chemin, puis le troisième comme un pétale emporté par le vent.","explaining","smile","S'entraîner avec Lian · 1 période"]
-	] if introduction else [
-		["N'essaie pas de frapper plus fort que Jun.","listening","thoughtful","Continuer"],
-		["Fais-le attendre, puis surprends-le.","listening","amused","Continuer"],
-		["Pétales tranchants gagne en puissance après deux cartes jouées dans le même tour.","explaining","smile","Préparer mes techniques"]
-	]
+	var lines = DialogueBook.lines("lian_intro" if introduction else "lian_advice")
 	var row: Array = lines[line]
 	var next: Callable = func(): lian_dialogue_line(line+1,introduction)
 	if line == lines.size()-1: next = learn if introduction else deck_ui
 	dialogue(1,row[2] in ["smile","amused"],row[0],row[3],next,{"pose":row[1],"expression":row[2]})
 
 func learn() -> void:
-	if stage != 0: return
+	if stage != CampaignSession.Stage.INTRODUCTION: return
+	var before = calendar.snapshot()
 	var error = calendar.act("L")
 	if error != "": notice = error; hub(); return
-	stage = 1
-	save_progress()
+	stage = CampaignSession.Stage.TECHNIQUE_LEARNED
+	if not save_progress():
+		calendar.restore(before)
+		stage = CampaignSession.Stage.INTRODUCTION
+		hub()
+		return
 	mode = "reward"
 	clear_ui()
-	header("Lien avec Lian · rang 1 atteint   /   Le matin laisse place à l'après-midi")
-	panel(Vector2(300,176),Vector2(680,544))
-	label("UNE TECHNIQUE TRANSMISE",Vector2(350,201),Vector2(580,40),29)
-	var card = Card.new()
-	card.card_id = "L01"
-	card.position = Vector2(550,270)
-	ui.add_child(card)
-	label("Pétales tranchants rejoint ta collection.\nIl faut l'équiper pour la piocher en combat.",Vector2(365,548),Vector2(550,66),21)
-	button("Composer mon deck",Vector2(390,637),Vector2(500,50),deck_ui)
+	var reward = preload("res://visual/combat/reward.tscn").instantiate()
+	ui.add_child(reward)
+	reward.setup(self)
 	tone(660)
 
 func deck_ui() -> void:
@@ -389,20 +431,33 @@ func show_deck_detail(id: String) -> void:
 	if is_instance_valid(deck_detail): deck_detail.get_parent().inspect(id)
 
 func replace_card(id: String) -> void:
+	var before = calendar.snapshot()
+	var previous_stage = stage
 	if selected < 0 or selected >= calendar.deck.size(): return
 	var plan = calendar.replacement_plan(selected,id)
 	notice = plan.error
 	if notice == "": notice = calendar.configure(plan.deck,plan.loadout)
 	if notice == "":
-		notice = "Deck enregistré pour cette séquence."
+		notice = tr("text.34e3ed4ae613")
 		selected = -1
-		if stage == 1 and calendar.deck.has("L01"): stage = 2
-		save_progress()
+		if stage == CampaignSession.Stage.TECHNIQUE_LEARNED and calendar.deck.has("L01"): stage = CampaignSession.Stage.DECK_PREPARED
+		if not save_progress():
+			calendar.restore(before)
+			stage = previous_stage
 	deck_ui()
 
+func visitor_ui() -> void:
+	if busy or stage < CampaignSession.Stage.TRAINING_COMPLETE: return
+	mode = "visitor"
+	player.walking = false
+	clear_ui()
+	var screen = preload("res://visual/visitor/encounter.tscn").instantiate()
+	ui.add_child(screen)
+	screen.setup(self)
+
 func merchant_ui() -> void:
-	if busy or stage == 0 or calendar.slot >= Progress.END_SLOT or calendar.day() != 4:
-		notice = "Le marchand est présent au jour 4."
+	if busy or stage == CampaignSession.Stage.INTRODUCTION or calendar.slot >= Progress.END_SLOT or calendar.day() != 4:
+		notice = tr("text.ae4f5a37407a")
 		hub()
 		return
 	mode = "merchant"
@@ -416,13 +471,14 @@ func start_combat() -> void:
 	pavilion_scene.visible = false
 	location = "courtyard"
 	garden_scene.visible = false
-	if stage < 2: return
-	free_duel = stage >= 3 or calendar.slot >= Progress.END_SLOT
+	if stage < CampaignSession.Stage.DECK_PREPARED: return
+	free_duel = stage >= CampaignSession.Stage.TRAINING_COMPLETE or calendar.slot >= Progress.END_SLOT
 	if not free_duel:
 		var unavailable = calendar.reason("fight")
 		if unavailable != "": notice = unavailable; hub(); return
-	save_progress()
+	if not save_progress(): hub(); return
 	var error = calendar.validate_deck(calendar.deck,calendar.loadout)
+	battle.relation_ranks = calendar.ranks.duplicate()
 	if error == "": error = battle.start(calendar.deck,"partenaire",randi(),0,false,completed_duels)
 	if error != "": notice = error; hub(); return
 	mode = "combat"
@@ -449,115 +505,45 @@ func combat_ui() -> void:
 	hud.setup(self)
 
 func play_card(index: int) -> void:
-	if busy or mode != "combat": return
-	if index < 0 or index >= battle.hand.size(): return
-	var id: String = battle.hand[index]
-	var card: Dictionary = battle.cards[id]
-	if card.cost > battle.energy: return
-	var old_hp = battle.enemy_hp
-	busy = true
-	combat_ui()
-	var strike = battle.damage_for(id) > 0
-	var contact = func():
-		battle.play(index)
-		combat_ui()
-		if strike:
-			impact(actors[2],old_hp-battle.enemy_hp,"BLOQUÉ")
-		else:
-			impact(player,0,"+%d GARDE" % card.block if card.block > 0 else "SOUFFLE")
-	if strike:
-		await attack_motion(player,actors[2],contact)
-	else:
-		await player.perform_action("guard",contact,reduced_motion)
-	if strike and card.block > 0:
-		await player.perform_action("guard",Callable(),reduced_motion)
-	player.guarding = battle.block > 0
-	actors[2].guarding = battle.enemy_block > 0
-	player._process(0)
-	actors[2]._process(0)
-	busy = false
-	if battle.outcome != "": finish_combat()
-	else: combat_ui()
+	await combat_presenter.play_card(index)
 
 func end_turn() -> void:
-	if busy or mode != "combat": return
-	busy = true
-	var old_hp = battle.hp
-	var intent = battle.intent()
-	combat_ui()
-	var contact = func():
-		battle.end_turn()
-		combat_ui()
-		if intent.damage > 0: impact(player,old_hp-battle.hp,"PARADE")
-		else: impact(actors[2],0,"+%d GARDE" % intent.block)
-	if intent.damage > 0:
-		await attack_motion(actors[2],player,contact)
-	else:
-		await actors[2].perform_action("guard",contact,reduced_motion)
-	if intent.damage > 0 and intent.block > 0:
-		await actors[2].perform_action("guard",Callable(),reduced_motion)
-	player.guarding = battle.block > 0
-	actors[2].guarding = battle.enemy_block > 0
-	player._process(0)
-	actors[2]._process(0)
-	busy = false
-	if battle.outcome != "": finish_combat()
-	else: combat_ui()
+	await combat_presenter.end_turn()
 
 func attack_motion(attacker: Node2D, defender: Node2D, contact: Callable) -> void:
-	var origin = attacker.position
-	if not reduced_motion:
-		var approach = create_tween()
-		approach.tween_property(attacker,"position:x",defender.position.x-attacker.facing*115,0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-		await approach.finished
-	await attacker.perform_action("attack",contact,reduced_motion)
-	if not reduced_motion:
-		var retreat = create_tween()
-		retreat.tween_property(attacker,"position",origin,0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		await retreat.finished
+	await combat_presenter.attack_motion(attacker,defender,contact)
 
 func impact(actor: Node2D, damage: int, message: String = "GARDE") -> void:
-	tone(180 if damage > 0 else 440)
-	var floating = label("−%d" % damage if damage > 0 else message,actor.position+Vector2(-100,-210),Vector2(260,50),28,Color("ffbbb5") if damage > 0 else Color("abe7d4"))
-	var tween = create_tween()
-	if not reduced_motion:
-		var stroke = Line2D.new()
-		if damage > 0:
-			stroke.points = PackedVector2Array([Vector2(-60,0),Vector2(50,-140),Vector2(-20,-50)])
-		else:
-			for i in range(19):
-				var angle = -PI/2 + i*PI/18
-				stroke.add_point(Vector2(cos(angle)*60*actor.facing,sin(angle)*85-85))
-		stroke.width = 7
-		stroke.default_color = Color("ffe6c7") if damage > 0 else Color("9ae3d7")
-		stroke.position = actor.position
-		add_child(stroke)
-		tween.parallel().tween_property(stroke,"modulate:a",0.0,0.24)
-		tween.parallel().tween_property(floating,"position:y",floating.position.y-35,0.24)
-		if damage > 0:
-			actor.sprite.modulate = Color("ffadad")
-			tween.parallel().tween_property(actor.sprite,"modulate",Color.WHITE,0.2)
-		tween.tween_callback(stroke.queue_free)
-	else: tween.tween_interval(0.12)
-	await tween.finished
-	if is_instance_valid(floating): floating.queue_free()
+	await combat_presenter.impact(actor,damage,message)
 
 func finish_combat() -> void:
 	if mode != "combat" or battle.outcome == "": return
+	var before = calendar.snapshot()
+	var previous_stage = stage
+	var previous_duels = completed_duels
 	var first_duel = not free_duel
 	if first_duel:
 		var error = calendar.act("fight",battle.outcome == "victory")
-		if error != "": notice = error
-	stage = 3
+		if error != "":
+			notice = error
+			combat_ui()
+			return
+	stage = CampaignSession.Stage.TRAINING_COMPLETE
 	completed_duels += 1
-	save_progress()
+	if not save_progress():
+		calendar.restore(before)
+		stage = previous_stage
+		completed_duels = previous_duels
+		notice = tr("text.4a5b8c430634")
+		combat_ui()
+		return
 	restore_actors()
-	var words = "Pas mal. Cette fois, tu as vraiment écouté ton adversaire." if battle.outcome == "victory" else "Tu annonçais chaque mouvement avec tes épaules. Ça se travaille."
+	var words = tr("text.08bb0f1d8567") if battle.outcome == "victory" else tr("text.106ee77f863f")
 	if first_duel:
-		words += "\n\nUne période s'est écoulée." + (" La secte a gagné une réserve." if battle.outcome == "victory" else " Pas de récompense cette fois.")
-	else: words += "\n\nDuel libre terminé : aucun temps ni réserve modifié."
-	words += "\nTu peux rejouer ce duel pour essayer d'autres enchaînements."
-	words += "\nJun hausse le niveau pour le prochain duel." if completed_duels <= 4 else "\nJun maintient son niveau d’entraînement maximal."
+		words += tr("text.e51072be8b73") + (tr("text.fefdcbe727a2") if battle.outcome == "victory" else tr("text.c33eb2cbe75d"))
+	else: words += tr("text.d9720195a7ae")
+	words += tr("text.b1290abcd7bf")
+	words += tr("text.da1823780de7") if completed_duels <= 4 else tr("text.ce43e55753b9")
 	mode = "dialogue"
 	clear_ui()
 	var result = preload("res://visual/combat/result.tscn").instantiate()
@@ -588,14 +574,14 @@ func restore_actors() -> void:
 
 func leave_combat() -> void:
 	restore_actors()
-	notice = "Entraînement quitté : aucun temps ni réserve consommé."
+	notice = tr("text.b764d1577270")
 	hub()
 
 func restart() -> void:
 	calendar = Calendar.new()
 	calendar.slot = 3
 	calendar.seen = ["M01"]
-	stage = 0
+	stage = CampaignSession.Stage.INTRODUCTION
 	completed_duels = 0
 	selected = -1
 	notice = ""
@@ -604,20 +590,14 @@ func restart() -> void:
 	hub()
 
 func load_progress() -> bool:
-	var saved = Progress.read_progress(save_path)
-	if saved.is_empty(): return false
-	calendar.restore(saved.state)
-	stage = int(saved.stage)
-	completed_duels = saved.completed_duels
-	muted = saved.muted
-	reduced_motion = saved.reduced
-	notice = "Progression reprise. Un duel interrompu reprend avant le combat."
+	if not session.load_from(save_path): return false
+	notice = tr("text.56a101154a26")
 	return true
 
 func save_progress() -> bool:
 	if not persistence: return true
-	var saved = Progress.save_progress(calendar,stage,muted,reduced_motion,save_path,completed_duels)
-	if not saved: notice = "Échec de sauvegarde : la progression reste en mémoire."
+	var saved = session.save_to(save_path)
+	if not saved: notice = tr("text.34e48c8b0d0f")
 	return saved
 
 func update_restoration() -> void:
@@ -625,9 +605,19 @@ func update_restoration() -> void:
 	scenery.set_shader_parameter("restoration",Vector3(float(level >= 1),float(level >= 2),float(level >= 2)))
 
 func confirm_restart() -> void:
-	dialogue(3,false,"Recommencer effacera la progression de cette séquence. Les sauvegardes du laboratoire et de l'ancien prototype restent séparées.","Recommencer cette séquence",restart)
+	dialogue(3,false,tr("text.dd46913d5453"),tr("text.f601866c5cfa"),restart)
 
-func activities_ui(show_summary: bool = false) -> void:
+func activities_ui(show_summary: bool = false, skip_story: bool = false) -> void:
+	if not show_summary and not skip_story:
+		if calendar.day() == 6 and not calendar.story.warned:
+			story_ui("prepare")
+			return
+		if (calendar.invitation_available("J") and calendar.reason("J") == "") or (calendar.invitation_available("L") and calendar.reason("L") == ""):
+			story_ui("invite")
+			return
+	if calendar.slot == 18 and not show_summary:
+		territory_ui()
+		return
 	mode = "activities"
 	player.walking = false
 	clear_ui()
@@ -636,7 +626,12 @@ func activities_ui(show_summary: bool = false) -> void:
 	screen.setup(self,show_summary)
 
 func do_activity(action: String, choice = "E01") -> String:
-	if busy or mode == "combat" or calendar.slot >= Progress.END_SLOT: return "Activité indisponible."
+	if busy or mode in ["combat","team_combat"] or calendar.slot >= Progress.END_SLOT: return "Activité indisponible."
+	if action == "M03":
+		territory_ui()
+		return tr("text.5adbcf51df9f")
+	var transaction = calendar.snapshot()
+	var previous_stage = stage
 	var before = calendar.supplies
 	var owned = calendar.collection.duplicate()
 	var error = calendar.act(action,true,choice)
@@ -644,28 +639,85 @@ func do_activity(action: String, choice = "E01") -> String:
 	var gained: Array[String] = []
 	for id in calendar.collection:
 		if not owned.has(id): gained.append(Cards.catalog()[id].name)
-	notice = "Une période écoulée. Réserves : %+d." % [calendar.supplies-before]
-	if not gained.is_empty(): notice += " Acquis : " + ", ".join(gained) + ". À équiper dans le deck."
-	if action == "hall": notice += " Le pavillon est réparé au niveau %d." % calendar.buildings.hall
-	if stage == 0 and calendar.collection.has("L01"): stage = 1
-	save_progress()
+	notice = tr("text.b2bd430dac97") % [calendar.supplies-before]
+	if not gained.is_empty(): notice += " Acquis : " + ", ".join(gained) + tr("text.7365eab6555f")
+	if action == "hall": notice += tr("text.c9b2dd6376d3") % calendar.buildings.hall
+	if stage == CampaignSession.Stage.INTRODUCTION and calendar.collection.has("L01"): stage = CampaignSession.Stage.TECHNIQUE_LEARNED
+	if not save_progress():
+		calendar.restore(transaction)
+		stage = previous_stage
+		return tr("text.0293c1414ef0")
 	update_restoration()
 	if calendar.slot >= Progress.END_SLOT or calendar.slot % 3 == 0: activities_ui(true)
 	else: hub()
 	return ""
 
 func tone(frequency: float) -> void:
-	if muted: return
-	var bytes = PackedByteArray()
-	var count = 6600
-	bytes.resize(count*2)
-	for i in range(count):
-		var t = i/22050.0
-		var value = sin(TAU*frequency*t)*exp(-t*18)*0.45 + sin(TAU*frequency*2.01*t)*exp(-t*30)*0.12
-		bytes.encode_s16(i*2,int(value*32767))
-	var stream = AudioStreamWAV.new()
-	stream.format = AudioStreamWAV.FORMAT_16_BITS
-	stream.mix_rate = 22050
-	stream.data = bytes
-	sound.stream = stream
-	sound.play()
+	if not muted: Tone.play(sound,frequency)
+
+func territory_ui() -> void:
+	if busy or calendar.slot != 18: return
+	mode = "territory"
+	player.walking = false
+	clear_ui()
+	var screen = preload("res://visual/team/encounter.tscn").instantiate()
+	ui.add_child(screen)
+	screen.setup(self)
+
+func start_territory() -> bool:
+	if busy or mode != "territory" or calendar.slot != 18: return false
+	var error = calendar.validate_deck(calendar.deck,calendar.loadout)
+	if error == "": error = calendar.party_reason(calendar.party,true)
+	if error != "": notice = error; return false
+	# Save the preparation state before entering. Interrupted fights resume here.
+	if not save_progress(): return false
+	mode = "team_combat"
+	clear_ui()
+	var screen = preload("res://visual/team/lab.tscn").instantiate()
+	screen.host = self
+	ui.add_child(screen)
+	return true
+
+func finish_territory() -> bool:
+	if mode != "team_combat" or calendar.slot != 18: return false
+	var screen = ui.get_child(0)
+	if screen.battle.outcome != "victory" or screen.busy: return false
+	var before = calendar.snapshot()
+	calendar.story.battle_report = screen.battle.report()
+	calendar.story.antidote = screen.battle.antidotes
+	if calendar.act("M03",true) != "":
+		calendar.restore(before)
+		return false
+	if not save_progress():
+		calendar.restore(before)
+		return false
+	notice = tr("text.0a24de33f1c6") % calendar.Balance.EVENT_RESERVES
+	hub()
+	return true
+
+func story_ui(page: String) -> void:
+	mode = "story"
+	player.walking = false
+	clear_ui()
+	var screen = preload("res://visual/story/panel.tscn").instantiate()
+	ui.add_child(screen)
+	screen.setup(self,page)
+
+func story_ack(field: String, value) -> void:
+	var previous = calendar.snapshot()
+	calendar.story[field] = value
+	if not save_progress():
+		calendar.restore(previous)
+		ui.get_child(0).get_node("Error").text = tr("text.efa0e1282eb9")
+		return
+	if field == "warned": activities_ui(false,true)
+	else: hub()
+
+func companions_ui(id: String = "J") -> void:
+	var screen = preload("res://visual/team/companions.tscn").instantiate()
+	ui.add_child(screen)
+	screen.setup(self,id)
+
+func open_story_route() -> void:
+	get_window().title = tr("text.ae9c3a206073")
+	if calendar.story.battle_report.is_empty(): activities_ui()

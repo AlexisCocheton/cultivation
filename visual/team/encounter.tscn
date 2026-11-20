@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://visual/team/encounter.gd" id="1"]
+[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/team/arena.png" id="3"]
+[node name="Territory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+theme = ExtResource("2")
+[node name="Paper" type="Panel" parent="."]
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 1240.0
+offset_bottom = 802.0
+[node name="Art" type="TextureRect" parent="."]
+offset_left = 65.0
+offset_top = 55.0
+offset_right = 1215.0
+offset_bottom = 340.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+[node name="Title" type="Label" parent="."]
+offset_left = 85.0
+offset_top = 360.0
+offset_right = 1195.0
+offset_bottom = 418.0
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 36
+text = "Jour 7 — Le territoire du Prunier"
+[node name="Words" type="Label" parent="."]
+offset_left = 85.0
+offset_top = 435.0
+offset_right = 1195.0
+offset_bottom = 555.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Une école rivale réclame les terres du Prunier pour y installer ses disciples. Les deux chefs engagent leur parole : trois disciples de chaque école s’affronteront, et le vainqueur gardera le territoire.\n\nJun vérifie sa lame. Lian se place à tes côtés. Shen vous regarde : « Revenez ensemble. »"
+[node name="Error" type="Label" parent="."]
+offset_left = 85.0
+offset_top = 680.0
+offset_right = 1195.0
+offset_bottom = 708.0
+autowrap_mode = 2
+[node name="Back" type="Button" parent="."]
+offset_left = 80.0
+offset_top = 710.0
+offset_right = 350.0
+offset_bottom = 770.0
+text = "Retour à la cour"
+[node name="Deck" type="Button" parent="."]
+offset_left = 490.0
+offset_top = 710.0
+offset_right = 760.0
+offset_bottom = 770.0
+text = "Préparer mon deck"
+[node name="Start" type="Button" parent="."]
+offset_left = 900.0
+offset_top = 710.0
+offset_right = 1200.0
+offset_bottom = 770.0
+text = "Défendre le Prunier"
+
+[node name="Party" type="HBoxContainer" parent="."]
+offset_left = 85.0
+offset_top = 565.0
+offset_right = 1195.0
+offset_bottom = 620.0
+theme_override_constants/separation = 20
+
+[node name="Jun" type="Button" parent="Party"]
+custom_minimum_size = Vector2(350,55)
+layout_mode = 2
+text = "Jun"
+toggle_mode = true
+theme_override_font_sizes/font_size = 23
+
+[node name="Lian" type="Button" parent="Party"]
+custom_minimum_size = Vector2(350,55)
+layout_mode = 2
+text = "Lian"
+toggle_mode = true
+theme_override_font_sizes/font_size = 23
+
+[node name="Shen" type="Button" parent="Party"]
+custom_minimum_size = Vector2(350,55)
+layout_mode = 2
+text = "Shen"
+toggle_mode = true
+theme_override_font_sizes/font_size = 23
+
+[node name="Inspect" type="Button" parent="."]
+offset_left = 55.0
+offset_top = 630.0
+offset_right = 545.0
+offset_bottom = 680.0
+text = "Voir les techniques des compagnons"

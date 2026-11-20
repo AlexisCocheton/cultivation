@@ -1,6 +1,6 @@
 extends SceneTree
 
-const Cards = preload("res://prototypes/cards.gd")
+const Cards = preload("res://game/cards.gd")
 var failures = 0
 var checks = 0
 
@@ -54,7 +54,7 @@ func run() -> void:
 	game.start_combat()
 	game.battle.hand = ["B01","Q01","E03"]
 	game.combat_ui()
-	check(game.ui.get_child(0).get_node("Scroll/Hand").get_child(1).get_node("Way").text == "Non orthodoxe","Combat badge")
+	check(game.ui.get_child(0).get_node("Hand").cards[1].get_node("Viewport/Card/Way").text == "Non orthodoxe","Combat badge")
 	await capture("card-ways-combat")
 	game.queue_free()
 	await process_frame
