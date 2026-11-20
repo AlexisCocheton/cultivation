@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3]
-[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="1"]
 [ext_resource type="Script" path="res://visual/garden/ui.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/book.png" id="Icon_book"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/hourglass.png" id="Icon_hourglass"]
 [sub_resource type="StyleBoxEmpty" id="Invisible"]
 [node name="GardenUI" type="Control"]
 layout_mode = 3
@@ -16,7 +18,7 @@ offset_left = 160.0
 offset_top = 175.0
 offset_right = 590.0
 offset_bottom = 700.0
-tooltip_text = "Parler à Lian"
+tooltip_text = "Parler à Lian · libre"
 mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("Invisible")
 theme_override_styles/hover = SubResource("Invisible")
@@ -33,62 +35,91 @@ theme_override_styles/normal = SubResource("Invisible")
 theme_override_styles/hover = SubResource("Invisible")
 theme_override_styles/pressed = SubResource("Invisible")
 
+[node name="DatePaper" type="Panel" parent="."]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 470.0
+offset_bottom = 108.0
+theme_type_variation = &"WidePanel"
+mouse_filter = 2
+
 [node name="Title" type="Label" parent="."]
-offset_left = 25.0
-offset_top = 20.0
-offset_right = 495.0
-offset_bottom = 75.0
+offset_left = 42.0
+offset_top = 21.0
+offset_right = 448.0
+offset_bottom = 66.0
 text = "Le jardin du prunier"
 mouse_filter = 2
 theme_type_variation = &"Title"
-theme_override_font_sizes/font_size = 34
-theme_override_colors/font_color = Color(1,0.96,0.85,1)
-theme_override_colors/font_shadow_color = Color(0.1,0.05,0.05,1)
-theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/font_size = 27
+theme_override_colors/font_color = Color(0.2,0.15,0.11,1)
 
 [node name="Date" type="Label" parent="."]
-offset_left = 28.0
-offset_top = 77.0
-offset_right = 508.0
-offset_bottom = 107.0
+offset_left = 44.0
+offset_top = 65.0
+offset_right = 448.0
+offset_bottom = 97.0
 mouse_filter = 2
-theme_override_colors/font_color = Color(1,0.96,0.85,1)
-theme_override_colors/font_shadow_color = Color(0.1,0.05,0.05,1)
-theme_override_constants/shadow_outline_size = 4
+theme_override_colors/font_color = Color(0.2,0.15,0.11,1)
 
 [node name="Effects" type="Button" parent="."]
 theme_type_variation = &"SecondaryButton"
-offset_left = 820.0
+offset_left = 756.0
 offset_top = 22.0
-offset_right = 1030.0
+offset_right = 955.0
 offset_bottom = 70.0
 text = "Effets : oui"
 
 [node name="Back" type="Button" parent="."]
 theme_type_variation = &"SecondaryButton"
-offset_left = 1040.0
+offset_left = 1000.0
 offset_top = 22.0
 offset_right = 1256.0
 offset_bottom = 70.0
 text = "Retour à la cour"
 
+[node name="ActionsPaper" type="Panel" parent="."]
+offset_left = 700.0
+offset_top = 610.0
+offset_right = 1250.0
+offset_bottom = 812.0
+mouse_filter = 2
 [node name="Talk" type="Button" parent="."]
-offset_left = 710.0
-offset_top = 750.0
-offset_right = 990.0
-offset_bottom = 808.0
-text = "Parler à Lian"
+theme_type_variation = &"SecondaryButton"
+offset_left = 723.0
+offset_top = 627.0
+offset_right = 1227.0
+offset_bottom = 685.0
+text = "Parler à Lian · libre"
 
 [node name="Activity" type="Button" parent="."]
-offset_left = 365.0
-offset_top = 750.0
-offset_right = 695.0
-offset_bottom = 808.0
+icon = ExtResource("Icon_hourglass")
+expand_icon = true
+theme_override_constants/icon_max_width = 28
+offset_left = 723.0
+offset_top = 691.0
+offset_right = 1227.0
+offset_bottom = 749.0
 text = "Partager le thé · 1 période"
 
 [node name="Deck" type="Button" parent="."]
-offset_left = 1005.0
-offset_top = 750.0
-offset_right = 1255.0
-offset_bottom = 808.0
+icon = ExtResource("Icon_book")
+expand_icon = true
+theme_override_constants/icon_max_width = 28
+theme_type_variation = &"SecondaryButton"
+offset_left = 1030.0
+offset_top = 86.0
+offset_right = 1256.0
+offset_bottom = 132.0
 text = "Techniques"
+
+[node name="Availability" type="Label" parent="."]
+offset_left = 730.0
+offset_top = 753.0
+offset_right = 1220.0
+offset_bottom = 798.0
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 16
+mouse_filter = 2

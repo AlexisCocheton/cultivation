@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3]
-[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[gd_scene load_steps=9 format=3]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="1"]
 [ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="2"]
 [ext_resource type="Script" path="res://visual/hub/menu.gd" id="3"]
 [ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/book.png" id="Icon_book"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/scroll.png" id="Icon_scroll"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/settings.png" id="Icon_settings"]
 [sub_resource type="StyleBoxTexture" id="Paper"]
 texture = ExtResource("2")
 texture_margin_left = 0.0
@@ -26,82 +29,107 @@ offset_bottom = 832.0
 color = Color(0.03,0.025,0.03,0.58)
 
 [node name="Paper" type="Panel" parent="."]
-offset_left = 340.0
-offset_top = 110.0
-offset_right = 940.0
-offset_bottom = 710.0
+offset_left = 170.0
+offset_top = 24.0
+offset_right = 650.0
+offset_bottom = 808.0
 theme_override_styles/panel = SubResource("Paper")
 mouse_filter = 2
 
 [node name="Title" type="Label" parent="Paper"]
-offset_left = 30.0
-offset_top = 25.0
-offset_right = 570.0
-offset_bottom = 105.0
-text = "Les Cendres du Prunier"
+offset_left = 35.0
+offset_top = 24.0
+offset_right = 445.0
+offset_bottom = 135.0
+text = "Les Cendres
+du Prunier"
 theme_type_variation = &"Title"
 theme_override_font_sizes/font_size = 36
 horizontal_alignment = 1
 
 [node name="Back" type="Button" parent="Paper"]
-theme_type_variation = &"SecondaryButton"
-offset_left = 55.0
-offset_top = 125.0
-offset_right = 545.0
-offset_bottom = 185.0
-text = "Revenir à la cour"
+offset_left = 35.0
+offset_top = 200.0
+offset_right = 445.0
+offset_bottom = 260.0
+text = "Reprendre"
 
 [node name="Deck" type="Button" parent="Paper"]
-offset_left = 55.0
-offset_top = 208.0
-offset_right = 545.0
-offset_bottom = 268.0
+icon = ExtResource("Icon_book")
+expand_icon = true
+theme_override_constants/icon_max_width = 28
+theme_type_variation = &"SecondaryButton"
+offset_left = 35.0
+offset_top = 275.0
+offset_right = 445.0
+offset_bottom = 330.0
 text = "Techniques"
 
 [node name="Sound" type="Button" parent="Paper"]
 theme_type_variation = &"SecondaryButton"
-offset_left = 55.0
-offset_top = 291.0
-offset_right = 545.0
-offset_bottom = 351.0
+offset_left = 35.0
+offset_top = 565.0
+offset_right = 230.0
+offset_bottom = 615.0
 text = "Son : oui"
 
 [node name="Motion" type="Button" parent="Paper"]
 theme_type_variation = &"SecondaryButton"
-offset_left = 55.0
-offset_top = 374.0
-offset_right = 545.0
-offset_bottom = 434.0
+offset_left = 245.0
+offset_top = 565.0
+offset_right = 445.0
+offset_bottom = 615.0
 text = "Effets : oui"
 
 [node name="Restart" type="Button" parent="Paper"]
 theme_type_variation = &"SecondaryButton"
-offset_left = 55.0
-offset_top = 457.0
-offset_right = 545.0
-offset_bottom = 517.0
-text = "Recommencer la séquence"
+offset_left = 60.0
+offset_top = 690.0
+offset_right = 420.0
+offset_bottom = 742.0
+text = "Recommencer…"
 
 [node name="Companions" type="Button" parent="Paper"]
-offset_left = 55.0
-offset_top = 530.0
-offset_right = 545.0
-offset_bottom = 580.0
+theme_type_variation = &"SecondaryButton"
+offset_left = 35.0
+offset_top = 340.0
+offset_right = 445.0
+offset_bottom = 395.0
 text = "Compagnons"
 
 [node name="Candidates" type="Button" parent="."]
-offset_left = 395.0
-offset_top = 725.0
-offset_right = 885.0
-offset_bottom = 780.0
+icon = ExtResource("Icon_scroll")
+expand_icon = true
+theme_override_constants/icon_max_width = 28
+offset_left = 205.0
+offset_top = 505.0
+offset_right = 615.0
+offset_bottom = 555.0
 text = "Les aspirants"
 
 [node name="ControlsButton" type="Button" parent="."]
+icon = ExtResource("Icon_settings")
+expand_icon = true
+theme_override_constants/icon_max_width = 28
 theme_type_variation = &"SecondaryButton"
-offset_left = 980.0
-offset_top = 110.0
-offset_right = 1230.0
-offset_bottom = 165.0
+offset_left = 205.0
+offset_top = 430.0
+offset_right = 615.0
+offset_bottom = 485.0
 text = "Commandes"
 
 [node name="PaintedDecoration" parent="Paper" instance=ExtResource("PaintedDecor")]
+
+[node name="Date" type="Label" parent="Paper"]
+offset_left = 35.0
+offset_top = 148.0
+offset_right = 445.0
+offset_bottom = 181.0
+horizontal_alignment = 1
+[node name="Close" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
+offset_left = 1050.0
+offset_top = 26.0
+offset_right = 1240.0
+offset_bottom = 80.0
+text = "Fermer"

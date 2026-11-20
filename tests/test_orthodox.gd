@@ -103,7 +103,7 @@ func run() -> void:
 	game.selected = 0
 	game.deck_ui()
 	var menu = game.ui.get_child(0)
-	check(menu.get_node("Count").text == "20 cartes","Dynamic count")
+	check(menu.draft.size() == 20 and menu.get_node("Count").text == "20/20","Dynamic count and deck limit")
 	menu.remove_card("B01")
 	check(menu.draft.size() == 19 and c.deck.size() == 20,"UI draft remove")
 	menu.add_card("B01")

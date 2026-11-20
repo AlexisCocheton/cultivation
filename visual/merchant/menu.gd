@@ -6,6 +6,7 @@ var committing = false
 
 func setup(controller) -> void:
 	$Portrait.present("merchant")
+	$Sidebar.tooltip_text = "Marchand de passage"
 	game = controller
 	$Date.text = "Jour 4 · %s · Réserves : %d" % [["Matin","Après-midi","Soir"][game.calendar.period()],game.calendar.supplies]
 	$Back.pressed.connect(game.hub)
@@ -21,6 +22,8 @@ func setup(controller) -> void:
 		var id: String = tile.card_id
 		tile.pressed.connect(func(): select(id))
 		tile.focus_entered.connect(func(): select(id))
+		tile.get_node("Price").text = "%d réserves" % game.calendar.equipment_cost()
+		tile.get_node("Owned").visible = game.calendar.collection.has(id)
 		if game.calendar.collection.has(id): tile.tooltip_text += "\nDéjà possédé"
 	select(selected)
 
@@ -32,7 +35,9 @@ func select(id: String) -> void:
 	$Buy.tooltip_text = reason
 	$Buy.text = "Acheter · %d réserves · 1 période" % game.calendar.equipment_cost()
 	var slot_name = game.calendar.equipment_slot(id)
-	$Selection.text = "%s · %s\n%s" % [game.Cards.catalog()[id].name,"Arme" if slot_name == "weapon" else "Talisman",reason if reason != "" else "Rejoint ta collection. À équiper ensuite en remplaçant une carte."]
+	var worn: String = game.calendar.loadout.get(slot_name,"")
+	$Equipped.text = "Équipé · %s\n%s" % ["Arme" if slot_name == "weapon" else "Talisman","Aucun" if worn == "" else game.Cards.catalog()[worn].name+"\n"+game.Cards.Effects.compact_description(game.Cards.catalog()[worn])]
+	$Selection.text = "%s · %s\n%s" % [game.Cards.catalog()[id].name,"Arme" if slot_name == "weapon" else "Talisman",reason if reason != "" else "Ajout à la collection ; équipement ensuite dans le deck."]
 
 func commit(id: String) -> void:
 	if committing: return

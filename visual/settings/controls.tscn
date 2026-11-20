@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3]
-[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[gd_scene load_steps=7 format=3]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="1"]
 [ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="2"]
 [ext_resource type="Script" path="res://visual/settings/controls.gd" id="3"]
 [ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/settings.png" id="Icon_settings"]
 [sub_resource type="StyleBoxTexture" id="Paper"]
 texture = ExtResource("2")
 texture_margin_left = 0.0
@@ -103,6 +104,8 @@ offset_bottom = 174.0
 text = "Parler à Jun"
 
 [node name="interact" type="Button" parent="Paper"]
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
 offset_left = 270.0
 offset_top = 130.0
 offset_right = 600.0
@@ -116,6 +119,8 @@ offset_bottom = 254.0
 text = "Techniques"
 
 [node name="open_deck" type="Button" parent="Paper"]
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
 offset_left = 270.0
 offset_top = 210.0
 offset_right = 600.0
@@ -128,6 +133,10 @@ offset_right = 600.0
 offset_bottom = 360.0
 autowrap_mode = 2
 [node name="Reset" type="Button" parent="Paper"]
+icon = ExtResource("Icon_settings")
+expand_icon = true
+theme_override_constants/icon_max_width = 28
+theme_type_variation = &"SecondaryButton"
 offset_left = 40.0
 offset_top = 390.0
 offset_right = 310.0
@@ -141,4 +150,11 @@ offset_right = 600.0
 offset_bottom = 440.0
 text = "Retour"
 
-[node name="PaintedDecoration" parent="Paper" instance=ExtResource("PaintedDecor")]
+
+[node name="Hint" type="Label" parent="Paper"]
+offset_left = 40.0
+offset_top = 82.0
+offset_right = 600.0
+offset_bottom = 116.0
+text = "Clique sur une touche pour la modifier."
+theme_override_font_sizes/font_size = 17

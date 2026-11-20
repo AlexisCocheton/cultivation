@@ -42,7 +42,9 @@ func run() -> void:
 	game.deck_ui()
 	var menu = game.ui.get_child(0)
 	menu.inspect("Q01")
-	check(menu.get_node("Detail/Effects").text.contains("Voie : Non orthodoxe"),"Detailed card path")
+	check(menu.get_node("Detail/Way").text == "Non orthodoxe","Detailed card path badge")
+	check(menu.get_node("Detail/Effects").text == Cards.Effects.describe(Cards.catalog(game.calendar.ranks)["Q01"]).replace(" · ","\n"),"Detailed effects follow catalogue without duplicate path")
+	check(not menu.get_node("Detail/Effects").text.contains("Voie"),"Path is not repeated among effects")
 	menu.get_node("Detail").hide()
 	for tile in menu.get_node("Scroll/Grid").get_children():
 		check(tile.get_node("Card/Way").text == Cards.way_name(tile.get_node("Card").card_id),"Card badge")

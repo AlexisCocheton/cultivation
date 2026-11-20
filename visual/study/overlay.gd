@@ -50,9 +50,8 @@ func finish() -> void:
 	$Result.text += "\n" + game.calendar.relation_reward(resident,false)
 	$Continue.text = "Continuer"
 	if not gained.is_empty() and $RewardSlot.get_child_count() == 0:
-		var card = preload("res://visual/deck/tile.tscn").instantiate()
+		var card = preload("res://visual/study/reward_card.tscn").instantiate()
 		card.card_id = gained[0]
-		card.scale = Vector2(1.25,1.25)
 		card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$RewardSlot.add_child(card)
 

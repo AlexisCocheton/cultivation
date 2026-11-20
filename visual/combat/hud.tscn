@@ -1,5 +1,5 @@
 [gd_scene load_steps=14 format=3]
-[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="1"]
 [ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="2"]
 [ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="3"]
 [ext_resource type="Script" path="res://visual/combat/hud.gd" id="4"]
@@ -30,6 +30,13 @@ mouse_filter = 2
 theme = ExtResource("1")
 script = ExtResource("4")
 
+[node name="TitlePaper" type="Panel" parent="."]
+offset_left = 18.0
+offset_top = 7.0
+offset_right = 490.0
+offset_bottom = 73.0
+theme_type_variation = &"WidePanel"
+mouse_filter = 2
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
 offset_left = 30.0
@@ -38,8 +45,8 @@ offset_right = 460.0
 offset_bottom = 63.0
 text = "Duel avec Jun"
 theme_type_variation = &"Title"
-theme_override_font_sizes/font_size = 35
-theme_override_colors/font_color = Color(0.97,0.92,0.83,1)
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(0.18,0.14,0.11,1)
 
 [node name="Sound" type="Button" parent="."]
 theme_type_variation = &"SecondaryButton"
@@ -130,6 +137,7 @@ offset_bottom = 729.0
 text = "Fin du tour"
 
 [node name="Leave" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
 layout_mode = 0
 offset_left = 1057.0
 offset_top = 751.0

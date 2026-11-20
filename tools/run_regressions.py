@@ -9,7 +9,7 @@ def main():
     results = []
     for name in TESTS:
         try:
-            process = subprocess.run([str(ROOT / "tools/godot/Godot_v4.4.1-stable_win64_console.exe"), "--headless", "--path", str(ROOT), "--script", f"tests/{name}.gd"], cwd=ROOT, env=env, capture_output=True, timeout=60)
+            process = subprocess.run([str(ROOT / "tools/godot/Godot_v4.4.1-stable_win64_console.exe"), "--headless", "--audio-driver", "Dummy", "--path", str(ROOT), "--script", f"tests/{name}.gd"], cwd=ROOT, env=env, capture_output=True, timeout=60)
             exit_code = process.returncode
             log = (process.stdout + process.stderr).decode("utf-8", "replace")
             status = "pass" if process.returncode == 0 and "SCRIPT ERROR" not in log and "ERROR:" not in log else "failure"
@@ -23,5 +23,3 @@ def main():
     return int(any(item["status"] != "pass" for item in results))
 if __name__ == "__main__":
     sys.exit(main())
-
-

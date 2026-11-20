@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="Base"]
+[node name="RewardCard" instance=ExtResource("Base")]
+custom_minimum_size = Vector2(275,305)
+offset_right = 275.0
+offset_bottom = 305.0
+mouse_filter = 2
+[node name="Art" parent="." index="0"]
+offset_right = 266.0
+offset_bottom = 153.0
+[node name="ArtFrame" parent="." index="1"]
+offset_right = 266.0
+offset_bottom = 153.0
+[node name="Name" parent="." index="5"]
+offset_left = 12.0
+offset_top = 170.0
+offset_right = 263.0
+offset_bottom = 221.0
+theme_override_font_sizes/font_size = 25
+[node name="Effects" parent="." index="7"]
+offset_left = 15.0
+offset_top = 230.0
+offset_right = 260.0
+offset_bottom = 292.0
+theme_override_font_sizes/font_size = 19
+
+[node name="NameCartouche" parent="." index="4"]
+offset_left = 8.0
+offset_top = 169.0
+offset_right = 267.0
+offset_bottom = 222.0
+[node name="WayInk" parent="." index="10"]
+offset_left = 9.0
+offset_top = 135.0
+offset_right = 266.0
+offset_bottom = 161.0
+[node name="Way" parent="." index="11"]
+offset_left = 9.0
+offset_top = 135.0
+offset_right = 266.0
+offset_bottom = 161.0

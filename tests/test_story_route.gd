@@ -51,7 +51,20 @@ func run() -> void:
 	var original = game.calendar.snapshot()
 	game.companions_ui("L")
 	var browser = game.ui.get_child(game.ui.get_child_count()-1)
-	check(browser.get_node("Scroll/Grid").get_child_count() == 12,"Full companion deck")
+	var expected_deck = preload("res://game/team_battle.gd").COMPANION_DECKS["L"]
+	var shown_ids = []
+	var shown_total = 0
+	var catalog = game.Cards.catalog(game.calendar.ranks)
+	for tile in browser.get_node("Scroll/Grid").get_children():
+		check(not shown_ids.has(tile.card_id),"Companion card grouped once")
+		shown_ids.append(tile.card_id)
+		var count = int(tile.get_node("Count").text.trim_prefix("×"))
+		check(count == expected_deck.count(tile.card_id),"Companion copies match real deck")
+		shown_total += count
+		check(tile.get_node("Effects").text == game.Cards.Effects.compact_description(catalog[tile.card_id]),"Companion effects match ranked catalogue")
+		check(tile.get_node("Name").text == catalog[tile.card_id].name,"Companion card identity")
+	check(shown_total == 12 and shown_total == expected_deck.size(),"Full companion deck represented by copy counts")
+	for id in expected_deck: check(shown_ids.has(id),"Every companion card visible")
 	await capture("story-companions")
 	browser.inspect("L01")
 	check(browser.get_node("Detail").visible,"Card detail")

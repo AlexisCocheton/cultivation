@@ -30,7 +30,9 @@ func rebuild() -> void:
 		add_child(card)
 		card.setup(id,i,can_play(i),game.selected == i)
 		var arc = (float(i)-(n-1)*0.5)/maxf(1,(n-1)*0.5)
-		card.home = Vector2(start+i*step,18+absf(arc)*14)
+		# Fit the complete rotated face and its shadow inside both 232px and 252px hands.
+		# At 5 degrees the 194x210 card + shadow reaches about 229px vertically.
+		card.home = Vector2(start+i*step,maxf(0,size.y-236)-absf(arc)*2)
 		card.home_angle = deg_to_rad(arc*5)
 		card.position = card.home
 		card.rotation = card.home_angle

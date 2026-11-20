@@ -1,6 +1,9 @@
 extends Control
 
 func setup(game) -> void:
+	$Paper/Date.text = "Jour %d · %s" % [game.calendar.day(),["Matin","Après-midi","Soir"][game.calendar.period()]]
+	$Close.pressed.connect(game.hub)
+	$Paper/Back.grab_focus()
 	$ControlsButton.pressed.connect(func():
 		if not has_node("Controls"): add_child(preload("res://visual/settings/controls.tscn").instantiate()))
 	$Candidates.visible = not game.calendar.story.battle_report.is_empty()

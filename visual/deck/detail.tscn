@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3]
 [ext_resource type="Texture2D" path="res://visual/deck/seal.svg" id="Seal"]
-[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="Theme"]
-[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtWindow"]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="Theme"]
+[ext_resource type="Texture2D" path="res://assets/ui/oath/frame.png" id="ArtWindow"]
 [ext_resource type="Texture2D" path="res://visual/shared/status_frame.tres" id="NameFrame"]
 [node name="Detail" type="Control"]
 visible = false
@@ -15,71 +15,71 @@ theme = ExtResource("Theme")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.025,0.03,0.035,0.83)
+color = Color(0.025,0.03,0.035,0.9)
 mouse_filter = 0
 [node name="Paper" type="Panel" parent="."]
-offset_left = 420.0
-offset_top = 38.0
-offset_right = 860.0
-offset_bottom = 724.0
+offset_left = 250.0
+offset_top = 30.0
+offset_right = 770.0
+offset_bottom = 795.0
 mouse_filter = 0
 [node name="Art" type="TextureRect" parent="."]
-offset_left = 440.0
-offset_top = 58.0
-offset_right = 840.0
-offset_bottom = 300.0
+offset_left = 272.0
+offset_top = 52.0
+offset_right = 748.0
+offset_bottom = 369.0
 expand_mode = 1
 stretch_mode = 6
 texture_filter = 2
 mouse_filter = 2
 [node name="ArtFrame" type="TextureRect" parent="."]
-offset_left = 430.0
-offset_top = 48.0
-offset_right = 850.0
-offset_bottom = 310.0
+offset_left = 265.0
+offset_top = 45.0
+offset_right = 755.0
+offset_bottom = 376.0
 texture = ExtResource("ArtWindow")
 expand_mode = 1
 mouse_filter = 2
 
 [node name="Seal" type="TextureRect" parent="."]
-offset_left = 445.0
-offset_top = 63.0
-offset_right = 517.0
-offset_bottom = 135.0
+offset_left = 279.0
+offset_top = 59.0
+offset_right = 351.0
+offset_bottom = 131.0
 texture = ExtResource("Seal")
 expand_mode = 1
 mouse_filter = 2
 [node name="Cost" type="Label" parent="."]
-offset_left = 445.0
-offset_top = 73.0
-offset_right = 517.0
-offset_bottom = 123.0
+offset_left = 279.0
+offset_top = 69.0
+offset_right = 351.0
+offset_bottom = 119.0
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 34
 theme_override_colors/font_color = Color(1,1,1,1)
 mouse_filter = 2
 [node name="Way" type="Label" parent="."]
-offset_left = 440.0
-offset_top = 310.0
-offset_right = 840.0
-offset_bottom = 340.0
+offset_left = 280.0
+offset_top = 463.0
+offset_right = 740.0
+offset_bottom = 493.0
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 19
 mouse_filter = 2
 [node name="NameCartouche" type="TextureRect" parent="."]
-offset_left = 437.0
-offset_top = 350.0
-offset_right = 843.0
-offset_bottom = 426.0
+offset_left = 270.0
+offset_top = 386.0
+offset_right = 750.0
+offset_bottom = 458.0
 texture = ExtResource("NameFrame")
 expand_mode = 1
 mouse_filter = 2
 
 [node name="Name" type="Label" parent="."]
-offset_left = 440.0
-offset_top = 352.0
-offset_right = 840.0
-offset_bottom = 424.0
+offset_left = 284.0
+offset_top = 390.0
+offset_right = 736.0
+offset_bottom = 452.0
 theme_type_variation = &"Title"
 theme_override_font_sizes/font_size = 31
 autowrap_mode = 2
@@ -95,18 +95,57 @@ offset_bottom = 436.0
 color = Color(0.5,0.2,0.15,0.65)
 mouse_filter = 2
 [node name="Effects" type="Label" parent="."]
-offset_left = 451.0
-offset_top = 451.0
-offset_right = 829.0
-offset_bottom = 705.0
+offset_left = 286.0
+offset_top = 513.0
+offset_right = 734.0
+offset_bottom = 765.0
 autowrap_mode = 2
 theme_override_font_sizes/font_size = 20
-vertical_alignment = 1
+vertical_alignment = 0
 mouse_filter = 2
 [node name="Close" type="Button" parent="."]
 theme_type_variation = &"SecondaryButton"
-offset_left = 510.0
-offset_top = 746.0
-offset_right = 770.0
-offset_bottom = 802.0
-text = "Fermer"
+offset_left = 1140.0
+offset_top = 32.0
+offset_right = 1224.0
+offset_bottom = 86.0
+text = "×"
+tooltip_text = "Fermer"
+
+[node name="ContextShade" type="ColorRect" parent="."]
+visible = false
+offset_left = 794.0
+offset_top = 244.0
+offset_right = 1224.0
+offset_bottom = 580.0
+color = Color(0.045,0.055,0.05,0.9)
+mouse_filter = 2
+[node name="ContextFrame" type="TextureRect" parent="."]
+visible = false
+offset_left = 794.0
+offset_top = 244.0
+offset_right = 1224.0
+offset_bottom = 580.0
+texture = ExtResource("ArtWindow")
+expand_mode = 1
+mouse_filter = 2
+[node name="Context" type="Label" parent="."]
+visible = false
+offset_left = 822.0
+offset_top = 267.0
+offset_right = 1202.0
+offset_bottom = 465.0
+theme_override_colors/font_color = Color(0.96,0.92,0.82,1)
+theme_override_font_sizes/font_size = 23
+autowrap_mode = 2
+mouse_filter = 2
+[node name="ContextCost" type="Label" parent="."]
+visible = false
+offset_left = 822.0
+offset_top = 495.0
+offset_right = 1122.0
+offset_bottom = 560.0
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.63,0.83,0.72,1)
+mouse_filter = 2

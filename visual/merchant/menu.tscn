@@ -1,10 +1,17 @@
-[gd_scene load_steps=7 format=3]
-[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[gd_scene load_steps=12 format=3]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="1"]
 [ext_resource type="Script" path="res://visual/merchant/menu.gd" id="2"]
 [ext_resource type="Texture2D" path="res://assets/events/merchant-chibi.png" id="3"]
-[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://visual/merchant/tile.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
 [ext_resource type="PackedScene" path="res://visual/shared/illustrated_scene.tscn" id="Illustrated"]
+[ext_resource type="Texture2D" path="res://assets/ui/merchant/sidebar.png" id="Sidebar"]
+[ext_resource type="Texture2D" path="res://assets/ui/activities/strict/paper.png" id="PaperArt"]
+[ext_resource type="Texture2D" path="res://visual/activities/recap_row.tres" id="ThinFrame"]
+[sub_resource type="StyleBoxTexture" id="Page"]
+texture = ExtResource("PaperArt")
+[sub_resource type="StyleBoxTexture" id="Box"]
+texture = ExtResource("ThinFrame")
 [node name="Merchant" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -21,32 +28,33 @@ offset_bottom = 832.0
 color = Color(0.03,0.025,0.03,0.72)
 
 [node name="Paper" type="Panel" parent="."]
-offset_left = 30.0
-offset_top = 25.0
-offset_right = 1250.0
-offset_bottom = 807.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 832.0
 mouse_filter = 2
+theme_override_styles/panel = SubResource("Page")
 
 [node name="Title" type="Label" parent="."]
-offset_left = 76.0
-offset_top = 47.0
-offset_right = 1176.0
-offset_bottom = 112.0
+offset_left = 330.0
+offset_top = 25.0
+offset_right = 1235.0
+offset_bottom = 97.0
 text = "Le marchand de passage"
 mouse_filter = 2
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 43
+theme_override_font_sizes/font_size = 48
 theme_type_variation = &"Title"
 
 [node name="Date" type="Label" parent="."]
-offset_left = 80.0
-offset_top = 120.0
-offset_right = 1180.0
-offset_bottom = 160.0
+offset_left = 335.0
+offset_top = 105.0
+offset_right = 1235.0
+offset_bottom = 141.0
 text = ""
 mouse_filter = 2
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 21
 
 
 [node name="Rule" type="ColorRect" parent="."]
@@ -56,6 +64,7 @@ offset_right = 1200.0
 offset_bottom = 176.0
 color = Color(0.3,0.2,0.15,0.4)
 mouse_filter = 2
+visible = false
 
 [node name="Words" type="Label" parent="."]
 offset_left = 80.0
@@ -66,30 +75,31 @@ text = ""
 mouse_filter = 2
 autowrap_mode = 2
 theme_override_font_sizes/font_size = 21
-
+visible = false
 
 [node name="Portrait" parent="." instance=ExtResource("Illustrated")]
 offset_left = 40.0
 offset_top = 325.0
 offset_right = 415.0
 offset_bottom = 585.0
+visible = false
 
 [node name="Gift" type="Label" parent="."]
-offset_left = 80.0
-offset_top = 605.0
-offset_right = 395.0
-offset_bottom = 720.0
+offset_left = 30.0
+offset_top = 647.0
+offset_right = 294.0
+offset_bottom = 735.0
 text = ""
 mouse_filter = 2
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 
 
 [node name="Cards" type="HBoxContainer" parent="."]
-offset_left = 424.0
-offset_top = 220.0
-offset_right = 1230.0
-offset_bottom = 450.0
+offset_left = 330.0
+offset_top = 160.0
+offset_right = 1220.0
+offset_bottom = 490.0
 theme_override_constants/separation = 10
 
 [node name="Q01" parent="Cards" instance=ExtResource("4")]
@@ -105,54 +115,103 @@ card_id = "Q03"
 card_id = "Q04"
 
 [node name="Selection" type="Label" parent="."]
-offset_left = 440.0
-offset_top = 480.0
-offset_right = 1200.0
-offset_bottom = 590.0
+offset_left = 795.0
+offset_top = 541.0
+offset_right = 1212.0
+offset_bottom = 626.0
 text = ""
 mouse_filter = 2
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 17
 
 
 [node name="Buy" type="Button" parent="."]
-offset_left = 435.0
-offset_top = 605.0
-offset_right = 1205.0
-offset_bottom = 663.0
+offset_left = 730.0
+offset_top = 665.0
+offset_right = 1220.0
+offset_bottom = 719.0
 text = "Acheter"
+theme_override_font_sizes/font_size = 24
 
 [node name="Receipt" type="Label" parent="."]
-offset_left = 440.0
-offset_top = 675.0
-offset_right = 1200.0
-offset_bottom = 729.0
+offset_left = 330.0
+offset_top = 632.0
+offset_right = 1220.0
+offset_bottom = 660.0
 text = ""
 mouse_filter = 2
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 17
 
 
 [node name="Back" type="Button" parent="."]
 theme_type_variation = &"SecondaryButton"
-offset_left = 80.0
-offset_top = 742.0
-offset_right = 360.0
-offset_bottom = 790.0
+offset_left = 30.0
+offset_top = 761.0
+offset_right = 294.0
+offset_bottom = 809.0
 text = "Retour à la cour"
+theme_override_font_sizes/font_size = 23
 
 [node name="Skip" type="Button" parent="."]
-offset_left = 390.0
-offset_top = 742.0
-offset_right = 840.0
-offset_bottom = 790.0
+offset_left = 330.0
+offset_top = 761.0
+offset_right = 804.0
+offset_bottom = 809.0
 text = "Échanger sans achat · 1 période"
+theme_type_variation = &"SecondaryButton"
+theme_override_font_sizes/font_size = 22
 
 [node name="Deck" type="Button" parent="."]
-offset_left = 900.0
-offset_top = 742.0
-offset_right = 1200.0
-offset_bottom = 790.0
+offset_left = 865.0
+offset_top = 761.0
+offset_right = 1220.0
+offset_bottom = 809.0
 text = "Composer mon deck"
+theme_type_variation = &"SecondaryButton"
+theme_override_font_sizes/font_size = 23
 
 [node name="PaintedDecoration" parent="Paper" instance=ExtResource("PaintedDecor")]
+visible = false
+
+
+[node name="Sidebar" type="TextureRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 315.0
+offset_bottom = 635.0
+texture = ExtResource("Sidebar")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+[node name="EquippedBox" type="Panel" parent="."]
+offset_left = 330.0
+offset_top = 511.0
+offset_right = 748.0
+offset_bottom = 628.0
+theme_override_styles/panel = SubResource("Box")
+mouse_filter = 2
+[node name="Equipped" type="Label" parent="."]
+offset_left = 348.0
+offset_top = 523.0
+offset_right = 728.0
+offset_bottom = 617.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 20
+mouse_filter = 2
+[node name="SelectedBox" type="Panel" parent="." index="10"]
+offset_left = 773.0
+offset_top = 511.0
+offset_right = 1225.0
+offset_bottom = 628.0
+theme_override_styles/panel = SubResource("Box")
+mouse_filter = 2
+[node name="SelectedHeading" type="Label" parent="."]
+offset_left = 795.0
+offset_top = 515.0
+offset_right = 1205.0
+offset_bottom = 544.0
+text = "Choisi"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 23
+mouse_filter = 2

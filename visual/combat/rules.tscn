@@ -1,0 +1,150 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Theme" path="res://visual/activities/theme.tres" id="Theme"]
+[ext_resource type="Script" path="res://visual/combat/rules.gd" id="Script"]
+[ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="Card"]
+[ext_resource type="Texture2D" path="res://assets/ui/oath/frame.png" id="Frame"]
+[node name="HelpPaper" type="Control"]
+z_index = 100
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("Theme")
+script = ExtResource("Script")
+[node name="Shade" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.025,0.03,0.03,0.82)
+[node name="Paper" type="Panel" parent="."]
+offset_left = 100.0
+offset_top = 45.0
+offset_right = 1180.0
+offset_bottom = 790.0
+[node name="Title" type="Label" parent="."]
+offset_left = 145.0
+offset_top = 69.0
+offset_right = 500.0
+offset_bottom = 133.0
+text = "Règles du combat"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 36
+[node name="Sections" type="VBoxContainer" parent="."]
+offset_left = 137.0
+offset_top = 160.0
+offset_right = 354.0
+offset_bottom = 600.0
+theme_override_constants/separation = 16
+[node name="Turns" type="Button" parent="Sections"]
+focus_previous = NodePath("../../Close")
+focus_next = NodePath("../Intents")
+layout_mode = 2
+custom_minimum_size = Vector2(217,58)
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+text = "Tours"
+[node name="Intents" type="Button" parent="Sections"]
+focus_previous = NodePath("../Turns")
+focus_next = NodePath("../Guard")
+layout_mode = 2
+custom_minimum_size = Vector2(217,58)
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+text = "Intentions"
+[node name="Guard" type="Button" parent="Sections"]
+focus_previous = NodePath("../Intents")
+focus_next = NodePath("../Poison")
+layout_mode = 2
+custom_minimum_size = Vector2(217,58)
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+text = "Garde"
+[node name="Poison" type="Button" parent="Sections"]
+focus_previous = NodePath("../Guard")
+focus_next = NodePath("../Pill")
+layout_mode = 2
+custom_minimum_size = Vector2(217,58)
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+text = "Poison"
+[node name="Pill" type="Button" parent="Sections"]
+focus_previous = NodePath("../Poison")
+focus_next = NodePath("../Outcome")
+layout_mode = 2
+custom_minimum_size = Vector2(217,58)
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+text = "Pilule"
+[node name="Outcome" type="Button" parent="Sections"]
+focus_previous = NodePath("../Pill")
+focus_next = NodePath("../../Close")
+layout_mode = 2
+custom_minimum_size = Vector2(217,58)
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+text = "Issue"
+[node name="Heading" type="Label" parent="."]
+offset_left = 410.0
+offset_top = 154.0
+offset_right = 1125.0
+offset_bottom = 210.0
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 31
+[node name="Body" type="RichTextLabel" parent="."]
+offset_left = 410.0
+offset_top = 225.0
+offset_right = 1125.0
+offset_bottom = 406.0
+selection_enabled = true
+scroll_active = true
+theme_override_font_sizes/normal_font_size = 22
+[node name="Example" type="Label" parent="."]
+offset_left = 430.0
+offset_top = 461.0
+offset_right = 1105.0
+offset_bottom = 610.0
+autowrap_mode = 2
+vertical_alignment = 1
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.35,0.15,0.1,1)
+[node name="Examples" type="Control" parent="."]
+visible = false
+mouse_filter = 2
+[node name="GuardCard" parent="Examples" instance=ExtResource("Card")]
+offset_left = 458.0
+offset_top = 432.0
+offset_right = 652.0
+offset_bottom = 642.0
+card_id = "B02"
+mouse_filter = 2
+[node name="MixedCard" parent="Examples" instance=ExtResource("Card")]
+offset_left = 850.0
+offset_top = 432.0
+offset_right = 1044.0
+offset_bottom = 642.0
+card_id = "J01"
+mouse_filter = 2
+[node name="GuardTarget" type="Label" parent="Examples"]
+offset_left = 426.0
+offset_top = 651.0
+offset_right = 684.0
+offset_bottom = 685.0
+text = "Vers un allié choisi"
+horizontal_alignment = 1
+[node name="MixedTarget" type="Label" parent="Examples"]
+offset_left = 818.0
+offset_top = 651.0
+offset_right = 1076.0
+offset_bottom = 685.0
+text = "Protection du lanceur"
+horizontal_alignment = 1
+[node name="Words" type="RichTextLabel" parent="."]
+visible = false
+text = "Chaque disciple a sa main et son qi. Choisis son portrait pour jouer en premier. Après une carte jouée, termine son tour avant de changer.\n\nÉpée : attaque ; bouclier : garde ; goutte verte : poison. La tête chibi indique la cible. Survole pour lire les détails.\n\nGarde seule : allié choisi. Attaque et garde : protection du lanceur. Après les trois tours : protections, enduit, attaques ennemies, puis poison. Une action vers une cible hors combat est annulée. La garde ennemie dure pendant ta prochaine phase de cartes.\n\nDagues enduites : 9 dégâts directs + 9 poison par coup, cumulable sans plafond. La garde ne bloque pas le poison. Fin de manche : dégâts ignorant la garde, puis poison −1.\n\nPilule unique : le dernier rival retrouve tous ses PV et gagne +50 % d'attaque. Il récupère cette manche et ses nouvelles intentions sont annoncées pour la suivante.\n\nVictoire : trois ennemis hors combat. Défaite : recrue hors combat. Ce laboratoire ne touche pas à ta sauvegarde."
+[node name="Close" type="Button" parent="."]
+focus_previous = NodePath("../Sections/Outcome")
+focus_next = NodePath("../Sections/Turns")
+offset_left = 482.0
+offset_top = 714.0
+offset_right = 1096.0
+offset_bottom = 766.0
+text = "Retour au combat"

@@ -18,10 +18,12 @@ func setup(controller) -> void:
 	$Detail/Close.pressed.connect(close_detail)
 	$Detail/Dim.gui_input.connect(func(event):
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT: close_detail())
-	var ways = ["","orthodox","unorthodox","demonic"]
+	var ways = ["","base","orthodox","unorthodox","demonic"]
 	for i in range(ways.size()):
 		var way: String = ways[i]
 		$Filters.get_child(i).pressed.connect(func(): filter_way = way; refresh())
+	$Search.text_changed.connect(func(_text): refresh())
+	$Sort.item_selected.connect(func(_index): refresh())
 	refresh()
 
 func equipment() -> Dictionary:
@@ -64,8 +66,13 @@ func refresh() -> void:
 	clear_children($Scroll/Grid)
 	clear_children($DeckScroll/Rows)
 	var catalog = Cards.catalog(game.calendar.ranks)
-	for id in game.calendar.collection:
-		if filter_way != "" and catalog[id].way != filter_way: continue
+	var visible_cards: Array = game.calendar.collection.duplicate()
+	if $Sort.selected == 1: visible_cards.sort_custom(func(a,b): return String(catalog[a].name).naturalnocasecmp_to(catalog[b].name) < 0)
+	if $Sort.selected == 2: visible_cards.sort_custom(func(a,b): return catalog[a].cost < catalog[b].cost if catalog[a].cost != catalog[b].cost else String(a) < String(b))
+	for id in visible_cards:
+		if filter_way == "base" and not id.begins_with("B"): continue
+		if filter_way not in ["","base"] and catalog[id].way != filter_way: continue
+		if not $Search.text.strip_edges().is_empty() and not String(catalog[id].name).to_lower().contains($Search.text.strip_edges().to_lower()): continue
 		var card_id: String = id
 		var item = Item.instantiate()
 		item.get_node("Card").card_id = id
@@ -102,7 +109,8 @@ func refresh() -> void:
 		row.get_node("Remove").disabled = game.calendar.complete
 		row.get_node("Remove").pressed.connect(func(): remove_card(card_id))
 	$Empty.visible = $Scroll/Grid.get_child_count() == 0
-	$Count.text = "%d cartes" % draft.size()
+	$Count.text = "%d/20" % draft.size()
+	$Modified.visible = draft != game.calendar.deck
 	$Capacity.value = draft.size()
 	$Summary.text = "Coût moyen %.1f qi\nAttaque %d · Garde %d · Pioche %d" % [float(total_cost)/maxi(1,draft.size()),attacks,guards,draws]
 	$Summary.tooltip_text = "Nombre de cartes par effet ; une carte peut compter dans plusieurs catégories."
@@ -111,7 +119,7 @@ func refresh() -> void:
 	$Save.disabled = error != "" or committing
 	$Save.tooltip_text = error
 	$Error.text = error
-	var ways = ["","orthodox","unorthodox","demonic"]
+	var ways = ["","base","orthodox","unorthodox","demonic"]
 	for i in range(ways.size()): $Filters.get_child(i).button_pressed = filter_way == ways[i]
 	$Scroll.set_deferred("scroll_vertical",scroll_position)
 	$DeckScroll.set_deferred("scroll_vertical",deck_scroll)
@@ -120,10 +128,23 @@ func inspect(id: String) -> void:
 	inspection_focus = get_viewport().gui_get_focus_owner()
 	game.inspected_card = id
 	$Detail/Name.text = Cards.catalog(game.calendar.ranks)[id].name
-	$Detail/Effects.text = Cards.description(id,game.calendar.ranks)
+	$Detail/Effects.text = Cards.Effects.describe(Cards.catalog(game.calendar.ranks)[id]).replace(" · ","\n")
 	$Detail/Art.texture = TileScript.illustration(id)
 	$Detail/Cost.text = str(Cards.catalog(game.calendar.ranks)[id].cost)
 	$Detail/Way.text = Cards.way_name(id)
+	var source = "Technique de base"
+	if id.begins_with("L"): source = "Enseignement de Lian"
+	elif id.begins_with("J"): source = "Enseignement de Jun"
+	elif id.begins_with("H"): source = "Enseignement de Shen"
+	elif id.begins_with("Q") or id.begins_with("O"): source = "Équipement"
+	elif id.begins_with("E"): source = "Événement"
+	$Detail/Context.text = "%s\n\nDans le deck : %d\nTaille du deck : %d" % [source,draft.count(id),draft.size()]
+	var data: Dictionary = Cards.catalog(game.calendar.ranks)[id]
+	var effective_cost: int = data.cost
+	for effect in data.effects:
+		if effect.kind == "cost_if_deck" and draft.size() >= int(effect.threshold): effective_cost = int(effect.amount)
+	$Detail/ContextCost.text = "%d Qi" % effective_cost
+	for node in ["ContextShade","ContextFrame","Context","ContextCost"]: $Detail.get_node(node).show()
 	$Detail.show()
 	$Detail/Close.grab_focus()
 

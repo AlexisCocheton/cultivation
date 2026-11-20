@@ -681,7 +681,8 @@ func story_ui(page: String) -> void:
 	mode = "story"
 	player.walking = false
 	clear_ui()
-	var screen = preload("res://visual/story/panel.tscn").instantiate()
+	var scene = preload("res://visual/story/invitations.tscn") if page == "invite" else preload("res://visual/story/panel.tscn")
+	var screen = scene.instantiate()
 	ui.add_child(screen)
 	screen.setup(self,page)
 

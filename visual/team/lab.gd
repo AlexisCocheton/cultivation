@@ -27,7 +27,7 @@ func _ready() -> void:
 	$Restart.pressed.connect(restart)
 	$Cancel.pressed.connect(cancel_selection)
 	$Help.pressed.connect(func(): $HelpPaper.show())
-	$HelpPaper/Close.pressed.connect(func(): $HelpPaper.hide())
+	$HelpPaper/Close.pressed.connect(func(): $HelpPaper.hide(); $Help.grab_focus())
 	$Quit.pressed.connect(leave)
 	$Continue.pressed.connect(finish_campaign)
 	for i in range(6):

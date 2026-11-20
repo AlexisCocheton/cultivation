@@ -1,5 +1,11 @@
 [
   {
+    "test": "test_hub_composition",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nHUB TEST: PASS\r\n"
+  },
+  {
     "test": "test_activities_menu",
     "status": "pass",
     "exit_code": 0,
@@ -51,7 +57,7 @@
     "test": "test_card_ways",
     "status": "pass",
     "exit_code": 0,
-    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCARD WAYS: 101 checks, 0 failures\r\n"
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nCARD WAYS: 103 checks, 0 failures\r\n"
   },
   {
     "test": "test_combat_ui",
@@ -99,7 +105,7 @@
     "test": "test_story_route",
     "status": "pass",
     "exit_code": 0,
-    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nStory route: 26 checks passed\r\n"
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nStory route: 82 checks passed\r\n"
   },
   {
     "test": "test_day7_territory",

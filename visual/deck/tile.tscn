@@ -3,7 +3,7 @@
 [ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="2"]
 [ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="3"]
 [ext_resource type="Texture2D" path="res://visual/deck/seal.svg" id="4"]
-[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtWindow"]
+[ext_resource type="Texture2D" path="res://assets/ui/oath/frame.png" id="ArtWindow"]
 [ext_resource type="Texture2D" path="res://visual/shared/status_frame.tres" id="NameFrame"]
 [sub_resource type="StyleBoxFlat" id="Selection"]
 bg_color = Color(0,0,0,0)
@@ -11,7 +11,7 @@ border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.8,0.12,0.12,1)
+border_color = Color(0.20,0.42,0.30,1)
 [sub_resource type="StyleBoxTexture" id="Paper"]
 texture = ExtResource("3")
 texture_margin_left = 0.0

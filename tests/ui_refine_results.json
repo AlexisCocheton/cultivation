@@ -1,0 +1,26 @@
+[
+  {
+    "script": "tools/capture_deck_refine.gd",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\nOpenGL API 3.3.0 NVIDIA 616.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU\r\n\r\nDECK REFINE PASS: search/base/empty/draft/inspection; 6 captures\r\n"
+  },
+  {
+    "script": "tools/capture_resident_refine.gd",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\nOpenGL API 3.3.0 NVIDIA 616.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU\r\n\r\nRESIDENT UI PASS: 16 captures, remap cancel, confirm cancel, expressions, isolated profile\r\n"
+  },
+  {
+    "script": "tools/capture_combat_refine.gd",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\nOpenGL API 3.3.0 NVIDIA 616.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU\r\n\r\nCOMBAT UI PASS: 16 captures, six exact rule sections, campaign text, close, no game rule mutation\r\n"
+  },
+  {
+    "script": "tests/test_ui_refinement.gd",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\nOpenGL API 3.3.0 NVIDIA 616.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU\r\n\r\nUI REFINEMENT PASS: merchant two sizes, insufficient reserves; isolated\r\n"
+  }
+]

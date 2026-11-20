@@ -117,3 +117,5 @@ PeriodQuiet/base_type = &"Label"
 PeriodQuiet/fonts/font = ExtResource("Title")
 PeriodQuiet/colors/font_color = Color(0.28,0.24,0.18,1)
 PeriodQuiet/styles/normal = SubResource("PeriodQuietBg")
+
+SecondaryButton/styles/disabled = SubResource("Secondary")

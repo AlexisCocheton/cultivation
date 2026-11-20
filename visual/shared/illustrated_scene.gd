@@ -37,7 +37,7 @@ func present(key: String) -> void:
 			$People.texture = preload("res://assets/events/oath-chibi.png")
 		"candidates":
 			$Backdrop.texture = GATE
-			$People.visible = false
+			$People.texture = preload("res://assets/ui/events/aspirants.png")
 		_:
 			$People.texture = Art.texture(key)
 	update_frame()

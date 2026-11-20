@@ -2,7 +2,7 @@
 [ext_resource type="Script" path="res://visual/activities/summary_row.gd" id="Script"]
 [ext_resource type="Texture2D" path="res://visual/activities/recap_row.tres" id="Frame"]
 [ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="CardFrame"]
-[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtFrame"]
+[ext_resource type="Texture2D" path="res://assets/ui/oath/frame.png" id="ArtFrame"]
 [ext_resource type="Texture2D" path="res://visual/activities/recap_wash.tres" id="Wash"]
 [sub_resource type="StyleBoxTexture" id="Paper"]
 texture = ExtResource("Frame")

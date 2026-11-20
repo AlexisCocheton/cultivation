@@ -5,7 +5,7 @@ var game
 
 func setup(controller) -> void:
 	game = controller
-	$Date.text = "Jour %d · %s · Lien avec Shen %d" % [game.calendar.day(),["Matin","Après-midi","Soir"][game.calendar.period()],game.calendar.ranks.H]
+	$Date.text = "Jour %d · %s" % [game.calendar.day(),["Matin","Après-midi","Soir"][game.calendar.period()]]
 	$Talk.pressed.connect(func(): game.talk(3))
 	$Person.pressed.connect(func(): game.talk(3))
 	$Gate.pressed.connect(game.hub)
@@ -20,6 +20,7 @@ func setup(controller) -> void:
 	if game.stage == CampaignSession.Stage.INTRODUCTION: reason = "Rejoins d'abord Lian au jardin."
 	if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 7."
 	$Study.disabled = reason != ""
+	$Availability.text = reason if reason != "" else "Lien %d / 5" % game.calendar.ranks.H
 	$Study.tooltip_text = reason if reason != "" else "Développer le lien avec Shen · une période"
 	$Study.pressed.connect(game.study_with_shen)
 

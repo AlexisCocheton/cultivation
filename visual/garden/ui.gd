@@ -15,6 +15,7 @@ func setup(controller) -> void:
 	if game.stage == CampaignSession.Stage.INTRODUCTION: reason = "Parle d'abord à Lian pour apprendre ta première technique."
 	if game.calendar.slot >= game.Progress.END_SLOT: reason = "Cette séquence est terminée à la fin du jour 7."
 	$Activity.disabled = reason != ""
+	$Availability.text = reason if reason != "" else "Lien %d / 5" % game.calendar.ranks.L
 	$Activity.tooltip_text = reason if reason != "" else "Partager le thé et progresser dans le lien · une période"
 	$Activity.pressed.connect(func(): game.resident_activity("L"))
 	$Effects.text = "Effets : " + ("doux" if game.reduced_motion else "oui")
