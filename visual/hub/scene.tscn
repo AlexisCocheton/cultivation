@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/courtyard.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/restored.png" id="2"]
+[ext_resource type="Shader" path="res://visual/hub/courtyard.gdshader" id="3"]
+[sub_resource type="ShaderMaterial" id="Wind"]
+shader = ExtResource("3")
+shader_parameter/restored = ExtResource("2")
+shader_parameter/restoration = Vector3(0,0,0)
+[node name="CourtyardScene" type="Node2D"]
+[node name="Background" type="Sprite2D" parent="."]
+material = SubResource("Wind")
+texture = ExtResource("1")
+centered = false
+scale = Vector2(0.807062,0.838710)

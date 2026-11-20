@@ -1,0 +1,38 @@
+{
+  "reference": "exec-71dc0899-7bdc-4407-906a-86f75306f38e.png",
+  "method": "Built-in image_gen, no paid API; source copies in art_sources/activities-strict; runtime assets in assets/ui/activities/strict",
+  "layers": {
+    "paper": {
+      "transparent_background": false,
+      "prompt": "Create ONLY the BACKGROUND PAPER AND ENVIRONMENT DECORATION layer of this exact approved game UI reference, landscape 16:10. Match the warm ivory subtle rice-paper watercolor texture, NOT orange rough parchment. Keep the delicate plum blossoms branch in upper left, distant ink mountains in upper middle, small watercolor bridge/pavilion scene in upper right, tiny floating petals. Leave the entire large center and bottom blank ivory paper for UI. REMOVE ALL characters, ALL lettering, ALL cards, ALL frames, ALL buttons, ALL icons, ALL numbers. Do not reproduce interface. Preserve exact restrained soft palette and composition of BACKGROUND only."
+    },
+    "lian": {
+      "transparent_background": true,
+      "prompt": "Recreate ONLY the large LEFT Lian character illustration from this exact reference as a standalone transparent layer. Match her face, brown eyes, brunette long half-up hair with golden hairpin and pale ribbon, dusty rose robe and cream collar, right-facing three-quarter profile, porcelain plum teacup held low at waist. Same close framing and graceful body proportions. Her head fills the upper half and torso lower half; hands and cup low right. Include the small plum branch overlapping at bottom left. Vertical 1:2 canvas, character fills width nearly to right edge, LEFT hair/robe may leave canvas like reference, head fully visible. No UI, no background, no paper rectangle, no writing, no card. Soft watercolor fringe fades to genuine transparency at bottom/right. Faithfully match this reference, not a redesign."
+    },
+    "card": {
+      "transparent_background": true,
+      "prompt": "Generate ONLY ONE empty activity card parchment frame closely matching the thin delicate gold frame of the six activity cards in reference. Landscape aspect 3:1. Quiet warm ivory center, delicate irregular DOUBLE ochre-gold pen outline 1-2px at displayed size, intricate tiny folded/floral ornamental corners, crisp but hand-painted linework. NO dark thick wood, NO heavy borders. Frame occupies 96% canvas, transparency outside. No imagery, characters, title, numbers, icons or labels inside. Empty center. Designed to display at 455x160."
+    },
+    "button": {
+      "transparent_background": true,
+      "prompt": "Generate ONE empty small secondary parchment button precisely like Retour/Bilan/Marchand buttons in bottom of reference. Aspect ratio 3:1. Ivory paper center, very fine antique gold double border, dark brown hairline external outline, gently angled decorative corner cutouts, subtle shadow. No text, no icons, no scene. NOT chunky wood. 96% canvas occupied. Genuine transparency outside. Faithfully reproduce reference craftsmanship."
+    },
+    "footer": {
+      "transparent_background": true,
+      "prompt": "Generate ONLY the very slim empty footer frame from bottom of reference. Landscape long strip aspect 3:1 (will be stretched horizontally). Thin double gold lines, fine ornate angular corner filigree, soft pale sage paper inside, small watercolor bamboo leaves tucked into far left and right corners. NO TEXT, NO BUTTONS, NO CLOCK ICON, NO other graphics. Empty center takes 85% width. Transparent exterior. Very delicate pen outlines. Intended as game UI footer background layer."
+    },
+    "title": {
+      "transparent_background": true,
+      "prompt": "Generate only the exact French title calligraphy 'Activités' inspired as faithfully as possible by the large title in reference: dramatic sweeping capital A, expressive confident dark brown ink brush strokes, elegant thin-thick contrast and slight rightward slant. Spelling exactly Activités with accent é. Single word on one horizontal line, with fine long organic double ink underline below it. No other text or ornaments or scene, genuine transparent background. Wide 3:1 canvas, title fills most canvas. It will serve as an isolated French display-title asset."
+    }
+  },
+  "scenes": {
+    "tea": "two chibi characters: the brunette male recruit in green and Lian in rose robes enjoying tea and cakes at a round stone garden table, circular moon gate and plum blossoms behind",
+    "training": "two chibi male martial artists, brunette recruit in green on left and black-haired Jun in navy robes on right, practicing with two straight coherent swords meeting crossed, courtyard behind",
+    "study": "brunette male chibi recruit in green and elderly white-haired Shen in cream robes reading an open book together at wooden table, brush pots, scroll shelves behind",
+    "work": "brunette male chibi recruit in green sweeping fallen plum petals with a straw broom in the stone courtyard",
+    "repair": "brunette male chibi recruit in green repairing a wooden beam with hand tools beside open wooden toolbox, old sect pavilion behind",
+    "rest": "brunette male chibi recruit in green sleeping comfortably seated under a plum tree, head resting on hand, small cloth bag and tranquil courtyard behind"
+  }
+}

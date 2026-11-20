@@ -16,6 +16,7 @@ func setup(controller) -> void:
 	host = controller
 	muted = host.muted
 	reduced_motion = host.reduced_motion
+	$Conversation/SceneLayers.set_reduced_motion(reduced_motion)
 	actors = [$EnemyMarker,$EnemyMarker,$EnemyMarker]
 	$Arena/Recruit.texture = Tile.illustration("B01")
 	$Conversation/Back.pressed.connect(leave_combat)

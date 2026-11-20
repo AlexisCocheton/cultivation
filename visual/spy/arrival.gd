@@ -7,6 +7,7 @@ var committing = false
 
 func setup(game) -> void:
 	host = game
+	$Portrait.present("spy")
 	$Continue.pressed.connect(advance)
 	show_line()
 

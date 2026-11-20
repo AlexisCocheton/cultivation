@@ -59,7 +59,7 @@ func run() -> void:
 	game.hub()
 	check(game.mode == "spy_arrival","Déclenchement depuis la cour")
 	var screen = game.ui.get_child(0)
-	check(screen.get_node("Portrait").texture != null,"Portrait validé chargé")
+	check(screen.get_node("Portrait/People").texture != null,"Portrait validé chargé")
 	if DisplayServer.get_name() != "headless":
 		await process_frame
 		await RenderingServer.frame_post_draw

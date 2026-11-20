@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3]
 [ext_resource type="Script" path="res://visual/team/lab.gd" id="1"]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="2"]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="2"]
 [ext_resource type="PackedScene" path="res://visual/team/unit.tscn" id="3"]
 [ext_resource type="Texture2D" path="res://assets/team/arena.png" id="4"]
 [ext_resource type="PackedScene" path="res://visual/team/hand.tscn" id="5"]
@@ -100,6 +100,7 @@ offset_right = 1255.0
 offset_bottom = 662.0
 text = "Fin du tour"
 [node name="Cancel" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
 offset_left = 1044.0
 offset_top = 670.0
 offset_right = 1255.0
@@ -107,6 +108,7 @@ offset_bottom = 712.0
 text = "Annuler le choix"
 theme_override_font_sizes/font_size = 20
 [node name="Restart" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
 offset_left = 1044.0
 offset_top = 779.0
 offset_right = 1255.0
@@ -120,6 +122,7 @@ offset_right = 1244.0
 offset_bottom = 638.0
 scale = Vector2(0.7,0.7)
 [node name="Result" type="Panel" parent="."]
+theme_type_variation = &"WidePanel"
 visible = false
 offset_left = 440.0
 offset_top = 520.0
@@ -149,6 +152,7 @@ expand_mode = 1
 stretch_mode = 5
 mouse_filter = 2
 [node name="EventPanel" type="Panel" parent="."]
+theme_type_variation = &"WidePanel"
 z_index = 80
 visible = false
 offset_left = 275.0
@@ -204,15 +208,18 @@ offset_left = 190.0
 offset_top = 150.0
 offset_right = 1090.0
 offset_bottom = 690.0
-[node name="Words" type="Label" parent="HelpPaper"]
+[node name="Words" type="RichTextLabel" parent="HelpPaper"]
+scroll_active = true
+selection_enabled = true
 offset_left = 35.0
 offset_top = 28.0
 offset_right = 865.0
 offset_bottom = 420.0
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/normal_font_size = 20
 text = "Chaque disciple a sa main et son qi. Choisis son portrait pour jouer en premier. Après une carte jouée, termine son tour avant de changer.\n\nÉpée : attaque ; bouclier : garde ; goutte verte : poison. La tête chibi indique la cible. Survole pour lire les détails.\n\nGarde seule : allié choisi. Attaque et garde : protection du lanceur. Après les trois tours : protections, enduit, attaques ennemies, puis poison. Une action vers une cible hors combat est annulée. La garde ennemie dure pendant ta prochaine phase de cartes.\n\nDagues enduites : 9 dégâts directs + 9 poison par coup, cumulable sans plafond. La garde ne bloque pas le poison. Fin de manche : dégâts ignorant la garde, puis poison −1.\n\nPilule unique : le dernier rival retrouve tous ses PV et gagne +50 % d'attaque. Il récupère cette manche et ses nouvelles intentions sont annoncées pour la suivante.\n\nVictoire : trois ennemis hors combat. Défaite : recrue hors combat. Ce laboratoire ne touche pas à ta sauvegarde."
 [node name="Close" type="Button" parent="HelpPaper"]
+theme_type_variation = &"SecondaryButton"
 offset_left = 290.0
 offset_top = 455.0
 offset_right = 610.0
@@ -319,6 +326,7 @@ text = "Liens au rang 5"
 tooltip_text = "Active les techniques améliorées pour toute l’équipe. Laboratoire uniquement."
 theme_override_font_sizes/font_size = 22
 [node name="Close" type="Button" parent="LabParty"]
+theme_type_variation = &"SecondaryButton"
 offset_left = 20.0
 offset_top = 390.0
 offset_right = 200.0

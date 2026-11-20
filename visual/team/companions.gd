@@ -9,6 +9,7 @@ func setup(controller, id: String) -> void:
 		$Tabs.get_child(i).pressed.connect(func(): present(resident))
 	present(id)
 func present(id: String) -> void:
+	$Portrait.present(id)
 	var c = game.calendar
 	$Title.text = {"J":"Jun","L":"Lian","H":"Shen"}[id] + " · Techniques"
 	$Info.text = "Lien %d / 5 · %s\n%s\nRang 2 : technique unique · Rang 3 : recrutement\nRang 4 : seconde technique · Rang 5 : les deux techniques améliorées pour vous deux" % [c.ranks[id],"Recruté" if c.recruited(id) else "Pas encore recruté",{"J":"Attaque et garde · Un rival qui couvre tes ouvertures.","L":"Enchaînements et protection · Préserve le groupe.","H":"Garde et croissance · Prépare les tours suivants."}[id]]

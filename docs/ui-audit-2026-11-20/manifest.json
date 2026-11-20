@@ -1,0 +1,302 @@
+[
+  {
+    "n": 1,
+    "title": "Cour centrale",
+    "slug": "cour",
+    "priority": "P1",
+    "note": "Rassembler jour, période et échéance du défi ; placer les accès près des lieux ; garder la cour visible.",
+    "source": "visual/hub/hud.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-96b07f1e-d81d-474e-974b-fccde9ed78af.png",
+    "file": "01-cour.png"
+  },
+  {
+    "n": 2,
+    "title": "Menu de la secte",
+    "slug": "menu",
+    "priority": "P1",
+    "note": "Hiérarchiser reprise, techniques et compagnons ; isoler Recommencer des actions courantes.",
+    "source": "visual/hub/menu.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-68be3870-90b9-47ca-9d14-db59aae9dfc2.png",
+    "file": "02-menu.png"
+  },
+  {
+    "n": 3,
+    "title": "Commandes",
+    "slug": "commandes",
+    "priority": "P2",
+    "note": "Rendre visibles la touche en cours de modification, les conflits et le retour aux valeurs par défaut.",
+    "source": "visual/settings/controls.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-cdb41fa4-d57e-43a6-ba80-9d482dfffb44.png",
+    "file": "03-commandes.png"
+  },
+  {
+    "n": 4,
+    "title": "Jardin de Lian",
+    "slug": "jardin",
+    "priority": "P1",
+    "note": "Distinguer conversation gratuite et activité payante en temps, sans couvrir le personnage.",
+    "source": "visual/garden/ui.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-3d20c314-9124-4fdb-b142-6110055caf3a.png",
+    "file": "04-jardin.png"
+  },
+  {
+    "n": 5,
+    "title": "Pavillon de Shen",
+    "slug": "pavillon",
+    "priority": "P1",
+    "note": "Rendre la disponibilité d’étude et son coût lisibles ; conserver le livre et le visage dégagés.",
+    "source": "visual/pavilion/ui.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-17c0b10a-e980-4754-88c6-ebb0b79e2044.png",
+    "file": "05-pavillon.png"
+  },
+  {
+    "n": 6,
+    "title": "Dialogue avec Jun",
+    "slug": "dialogue",
+    "priority": "P1",
+    "note": "Réduire la hauteur vide, rapprocher les réponses du texte et préparer historique/masquage du dialogue.",
+    "source": "visual/hub/dialogue.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-aac4e351-4e0b-4dbb-afbd-dfc16e74e76e.png",
+    "file": "06-dialogue.png"
+  },
+  {
+    "n": 7,
+    "title": "Composition du deck",
+    "slug": "deck",
+    "priority": "P1",
+    "note": "Ajouter Base, tri/recherche, quantités nettes et modifications non enregistrées ; conserver +/− et Enregistrer/Annuler.",
+    "source": "visual/deck/menu.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-8fedafad-fcf0-49ad-bd19-2d846f89381a.png",
+    "file": "07-deck.png"
+  },
+  {
+    "n": 8,
+    "title": "Inspection d’une carte",
+    "slug": "carte-detail",
+    "priority": "P1",
+    "note": "Afficher une vraie carte agrandie, sa source et ses mots-clés ; retour discret sans masquer l’illustration.",
+    "source": "visual/deck/detail.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-068b2a92-f487-402e-a9ce-a273c08cfa24.png",
+    "file": "08-carte-detail.png"
+  },
+  {
+    "n": 9,
+    "title": "Choix des activités",
+    "slug": "activites",
+    "priority": "P1",
+    "note": "Montrer la période consommée, les disponibilités et les occasions concurrentes avant de confirmer.",
+    "source": "visual/activities/menu.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-8c09e015-4553-4c16-9eaa-28bbe214513e.png",
+    "file": "09-activites.png"
+  },
+  {
+    "n": 10,
+    "title": "Bilan de journée",
+    "slug": "bilan",
+    "priority": "P1",
+    "note": "Montrer les gains du jour plutôt que seulement l’état total ; rendre le passage au lendemain explicite.",
+    "source": "visual/activities/menu.tscn populate_summary",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-1cd85240-52f4-4cad-a418-dea80b9e732c.png",
+    "file": "10-bilan.png"
+  },
+  {
+    "n": 11,
+    "title": "Choix du serment",
+    "slug": "serment",
+    "priority": "P1",
+    "note": "Présenter les deux techniques en cartes complètes, avec un choix exclusif explicite et une confirmation.",
+    "source": "visual/activities/menu.tscn populate_event",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-6095eb85-ea33-435e-a1aa-8984fd55ef66.png",
+    "file": "11-serment.png"
+  },
+  {
+    "n": 12,
+    "title": "Marchand et équipements",
+    "slug": "marchand",
+    "priority": "P1",
+    "note": "Comparer l’équipement choisi à celui porté et distinguer acquisition, équipement et coût en période.",
+    "source": "visual/merchant/menu.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-c38a9cc8-3ea3-44ad-b861-59f9a1de489a.png",
+    "file": "12-marchand.png"
+  },
+  {
+    "n": 13,
+    "title": "Fiche d’un compagnon",
+    "slug": "compagnons",
+    "priority": "P1",
+    "note": "Remplacer le bloc de texte par une progression de lien visuelle et un deck regroupé par quantités.",
+    "source": "visual/team/companions.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-a3d51439-88e9-43cf-b8b4-dd8c3dd0a0c4.png",
+    "file": "13-compagnons.png"
+  },
+  {
+    "n": 14,
+    "title": "Préparation du tournoi",
+    "slug": "equipe",
+    "priority": "P1",
+    "note": "Montrer la recrue fixe et deux places de compagnons, leurs rôles et la raison d’un verrouillage.",
+    "source": "visual/team/encounter.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-08a4585f-a44e-46b8-a6b2-04b644687e4f.png",
+    "file": "14-equipe.png"
+  },
+  {
+    "n": 15,
+    "title": "Duel",
+    "slug": "duel",
+    "priority": "P1",
+    "note": "Garder exactement les mêmes composants de carte, Qi, garde et intention que le combat en équipe.",
+    "source": "visual/combat/hud.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-698e0e72-a64d-4413-9410-30e0bbf9aa78.png",
+    "file": "15-duel.png"
+  },
+  {
+    "n": 16,
+    "title": "Combat en équipe",
+    "slug": "combat-equipe",
+    "priority": "P1",
+    "note": "Clarifier personnage actif, tours terminés, cibles et statuts ; laisser la main et le Qi dominer les commandes.",
+    "source": "visual/team/lab.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-c0739dbb-05a1-4eeb-b062-606afb931048.png",
+    "file": "16-combat-equipe.png"
+  },
+  {
+    "n": 17,
+    "title": "Technique acquise",
+    "slug": "recompense",
+    "priority": "P1",
+    "note": "Montrer la carte entière et proposer une action claire pour l’ajouter au deck, sans laisser croire qu’elle est équipée.",
+    "source": "visual/combat/reward.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-caca27d7-b13c-46e2-85a5-c96285bd5010.png",
+    "file": "17-recompense.png"
+  },
+  {
+    "n": 18,
+    "title": "Résultat du duel",
+    "slug": "resultat",
+    "priority": "P2",
+    "note": "Séparer résultat, conséquence et action suivante ; éviter les longs paragraphes après chaque entraînement.",
+    "source": "visual/combat/result.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-c1792190-69d6-419c-a9df-65f8a0d6675c.png",
+    "file": "18-resultat.png"
+  },
+  {
+    "n": 19,
+    "title": "Étude chibi",
+    "slug": "chibi-etude",
+    "priority": "P2",
+    "note": "Faire de l’animation une courte transition, avec coût et résultat clairement séparés et possibilité d’abréger.",
+    "source": "visual/study/overlay.tscn Shen",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-0bfed0f9-b625-4f48-89a3-468b5bd42d46.png",
+    "file": "19-chibi-etude.png"
+  },
+  {
+    "n": 20,
+    "title": "Entraînement chibi",
+    "slug": "chibi-jun",
+    "priority": "P2",
+    "note": "Garder les mêmes repères que l’étude ; mettre les poses et les armes au centre, sans texte répétitif.",
+    "source": "visual/study/overlay.tscn Jun",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-1dc7e0fc-3e83-4172-9439-d7a0e2fb2b33.png",
+    "file": "20-chibi-jun.png"
+  },
+  {
+    "n": 21,
+    "title": "Thé chibi avec Lian",
+    "slug": "chibi-lian",
+    "priority": "P2",
+    "note": "Donner sa personnalité à l’activité tout en réutilisant le même écran de résultat.",
+    "source": "visual/study/overlay.tscn Lian",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-191973f1-324d-4b52-9ede-5d242c378676.png",
+    "file": "21-chibi-lian.png"
+  },
+  {
+    "n": 22,
+    "title": "Rencontre de la visiteuse",
+    "slug": "visiteuse",
+    "priority": "P1",
+    "note": "Présenter clairement défi, départ et récompense connue, sans révéler ses intentions cachées.",
+    "source": "visual/visitor/encounter.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-995bd77a-f657-4f4a-b797-2aacde9fd499.png",
+    "file": "22-visiteuse.png"
+  },
+  {
+    "n": 23,
+    "title": "Arrivée de l’espionne",
+    "slug": "espionne",
+    "priority": "P2",
+    "note": "Utiliser la présentation narrative commune ; suggérer le mystère visuellement sans spoiler sa nature.",
+    "source": "visual/spy/arrival.tscn",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-1c5af1a3-dad9-4953-ad93-58834ba42834.png",
+    "file": "23-espionne.png"
+  },
+  {
+    "n": 24,
+    "title": "Invitations concurrentes",
+    "slug": "invitations",
+    "priority": "P1",
+    "note": "Mettre côte à côte les deux invitations, leur coût commun et le retour possible de l’occasion écartée.",
+    "source": "visual/story/panel.tscn invite",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-77815e10-5200-4d92-b9f7-670d62213b42.png",
+    "file": "24-invitations.png"
+  },
+  {
+    "n": 25,
+    "title": "Préparation de l’antidote",
+    "slug": "antidote",
+    "priority": "P1",
+    "note": "Rendre le compromis temps/préparation visible et rappeler précisément l’effet de l’objet.",
+    "source": "visual/story/panel.tscn prepare",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-6263d6ac-299b-4226-9671-3d803cbcee7b.png",
+    "file": "25-antidote.png"
+  },
+  {
+    "n": 26,
+    "title": "Recrutement d’un disciple",
+    "slug": "recrutement",
+    "priority": "P1",
+    "note": "Distinguer les réponses de dialogue du résultat de recrutement, avec portrait et rôle du compagnon.",
+    "source": "visual/story/panel.tscn recruit",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-c89737b9-bebe-4f6a-bcc2-1fa3ee20ccc4.png",
+    "file": "26-recrutement.png"
+  },
+  {
+    "n": 27,
+    "title": "Retour après le tournoi",
+    "slug": "retour-tournoi",
+    "priority": "P2",
+    "note": "Résumer l’état réel des compagnons et les conséquences du combat, sans afficher une victoire générique.",
+    "source": "visual/story/panel.tscn return",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-325979b3-3b07-4f86-9f00-96e47438cb7c.png",
+    "file": "27-retour-tournoi.png"
+  },
+  {
+    "n": 28,
+    "title": "Accueil des aspirants",
+    "slug": "aspirants",
+    "priority": "P2",
+    "note": "Montrer le statut d’accueil et ses limites actuelles, sans suggérer des compagnons déjà jouables.",
+    "source": "visual/story/panel.tscn candidates",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-df1c3014-634d-4228-a015-25085654dbd4.png",
+    "file": "28-aspirants.png"
+  },
+  {
+    "n": 29,
+    "title": "Règles de combat",
+    "slug": "regles",
+    "priority": "P2",
+    "note": "Remplacer la longue notice par des rubriques consultables, des icônes et de courts exemples.",
+    "source": "visual/team/lab.tscn HelpPaper",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-d147d8f9-75d0-4b2b-92dc-0ec4db89ec62.png",
+    "file": "29-regles.png"
+  },
+  {
+    "n": 30,
+    "title": "Confirmation de recommencement",
+    "slug": "confirmation",
+    "priority": "P1",
+    "note": "Créer une confirmation dédiée, séparée des dialogues ; préciser exactement quelle progression sera remplacée.",
+    "source": "visual/preview.gd confirm_restart via dialogue",
+    "image": "C:\\Users\\Lenovo\\.codex\\generated_images\\01a1f306-7ddf-7c40-97f5-b6f6b3af2d32\\exec-13cfc93f-4d0d-492b-8df2-70ea158e0418.png",
+    "file": "30-confirmation.png"
+  }
+]

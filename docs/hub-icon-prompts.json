@@ -1,0 +1,15 @@
+{
+  "method": "Built-in image_gen; PNG transparents individuels, sans API payante",
+  "icons": {
+    "book": "two stacked indigo blue thread-bound Chinese martial arts manuals, ivory paper edges, slight three-quarter perspective",
+    "scroll": "one rolled ivory parchment scroll tied with a muted vermilion cord, diagonal three-quarter perspective",
+    "settings": "one simple eight-tooth antique bronze gear with large round central hole, front view",
+    "supplies": "one tied ochre cloth provision pouch with simple dark cord, front view",
+    "morning": "a rising sun above a short horizon, a few rays, dark sepia ink emblem",
+    "afternoon": "a round sun with eight short rays, dark sepia ink emblem",
+    "evening": "a crescent moon with one tiny star, dark sepia ink emblem",
+    "hourglass": "a small antique bronze hourglass with ivory sand, front view"
+  },
+  "common_prompt": "Hand-painted Chinese murim manhua watercolor and dark brown ink outlines. Compact readable silhouette at 40px. Warm ivory, muted gold, dark brown, indigo books. Single centered object, transparent background, no text/panel/scenery.",
+  "frame": "Empty horizontal parchment frame, thick charcoal ink outline, antique brass inner rim, stepped corners, ivory center, transparent exterior."
+}

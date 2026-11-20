@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="Theme"]
+[gd_scene load_steps=13 format=3]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="Theme"]
 [ext_resource type="Script" path="res://visual/visitor/encounter.gd" id="Script"]
-[ext_resource type="Texture2D" path="res://assets/visitor/approved-design.png" id="Design"]
-[sub_resource type="AtlasTexture" id="Public"]
-atlas = ExtResource("Design")
-region = Rect2(8,220,384,1220)
+[ext_resource type="Texture2D" path="res://assets/visitor/portrait-cutout.png" id="Design"]
+[ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
+[ext_resource type="Texture2D" path="res://assets/ui/visitor/gate.png" id="Gate"]
+[ext_resource type="Texture2D" path="res://assets/ui/visitor/people.png" id="People"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/branches.png" id="Branches"]
+[ext_resource type="Shader" path="res://visual/visitor/scene_edge.gdshader" id="Edge"]
+[ext_resource type="Script" path="res://visual/garden/petals.gd" id="Petals"]
+[ext_resource type="Script" path="res://visual/visitor/scene_layers.gd" id="Layers"]
+[sub_resource type="ShaderMaterial" id="EdgeFade"]
+shader = ExtResource("Edge")
 [sub_resource type="AtlasTexture" id="Face"]
 atlas = ExtResource("Design")
-region = Rect2(55,230,310,400)
+region = Rect2(280,20,420,460)
 [node name="VisitorEncounter" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -33,54 +39,85 @@ offset_right = 1255.0
 offset_bottom = 805.0
 mouse_filter = 2
 
-[node name="Portrait" type="TextureRect" parent="Conversation"]
-offset_left = 45.0
-offset_top = 86.0
-offset_right = 405.0
-offset_bottom = 782.0
-texture = SubResource("Public")
+[node name="SceneLayers" type="Control" parent="Conversation"]
+offset_left = 15.0
+offset_top = 160.0
+offset_right = 795.0
+offset_bottom = 795.0
+clip_contents = true
+mouse_filter = 2
+script = ExtResource("Layers")
+[node name="Gate" type="TextureRect" parent="Conversation/SceneLayers"]
+offset_right = 780.0
+offset_bottom = 635.0
+texture = ExtResource("Gate")
+material = SubResource("EdgeFade")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+[node name="People" type="TextureRect" parent="Conversation/SceneLayers"]
+offset_left = 12.0
+offset_top = 104.0
+offset_right = 768.0
+offset_bottom = 608.0
+texture = ExtResource("People")
 expand_mode = 1
 stretch_mode = 5
 mouse_filter = 2
-texture_filter = 2
-
+[node name="Branches" type="TextureRect" parent="Conversation/SceneLayers"]
+offset_left = -30.0
+offset_top = -8.0
+offset_right = 410.0
+offset_bottom = 139.0
+texture = ExtResource("Branches")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+pivot_offset = Vector2(30,20)
+[node name="Petals" type="Node2D" parent="Conversation/SceneLayers"]
+script = ExtResource("Petals")
+scale = Vector2(0.57,0.72)
+modulate = Color(1,1,1,0.65)
 [node name="Title" type="Label" parent="Conversation"]
-offset_left = 442.0
-offset_top = 68.0
-offset_right = 1192.0
+offset_left = 65.0
+offset_top = 42.0
+offset_right = 1200.0
 offset_bottom = 125.0
 text = "Une visiteuse à la porte"
 theme_type_variation = &"Title"
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 49
 
-[node name="Words" type="Label" parent="Conversation"]
-offset_left = 442.0
-offset_top = 154.0
-offset_right = 1185.0
-offset_bottom = 535.0
+[node name="Words" type="RichTextLabel" parent="Conversation"]
+scroll_active = true
+selection_enabled = true
+offset_left = 820.0
+offset_top = 170.0
+offset_right = 1210.0
+offset_bottom = 590.0
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/normal_font_size = 21
 
 [node name="Terms" type="Label" parent="Conversation"]
-offset_left = 442.0
-offset_top = 550.0
-offset_right = 1185.0
-offset_bottom = 625.0
+offset_left = 820.0
+offset_top = 610.0
+offset_right = 1210.0
+offset_bottom = 665.0
 text = "Duel libre · aucune période consommée\nTon deck équipé sera utilisé."
 autowrap_mode = 2
 
 [node name="Primary" type="Button" parent="Conversation"]
-offset_left = 440.0
-offset_top = 656.0
-offset_right = 1195.0
-offset_bottom = 712.0
+offset_left = 805.0
+offset_top = 680.0
+offset_right = 1230.0
+offset_bottom = 737.0
 text = "Relever le défi"
 
 [node name="Back" type="Button" parent="Conversation"]
-offset_left = 440.0
-offset_top = 731.0
-offset_right = 1195.0
-offset_bottom = 780.0
+theme_type_variation = &"SecondaryButton"
+offset_left = 805.0
+offset_top = 748.0
+offset_right = 1230.0
+offset_bottom = 797.0
 text = "Retour à la cour"
 
 [node name="Arena" type="Control" parent="."]
@@ -135,3 +172,5 @@ theme_override_colors/font_color = Color(0.9,0.84,0.94,1)
 position = Vector2(982,330)
 [node name="HUD" type="Control" parent="."]
 mouse_filter = 2
+
+[node name="PaintedDecoration" parent="Conversation/Paper" instance=ExtResource("PaintedDecor")]

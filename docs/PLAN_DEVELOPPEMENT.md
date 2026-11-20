@@ -786,3 +786,103 @@ Retour utilisateur confirmé pour les règles par ID, duplications deck, catalog
 InputMap et écran Commandes fonctionnels (remappage, conflit de touches, annulation Échap, reset et persistance séparée). Localisation FR/fallback et fichiers de dialogue en place ; extraction de tous les libellés et langues supplémentaires encore à faire. Les sous-écrans gardent certains callbacks vers le coordinateur : ne pas déclarer le découplage total ou toute l’étape 6 terminée.
 
 Validation finale : 22/22 suites ; parité de 3 890 états de combat et 1 440 états d’effets ; 121 contrôles de données/règles, 332 moteur ; 84 contrôles commandes/localisation GUI. Fuites de cache apparues pendant ce travail corrigées par propriétaire autoload. Huit empreintes de sauvegardes inchangées. Voir [audit détaillé](AUDIT_ARCHITECTURE_DONNEES_2026-11-20.md) et [architecture actualisée](ARCHITECTURE_COMBAT.md).
+
+### Menus activités et bilan — 20 novembre 2026
+
+Intégration des propositions 09 et 10 : papier et encre, frise Matin/Après-midi/Soir, six activités illustrées, sélection jade puis confirmation explicite. Les disponibilités, invitations, coûts et transitions de période proviennent du calendrier existant. Les dialogues gratuits et les règles de progression ne changent pas. Trois vignettes chibi supplémentaires (travail, restauration, repos) générées avec l’outil intégré, sans API externe payante.
+
+Bilan : trois lignes chronologiques avec illustration, variations de réserves, progression des liens/bâtiments et techniques acquises. Accès direct au deck et bouton indiquant le jour/période suivant. Historique enrichi avec valeurs avant/après pour les nouvelles actions ; lecture rétrocompatible des anciennes entrées sans inventer leurs gains. Format de sauvegarde v6 conservé, aucun reset/migration de progression.
+
+Scènes statiques et ressources locales dans `visual/activities/`, composant partagé `summary_row.tscn`, sélection sans consommation puis validation. Captures réelles : [activités](ui-activities-2026-11-20/activites-godot.png), [bilan](ui-activities-2026-11-20/bilan-godot.png).
+
+Validation : test des activités passé en GUI et headless (sélection, confirmation, coûts, blocages, bilan, anciennes entrées, invitations, serment, étude et navigation). Runner historique : 21/22 sorties normales ; `test_card_ways` a passé 101 assertions puis crashé nativement à la fermeture (incident Godot intermittent déjà observé). Réexécution ciblée réussie avec sortie 0. Test activités ajouté au runner pour les validations futures. Quatre fichiers de sauvegarde du profil `play-user` copiés dans `tools/save-backups/ui-activities-20261120` et SHA-256 inchangés avant lancement.
+
+### Écran de référence « Le thé avec Lian » en calques — 20 novembre 2026
+
+Skill `mockup-to-game-ui` installé. Huit assets peints séparés : parchemin, jardin, personnages/table, branches, cadre horizontal, cadre de carte, pinceau et illustration Fil de soie. Assemblage Godot éditable dans `visual/study/tea.tscn`, données réelles du calendrier et catalogue ; aucune récompense ni valeur peinte dans les assets. Branches, vapeur et pétales animés, réduction des effets respectée. Le rendu remplace seulement l’écran d’activité de Lian ; attendre validation avant généralisation à Jun/Shen ou aux autres menus.
+
+Aperçu autonome sans lecture/écriture de sauvegarde via `ApercuTheLian.cmd`, exemple Lian 3 → 4 / Fil de soie. Capture réelle : [thé en calques](ui-activities-2026-11-20/the-lian-godot.png). Tests `test_tea_layers.gd` et `test_activities_menu.gd` réussis (activité réelle, récompenses, coût une seule fois, sortie, cas sans carte, réduction des effets). Source et conventions dans `assets/ui/tea/README.md`. Pas de nouvelle police à ce stade.
+
+
+### 20 novembre 2026 — Généralisation des interfaces peintes
+Direction du thé de Lian validée et étendue aux écrans existants : ressources communes papier/encre, cadres peints, boutons principal/secondaire, portraits, récompenses et habillage des combats. Réemploi prioritaire des assets recensés ; seulement trois nouvelles illustrations pour l’étude et l’entraînement, conservant les animations existantes. Textes et règles restent pilotés par les données.
+
+Inventaire : `docs/painted-ui/ASSET_INVENTORY.md`. Galerie de 30 captures Godot : `docs/painted-ui/index.html`. 23 suites de régression réussies, test du thé réussi, parcours visuel isolé réussi. Six fichiers de sauvegarde inchangés (SHA-256). À recueillir : retour joueur sur lisibilité et cohérence des écrans en situation réelle.
+
+
+### 20 novembre 2026 — Rencontre illustrée de la visiteuse
+Remplacement du portrait isolé par la scène chibi approuvée, reconstruite en calques : décor sans personnages, duo transparent, branches/pétales, textes et commandes natifs. Deux nouveaux assets générés depuis la scène de référence, kit papier/encre réemployé. Aperçu isolé `visual/visitor/layer_preview.gd`, capture actualisée dans la galerie. Transition au duel et mouvement réduit vérifiés ; sauvegarde préservée (six empreintes identiques). Références et prompts : `assets/ui/visitor/README.md`.
+
+
+### 20 novembre 2026 — Généralisation des scènes narratives en calques
+Même raisonnement que la visiteuse appliqué aux écrans narratifs et d’activités : lieux identifiables, interactions entre personnages, props liés à l’action, calques séparés et raccord doux avec le papier. Composant commun `visual/shared/illustrated_scene.tscn`, réemploi majoritaire des assets ; deux nouveaux groupes (accueil de l’espionne avec Shen, préparation de l’antidote). Galerie actualisée, règles et inventaire : `docs/painted-ui/SCENES_NARRATIVES.md`. Tests ciblés réussis et six sauvegardes inchangées. Les interfaces tactiques conservent leur priorité à la lisibilité.
+
+
+### 20 novembre 2026 — Cadres et fenêtres d’illustration
+Structure visuelle commune : panneau papier bordé, fenêtre d’illustration jade/bronze, cartouche de titre indépendant. Images interchangeables sous un cadre PNG transparent ; mêmes éléments en collection, combat, carte agrandie, miniatures du deck et scènes narratives. Les panneaux horizontaux utilisent une variante dédiée pour ne pas étirer les angles d’un cadre vertical. Réemploi des cadres papier et des cartouches existants ; une nouvelle fenêtre peinte créée. Capture des 30 écrans sans erreur ; tests deck (34), main de combat et activités réussis.
+
+### 20 novembre 2026 — Agent critique obligatoire
+À la demande du joueur, chaque prochaine modification ou implémentation passe par une revue indépendante de l’agent critique : qualité visuelle, composition, éléments manquants, cohérence, interactions et risques de régression. Correction des défauts importants puis contre-vérification ciblée avant livraison. Consignes persistantes : AGENTS.md. Le critique travaille en lecture seule ; l’agent principal conserve la coordination et la responsabilité des corrections.
+
+### 20 novembre 2026 — Cour principale illustrée et cliquable
+
+- Choix validé : abandon du déplacement de la recrue dans le hub. Jardin de Lian, pavillon de Shen et conversation de Jun accessibles directement ; combat inchangé.
+- Nouvelle cour manhua sans garde ni personnage incrusté. Décor, Jun animé, pétales et interface restent des calques distincts. Réemploi des cadres parchemin et des six poses d’attaque de Jun ; aucune nouvelle génération de personnage.
+- Décor source `assets/ui/hub/courtyard.png` et variante réparée `restored.png`. Le niveau de restauration existant applique les réparations à l’escalier puis au pavillon. Arbre animé par déformation locale légère, pétales désactivables avec les effets doux.
+- Menus de la cour en parchemin encadré. Le portail « ! » ouvre les rencontres disponibles : marchand au jour 4, voyageuse après l’entraînement. Pas de modification de calendrier, récompenses ou sauvegarde. Le marqueur indique une rencontre disponible, pas exclusivement une rencontre inédite.
+- Scène éditable `visual/hub/scene.tscn`, HUD `visual/hub/hud.tscn`. Ancien décor conservé pour le duel : cette livraison change le hub, pas le terrain du combat.
+- Vérifications : 23 régressions existantes passées ; test du hub rendu en 1280×832 et 960×624, déplacements désactivés, accès aux lieux et marchand, retour au duel, restauration, effets doux et raccourci neutralisé dans le menu du portail. `tests/test_hub_composition.gd` ajouté au lanceur de régressions ; profil de test isolé.
+- Revue critique : correction de l’état désactivé d’Activités (parchemin au lieu de rouge) et du raccourci Jun derrière le choix du portail. Captures actualisées `docs/painted-ui/hub-*.png`.
+- Les commandes de déplacement ne sont plus affichées dans les réglages du jeu courant ; les anciennes entrées InputMap restent disponibles aux prototypes historiques.
+
+### 20 novembre — Finition du hub après comparaison à la maquette
+
+Retour utilisateur justifié : les accès étaient fonctionnels mais la livraison avait perdu les icônes et la hiérarchie de la référence. Ajout de huit icônes individuelles transparentes (livres, rouleau, réglages, réserves, matin, après-midi, soir, sablier), d’un cadre illustré indépendant, d’un calendrier compact avec période sélectionnée et d’un bouton de dialogue jade. Le menu principal garde les textes Godot et les données dynamiques. Filtrage avec mipmaps pour les icônes aux petites tailles.
+
+Assets : assets/ui/hub/icons et assets/ui/hub/frame.png. Génération avec outil intégré uniquement ; prompts conservés dans docs/hub-icon-prompts.json. Fond et animation Jun réutilisés. Les nouvelles règles AGENTS.md exigent une comparaison explicite référence/capture, y compris éléments graphiques omis, avant verdict visuel.
+
+### 20 novembre — Recomposition complète du menu Activités
+
+- Périmètre clarifié par le joueur : l’ensemble de l’écran, et pas uniquement son pied. La maquette guide la composition, sans supprimer Retour, Bilan, Marchand contextuel ni confirmation.
+- Illustration latérale de Lian générée séparément avec alpha à partir de son identité visuelle existante ; grille de six activités et scènes chibi réutilisées. Périodes en onglets visuels, réserves avec icône existante, cadres et sélection jade explicites.
+- Bandeau inférieur : activité choisie, période suivante, accès secondaires conservés et confirmation à droite. Sélection sans consommation ; validation seule consomme le temps. Horaires, coûts, invitations et rangs inchangés.
+- Essai typographique limité à ce menu : Kalam Bold pour titres et boutons, Segoe UI pour chiffres/effets. Police libre téléchargée du dépôt officiel Google Fonts avec OFL conservée dans assets/fonts/kalam. Ce n’est pas la police exacte de l’image générée ; validation esthétique du joueur attendue avant généralisation.
+- Tests ciblés réussis : test_activities_menu (coûts, indisponibilités, journal, serment, marchand, invitations) et layer_preview (sans sélection, sélection, 1280×832/960×624, boutons marchand/bilan, variantes événement/résumé). Six fichiers de sauvegarde joueur inchangés par comparaison SHA-256.
+- Prévisualisation isolée : --script visual/activities/layer_preview.gd ; captures docs/painted-ui/activities-*.png.
+
+### 20 novembre — Intégration de la maquette Activités validée, pied simplifié
+
+- Maquette retenue : grand personnage à gauche, six cartes compactes à cadres fins. Assets existants réemployés : Lian agrandie, cadres papier fins, scènes chibi en calques sans second cadre épais, fond parchemin éclairci.
+- Instruction finale du joueur : aucun « Lien avec Lian » ni « Après-midi → Soir » dans le pied. Le bas affiche uniquement Retour, Bilan, Marchand si disponible et confirmation de l’activité. Hauteur réduite à 73 pixels. L’heure et les périodes restent en haut.
+- Les notices utiles des variantes événement et bilan sont conservées ; seules les répétitions du menu de choix sont cachées. Aucun changement du calendrier, des coûts ou des récompenses.
+- Contrôles réussis : capture réelle 1280×832/960×624, absence de contexte redondant dans le pied, sélection sans consommer, marchand, journal, événement ; test_activities_menu complet passé, invitations et bilan rempli capturés. Les captures automatisées utilisent l’audio Dummy après un crash intermittent du moteur à la fermeture avec son ; aucune erreur de scénario dans les exécutions finales (exit 0).
+
+Complément de fidélité : vignettes agrandies de 146 à 184 pixels, cartouches fins restaurés pour les périodes et réserves. Le badge Invitation reste un badge jade simple ; la typographie utilise des fontes éditables (pas une copie exacte du lettrage généré). L’état courant reste soumis à validation visuelle du joueur avant de passer à un autre écran.
+
+### 20 novembre — Activités : reconstruction fidèle par calques dédiés
+
+Après rejet de plusieurs approximations, nouvelle instruction : suivre au plus près la maquette approuvée, avec les vraies données du jeu et sans les deux textes de contexte en bas. La maquette est conservée dans art_sources/activities-strict/reference-approved.png.
+
+Treize assets séparés créés avec l’outil d’image intégré : papier/décor, portrait Lian, cadre de carte, cadre de bouton, footer bambou, titre calligraphié, six scènes chibi et bandeau Invitation au pinceau. Prompts et sources conservés. Le titre Activités est une image statique française ; les titres variables, périodes, réserves, coûts, rangs et commandes restent des contrôles Godot. Les ressources peuvent se déplacer/remplacer indépendamment. Les PNG ne contiennent aucune donnée de progression.
+
+La scène de carte a sa propre illustration complète, au lieu de petits personnages superposés à un ancien fond générique. Les images gardent des bords aquarelle transparents. Le pied n’affiche que les boutons demandés, avec maintien des accès au marchand et au bilan. Les autres écrans ne sont pas considérés comme validés par cette passe.
+
+Validation : captures 1280×832 et 960×624 ; test_activities_menu et layer_preview avec audio Dummy passés, sans écriture de la sauvegarde principale. Revue critique comparative obligatoire et validation artistique finale du joueur encore attendue.
+
+Contre-revue critique finale : prêt pour cette intégration, aucun blocage identifié sur les captures examinées. Cas supplémentaires vérifiés : invitations, rang 4 avec récompenses sur trois lignes, antidote et format 960 pixels. Disponibilité abrégée « Dès le jour 10. » avec motif complet conservé dans l’infobulle. Test final ACTIVITIES MENU: PASS ; six fichiers de sauvegarde contrôlés, zéro modification. Validation visuelle du joueur toujours attendue.
+
+### 20 novembre — Bilan quotidien en calques, après validation de la maquette
+
+- Maquette approuvée : art_sources/recap/reference-approved.png. Exception demandée : supprimer calendrier et prochaine période dans le pied. Retour, Voir mes techniques et Continuer conservés ; au plafond, Composer mon deck garde son rôle existant.
+- Scène héritée dédiée visual/activities/summary_menu.tscn, sélectionnée par le coordinateur. Aucun changement des règles, transactions ou sauvegardes. Le menu Activités validé garde sa composition.
+- Quatre nouvelles images indépendantes : parchemin, cour au crépuscule, bordure de ligne, lavis sage. Scènes chibi récentes, icônes, boutons et cadres de cartes réutilisés. Textes, jour, chiffres et récompenses restent des contrôles Godot alimentés par l’historique réel.
+- Trois périodes illustrées, gains agrandis, carte acquise encadrée et consultable au clic avec le composant de détail existant. Les acquisitions supplémentaires restent dans le texte défilant sous forme de liens ouvrant leur fiche. Les historiques anciens n’inventent pas de variations sans état avant/après ; les périodes vides sont explicitement signalées.
+- Vérifications : ACTIVITIES MENU PASS ; RECAP PASS (1280×832 et 960×624, carte, acquisitions multiples, journée partielle, historique ancien, récompenses longues, fin de séquence). Profils de test isolés sans persistance. Revue critique : cadrage des anciens assets corrigé pour conserver les têtes ; suppression des informations redondantes dans les effets de la fiche. Contre-revue finale : prêt, réserves levées. Six fichiers de sauvegarde joueur vérifiés par SHA-256, zéro modification. Validation visuelle joueur attendue.
+
+### 20 novembre — Serment de l’aube : cohérence du matin J3
+
+- Après validation de la maquette, écran du serment reconstruit en calques. Référence dans art_sources/oath/reference-approved.png. Scène héritée dédiée oath_menu.tscn, script de liaison oath_menu.gd ; routage limité au créneau 6 (matin J3). Les autres activités et le bilan validés gardent leurs scènes.
+- Réemploi du parchemin, décor de cour existant, boutons, icônes et illustrations canoniques des cartes. Quatre calques générés séparément : scène des quatre personnages, titre calligraphié français statique, paysage léger de l’en-tête, cadre doré fin transparent. Aucun texte de progression intégré aux images.
+- Deux cartes verticales avec coût, nom, voie, effets et Choisir issus du catalogue. Retour et Bilan conservés ; 1 période et bonus de réserves visibles. Choix exclusif et règles inchangés ; verrou contre double clic, réactivation et message si échec de sauvegarde.
+- Contrôles : OATH PASS (1280×832, 960×624, valeurs catalogue, bilan et retour gratuits, chacun des deux serments, exclusivité, une seule période et bonus, double clic) ; ACTIVITIES MENU PASS (parcours, coûts, historiques, bilan, serment, navigation). Profil de test sans persistance : visual/activities/oath_preview.gd. Captures docs/painted-ui/oath-*.png.
+- Revue critique préparatoire : cadres trop épais, débordement de la scène et cartouche date corrigés. Cartouche Orthodoxe ajouté. Différence volontaire avec la maquette : illustrations des cartes existantes conservées pour cohérence avec le deck. Contre-revue finale : prêt, toutes les réserves levées. Six fichiers de sauvegarde joueur inchangés (SHA-256). Validation visuelle du joueur attendue.

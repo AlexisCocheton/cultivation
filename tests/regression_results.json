@@ -1,9 +1,15 @@
 [
   {
+    "test": "test_activities_menu",
+    "status": "pass",
+    "exit_code": 0,
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nACTIVITIES MENU: PASS — costs, locks, journal, daily recap, oath, chibi, cap, deck\r\n"
+  },
+  {
     "test": "test_input_localization",
     "status": "pass",
     "exit_code": 0,
-    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nINPUT_LOCALIZATION: 60 checks, 0 failures\r\n"
+    "output": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\r\n\r\nINPUT_LOCALIZATION: 84 checks, 0 failures\r\n"
   },
   {
     "test": "test_card_effects_parity",

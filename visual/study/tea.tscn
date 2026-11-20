@@ -1,0 +1,351 @@
+[gd_scene load_steps=23 format=3]
+[ext_resource type="Script" path="res://visual/study/tea.gd" id="script"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/paper.png" id="paper"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/garden.png" id="garden"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/people.png" id="people"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/branches.png" id="branches"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/frame.png" id="frame"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/brush.png" id="brush"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/status.png" id="status"]
+[ext_resource type="FontFile" path="res://assets/fonts/kaushan/KaushanScript-Regular.ttf" id="font"]
+[ext_resource type="Shader" path="res://shaders/tea_steam.gdshader" id="steam"]
+[ext_resource type="Script" path="res://visual/garden/petals.gd" id="petals"]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/silk.png" id="silk"]
+[ext_resource type="Shader" path="res://visual/study/brush_jade.gdshader" id="jade"]
+[sub_resource type="ShaderMaterial" id="Jade"]
+shader = ExtResource("jade")
+[sub_resource type="AtlasTexture" id="Frame"]
+atlas = ExtResource("frame")
+region = Rect2(52,76,983,1298)
+[sub_resource type="AtlasTexture" id="Status"]
+atlas = ExtResource("status")
+region = Rect2(45,150,2085,420)
+[sub_resource type="ShaderMaterial" id="Steam"]
+resource_local_to_scene = true
+shader = ExtResource("steam")
+shader_parameter/strength = 0.8
+[sub_resource type="StyleBoxEmpty" id="Empty"]
+[sub_resource type="SystemFont" id="Body"]
+font_names = PackedStringArray("Segoe UI")
+[sub_resource type="Theme" id="Theme"]
+default_font = SubResource("Body")
+default_font_size = 23
+Label/colors/font_color = Color(0.13,0.10,0.08,1)
+Title/base_type = &"Label"
+Title/fonts/font = ExtResource("font")
+Title/colors/font_color = Color(0.32,0.05,0.035,1)
+[sub_resource type="StyleBoxTexture" id="Button"]
+texture = ExtResource("brush")
+[sub_resource type="StyleBoxTexture" id="Hover"]
+texture = ExtResource("brush")
+modulate_color = Color(1.18,1.06,0.95,1)
+[node name="Tea" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+clip_contents = true
+theme = SubResource("Theme")
+script = ExtResource("script")
+reward_art = {"L02": ExtResource("silk")}
+
+[node name="Paper" type="TextureRect" parent="."]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 832.0
+texture = ExtResource("paper")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Garden" type="TextureRect" parent="."]
+offset_left = -85.0
+offset_top = 75.0
+offset_right = 950.0
+offset_bottom = 850.0
+texture = ExtResource("garden")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="People" type="TextureRect" parent="."]
+offset_left = -20.0
+offset_top = 205.0
+offset_right = 910.0
+offset_bottom = 903.0
+texture = ExtResource("people")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Branches" type="TextureRect" parent="."]
+offset_left = -25.0
+offset_top = -40.0
+offset_right = 930.0
+offset_bottom = 278.0
+texture = ExtResource("branches")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Foreground" type="TextureRect" parent="."]
+offset_left = -150.0
+offset_top = 640.0
+offset_right = 420.0
+offset_bottom = 830.0
+texture = ExtResource("branches")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+flip_v = true
+
+[node name="Underline" type="TextureRect" parent="."]
+offset_left = 138.0
+offset_top = 124.0
+offset_right = 603.0
+offset_bottom = 139.0
+texture = ExtResource("brush")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Title" type="Label" parent="."]
+offset_left = 110.0
+offset_top = 30.0
+offset_right = 850.0
+offset_bottom = 131.0
+text = "Le thé avec Lian"
+theme_override_font_sizes/font_size = 66
+mouse_filter = 2
+theme_type_variation = &"Title"
+
+[node name="Time" type="Control" parent="."]
+offset_left = 905.0
+offset_top = 112.0
+offset_right = 1243.0
+offset_bottom = 194.0
+mouse_filter = 2
+
+[node name="Frame" type="TextureRect" parent="Time"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 338.0
+offset_bottom = 82.0
+texture = SubResource("Status")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Value" type="Label" parent="Time"]
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 323.0
+offset_bottom = 72.0
+text = ""
+theme_override_font_sizes/font_size = 24
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bond" type="Control" parent="."]
+offset_left = 905.0
+offset_top = 213.0
+offset_right = 1243.0
+offset_bottom = 295.0
+mouse_filter = 2
+
+[node name="Frame" type="TextureRect" parent="Bond"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 338.0
+offset_bottom = 82.0
+texture = SubResource("Status")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Value" type="Label" parent="Bond"]
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 323.0
+offset_bottom = 72.0
+text = ""
+theme_override_font_sizes/font_size = 24
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reward" type="Control" parent="."]
+offset_left = 933.0
+offset_top = 345.0
+offset_right = 1222.0
+offset_bottom = 679.0
+mouse_filter = 2
+
+[node name="Frame" type="TextureRect" parent="Reward"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 289.0
+offset_bottom = 334.0
+texture = SubResource("Frame")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Ribbon" type="TextureRect" parent="Reward"]
+offset_left = -15.0
+offset_top = -62.0
+offset_right = 304.0
+offset_bottom = 3.0
+texture = ExtResource("brush")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+material = SubResource("Jade")
+
+[node name="Caption" type="Label" parent="Reward"]
+offset_left = 0.0
+offset_top = -57.0
+offset_right = 289.0
+offset_bottom = -5.0
+vertical_alignment = 1
+text = "Carte obtenue"
+theme_override_font_sizes/font_size = 28
+mouse_filter = 2
+theme_type_variation = &"Title"
+theme_override_colors/font_color = Color(1,0.97,0.88,1)
+horizontal_alignment = 1
+
+[node name="Art" type="TextureRect" parent="Reward"]
+offset_left = 18.0
+offset_top = 21.0
+offset_right = 271.0
+offset_bottom = 176.0
+texture = ExtResource("garden")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+stretch_mode = 6
+clip_contents = true
+
+[node name="CostBrush" type="TextureRect" parent="Reward"]
+offset_left = -9.0
+offset_top = -5.0
+offset_right = 93.0
+offset_bottom = 48.0
+texture = ExtResource("brush")
+expand_mode = 1
+mouse_filter = 2
+texture_filter = 2
+[node name="Cost" type="Label" parent="Reward"]
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 82.0
+offset_bottom = 42.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "1 Qi"
+theme_override_font_sizes/font_size = 24
+mouse_filter = 2
+theme_override_colors/font_color = Color(1,0.96,0.87,1)
+
+[node name="Name" type="Label" parent="Reward"]
+offset_left = 18.0
+offset_top = 180.0
+offset_right = 271.0
+offset_bottom = 227.0
+text = "Fil de soie"
+theme_override_font_sizes/font_size = 32
+mouse_filter = 2
+theme_type_variation = &"Title"
+horizontal_alignment = 1
+
+[node name="Underline" type="TextureRect" parent="Reward"]
+offset_left = 48.0
+offset_top = 227.0
+offset_right = 241.0
+offset_bottom = 232.0
+texture = ExtResource("brush")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Effects" type="Label" parent="Reward"]
+offset_left = 24.0
+offset_top = 244.0
+offset_right = 265.0
+offset_bottom = 319.0
+text = ""
+theme_override_font_sizes/font_size = 22
+mouse_filter = 2
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCard" type="Control" parent="."]
+offset_left = 933.0
+offset_top = 350.0
+offset_right = 1222.0
+offset_bottom = 640.0
+mouse_filter = 2
+
+[node name="Frame" type="TextureRect" parent="NoCard"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 289.0
+offset_bottom = 290.0
+texture = SubResource("Frame")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+
+
+[node name="Value" type="Label" parent="NoCard"]
+offset_left = 28.0
+offset_top = 25.0
+offset_right = 261.0
+offset_bottom = 265.0
+text = ""
+theme_override_font_sizes/font_size = 25
+mouse_filter = 2
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Steam" type="ColorRect" parent="."]
+offset_left = 400.0
+offset_top = 430.0
+offset_right = 490.0
+offset_bottom = 570.0
+mouse_filter = 2
+material = SubResource("Steam")
+[node name="Petals" type="Node2D" parent="."]
+script = ExtResource("petals")
+scale = Vector2(0.65,1)
+[node name="Continue" type="Button" parent="."]
+offset_left = 906.0
+offset_top = 709.0
+offset_right = 1246.0
+offset_bottom = 802.0
+text = "Continuer"
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("font")
+theme_override_font_sizes/font_size = 41
+theme_override_colors/font_color = Color(1,0.96,0.87,1)
+theme_override_colors/font_hover_color = Color(1,1,1,1)
+theme_override_colors/font_focus_color = Color(1,0.88,0.63,1)
+theme_override_styles/normal = SubResource("Button")
+theme_override_styles/hover = SubResource("Hover")
+theme_override_styles/pressed = SubResource("Hover")
+theme_override_styles/focus = SubResource("Empty")
+

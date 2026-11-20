@@ -11,8 +11,8 @@ const Cards = preload("res://game/cards.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Card = preload("res://visual/card.gd")
 const Progress = preload("res://game/campaign/progress.gd")
-const HUB_POSITIONS = [Vector2(420,650),Vector2(350,540),Vector2(1040,520),Vector2(885,330)]
-const HUB_SCALES = [1.65,1.65,1.65,1.25]
+const HUB_POSITIONS = [Vector2(420,650),Vector2(350,540),Vector2(990,650),Vector2(885,330)]
+const HUB_SCALES = [1.65,1.65,2.65,1.25]
 const PORTRAITS = preload("res://assets/portraits_manhua.png")
 const CampaignSession = preload("res://game/campaign/session.gd")
 var session = CampaignSession.new()
@@ -33,10 +33,10 @@ var reduced_motion: bool:
 	set(value): session.reduced_motion = value
 var actors: Array = []
 var player: Node2D
-var target = Vector2(640,650)
 var ui: Control
 var scenery: ShaderMaterial
 var petals: Node2D
+var hub_scene: Node2D
 var clock_time = 0.0
 var sound: AudioStreamPlayer
 var selected = -1
@@ -86,6 +86,8 @@ func _ready() -> void:
 	scenery.set_shader_parameter("restored",preload("res://assets/hub/restored.png"))
 	background.material = scenery
 	add_child(background)
+	hub_scene = preload("res://visual/hub/scene.tscn").instantiate()
+	add_child(hub_scene)
 	for i in range(4):
 		var actor = Avatar.new()
 		actor.character_row = i
@@ -95,7 +97,6 @@ func _ready() -> void:
 		add_child(actor)
 		actors.append(actor)
 	player = actors[0]
-	target = player.position
 	setup_activity_sprites()
 	garden_scene = preload("res://visual/garden/scene.tscn").instantiate()
 	garden_scene.game = self
@@ -111,7 +112,7 @@ func _ready() -> void:
 	var layer = CanvasLayer.new()
 	add_child(layer)
 	ui = Control.new()
-	ui.theme = preload("res://visual/deck/theme.tres")
+	ui.theme = preload("res://visual/shared/painted_theme.tres")
 	ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(ui)
@@ -256,7 +257,8 @@ func resident_activity(action: String, choice: String = "") -> void:
 	busy = true
 	mode = "study" if action == "H" else "resident_activity"
 	clear_ui()
-	var overlay = preload("res://visual/study/overlay.tscn").instantiate()
+	var activity_scene = preload("res://visual/study/tea.tscn") if action == "L" else preload("res://visual/study/overlay.tscn")
+	var overlay = activity_scene.instantiate()
 	ui.add_child(overlay)
 	overlay.setup(self,gained,action)
 
@@ -272,16 +274,6 @@ func menu_ui() -> void:
 	var menu = preload("res://visual/hub/menu.tscn").instantiate()
 	ui.add_child(menu)
 	menu.setup(self)
-
-func nearest_resident() -> int:
-	var nearest = -1
-	var distance = 155.0
-	for i in [2]:
-		var candidate = player.position.distance_to(actors[i].position)
-		if candidate < distance:
-			distance = candidate
-			nearest = i
-	return nearest
 
 func setup_activity_sprites() -> void:
 	var sheet = preload("res://assets/hub/activities.png")
@@ -306,8 +298,9 @@ func setup_activity_sprites() -> void:
 
 func update_hub_actors() -> void:
 	for i in range(4): actors[i].z_index = int(actors[i].position.y)
-	actors[0].visible = mode != "dialogue" and location == "courtyard"
-	actors[2].visible = mode != "dialogue" and location == "courtyard"
+	actors[0].visible = mode == "combat"
+	actors[2].visible = mode in ["hub","combat"] and location == "courtyard"
+	hub_scene.visible = location == "courtyard" and mode != "combat"
 	for i in range(2):
 		var resident = actors[1 if i == 0 else 3]
 		activity_sprites[i].position = resident.position
@@ -319,38 +312,21 @@ func update_hub_actors() -> void:
 		actors[2].facing = 1
 		actors[2].direction = Avatar.Direction.SIDE
 		actors[2].combat_ready = true
-		actors[2].action = "attack" if phase < 0.8 and not reduced_motion else ""
-		actors[2].action_frame = mini(3,int(phase/0.2))
-
-func walkable_position(point: Vector2) -> Vector2:
-	var result = point.clamp(Vector2(190,430),Vector2(1140,737))
-	# Keep the recruit in front of the reading ledge and clear of the stone table.
-	if result.x < 340 and result.y < 585: result.y = 585
-	return result
+		actors[2].action = "attack" if phase < 0.72 and not reduced_motion else ""
+		actors[2].action_frame = mini(5,int(phase/0.12))
 
 func _process(delta: float) -> void:
 	clock_time += delta
 	scenery.set_shader_parameter("wind_time",0.0 if reduced_motion else clock_time)
+	hub_scene.get_node("Background").material.set_shader_parameter("wind_time",0.0 if reduced_motion else clock_time)
 	petals.visible = not reduced_motion and location == "courtyard"
 	update_hub_actors()
 	if mode != "hub": return
-	var motion = Input.get_vector("move_left","move_right","move_up","move_down")
-	if motion != Vector2.ZERO:
-		target = walkable_position(player.position + motion.normalized()*200)
-	var direction = target-player.position
-	player.walking = direction.length() > 3
-	if player.walking:
-		player.face_motion(direction)
-		player.position = walkable_position(player.position.move_toward(target,190*delta))
-		if player.position.x in [190.0,1140.0] or player.position.y in [430.0,737.0]: target = player.position
+	player.walking = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if mode != "hub": return
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		target = walkable_position(get_global_mouse_position())
-	if event.is_action_pressed("interact") and not event.is_echo():
-		var nearest = nearest_resident()
-		if nearest > 0: talk(nearest)
+	if event.is_action_pressed("interact") and not event.is_echo(): talk(2)
 	if event.is_action_pressed("ui_cancel"): menu_ui()
 	elif event.is_action_pressed("open_deck"): deck_ui()
 
@@ -570,7 +546,6 @@ func restore_actors() -> void:
 		actors[i].scale = Vector2.ONE * HUB_SCALES[i]
 		actors[i].visible = true
 		actors[i].direction = Avatar.Direction.FRONT
-	target = player.position
 
 func leave_combat() -> void:
 	restore_actors()
@@ -603,9 +578,13 @@ func save_progress() -> bool:
 func update_restoration() -> void:
 	var level: int = calendar.buildings.hall
 	scenery.set_shader_parameter("restoration",Vector3(float(level >= 1),float(level >= 2),float(level >= 2)))
+	hub_scene.get_node("Background").material.set_shader_parameter("restoration",Vector3(float(level >= 1),float(level >= 2),float(level >= 2)))
 
 func confirm_restart() -> void:
-	dialogue(3,false,tr("text.dd46913d5453"),tr("text.f601866c5cfa"),restart)
+	clear_ui()
+	var confirmation = preload("res://visual/hub/restart_confirm.tscn").instantiate()
+	ui.add_child(confirmation)
+	confirmation.setup(self)
 
 func activities_ui(show_summary: bool = false, skip_story: bool = false) -> void:
 	if not show_summary and not skip_story:
@@ -621,7 +600,10 @@ func activities_ui(show_summary: bool = false, skip_story: bool = false) -> void
 	mode = "activities"
 	player.walking = false
 	clear_ui()
-	var screen = preload("res://visual/activities/menu.tscn").instantiate()
+	var scene = preload("res://visual/activities/summary_menu.tscn") if show_summary or calendar.slot >= Progress.END_SLOT else preload("res://visual/activities/menu.tscn")
+	if not show_summary and calendar.slot == 6:
+		scene = preload("res://visual/activities/oath_menu.tscn")
+	var screen = scene.instantiate()
 	ui.add_child(screen)
 	screen.setup(self,show_summary)
 

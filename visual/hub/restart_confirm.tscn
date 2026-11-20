@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[ext_resource type="Script" path="res://visual/hub/restart_confirm.gd" id="2"]
+[ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="3"]
+[node name="RestartConfirmation" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1")
+script = ExtResource("2")
+[node name="Dim" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.04,0.03,0.04,0.75)
+[node name="Paper" type="Panel" parent="."]
+offset_left = 240.0
+offset_top = 190.0
+offset_right = 1040.0
+offset_bottom = 650.0
+[node name="Decoration" parent="Paper" instance=ExtResource("3")]
+[node name="Title" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 225.0
+offset_right = 980.0
+offset_bottom = 300.0
+text = "Recommencer ?"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+[node name="Words" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 330.0
+offset_right = 980.0
+offset_bottom = 410.0
+text = "La progression de cette partie sera remplacée."
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+[node name="Date" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 430.0
+offset_right = 980.0
+offset_bottom = 480.0
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 25
+[node name="Cancel" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
+offset_left = 300.0
+offset_top = 540.0
+offset_right = 610.0
+offset_bottom = 610.0
+text = "Annuler"
+[node name="Restart" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
+offset_left = 670.0
+offset_top = 540.0
+offset_right = 980.0
+offset_bottom = 610.0
+text = "Recommencer"

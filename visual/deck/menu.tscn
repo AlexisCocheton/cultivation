@@ -1,5 +1,5 @@
 [gd_scene load_steps=11 format=3]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
 [ext_resource type="Script" path="res://visual/deck/menu.gd" id="2"]
 [ext_resource type="PackedScene" path="res://visual/deck/collection_item.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://visual/deck/detail.tscn" id="Detail"]
@@ -220,6 +220,7 @@ text = ""
 theme_override_font_sizes/font_size = 17
 
 [node name="Footer" type="Panel" parent="."]
+theme_type_variation = &"WidePanel"
 offset_left = 20.0
 offset_top = 752.0
 offset_right = 1260.0
@@ -227,6 +228,7 @@ offset_bottom = 818.0
 mouse_filter = 2
 
 [node name="Cancel" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
 offset_left = 40.0
 offset_top = 764.0
 offset_right = 237.0

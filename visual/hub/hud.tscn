@@ -1,14 +1,62 @@
-[gd_scene load_steps=6 format=3]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
-[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="2"]
-[ext_resource type="Script" path="res://visual/hub/hud.gd" id="3"]
-[sub_resource type="StyleBoxTexture" id="Paper"]
-texture = ExtResource("2")
-texture_margin_left = 15.0
-texture_margin_top = 15.0
-texture_margin_right = 15.0
-texture_margin_bottom = 15.0
-[sub_resource type="StyleBoxEmpty" id="Invisible"]
+[gd_scene load_steps=17 format=3]
+[ext_resource type="Theme" path="res://visual/hub/theme.tres" id="1"]
+[ext_resource type="Script" path="res://visual/hub/hud.gd" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/frame.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/book.png" id="book"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/scroll.png" id="scroll"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/settings.png" id="settings"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/supplies.png" id="supplies"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/morning.png" id="morning"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/afternoon.png" id="afternoon"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/evening.png" id="evening"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/icons/hourglass.png" id="hourglass"]
+[sub_resource type="StyleBoxTexture" id="Unavailable"]
+texture = ExtResource("3")
+modulate_color = Color(0.70,0.68,0.62,1)
+[sub_resource type="StyleBoxFlat" id="Jade"]
+bg_color = Color(0.08,0.19,0.18,1)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.73,0.57,0.31,1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_left = 7
+corner_radius_bottom_right = 7
+[sub_resource type="StyleBoxFlat" id="JadeHover"]
+bg_color = Color(0.14,0.28,0.25,1)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.94,0.76,0.44,1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_left = 7
+corner_radius_bottom_right = 7
+[sub_resource type="StyleBoxFlat" id="Bubble"]
+bg_color = Color(0.96,0.90,0.75,1)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.30,0.20,0.12,1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_left = 22
+corner_radius_bottom_right = 5
+[sub_resource type="StyleBoxFlat" id="ActivePeriod"]
+bg_color = Color(0.62,0.12,0.09,0.10)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.62,0.12,0.09,1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_left = 24
+corner_radius_bottom_right = 24
 [node name="HubHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -16,141 +64,270 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource("1")
-script = ExtResource("3")
+script = ExtResource("2")
+texture_filter = 4
 
 [node name="Calendar" type="Panel" parent="."]
-offset_left = 20.0
-offset_top = 18.0
-offset_right = 300.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("Paper")
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 422.0
+offset_bottom = 100.0
+theme_type_variation = &"WidePanel"
 mouse_filter = 2
 
 [node name="Date" type="Label" parent="Calendar"]
-offset_left = 16.0
-offset_top = 7.0
-offset_right = 266.0
-offset_bottom = 49.0
+offset_left = 18.0
+offset_top = 1.0
+offset_right = 143.0
+offset_bottom = 44.0
 theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 38
+
+[node name="Period" type="Label" parent="Calendar"]
+offset_left = 24.0
+offset_top = 43.0
+offset_right = 146.0
+offset_bottom = 77.0
+theme_type_variation = &"CurrentPeriod"
+theme_override_font_sizes/font_size = 24
 
 [node name="Supplies" type="Label" parent="Calendar"]
-offset_left = 16.0
-offset_top = 52.0
-offset_right = 266.0
-offset_bottom = 81.0
-theme_override_font_sizes/font_size = 19
+offset_left = 359.0
+offset_top = 21.0
+offset_right = 402.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 22
 
 [node name="Objective" type="Panel" parent="."]
-offset_left = 880.0
-offset_top = 18.0
-offset_right = 1260.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("Paper")
+offset_left = 20.0
+offset_top = 96.0
+offset_right = 298.0
+offset_bottom = 134.0
+theme_type_variation = &"WidePanel"
 mouse_filter = 2
 
 [node name="Text" type="Label" parent="Objective"]
-offset_left = 18.0
-offset_top = 12.0
-offset_right = 362.0
-offset_bottom = 82.0
+offset_left = 35.0
+offset_top = 3.0
+offset_right = 265.0
+offset_bottom = 35.0
 autowrap_mode = 2
 vertical_alignment = 1
-theme_override_font_sizes/font_size = 20
-
-[node name="Talk" type="Button" parent="."]
-offset_left = 340.0
-offset_top = 480.0
-offset_right = 585.0
-offset_bottom = 526.0
-text = "E · Parler à Lian"
-visible = false
-
-[node name="Techniques" type="Button" parent="."]
-offset_left = 690.0
-offset_top = 758.0
-offset_right = 875.0
-offset_bottom = 810.0
-text = "Techniques"
-
-[node name="Activities" type="Button" parent="."]
-offset_left = 884.0
-offset_top = 758.0
-offset_right = 1069.0
-offset_bottom = 810.0
-text = "Activités"
-
-[node name="Menu" type="Button" parent="."]
-offset_left = 1078.0
-offset_top = 758.0
-offset_right = 1258.0
-offset_bottom = 810.0
-text = "Menu"
-
-[node name="Notice" type="Panel" parent="."]
-offset_left = 340.0
-offset_top = 20.0
-offset_right = 850.0
-offset_bottom = 104.0
-theme_override_styles/panel = SubResource("Paper")
-mouse_filter = 2
-visible = false
-
-[node name="Text" type="Label" parent="Notice"]
-offset_left = 15.0
-offset_top = 8.0
-offset_right = 495.0
-offset_bottom = 76.0
-autowrap_mode = 2
-theme_override_font_sizes/font_size = 17
-vertical_alignment = 1
-
-[node name="Hint" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 716.0
-offset_right = 474.0
-offset_bottom = 746.0
-text = "ZQSD / clic · marcher    E · parler"
-theme_override_colors/font_color = Color(1,0.96,0.86,1)
-theme_override_colors/font_shadow_color = Color(0,0,0,1)
-theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 16
 
 [node name="Garden" type="Button" parent="."]
-offset_left = 490.0
-offset_top = 758.0
-offset_right = 680.0
-offset_bottom = 810.0
-text = "Jardin · Lian"
+offset_left = 164.0
+offset_top = 441.0
+offset_right = 389.0
+offset_bottom = 491.0
+theme_type_variation = &"SecondaryButton"
+text = "‹ Jardin de Lian"
+mouse_default_cursor_shape = 2
 
 [node name="Pavilion" type="Button" parent="."]
-offset_left = 282.0
-offset_top = 758.0
-offset_right = 480.0
-offset_bottom = 810.0
-text = "Pavillon · Shen"
-[node name="PavilionEntry" type="Button" parent="."]
-offset_left = 450.0
-offset_top = 180.0
-offset_right = 700.0
-offset_bottom = 325.0
-tooltip_text = "Entrer dans le pavillon de Shen"
+offset_left = 840.0
+offset_top = 245.0
+offset_right = 1120.0
+offset_bottom = 297.0
+theme_type_variation = &"SecondaryButton"
+text = "Pavillon de Shen ↗"
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("Invisible")
-theme_override_styles/hover = SubResource("Invisible")
-theme_override_styles/pressed = SubResource("Invisible")
 
-[node name="Merchant" type="Button" parent="."]
-offset_left = 24.0
-offset_top = 650.0
-offset_right = 324.0
-offset_bottom = 705.0
-text = "Marchand · Jour 4"
+[node name="Talk" type="Button" parent="."]
+offset_left = 1050.0
+offset_top = 538.0
+offset_right = 1202.0
+offset_bottom = 580.0
+theme_type_variation = &"SecondaryButton"
+text = "     Parler"
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("Jade")
+theme_override_styles/hover = SubResource("JadeHover")
+theme_override_styles/pressed = SubResource("JadeHover")
+theme_override_colors/font_color = Color(0.98,0.93,0.80,1)
+theme_override_colors/font_hover_color = Color(1,1,1,1)
+
+[node name="Techniques" type="Button" parent="."]
+offset_left = 674.0
+offset_top = 750.0
+offset_right = 880.0
+offset_bottom = 820.0
+theme_type_variation = &"SecondaryButton"
+text = "Techniques"
+mouse_default_cursor_shape = 2
+icon = ExtResource("book")
+expand_icon = true
+theme_override_constants/icon_max_width = 50
+theme_override_constants/h_separation = 5
+
+[node name="Activities" type="Button" parent="."]
+theme_override_styles/disabled = SubResource("Unavailable")
+theme_override_colors/font_disabled_color = Color(0.25,0.22,0.20,1)
+offset_left = 888.0
+offset_top = 750.0
+offset_right = 1090.0
+offset_bottom = 820.0
+theme_type_variation = &"SecondaryButton"
+text = "Activités"
+mouse_default_cursor_shape = 2
+icon = ExtResource("scroll")
+expand_icon = true
+theme_override_constants/icon_max_width = 50
+theme_override_constants/h_separation = 5
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 1098.0
+offset_top = 750.0
+offset_right = 1268.0
+offset_bottom = 820.0
+theme_type_variation = &"SecondaryButton"
+text = "Menu"
+mouse_default_cursor_shape = 2
+icon = ExtResource("settings")
+expand_icon = true
+theme_override_constants/icon_max_width = 50
+theme_override_constants/h_separation = 5
+
+[node name="Gate" type="Button" parent="."]
+offset_left = 400.0
+offset_top = 330.0
+offset_right = 438.0
+offset_bottom = 372.0
+theme_type_variation = &"SecondaryButton"
+text = "!"
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("Bubble")
+theme_override_styles/hover = SubResource("Bubble")
+theme_override_styles/pressed = SubResource("Bubble")
+theme_override_font_sizes/font_size = 29
+theme_override_colors/font_color = Color(0.62,0.1,0.08,1)
+
+[node name="GateMenu" type="Panel" parent="."]
+offset_left = 355.0
+offset_top = 398.0
+offset_right = 680.0
+offset_bottom = 578.0
+theme_type_variation = &"WidePanel"
 visible = false
 
-[node name="Visitor" type="Button" parent="."]
-offset_left = 864.0
-offset_top = 650.0
-offset_right = 1258.0
-offset_bottom = 705.0
-text = "Une visiteuse à la porte"
+[node name="Merchant" type="Button" parent="GateMenu"]
+offset_left = 14.0
+offset_top = 15.0
+offset_right = 311.0
+offset_bottom = 60.0
+theme_type_variation = &"SecondaryButton"
+text = "Le marchand"
+
+[node name="Visitor" type="Button" parent="GateMenu"]
+offset_left = 14.0
+offset_top = 68.0
+offset_right = 311.0
+offset_bottom = 113.0
+theme_type_variation = &"SecondaryButton"
+text = "La voyageuse"
+
+[node name="Close" type="Button" parent="GateMenu"]
+offset_left = 14.0
+offset_top = 121.0
+offset_right = 311.0
+offset_bottom = 166.0
+theme_type_variation = &"SecondaryButton"
+text = "Fermer"
+
+[node name="Notice" type="Panel" parent="."]
+offset_left = 440.0
+offset_top = 20.0
+offset_right = 1040.0
+offset_bottom = 105.0
+theme_type_variation = &"WidePanel"
 visible = false
+mouse_filter = 2
+
+[node name="Text" type="Label" parent="Notice"]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 580.0
+offset_bottom = 75.0
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="Active" type="Panel" parent="Calendar"]
+offset_left = 146.0
+offset_top = 23.0
+offset_right = 192.0
+offset_bottom = 69.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("ActivePeriod")
+
+[node name="morning" type="TextureRect" parent="Calendar"]
+offset_left = 149.0
+offset_top = 26.0
+offset_right = 189.0
+offset_bottom = 66.0
+texture = ExtResource("morning")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture_filter = 4
+
+[node name="afternoon" type="TextureRect" parent="Calendar"]
+offset_left = 202.0
+offset_top = 26.0
+offset_right = 242.0
+offset_bottom = 66.0
+texture = ExtResource("afternoon")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture_filter = 4
+
+[node name="evening" type="TextureRect" parent="Calendar"]
+offset_left = 255.0
+offset_top = 26.0
+offset_right = 295.0
+offset_bottom = 66.0
+texture = ExtResource("evening")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture_filter = 4
+
+[node name="SupplyIcon" type="TextureRect" parent="Calendar"]
+offset_left = 320.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 65.0
+texture = ExtResource("supplies")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture_filter = 4
+
+[node name="Hourglass" type="TextureRect" parent="Objective"]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("hourglass")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+texture_filter = 4
+
+[node name="Speech" type="Panel" parent="Talk"]
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 40.0
+offset_bottom = 31.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Bubble")
+[node name="Dots" type="Label" parent="Talk/Speech"]
+offset_left = 3.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 23.0
+text = "..."
+horizontal_alignment = 1
+mouse_filter = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(0.15,0.20,0.18,1)

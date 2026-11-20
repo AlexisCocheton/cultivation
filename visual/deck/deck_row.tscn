@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 [ext_resource type="StyleBox" path="res://visual/deck/circle_outline.tres" id="Normal"]
 [ext_resource type="StyleBox" path="res://visual/deck/circle_hover.tres" id="Hover"]
 [ext_resource type="StyleBox" path="res://visual/deck/circle_disabled.tres" id="Disabled"]
+[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtFrame"]
 [sub_resource type="StyleBoxEmpty" id="Compact"]
 content_margin_left = 2.0
 content_margin_right = 2.0
@@ -44,3 +45,10 @@ theme_override_styles/pressed = ExtResource("Hover")
 theme_override_styles/disabled = ExtResource("Disabled")
 theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(0.62,0.1,0.12,1)
+
+[node name="Frame" type="TextureRect" parent="Art"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("ArtFrame")
+expand_mode = 1
+mouse_filter = 2

@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3]
+[ext_resource type="Script" path="res://visual/activities/summary_row.gd" id="Script"]
+[ext_resource type="Texture2D" path="res://visual/activities/recap_row.tres" id="Frame"]
+[ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="CardFrame"]
+[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtFrame"]
+[ext_resource type="Texture2D" path="res://visual/activities/recap_wash.tres" id="Wash"]
+[sub_resource type="StyleBoxTexture" id="Paper"]
+texture = ExtResource("Frame")
+[sub_resource type="StyleBoxTexture" id="CardPaper"]
+texture = ExtResource("CardFrame")
+[node name="SummaryRow" type="Control"]
+custom_minimum_size = Vector2(1018,184)
+script = ExtResource("Script")
+texture_filter = 4
+[node name="Paper" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Paper")
+[node name="Icon" type="TextureRect" parent="."]
+offset_left = 26.0
+offset_top = 14.0
+offset_right = 72.0
+offset_bottom = 57.0
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+[node name="Period" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 57.0
+offset_right = 220.0
+offset_bottom = 96.0
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 29
+mouse_filter = 2
+[node name="Activity" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 99.0
+offset_right = 216.0
+offset_bottom = 176.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 19
+mouse_filter = 2
+[node name="Art" type="TextureRect" parent="."]
+offset_left = 220.0
+offset_top = 7.0
+offset_right = 584.0
+offset_bottom = 177.0
+expand_mode = 1
+stretch_mode = 6
+clip_contents = true
+mouse_filter = 2
+[node name="GainWash" type="TextureRect" parent="."]
+offset_left = 592.0
+offset_top = 73.0
+offset_right = 842.0
+offset_bottom = 126.0
+texture = ExtResource("Wash")
+expand_mode = 1
+modulate = Color(1,1,1,0.65)
+mouse_filter = 2
+[node name="Outcome" type="RichTextLabel" parent="."]
+offset_left = 602.0
+offset_top = 42.0
+offset_right = 845.0
+offset_bottom = 170.0
+bbcode_enabled = true
+theme_override_font_sizes/normal_font_size = 22
+scroll_active = true
+[node name="Card" type="Button" parent="."]
+offset_left = 858.0
+offset_top = 29.0
+offset_right = 994.0
+offset_bottom = 174.0
+theme_override_styles/normal = SubResource("CardPaper")
+theme_override_styles/hover = SubResource("CardPaper")
+theme_override_styles/pressed = SubResource("CardPaper")
+mouse_default_cursor_shape = 2
+[node name="Art" type="TextureRect" parent="Card"]
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 128.0
+offset_bottom = 87.0
+expand_mode = 1
+stretch_mode = 6
+clip_contents = true
+mouse_filter = 2
+[node name="Frame" type="TextureRect" parent="Card"]
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 131.0
+offset_bottom = 91.0
+texture = ExtResource("ArtFrame")
+expand_mode = 1
+mouse_filter = 2
+[node name="Name" type="Label" parent="Card"]
+offset_left = 9.0
+offset_top = 89.0
+offset_right = 127.0
+offset_bottom = 139.0
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+mouse_filter = 2
+[node name="CardHeading" type="Label" parent="."]
+offset_left = 841.0
+offset_top = 4.0
+offset_right = 1014.0
+offset_bottom = 29.0
+text = "Technique acquise"
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+mouse_filter = 2

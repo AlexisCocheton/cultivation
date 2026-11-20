@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Script" path="res://visual/shared/illustrated_scene.gd" id="Script"]
+[ext_resource type="Shader" path="res://visual/visitor/scene_edge.gdshader" id="Edge"]
+[ext_resource type="Texture2D" path="res://assets/team/arena.png" id="Default"]
+[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtFrame"]
+[sub_resource type="ShaderMaterial" id="Fade"]
+resource_local_to_scene = true
+shader = ExtResource("Edge")
+[node name="IllustratedScene" type="Control"]
+mouse_filter = 2
+script = ExtResource("Script")
+[node name="Backdrop" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("Default")
+material = SubResource("Fade")
+expand_mode = 1
+stretch_mode = 6
+mouse_filter = 2
+modulate = Color(1,1,1,0.8)
+[node name="People" type="TextureRect" parent="."]
+anchor_left = 0.02
+anchor_top = 0.16
+anchor_right = 0.98
+anchor_bottom = 0.95
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Frame" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("ArtFrame")
+expand_mode = 1
+mouse_filter = 2

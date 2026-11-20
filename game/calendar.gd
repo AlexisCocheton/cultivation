@@ -233,6 +233,7 @@ func act(action: String, won: bool = true, choice: String = "E01") -> String:
 	if action == "M05" and before_preparation.is_empty(): before_preparation = snapshot()
 	if action == "M06" and before_final.is_empty(): before_final = snapshot()
 	if action == "M06" and not won: return "Défaite finale : rechargez le point préalable."
+	var before_activity = {"supplies":supplies,"ranks":ranks.duplicate(),"buildings":buildings.duplicate(),"collection":collection.duplicate()}
 	if action == "work": supplies += Balance.WORK_KITCHEN if buildings.kitchen >= 1 else Balance.WORK_BASE
 	if action == "antidote":
 		story.prepared = true
@@ -285,7 +286,11 @@ func act(action: String, won: bool = true, choice: String = "E01") -> String:
 				grant("O02")
 		"S06": supplies += Balance.EVENT_RESERVES
 	if action.begins_with("M") or action.begins_with("S"): seen.append(action)
-	history.append({"slot":slot,"action":action,"supplies":supplies,"won":won})
+	var gained: Array = []
+	for id in collection:
+		if not before_activity.collection.has(id): gained.append(id)
+	history.append({"slot":slot,"action":action,"supplies":supplies,"won":won,
+		"before":before_activity,"ranks":ranks.duplicate(),"buildings":buildings.duplicate(),"gained":gained})
 	slot += 1
 	return ""
 

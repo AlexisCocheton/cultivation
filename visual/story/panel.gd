@@ -76,11 +76,9 @@ func setup(controller, page: String) -> void:
 			$ChoiceB.hide()
 			$Back.hide()
 func portrait(id: String) -> void:
-	var atlas = AtlasTexture.new()
-	atlas.atlas = preload("res://assets/hub/portraits.png")
-	var cell = atlas.atlas.get_size()/Vector2(3,2)
-	atlas.region = Rect2(Vector2({"L":0,"J":1,"H":2}[id]*cell.x,0),cell)
-	$Portrait.texture = atlas
+	var recipe = id
+	if kind in ["prepare","return","candidates","invite"]: recipe = kind
+	$Portrait.present(recipe)
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and $Back.visible:
 		get_viewport().set_input_as_handled()

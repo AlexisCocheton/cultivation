@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
+[gd_scene load_steps=7 format=3]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
 [ext_resource type="Script" path="res://visual/merchant/menu.gd" id="2"]
 [ext_resource type="Texture2D" path="res://assets/events/merchant-chibi.png" id="3"]
 [ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
+[ext_resource type="PackedScene" path="res://visual/shared/illustrated_scene.tscn" id="Illustrated"]
 [node name="Merchant" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -33,7 +35,7 @@ offset_bottom = 112.0
 text = "Le marchand de passage"
 mouse_filter = 2
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 43
 theme_type_variation = &"Title"
 
 [node name="Date" type="Label" parent="."]
@@ -66,20 +68,15 @@ autowrap_mode = 2
 theme_override_font_sizes/font_size = 21
 
 
-[node name="Portrait" type="TextureRect" parent="."]
-offset_left = 75.0
-offset_top = 323.0
-offset_right = 395.0
-offset_bottom = 586.0
-texture = ExtResource("3")
-expand_mode = 1
-stretch_mode = 5
-texture_filter = 2
-mouse_filter = 2
+[node name="Portrait" parent="." instance=ExtResource("Illustrated")]
+offset_left = 40.0
+offset_top = 325.0
+offset_right = 415.0
+offset_bottom = 585.0
 
 [node name="Gift" type="Label" parent="."]
 offset_left = 80.0
-offset_top = 590.0
+offset_top = 605.0
 offset_right = 395.0
 offset_bottom = 720.0
 text = ""
@@ -137,6 +134,7 @@ theme_override_font_sizes/font_size = 18
 
 
 [node name="Back" type="Button" parent="."]
+theme_type_variation = &"SecondaryButton"
 offset_left = 80.0
 offset_top = 742.0
 offset_right = 360.0
@@ -156,3 +154,5 @@ offset_top = 742.0
 offset_right = 1200.0
 offset_bottom = 790.0
 text = "Composer mon deck"
+
+[node name="PaintedDecoration" parent="Paper" instance=ExtResource("PaintedDecor")]

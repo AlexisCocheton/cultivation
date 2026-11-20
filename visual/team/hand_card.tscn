@@ -2,7 +2,7 @@
 [ext_resource type="Script" path="res://visual/team/hand_card.gd" id="Script"]
 [ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="Tile"]
 [ext_resource type="Shader" path="res://shaders/hand_card.gdshader" id="Shader"]
-[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="Paper"]
+[ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="Paper"]
 [sub_resource type="ViewportTexture" id="Face"]
 viewport_path = NodePath("Viewport")
 [sub_resource type="ShaderMaterial" id="Material"]
@@ -26,6 +26,7 @@ render_target_update_mode = 4
 [node name="Card" parent="Viewport" instance=ExtResource("Tile")]
 scale = Vector2(2,2)
 [node name="Shadow" type="TextureRect" parent="."]
+expand_mode = 1
 offset_left = 7.0
 offset_top = 10.0
 offset_right = 201.0

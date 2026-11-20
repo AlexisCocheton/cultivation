@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=9 format=3]
 [ext_resource type="Script" path="res://visual/deck/tile.gd" id="1"]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="2"]
-[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="3"]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="3"]
 [ext_resource type="Texture2D" path="res://visual/deck/seal.svg" id="4"]
+[ext_resource type="Texture2D" path="res://assets/ui/frames/art-window.png" id="ArtWindow"]
+[ext_resource type="Texture2D" path="res://visual/shared/status_frame.tres" id="NameFrame"]
 [sub_resource type="StyleBoxFlat" id="Selection"]
 bg_color = Color(0,0,0,0)
 border_width_left = 3
@@ -12,10 +14,10 @@ border_width_bottom = 3
 border_color = Color(0.8,0.12,0.12,1)
 [sub_resource type="StyleBoxTexture" id="Paper"]
 texture = ExtResource("3")
-texture_margin_left = 15.0
-texture_margin_right = 15.0
-texture_margin_top = 15.0
-texture_margin_bottom = 15.0
+texture_margin_left = 0.0
+texture_margin_right = 0.0
+texture_margin_top = 0.0
+texture_margin_bottom = 0.0
 [node name="Technique" type="Button"]
 custom_minimum_size = Vector2(232,272)
 theme = ExtResource("2")
@@ -36,6 +38,15 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 6
 texture_filter = 2
+
+[node name="ArtFrame" type="TextureRect" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 228.0
+offset_bottom = 140.0
+texture = ExtResource("ArtWindow")
+expand_mode = 1
+mouse_filter = 2
 
 [node name="Seal" type="TextureRect" parent="."]
 offset_left = 9.0
@@ -59,6 +70,15 @@ theme_override_colors/font_shadow_color = Color(0,0,0,1)
 theme_override_constants/shadow_outline_size = 6
 theme_override_font_sizes/font_size = 23
 
+[node name="NameCartouche" type="TextureRect" parent="."]
+offset_left = 5.0
+offset_top = 136.0
+offset_right = 227.0
+offset_bottom = 172.0
+texture = ExtResource("NameFrame")
+expand_mode = 1
+mouse_filter = 2
+
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
 offset_left = 8.0
@@ -71,6 +91,7 @@ theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
 [node name="Line" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 171.0

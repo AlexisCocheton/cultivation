@@ -5,6 +5,7 @@ var selected = "Q01"
 var committing = false
 
 func setup(controller) -> void:
+	$Portrait.present("merchant")
 	game = controller
 	$Date.text = "Jour 4 · %s · Réserves : %d" % [["Matin","Après-midi","Soir"][game.calendar.period()],game.calendar.supplies]
 	$Back.pressed.connect(game.hub)

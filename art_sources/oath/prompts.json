@@ -1,0 +1,17 @@
+[
+  [
+    "assembly",
+    "Generate ONLY the large left illustration from the reference as new clean full standalone artwork, no frame no text no UI. Landscape ratio 4:3. Precise matching character identities and manhua watercolor chibi rendering: elderly white-haired white-bearded Shen centered at low wooden desk pointing at open scroll, rose-robed brown-haired Lian behind left, navy-robed black-haired Jun seated right arms crossed, jade-robed recruit seated front left leaning on hand. Four characters total. Warm fresh morning pavilion, flowering plum tree and temple seen outside to left. Show every head completely with margins and include table/hands. Beautiful intricate costumes and lively expressions matching reference. No interface assets or lettering. Composition fills canvas with integrated scene.",
+    false
+  ],
+  [
+    "title",
+    "Generate ONLY the exact French calligraphic text 'Le serment de l’aube' with its elegant thin sweeping brush underline matching reference. Burgundy dark red ink on fully transparent background, wide horizontal aspect ratio 5:1. Sophisticated flowing human brush lettering with sharp expressive strokes and lovely French apostrophe and accents. No other text, no paper, no decorations besides underline. Fill width with small safe margins.",
+    true
+  ],
+  [
+    "landscape",
+    "Generate ONLY a very wide delicate watercolor decorative landscape header band on transparent background for the approved UI. Aspect ratio 7:1. Low pale warm-gray misty mountain silhouettes across center, pink plum blossom branches at left, tiny garden arched bridge and pavilion in right third. Faded watercolor edges transparent, very light and quiet, not busy. No characters, no text, no frame, no UI, no opaque background. Matches pale landscape directly beneath title in reference.",
+    true
+  ]
+]

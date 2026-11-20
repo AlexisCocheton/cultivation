@@ -9,6 +9,11 @@ var relation_ranks: Dictionary = {}
 var combat_cost: int = -1
 
 static func illustration(id: String) -> AtlasTexture:
+	if id == "L02":
+		var silk = AtlasTexture.new()
+		silk.atlas = preload("res://assets/ui/tea/silk.png")
+		silk.region = Rect2(Vector2.ZERO,silk.atlas.get_size())
+		return silk
 	if MANHUA_IDS.has(id):
 		var index = MANHUA_IDS.find(id)
 		var art = AtlasTexture.new()

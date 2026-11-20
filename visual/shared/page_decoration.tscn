@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/branches.png" id="1"]
+[node name="PageDecoration" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+[node name="UpperBranch" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -380.0
+offset_top = -15.0
+offset_right = 0.0
+offset_bottom = 105.0
+flip_h = true
+texture = ExtResource("1")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+modulate = Color(1,1,1,0.45)
+[node name="LowerBranch" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -95.0
+offset_right = 300.0
+offset_bottom = 5.0
+flip_v = true
+texture = ExtResource("1")
+expand_mode = 1
+texture_filter = 2
+mouse_filter = 2
+modulate = Color(1,1,1,0.3)

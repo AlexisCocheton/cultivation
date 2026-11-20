@@ -1,0 +1,105 @@
+[gd_resource type="Theme" load_steps=14 format=3]
+[ext_resource type="Texture2D" path="res://assets/ui/tea/brush.png" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/kaushan/KaushanScript-Regular.ttf" id="Title"]
+[ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="PaperTexture"]
+[ext_resource type="Texture2D" path="res://assets/ui/hub/frame.png" id="SecondaryFrame"]
+[sub_resource type="StyleBoxTexture" id="PanelPaper"]
+texture = ExtResource("PaperTexture")
+texture_margin_left = 0.0
+texture_margin_top = 0.0
+texture_margin_right = 0.0
+texture_margin_bottom = 0.0
+[sub_resource type="StyleBoxTexture" id="Normal"]
+texture = ExtResource("1")
+texture_margin_left = 0.0
+texture_margin_right = 0.0
+texture_margin_top = 0.0
+texture_margin_bottom = 0.0
+content_margin_left = 20.0
+content_margin_right = 20.0
+[sub_resource type="StyleBoxTexture" id="Hover"]
+texture = ExtResource("1")
+texture_margin_left = 0.0
+texture_margin_right = 0.0
+modulate_color = Color(1.3,1.3,1.3,1)
+[sub_resource type="StyleBoxTexture" id="Pressed"]
+texture = ExtResource("1")
+texture_margin_left = 0.0
+texture_margin_right = 0.0
+modulate_color = Color(0.55,0.55,0.55,1)
+[sub_resource type="StyleBoxTexture" id="Disabled"]
+texture = ExtResource("1")
+modulate_color = Color(0.55,0.55,0.55,0.7)
+[sub_resource type="StyleBoxFlat" id="Focus"]
+bg_color = Color(0,0,0,0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1,0.75,0.35,1)
+[sub_resource type="SystemFont" id="Body"]
+font_names = PackedStringArray("Segoe UI")
+[sub_resource type="StyleBoxTexture" id="Secondary"]
+texture_margin_left = 0.0
+texture_margin_top = 0.0
+texture_margin_right = 0.0
+texture_margin_bottom = 0.0
+axis_stretch_horizontal = 0
+axis_stretch_vertical = 0
+texture = ExtResource("SecondaryFrame")
+content_margin_left = 16.0
+content_margin_right = 16.0
+[sub_resource type="StyleBoxTexture" id="SecondaryHover"]
+texture_margin_left = 0.0
+texture_margin_top = 0.0
+texture_margin_right = 0.0
+texture_margin_bottom = 0.0
+axis_stretch_horizontal = 0
+axis_stretch_vertical = 0
+texture = ExtResource("SecondaryFrame")
+modulate_color = Color(0.86,0.94,0.89,1)
+[resource]
+Panel/styles/panel = SubResource("PanelPaper")
+default_font = SubResource("Body")
+default_font_size = 18
+Label/colors/font_color = Color(0.09,0.09,0.1,1)
+Button/colors/font_color = Color(1,0.96,0.88,1)
+Button/colors/font_hover_color = Color(1,1,1,1)
+Button/colors/font_pressed_color = Color(1,0.9,0.65,1)
+Button/colors/font_disabled_color = Color(0.8,0.77,0.72,1)
+Button/fonts/font = ExtResource("Title")
+Button/font_sizes/font_size = 22
+Button/styles/normal = SubResource("Normal")
+Button/styles/hover = SubResource("Hover")
+Button/styles/pressed = SubResource("Pressed")
+Button/styles/disabled = SubResource("Disabled")
+Button/styles/focus = SubResource("Focus")
+Title/base_type = &"Label"
+Title/fonts/font = ExtResource("Title")
+Title/font_sizes/font_size = 30
+Title/colors/font_color = Color(0.32,0.05,0.035,1)
+Unavailable/base_type = &"Label"
+Unavailable/colors/font_color = Color(0.55,0.12,0.10,1)
+
+TooltipPanel/styles/panel = SubResource("PanelPaper")
+TooltipLabel/colors/font_color = Color(0.09,0.09,0.1,1)
+TooltipLabel/font_sizes/font_size = 18
+
+CurrentPeriod/base_type = &"Label"
+CurrentPeriod/fonts/font = ExtResource("Title")
+CurrentPeriod/colors/font_color = Color(0.62,0.10,0.10,1)
+
+SecondaryButton/base_type = &"Button"
+SecondaryButton/colors/font_color = Color(0.22,0.12,0.08,1)
+SecondaryButton/colors/font_hover_color = Color(0.22,0.12,0.08,1)
+SecondaryButton/colors/font_pressed_color = Color(0.45,0.08,0.05,1)
+SecondaryButton/styles/normal = SubResource("Secondary")
+SecondaryButton/styles/hover = SubResource("SecondaryHover")
+SecondaryButton/styles/pressed = SubResource("SecondaryHover")
+
+SecondaryButton/colors/font_focus_color = Color(0.22,0.12,0.08,1)
+SecondaryButton/colors/font_disabled_color = Color(0.45,0.39,0.30,1)
+RichTextLabel/colors/default_color = Color(0.09,0.09,0.1,1)
+
+WidePanel/base_type = &"Panel"
+WidePanel/styles/panel = SubResource("Secondary")

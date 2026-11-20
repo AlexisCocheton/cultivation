@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="1"]
-[ext_resource type="Texture2D" path="res://visual/deck/paper.svg" id="2"]
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="1"]
+[ext_resource type="Texture2D" path="res://visual/shared/card_frame.tres" id="2"]
 [ext_resource type="Script" path="res://visual/settings/controls.gd" id="3"]
+[ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
 [sub_resource type="StyleBoxTexture" id="Paper"]
 texture = ExtResource("2")
-texture_margin_left = 15.0
-texture_margin_top = 15.0
-texture_margin_right = 15.0
-texture_margin_bottom = 15.0
+texture_margin_left = 0.0
+texture_margin_top = 0.0
+texture_margin_right = 0.0
+texture_margin_bottom = 0.0
 [node name="Controls" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -24,7 +25,7 @@ color = Color(0.03,0.025,0.03,0.75)
 offset_left = 320.0
 offset_top = 90.0
 offset_right = 960.0
-offset_bottom = 742.0
+offset_bottom = 570.0
 theme_override_styles/panel = SubResource("Paper")
 [node name="Title" type="Label" parent="Paper"]
 offset_left = 40.0
@@ -35,6 +36,7 @@ text = "Commandes"
 theme_type_variation = &"Title"
 
 [node name="Label0" type="Label" parent="Paper"]
+visible = false
 offset_left = 40.0
 offset_top = 110.0
 offset_right = 260.0
@@ -42,12 +44,14 @@ offset_bottom = 154.0
 text = "Gauche"
 
 [node name="move_left" type="Button" parent="Paper"]
+visible = false
 offset_left = 270.0
 offset_top = 110.0
 offset_right = 600.0
 offset_bottom = 154.0
 
 [node name="Label1" type="Label" parent="Paper"]
+visible = false
 offset_left = 40.0
 offset_top = 170.0
 offset_right = 260.0
@@ -55,12 +59,14 @@ offset_bottom = 214.0
 text = "Droite"
 
 [node name="move_right" type="Button" parent="Paper"]
+visible = false
 offset_left = 270.0
 offset_top = 170.0
 offset_right = 600.0
 offset_bottom = 214.0
 
 [node name="Label2" type="Label" parent="Paper"]
+visible = false
 offset_left = 40.0
 offset_top = 230.0
 offset_right = 260.0
@@ -68,12 +74,14 @@ offset_bottom = 274.0
 text = "Haut"
 
 [node name="move_up" type="Button" parent="Paper"]
+visible = false
 offset_left = 270.0
 offset_top = 230.0
 offset_right = 600.0
 offset_bottom = 274.0
 
 [node name="Label3" type="Label" parent="Paper"]
+visible = false
 offset_left = 40.0
 offset_top = 290.0
 offset_right = 260.0
@@ -81,6 +89,7 @@ offset_bottom = 334.0
 text = "Bas"
 
 [node name="move_down" type="Button" parent="Paper"]
+visible = false
 offset_left = 270.0
 offset_top = 290.0
 offset_right = 600.0
@@ -88,45 +97,48 @@ offset_bottom = 334.0
 
 [node name="Label4" type="Label" parent="Paper"]
 offset_left = 40.0
-offset_top = 350.0
+offset_top = 130.0
 offset_right = 260.0
-offset_bottom = 394.0
-text = "Parler"
+offset_bottom = 174.0
+text = "Parler à Jun"
 
 [node name="interact" type="Button" parent="Paper"]
 offset_left = 270.0
-offset_top = 350.0
+offset_top = 130.0
 offset_right = 600.0
-offset_bottom = 394.0
+offset_bottom = 174.0
 
 [node name="Label5" type="Label" parent="Paper"]
 offset_left = 40.0
-offset_top = 410.0
+offset_top = 210.0
 offset_right = 260.0
-offset_bottom = 454.0
+offset_bottom = 254.0
 text = "Techniques"
 
 [node name="open_deck" type="Button" parent="Paper"]
 offset_left = 270.0
-offset_top = 410.0
+offset_top = 210.0
 offset_right = 600.0
-offset_bottom = 454.0
+offset_bottom = 254.0
 
 [node name="Notice" type="Label" parent="Paper"]
 offset_left = 40.0
-offset_top = 475.0
+offset_top = 300.0
 offset_right = 600.0
-offset_bottom = 535.0
+offset_bottom = 360.0
 autowrap_mode = 2
 [node name="Reset" type="Button" parent="Paper"]
 offset_left = 40.0
-offset_top = 560.0
+offset_top = 390.0
 offset_right = 310.0
-offset_bottom = 610.0
+offset_bottom = 440.0
 text = "Par défaut"
 [node name="Back" type="Button" parent="Paper"]
+theme_type_variation = &"SecondaryButton"
 offset_left = 340.0
-offset_top = 560.0
+offset_top = 390.0
 offset_right = 600.0
-offset_bottom = 610.0
+offset_bottom = 440.0
 text = "Retour"
+
+[node name="PaintedDecoration" parent="Paper" instance=ExtResource("PaintedDecor")]

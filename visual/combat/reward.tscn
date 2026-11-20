@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
-[ext_resource type="Theme" path="res://visual/deck/theme.tres" id="Theme"]
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Theme" path="res://visual/shared/painted_theme.tres" id="Theme"]
 [ext_resource type="Script" path="res://visual/combat/reward.gd" id="Script"]
 [ext_resource type="PackedScene" path="res://visual/deck/tile.tscn" id="Card"]
+[ext_resource type="PackedScene" path="res://visual/shared/page_decoration.tscn" id="PaintedDecor"]
 [node name="TechniqueReward" type="Control"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,3 +52,5 @@ offset_top = 600.0
 offset_right = 1060.0
 offset_bottom = 665.0
 text = "Composer mon deck"
+
+[node name="PaintedDecoration" parent="Paper" instance=ExtResource("PaintedDecor")]

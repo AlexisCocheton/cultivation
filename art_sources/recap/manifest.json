@@ -1,0 +1,20 @@
+{
+  "reference": "reference-approved.png",
+  "exception": "Retirer calendrier et Jour 3 Matin du pied ; conserver Retour, Voir mes techniques, Continuer.",
+  "generated": [
+    "scroll.png",
+    "courtyard.png",
+    "row.png",
+    "wash.png"
+  ],
+  "reused": [
+    "assets/ui/activities/strict/tea.png",
+    "assets/ui/activities/strict/work.png",
+    "assets/ui/activities/strict/rest.png",
+    "assets/ui/hub/icons",
+    "visual/deck/detail.tscn",
+    "visual/shared/card_frame.tres"
+  ],
+  "data": "Textes, réserves, rangs, acquisitions, jour du titre issus du calendrier. Aucun texte de données dans les images.",
+  "composition": "summary_menu.tscn hérite menu.tscn ; le menu Activités validé conserve sa mise en page."
+}
