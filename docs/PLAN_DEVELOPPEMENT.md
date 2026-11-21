@@ -893,3 +893,14 @@ Contre-revue critique finale : prêt pour cette intégration, aucun blocage iden
 Sauvegarde Git préalable `8e87ff2` poussée sur master. Développement séparé sur `codex/autonomous-ui`, à la demande du joueur. Les écrans restants sont repris par familles avec calques réutilisables, données réelles, captures Godot aux formats 1280×832 et 960×624, tests isolés et revue critique indépendante. Détail écran par écran et réserves dans [UI_AUTONOME_2026-11-21.md](UI_AUTONOME_2026-11-21.md). Les interfaces activités/bilan/serment/thé déjà approuvées sont conservées. Aucune nouvelle règle de progression ou de combat dans cette passe.
 
 24/24 suites de régression et 4/4 helpers visuels passés ; assertions adaptées à la voie distincte, au compteur 20/20 et aux decks de compagnons regroupés avec quantités exactes. Dix fichiers de sauvegarde personnels inchangés. Contrôle narratif supplémentaire : 22 captures sans persistance. Revue finale : prêt avec réserves de fidélité détaillées dans le registre ; les défauts importants signalés ont été corrigés et contre-vérifiés. Contrôle moteur final des 30 écrans passé. Validation artistique du joueur à venir.
+
+
+### 21 novembre — Audit complémentaire après signalement du combat visiteuse
+
+Le joueur a révélé une variante non couverte par l’inventaire initial : le combat de la visiteuse reste une scène de prototype (fond vide, portraits, pas d’animations de combat). La validation fonctionnelle et les captures nominales précédentes ne suffisent donc pas à déclarer toutes les interfaces cohérentes. Nouveau référentiel : 57 états capturés à deux tailles, 114 images, incluant transitions et résultats. Rapport : [AUDIT_UI_RUNTIME_2026-11-21.md](AUDIT_UI_RUNTIME_2026-11-21.md). Audit uniquement ; aucun correctif de présentation n’est déclaré livré à cette étape. Priorité : présentation commune du combat visiteuse, puis inspection des compagnons et variantes de résultat.
+
+### 21 novembre — Corrections de l’audit runtime
+
+Combat visiteuse raccordé au présentateur commun : décor, recrue verte, poses d’attaque/garde à l’éventail. Fiche de carte partagée avec transfert/confinement/restauration du focus. Illustrations de défaite et de retour avec blessés adaptées, message de recherche corrigé. Assets existants réutilisés sauf les quatre poses de la visiteuse dérivées du concept validé. 24 suites de régression, test ciblé runtime et 57 états × 2 tailles passent sur profil isolé sans persistance. Voir le rapport d’audit pour la revue critique et les limites visuelles.
+
+Contre-revue critique : prêt avec réserves non bloquantes sur la densité du costume de la visiteuse et l’animation à quatre poses. Résidus alpha filtrés dans Godot ; test graphique ciblé repassé.

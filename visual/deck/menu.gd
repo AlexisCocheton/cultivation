@@ -109,6 +109,7 @@ func refresh() -> void:
 		row.get_node("Remove").disabled = game.calendar.complete
 		row.get_node("Remove").pressed.connect(func(): remove_card(card_id))
 	$Empty.visible = $Scroll/Grid.get_child_count() == 0
+	$Empty.text = "Aucune correspondance pour cette recherche." if not $Search.text.strip_edges().is_empty() else ("Ta collection est vide." if game.calendar.collection.is_empty() else "Aucune carte acquise dans cette voie.")
 	$Count.text = "%d/20" % draft.size()
 	$Modified.visible = draft != game.calendar.deck
 	$Capacity.value = draft.size()

@@ -42,6 +42,10 @@ func setup(controller, page: String) -> void:
 		$Back.hide()
 	elif page == "return":
 		portrait("H")
+		for member in game.calendar.story.battle_report.get("members",[]):
+			if member.hp <= 0:
+				$Portrait.present("prepare")
+				break
 		$Title.text = "Le retour au Prunier"
 		var lines: Array[String] = []
 		for member in game.calendar.story.battle_report.get("members",[]):

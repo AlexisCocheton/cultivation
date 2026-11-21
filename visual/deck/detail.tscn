@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 [ext_resource type="Texture2D" path="res://visual/deck/seal.svg" id="Seal"]
 [ext_resource type="Theme" path="res://visual/activities/theme.tres" id="Theme"]
 [ext_resource type="Texture2D" path="res://assets/ui/oath/frame.png" id="ArtWindow"]
 [ext_resource type="Texture2D" path="res://visual/shared/status_frame.tres" id="NameFrame"]
+[ext_resource type="Script" path="res://visual/deck/detail.gd" id="Modal"]
 [node name="Detail" type="Control"]
+script = ExtResource("Modal")
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -104,6 +106,10 @@ theme_override_font_sizes/font_size = 20
 vertical_alignment = 0
 mouse_filter = 2
 [node name="Close" type="Button" parent="."]
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 theme_type_variation = &"SecondaryButton"
 offset_left = 1140.0
 offset_top = 32.0

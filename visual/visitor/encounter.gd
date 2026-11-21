@@ -2,7 +2,13 @@ extends Control
 const CampaignSession = preload("res://game/campaign/session.gd")
 const Battle = preload("res://game/battle.gd")
 const Hud = preload("res://visual/combat/hud.tscn")
-const Tile = preload("res://visual/deck/tile.gd")
+const Presenter = preload("res://visual/combat/presenter.gd")
+var combat_presenter = Presenter.new(self)
+var player: Node2D
+var mode: String:
+	get: return phase
+var notice: String:
+	get: return host.notice
 var host
 var battle = Battle.new()
 var busy = false
@@ -17,8 +23,8 @@ func setup(controller) -> void:
 	muted = host.muted
 	reduced_motion = host.reduced_motion
 	$Conversation/SceneLayers.set_reduced_motion(reduced_motion)
-	actors = [$EnemyMarker,$EnemyMarker,$EnemyMarker]
-	$Arena/Recruit.texture = Tile.illustration("B01")
+	player = $Arena/Recruit
+	actors = [player,player,$Arena/Visitor]
 	$Conversation/Back.pressed.connect(leave_combat)
 	$Conversation/Primary.pressed.connect(primary)
 	if host.calendar.seen.has("visitor_won"):
@@ -64,6 +70,11 @@ func start_duel() -> void:
 	error = battle.start(host.calendar.deck,"visiteuse",randi())
 	if error != "": $Conversation/Terms.text = error; return
 	phase = "combat"
+	player.position = Vector2(310,482)
+	actors[2].position = Vector2(965,482)
+	for actor in [player,actors[2]]:
+		actor.guarding = false
+		actor.action = ""
 	resolved = false
 	$Conversation.visible = false
 	$Arena.visible = true
@@ -83,34 +94,19 @@ func save_progress() -> bool:
 	return host.save_progress()
 
 func play_card(index: int) -> void:
-	if busy or phase != "combat" or index < 0 or index >= battle.hand.size(): return
-	var before = battle.enemy_hp
-	if not battle.play(index): return
-	busy = true
-	combat_ui()
-	await pulse($Arena/Visitor if battle.enemy_hp < before else $Arena/Recruit)
-	busy = false
-	if battle.outcome != "": finish_duel()
-	else: combat_ui()
+	await combat_presenter.play_card(index)
 
 func end_turn() -> void:
-	if busy or phase != "combat": return
-	busy = true
-	var intent = battle.intent()
-	battle.end_turn()
-	combat_ui()
-	await pulse($Arena/Recruit if intent.damage > 0 else $Arena/Visitor)
-	busy = false
-	if battle.outcome != "": finish_duel()
-	else: combat_ui()
+	await combat_presenter.end_turn()
 
-func pulse(portrait: TextureRect) -> void:
-	host.tone(330)
-	if reduced_motion: return
-	var tween = create_tween()
-	tween.tween_property(portrait,"modulate",Color(0.72,0.55,0.85),0.09)
-	tween.tween_property(portrait,"modulate",Color.WHITE,0.14)
-	await tween.finished
+func tone(frequency: float) -> void:
+	host.tone(frequency)
+
+func label(words: String, pos: Vector2, extent: Vector2, font_size: int, color: Color):
+	return host.label(words,pos,extent,font_size,color)
+
+func finish_combat() -> void:
+	finish_duel()
 
 func finish_duel() -> void:
 	if resolved or battle.outcome == "": return
